@@ -1,0 +1,211 @@
+[
+  {
+    "id": "alappuzha-lagoon-queen",
+    "type": "houseboat",
+    "title": "Lagoon Queen Houseboat",
+    "subtitle": "Private backwater cruise with golden-hour views",
+    "location": "Alappuzha, Kerala",
+    "priceFrom": 8999,
+    "rating": 4.8,
+    "reviewsCount": 238,
+    "minGuests": 2,
+    "maxGuests": 8,
+    "duration": "2 Nights / 3 Days",
+    "tags": ["Alleppey", "Backwaters", "Premium"],
+    "highlights": [
+      "Captain-guided route through quiet canals",
+      "Sundeck for sunsets & tea rituals",
+      "Chef-prepared Kerala cuisine"
+    ],
+    "about": "Settle into a slow, luxurious rhythm aboard Lagoon Queen. Drift through Alleppey backwaters with attentive hospitality, panoramic decks, and curated moments designed for couples and families.",
+    "facilities": ["AC Bedrooms", "Private Deck", "Restaurant Meals", "Wi-Fi", "Sunset Barbecue"],
+    "images": [
+      "/images/gallery-1.svg",
+      "/images/gallery-2.svg",
+      "/images/gallery-3.svg"
+    ]
+  },
+  {
+    "id": "vembanad-silk-suite",
+    "type": "houseboat",
+    "title": "Vembanad Silk Suite",
+    "subtitle": "A refined floating suite on the Vembanad Lake",
+    "location": "Kumarakom, Kerala",
+    "priceFrom": 10499,
+    "rating": 4.7,
+    "reviewsCount": 181,
+    "minGuests": 2,
+    "maxGuests": 10,
+    "duration": "3 Nights / 4 Days",
+    "tags": ["Kumarakom", "Lake Views", "Family Friendly"],
+    "highlights": [
+      "Panoramic lakefront cruising",
+      "Traditional Kerala welcome & turndown service",
+      "Spacious dining lounge"
+    ],
+    "about": "Vembanad Silk Suite blends classic charm with modern comfort. Expect warm hospitality, soothing interiors, and a smooth itinerary that lets the backwaters set the pace.",
+    "facilities": ["Spacious Lounge", "AC Cabins", "Cooked Meals", "Cultural Evening", "Private Bathrooms"],
+    "images": [
+      "/images/gallery-4.svg",
+      "/images/gallery-2.svg",
+      "/images/gallery-5.svg"
+    ]
+  },
+  {
+    "id": "shikkara-aurora-glide",
+    "type": "shikkara",
+    "title": "Aurora Shikkara Glide",
+    "subtitle": "Romantic 90-minute backwater ride",
+    "location": "Alappuzha, Kerala",
+    "priceFrom": 3499,
+    "rating": 4.9,
+    "reviewsCount": 512,
+    "minGuests": 2,
+    "maxGuests": 6,
+    "duration": "1.5 Hours",
+    "tags": ["Romantic", "Sunset", "Quiet Canals"],
+    "highlights": [
+      "Soft music & candlelit ambiance",
+      "Captain-led stories of local waterways",
+      "Golden-hour photo stops"
+    ],
+    "about": "Drift along serene canals in Aurora Shikkara. This premium ride is curated for romance - gentle waves, warm lighting, and unforgettable Kerala scenery.",
+    "facilities": ["Heated Seating", "Beverage Tray", "Photo Stops", "Safety Gear", "Music Playback"],
+    "images": [
+      "/images/gallery-6.svg",
+      "/images/gallery-1.svg",
+      "/images/gallery-3.svg"
+    ]
+  },
+  {
+    "id": "shikkara-heritage-breeze",
+    "type": "shikkara",
+    "title": "Heritage Breeze Shikkara",
+    "subtitle": "Heritage routes with premium comfort",
+    "location": "Kochi Backwaters, Kerala",
+    "priceFrom": 2899,
+    "rating": 4.6,
+    "reviewsCount": 207,
+    "minGuests": 2,
+    "maxGuests": 5,
+    "duration": "1 Hour",
+    "tags": ["Heritage", "Scenic", "Comfort"],
+    "highlights": [
+      "Panoramic canopy seating",
+      "Guided passage through historic canals",
+      "Light refreshments included"
+    ],
+    "about": "Experience iconic backwater views with Heritage Breeze Shikkara. Smooth cruising, comfortable seating, and friendly local guidance make every moment feel special.",
+    "facilities": ["Canopy Seating", "Fresh Drinks", "Local Guide", "Safety Brief", "Comfort Cushions"],
+    "images": [
+      "/images/gallery-2.svg",
+      "/images/gallery-5.svg",
+      "/images/gallery-4.svg"
+    ]
+  },
+  {
+    "id": "kayak-emerald-current",
+    "type": "kayaking",
+    "title": "Emerald Current Kayak Session",
+    "subtitle": "Guided paddling through emerald canals",
+    "location": "Kuttanad, Kerala",
+    "priceFrom": 1999,
+    "rating": 4.7,
+    "reviewsCount": 96,
+    "minGuests": 1,
+    "maxGuests": 4,
+    "duration": "45 Minutes",
+    "tags": ["Beginner Friendly", "Scenic", "Eco"],
+    "highlights": [
+      "Friendly guide for first-time paddlers",
+      "Wildlife & village viewpoints",
+      "Photo-friendly route"
+    ],
+    "about": "Emerald Current is calm, scenic, and thoughtfully guided. Glide past rice fields and small canals in a relaxing session designed for discovery.",
+    "facilities": ["Life Jackets", "Paddle Training", "Dry Bag", "Guide Support", "Warm Towels"],
+    "images": [
+      "/images/gallery-3.svg",
+      "/images/gallery-6.svg",
+      "/images/gallery-1.svg"
+    ]
+  },
+  {
+    "id": "kayak-monsoon-whisper",
+    "type": "kayaking",
+    "title": "Monsoon Whisper Kayak",
+    "subtitle": "A quiet paddle in soft monsoon light",
+    "location": "Alleppey, Kerala",
+    "priceFrom": 2299,
+    "rating": 4.8,
+    "reviewsCount": 122,
+    "minGuests": 1,
+    "maxGuests": 3,
+    "duration": "1 Hour",
+    "tags": ["Nature", "Peaceful", "Guided"],
+    "highlights": [
+      "Seasonal route planning with guides",
+      "Comfort paddles & dry gear",
+      "Relaxed pace with storytelling"
+    ],
+    "about": "When the monsoon softens the landscape, the canals become a living mirror. Monsoon Whisper offers an immersive, calm kayak experience for small groups.",
+    "facilities": ["Dry Gear", "Guide", "Life Jackets", "Warm Tea", "Photo Stop"],
+    "images": [
+      "/images/gallery-5.svg",
+      "/images/gallery-2.svg",
+      "/images/gallery-6.svg"
+    ]
+  },
+  {
+    "id": "backwater-bungalow-stay",
+    "type": "room",
+    "title": "Backwater Bungalow Stay",
+    "subtitle": "A cozy homestay with premium comfort",
+    "location": "Alappuzha, Kerala",
+    "priceFrom": 3299,
+    "rating": 4.7,
+    "reviewsCount": 304,
+    "minGuests": 2,
+    "maxGuests": 3,
+    "duration": "Nightly",
+    "tags": ["Homestay", "Quiet", "Local Comfort"],
+    "highlights": [
+      "Garden-facing rooms",
+      "Kerala breakfast with local flavors",
+      "Guided village walk (optional)"
+    ],
+    "about": "Unwind in a bungalow-style stay that feels like home. Clean, comfortable interiors with thoughtful touches, perfect for slow Kerala mornings.",
+    "facilities": ["Breakfast", "AC", "Balcony", "Hot Showers", "Local Host"],
+    "images": [
+      "/images/gallery-1.svg",
+      "/images/gallery-4.svg",
+      "/images/gallery-5.svg"
+    ]
+  },
+  {
+    "id": "coir-lane-suite",
+    "type": "room",
+    "title": "Coir Lane Suite",
+    "subtitle": "Premium suite inspired by Kerala textures",
+    "location": "Kumarakom, Kerala",
+    "priceFrom": 3899,
+    "rating": 4.9,
+    "reviewsCount": 156,
+    "minGuests": 2,
+    "maxGuests": 4,
+    "duration": "Nightly",
+    "tags": ["Suite", "Lake Breeze", "Luxury"],
+    "highlights": [
+      "Soft linen bedding & backwater views",
+      "Evening tea corner",
+      "Curated local experiences"
+    ],
+    "about": "Coir Lane Suite is a calming retreat with subtle luxury. Designed for comfort and quiet - ideal for couples and small families visiting Kerala.",
+    "facilities": ["Balcony Views", "Breakfast", "AC", "Premium Linens", "Concierge Support"],
+    "images": [
+      "/images/gallery-6.svg",
+      "/images/gallery-3.svg",
+      "/images/gallery-4.svg"
+    ]
+  }
+]
+

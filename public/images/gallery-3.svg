@@ -1,0 +1,21 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#021321"/>
+      <stop offset="0.35" stop-color="#00334A"/>
+      <stop offset="1" stop-color="#00090F"/>
+    </linearGradient>
+    <linearGradient id="w3" x1="0" y1="0" x2="0" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1CB5B6" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#1CB5B6" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#001118" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#g3)"/>
+  <path d="M0 430C190 375 330 475 520 435C710 395 880 380 1040 420C1120 445 1170 475 1200 490V750H0V430Z" fill="url(#w3)"/>
+  <g opacity="0.6" stroke-linecap="round">
+    <path d="M-30 540C190 485 350 590 540 540C730 490 910 510 1160 610" stroke="#1CB5B6" stroke-width="3"/>
+    <path d="M-20 600C210 550 370 650 570 600C770 550 940 575 1200 650" stroke="#E8D9B7" stroke-width="2" opacity="0.75"/>
+  </g>
+</svg>
+

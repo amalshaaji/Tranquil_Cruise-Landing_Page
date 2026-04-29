@@ -1,0 +1,42 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#001D2A"/>
+      <stop offset="0.45" stop-color="#00354B"/>
+      <stop offset="1" stop-color="#001118"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E6F78" stop-opacity="0.75"/>
+      <stop offset="0.4" stop-color="#1CB5B6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#05212B" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(460 240) rotate(90) scale(420 420)">
+      <stop stop-color="#E8D9B7" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E8D9B7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <!-- water -->
+  <path d="M0 520C240 450 360 560 560 520C760 480 880 450 1080 510C1260 565 1420 620 1600 585V900H0V520Z" fill="url(#water)"/>
+
+  <!-- reflections -->
+  <g opacity="0.55">
+    <path d="M-40 640C180 590 350 700 570 650C790 600 970 610 1180 670C1380 725 1510 760 1660 720" stroke="#1CB5B6" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-60 690C160 640 340 740 560 690C780 640 980 655 1210 705C1420 750 1510 780 1690 740" stroke="#E8D9B7" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <path d="M-80 740C150 705 330 790 550 745C770 700 1000 705 1230 745C1450 790 1530 810 1710 785" stroke="#1CB5B6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- backwater trees silhouette -->
+  <g opacity="0.35" fill="#00111A">
+    <path d="M130 610c40-70 40-115 0-160-35 50-35 95 0 160Z"/>
+    <path d="M220 620c55-90 55-145 0-210-48 70-48 125 0 210Z"/>
+    <path d="M410 630c45-80 45-130 0-190-40 60-40 110 0 190Z"/>
+    <path d="M1180 630c45-80 45-130 0-190-40 60-40 110 0 190Z"/>
+    <path d="M1300 620c55-90 55-145 0-210-48 70-48 125 0 210Z"/>
+    <path d="M1420 610c40-70 40-115 0-160-35 50-35 95 0 160Z"/>
+  </g>
+</svg>
+

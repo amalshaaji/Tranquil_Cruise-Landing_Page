@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   // Static export for SPA-like deployment on any static host (Vercel/static hosting).
   output: "export",
   images: {
@@ -10,4 +9,5 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+

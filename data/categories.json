@@ -1,0 +1,23 @@
+[
+  {
+    "type": "houseboat",
+    "title": "Houseboats",
+    "subtitle": "Luxury stays on the backwaters"
+  },
+  {
+    "type": "shikkara",
+    "title": "Shikkara Rides",
+    "subtitle": "Romantic boat rides through Kerala"
+  },
+  {
+    "type": "kayaking",
+    "title": "Kayaking",
+    "subtitle": "Gentle paddles & scenic routes"
+  },
+  {
+    "type": "room",
+    "title": "Rooms / Homestays",
+    "subtitle": "Comfort stays with local charm"
+  }
+]
+

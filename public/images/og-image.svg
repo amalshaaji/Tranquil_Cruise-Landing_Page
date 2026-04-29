@@ -1,0 +1,39 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#001D2A"/>
+      <stop offset="0.45" stop-color="#00354B"/>
+      <stop offset="1" stop-color="#00070D"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1CB5B6" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#0E6F78" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#001118" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <path d="M0 360C260 300 360 410 560 370C760 330 890 305 1060 355C1140 380 1175 405 1200 420V630H0V360Z" fill="url(#water)"/>
+
+  <!-- title -->
+  <g>
+    <rect x="72" y="64" width="420" height="44" rx="22" fill="#1CB5B6" fill-opacity="0.18"/>
+    <text x="96" y="94" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#E8D9B7">Tranquil Cruise</text>
+  </g>
+  <text x="72" y="190" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" fill="#EAF7F7">
+    Luxury Kerala
+  </text>
+  <text x="72" y="240" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" fill="#1CB5B6">
+    Backwater Booking
+  </text>
+
+  <text x="72" y="304" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#EAF7F7" fill-opacity="0.75">
+    Houseboats " Shikkara " Kayaking " Stays
+  </text>
+
+  <!-- subtle waves -->
+  <g opacity="0.55" stroke-linecap="round">
+    <path d="M40 420C220 390 380 470 560 440C740 410 900 420 1160 470" stroke="#1CB5B6" stroke-width="3"/>
+    <path d="M60 470C220 445 390 520 560 495C730 470 920 480 1140 520" stroke="#E8D9B7" stroke-width="2" opacity="0.85"/>
+  </g>
+</svg>
+
