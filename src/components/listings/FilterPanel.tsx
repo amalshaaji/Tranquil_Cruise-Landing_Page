@@ -28,7 +28,7 @@ export default function FilterPanel({
   setSort: (v: "recommended" | "priceAsc" | "priceDesc" | "ratingDesc") => void;
 }) {
   return (
-    <aside className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+    <aside className="rounded-3xl border border-black/10 bg-white p-5">
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-sand">Filters</h3>
         <button
@@ -57,7 +57,7 @@ export default function FilterPanel({
               const next = e.target.value as ListingType | "";
               setSelectedTypes(next ? [next] : []);
             }}
-            className="mt-3 w-full rounded-2xl border border-white/10 bg-navy/30 px-3 py-3 text-sm outline-none ring-teal/20 focus:ring-2"
+            className="mt-3 w-full rounded-2xl border border-black/10 bg-white px-3 py-3 text-sm outline-none ring-gold/20 focus:ring-2"
             aria-label="Category"
           >
             <option value="">All categories</option>
@@ -74,7 +74,7 @@ export default function FilterPanel({
           <select
             value={String(minGuests)}
             onChange={(e) => setMinGuests(Number(e.target.value))}
-            className="w-full rounded-2xl border border-white/10 bg-navy/30 px-3 py-3 text-sm outline-none ring-teal/20 focus:ring-2"
+            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-3 text-sm outline-none ring-gold/20 focus:ring-2"
           >
             {[1, 2, 3, 4, 5, 6, 8, 10].map((n) => (
               <option key={n} value={n}>
@@ -98,7 +98,7 @@ export default function FilterPanel({
             step={500}
             value={priceMax}
             onChange={(e) => setPriceMax(Number(e.target.value))}
-            className="w-full accent-teal"
+            className="w-full accent-gold"
           />
           <div className="flex items-center justify-between text-xs text-foreground/55">
             <span>Rs. 1.5k</span>
@@ -112,7 +112,7 @@ export default function FilterPanel({
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="Try: Alappuzha, romantic, backwaters..."
-            className="w-full rounded-2xl border border-white/10 bg-navy/30 px-3 py-3 text-sm text-foreground outline-none ring-teal/20 focus:ring-2"
+            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-3 text-sm text-foreground outline-none ring-gold/20 focus:ring-2"
           />
         </section>
 
@@ -123,7 +123,7 @@ export default function FilterPanel({
             onChange={(e) =>
               setSort(e.target.value as typeof sort)
             }
-            className="w-full rounded-2xl border border-white/10 bg-navy/30 px-3 py-3 text-sm outline-none ring-teal/20 focus:ring-2"
+            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-3 text-sm outline-none ring-gold/20 focus:ring-2"
           >
             <option value="recommended">Recommended</option>
             <option value="priceAsc">Price: Low to High</option>

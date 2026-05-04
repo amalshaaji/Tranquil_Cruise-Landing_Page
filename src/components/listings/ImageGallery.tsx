@@ -33,7 +33,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 60vw"
-                priority={activeIndex === 0}
+                preload={activeIndex === 0}
               />
             </motion.div>
           </AnimatePresence>
@@ -51,7 +51,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
               onClick={() => setActiveIndex(absoluteIndex)}
               className={[
                 "relative h-14 w-20 shrink-0 overflow-hidden rounded-2xl border bg-navy/20 transition",
-                selected ? "border-teal/60 ring-2 ring-teal/20" : "border-white/10 hover:border-white/20",
+                selected ? "border-gold/60 ring-2 ring-gold/20" : "border-white/10 hover:border-white/20",
               ].join(" ")}
               aria-label={`View photo ${absoluteIndex + 1}`}
             >
@@ -63,4 +63,3 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
     </div>
   );
 }
-

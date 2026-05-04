@@ -40,7 +40,7 @@ export default function ListingCard({ listing }: { listing: Listing }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.28, ease: "easeOut" }}
-      className="group rounded-3xl border border-white/10 bg-white/5 p-4 shadow-sm shadow-navy/20 transition hover:-translate-y-0.5 hover:border-white/20"
+      className="group rounded-3xl border border-black/10 bg-white p-4 shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:border-black/20"
     >
       <Link href={`/experience/${listing.id}`}>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
@@ -51,8 +51,8 @@ export default function ListingCard({ listing }: { listing: Listing }) {
             className="object-cover transition duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent opacity-95" />
-          <div className="absolute left-3 top-3 rounded-full bg-navy/70 px-3 py-1 text-xs font-semibold text-sand">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-95" />
+          <div className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">
             {listing.type === "houseboat"
               ? "Houseboat"
               : listing.type === "shikkara"
@@ -92,7 +92,7 @@ export default function ListingCard({ listing }: { listing: Listing }) {
             {listing.tags.slice(0, 3).map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-white/10 bg-navy/30 px-2.5 py-1 text-xs text-foreground/70 transition group-hover:bg-navy/50"
+                className="rounded-full border border-black/10 bg-slate-50 px-2.5 py-1 text-xs text-foreground/70 transition group-hover:bg-slate-100"
               >
                 {t}
               </span>

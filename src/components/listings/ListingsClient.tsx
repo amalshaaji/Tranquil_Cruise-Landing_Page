@@ -100,13 +100,13 @@ export default function ListingsClient({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-3xl font-semibold text-sand sm:text-4xl">
-            Experience
+            Gallery
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-foreground/75 sm:text-base">
             Filter the static inventory in your browser - no backend required.
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground/70">
+        <div className="rounded-2xl border border-black/10 bg-slate-50 px-4 py-3 text-sm text-foreground/70">
           Showing <span className="font-semibold text-sand">{filtered.length}</span>{" "}
           options
         </div>
@@ -128,21 +128,21 @@ export default function ListingsClient({
             setSort={setSort}
           />
 
-          <div className="mt-4 rounded-3xl border border-white/10 bg-navy/30 p-5">
+          <div className="mt-4 rounded-3xl border border-black/10 bg-slate-50 p-5">
             <div className="text-xs font-semibold text-foreground/70">
               Luxury promise
             </div>
             <div className="mt-2 space-y-2 text-sm text-foreground/75">
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                 Smooth booking flow (demo UI)
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                 Premium Kerala theme & transitions
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                 All data from `/data`
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function ListingsClient({
               transition={{ duration: 0.2 }}
             >
               {filtered.length === 0 ? (
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
+                <div className="rounded-3xl border border-black/10 bg-slate-50 p-8 text-center">
                   <div className="text-lg font-semibold text-sand">
                     No matching stays
                   </div>
@@ -181,4 +181,3 @@ export default function ListingsClient({
     </section>
   );
 }
-

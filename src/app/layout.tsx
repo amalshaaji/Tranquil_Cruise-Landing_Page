@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     siteName: "Tranquil Cruise",
     images: [
       {
-        url: "/images/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "Tranquil Cruise Luxury Houseboat",
+        url: "/images/home-hero-backwater-canoe.jpg",
+        width: 6000,
+        height: 4000,
+        alt: "Traditional canoe on Kerala backwaters",
       },
     ],
     locale: "en_US",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tranquil Cruise | Luxury Houseboats & Backwater Tours",
     description: "Experience the ultimate luxury backwater cruise with Tranquil Cruise.",
-    images: ["/images/og-image.svg"],
+    images: ["/images/home-hero-backwater-canoe.jpg"],
   },
   robots: {
     index: true,
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#00334A",
+  themeColor: "#06343D",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -67,6 +67,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="h-full antialiased"
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col text-foreground">
         <Navbar />

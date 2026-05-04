@@ -9,15 +9,15 @@ export async function generateStaticParams() {
   return listings.map((l) => ({ id: l.id }));
 }
 
-export default function ExperienceDetailPage({
+export default async function ExperienceDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const listing = getListingById(params.id);
+  const { id } = await params;
+  const listing = getListingById(id);
 
   if (!listing) notFound();
 
   return <ListingDetailClient listing={listing} />;
 }
-

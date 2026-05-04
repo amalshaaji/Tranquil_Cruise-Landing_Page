@@ -5,7 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Category, ListingType } from "@/lib/tranquil-data";
 
-function iconFor(type: ListingType) {
+type ServiceType = ListingType | "canoe" | "spa";
+
+function iconFor(type: ServiceType) {
   const common = {
     width: 20,
     height: 20,
@@ -59,6 +61,7 @@ function iconFor(type: ListingType) {
         </svg>
       );
     case "kayaking":
+    case "canoe":
       return (
         <svg {...common}>
           <path
@@ -83,6 +86,25 @@ function iconFor(type: ListingType) {
           />
         </svg>
       );
+    case "spa":
+      return (
+        <svg {...common}>
+          <path
+            d="M12 20c4-3.2 6-6.4 6-9.5A6 6 0 0 0 12 4a6 6 0 0 0-6 6.5C6 13.6 8 16.8 12 20Z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 11c1.3.3 2.3 1 3 2 0-2.4 1-4 3-5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.9"
+          />
+        </svg>
+      );
     case "room":
       return (
         <svg {...common}>
@@ -103,28 +125,23 @@ function iconFor(type: ListingType) {
   }
 }
 
-interface CategoryWithImage extends Category {
+export interface ServiceCardCategory extends Omit<Category, "type"> {
+  type: ServiceType;
   image?: string;
   price?: string;
   description?: string;
+  href?: string;
 }
 
 export default function ServiceCards({
   categories,
 }: {
-  categories: CategoryWithImage[];
+  categories: ServiceCardCategory[];
 }) {
   return (
-    <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Ambient Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      </div>
-
+    <section className="relative w-full bg-background px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-20">
       {/* Header */}
-      <div className="relative z-10 mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+      <div className="relative z-10 mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -132,13 +149,13 @@ export default function ServiceCards({
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Discover Your
-            <span className="block bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-sand via-gold to-teal bg-clip-text text-transparent">
               Next Escape
             </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 font-light">
+          <p className="mt-4 text-base font-light text-foreground/70 sm:text-lg">
             Curated experiences tailored to your travel style—from serene
             water journeys to immersive cultural stays.
           </p>
@@ -146,7 +163,7 @@ export default function ServiceCards({
       </div>
 
       {/* Cards Grid */}
-      <div className="relative z-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="relative z-20 mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((c, idx) => (
           <motion.div
             key={c.type}
@@ -158,10 +175,10 @@ export default function ServiceCards({
               ease: "easeOut",
               delay: idx * 0.1,
             }}
-            className="group relative h-96 w-full"
+            className="group relative min-h-[32rem] w-full"
           >
             {/* Card Border Glow Effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/20 via-transparent to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-500 pointer-events-none" />
+            <div className="pointer-events-none absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-gold/28 via-sand/18 to-teal/20 opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
 
             {/* Wishlist Heart */}
             <motion.button
@@ -186,7 +203,10 @@ export default function ServiceCards({
             </motion.button>
 
             <Link
-              href={`/experience?category=${encodeURIComponent(c.type)}`}
+              href={
+                c.href ??
+                `/experience?category=${encodeURIComponent(c.type)}`
+              }
               className="group/link relative block h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/40"
             >
               {/* Background Image with Advanced Effects */}
@@ -197,7 +217,8 @@ export default function ServiceCards({
                     alt={c.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover/link:scale-125"
-                    priority={idx < 2}
+                    preload={idx < 2}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {/* Image Overlay Shimmer */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover/link:opacity-100 transition-opacity duration-500" />
@@ -209,12 +230,12 @@ export default function ServiceCards({
                 <div
                   className={`absolute inset-0 ${
                     c.type === "houseboat"
-                      ? "bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700"
+                      ? "bg-gradient-to-br from-teal via-navy/85 to-ink"
                       : c.type === "shikkara"
-                      ? "bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700"
-                      : c.type === "kayaking"
-                      ? "bg-gradient-to-br from-cyan-400 via-blue-500 to-blue-700"
-                      : "bg-gradient-to-br from-rose-400 via-rose-500 to-rose-700"
+                      ? "bg-gradient-to-br from-gold via-sand to-navy"
+                      : c.type === "kayaking" || c.type === "canoe"
+                      ? "bg-gradient-to-br from-teal/85 via-navy/85 to-navy"
+                      : "bg-gradient-to-br from-sand via-gold/80 to-navy"
                   }`}
                   aria-hidden="true"
                 />
@@ -231,35 +252,37 @@ export default function ServiceCards({
                 className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/link:opacity-100"
                 style={{
                   background:
-                    "radial-gradient(circle at 30% 20%, rgba(26, 163, 159, 0.35), transparent 40%), radial-gradient(circle at 70% 30%, rgba(228, 213, 180, 0.25), transparent 55%)",
+                    "radial-gradient(circle at 30% 20%, rgba(215, 166, 79, 0.28), transparent 40%), radial-gradient(circle at 70% 30%, rgba(111, 146, 136, 0.22), transparent 55%)",
                 }}
                 aria-hidden="true"
               />
 
               {/* Content Container */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 z-10">
+              <div className="absolute inset-0 z-10 flex flex-col justify-between p-8">
                 {/* Top: Category Badge with Enhanced Animation */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 + idx * 0.1, duration: 0.4 }}
-                  className="flex items-start"
+                  className="flex items-start pr-12"
                 >
                   <div
-                    className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2 backdrop-blur-lg ring-1 text-sm font-semibold text-white transition-all duration-300 group-hover/link:scale-105 border ${
+                    className={`inline-flex max-w-full items-center gap-2.5 rounded-full border px-4 py-2 text-sm font-semibold text-white ring-1 backdrop-blur-lg transition-all duration-300 group-hover/link:scale-105 ${
                       c.type === "houseboat"
-                        ? "bg-teal-500/40 ring-teal-400/60 border-teal-400/40"
+                        ? "border-teal/45 bg-teal/30 ring-teal/50"
                         : c.type === "shikkara"
-                        ? "bg-amber-500/40 ring-amber-400/60 border-amber-400/40"
-                        : c.type === "kayaking"
-                        ? "bg-cyan-500/40 ring-cyan-400/60 border-cyan-400/40"
-                        : "bg-rose-500/40 ring-rose-400/60 border-rose-400/40"
+                        ? "border-gold/45 bg-gold/35 ring-gold/55"
+                      : c.type === "kayaking" || c.type === "canoe"
+                        ? "border-teal/45 bg-navy/35 ring-teal/55"
+                        : "border-sand/45 bg-sand/35 ring-sand/55"
                     }`}
                   >
                     <span className="text-white transition-transform duration-300 group-hover/link:scale-110">
                       {iconFor(c.type)}
                     </span>
-                    <span className="font-medium">{c.title}</span>
+                    <span className="min-w-0 font-medium leading-tight">
+                      {c.title}
+                    </span>
                   </div>
                 </motion.div>
 
@@ -272,9 +295,14 @@ export default function ServiceCards({
                 >
                   {/* Headline */}
                   <div className="space-y-1">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight transition-transform duration-300 group-hover/link:translate-y-0">
+                    <h3 className="text-3xl font-bold leading-tight text-white transition-transform duration-300 group-hover/link:translate-y-0 sm:text-[2rem]">
                       {c.subtitle}
                     </h3>
+                    {idx === 2 && (
+                      <span className="inline-flex items-center rounded-full bg-white/15 border border-white/20 backdrop-blur-sm px-3 py-0.5 text-xs font-medium text-white/90">
+                        Open boat
+                      </span>
+                    )}
                   </div>
 
                   {/* Price & Description */}
@@ -305,7 +333,7 @@ export default function ServiceCards({
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-white to-slate-100 px-6 py-3 text-sm font-semibold text-slate-950 transition-all duration-200 hover:shadow-lg hover:shadow-white/20 hover:from-slate-100 hover:to-white active:shadow-none backdrop-blur-sm border border-white/50"
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#f2dfba]/70 bg-[#f5ead4] px-6 py-3 text-sm font-semibold text-ink backdrop-blur-sm transition-all duration-200 hover:bg-[#fff1d3] hover:shadow-lg hover:shadow-black/20 active:shadow-none"
                     aria-hidden="true"
                   >
                     <span>Explore</span>

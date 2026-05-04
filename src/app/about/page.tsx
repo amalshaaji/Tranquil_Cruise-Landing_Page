@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24">
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur sm:p-8">
+      <div className="rounded-3xl border border-black/10 bg-white p-6 sm:p-8">
         <div className="text-xs font-semibold text-foreground/70">
           About Tranquil Cruise
         </div>
@@ -18,13 +18,13 @@ export default function AboutPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/experience"
-            className="inline-flex items-center justify-center rounded-xl bg-teal px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-teal/20 transition hover:bg-teal/90"
+            className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-gold/90"
           >
-            Explore experience
+            Explore gallery
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-sand/90 transition hover:bg-white/10"
+            className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-slate-50"
           >
             Contact us
           </Link>
@@ -48,7 +48,7 @@ export default function AboutPage() {
         ].map((c) => (
           <div
             key={c.title}
-            className="rounded-3xl border border-white/10 bg-white/5 p-6"
+            className="rounded-3xl border border-black/10 bg-slate-50 p-6"
           >
             <div className="text-sm font-semibold text-sand">{c.title}</div>
             <p className="mt-3 text-sm leading-relaxed text-foreground/75">
@@ -58,7 +58,7 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <section className="mt-10 rounded-3xl border border-white/10 bg-navy/30 p-6 sm:p-8">
+      <section className="mt-10 rounded-3xl border border-black/10 bg-white p-6 sm:p-8">
         <h2 className="text-xl font-semibold text-sand">How it works</h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           {[
@@ -85,7 +85,7 @@ export default function AboutPage() {
           ].map((s) => (
             <div
               key={s.step}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5"
+              className="rounded-2xl border border-black/10 bg-slate-50 p-5"
             >
               <div className="text-xs font-semibold text-sand">{s.step}</div>
               <div className="mt-2 text-sm font-semibold text-foreground">
@@ -99,4 +99,3 @@ export default function AboutPage() {
     </main>
   );
 }
-

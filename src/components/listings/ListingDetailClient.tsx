@@ -22,7 +22,7 @@ function labelFor(type: ListingType) {
 function Stars({ rating }: { rating: number }) {
   const rounded = Math.round(rating * 10) / 10;
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+    <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-slate-50 px-3 py-1">
       <span className="text-sm font-semibold text-sand">{rounded}</span>
       <span className="text-xs text-foreground/60">rating</span>
     </div>
@@ -40,7 +40,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2 text-sm text-foreground/70">
           <Link href="/experience" className="hover:text-foreground">
-            Experience
+            Gallery
           </Link>
           <span>/</span>
           <span className="text-foreground/90">{labelFor(listing.type)}</span>
@@ -54,7 +54,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
         <div className="space-y-6">
           <ImageGallery images={listing.images} title={listing.title} />
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div className="rounded-3xl border border-black/10 bg-white p-6">
             <h2 className="text-xl font-semibold text-sand">What you will love</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {listing.highlights.map((h) => (
@@ -64,7 +64,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="rounded-2xl border border-white/10 bg-navy/30 p-4"
+                  className="rounded-2xl border border-black/10 bg-slate-50 p-4"
                 >
                   <div className="text-sm font-semibold text-foreground">
                     {h}
@@ -74,7 +74,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div className="rounded-3xl border border-black/10 bg-white p-6">
             <h2 className="text-xl font-semibold text-sand">Details</h2>
             <p className="mt-4 text-sm leading-relaxed text-foreground/75">
               {listing.about}
@@ -84,7 +84,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
               {listing.tags.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-white/10 bg-navy/30 px-3 py-1 text-xs text-foreground/75"
+                  className="rounded-full border border-black/10 bg-slate-50 px-3 py-1 text-xs text-foreground/75"
                 >
                   {t}
                 </span>
@@ -94,7 +94,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
         </div>
 
         <aside className="sticky top-24 space-y-4">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="rounded-3xl border border-black/10 bg-white p-6">
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2">
                 <div className="text-xs font-semibold text-foreground/70">
@@ -111,7 +111,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
             </div>
 
             <div className="mt-5 grid gap-3">
-              <div className="rounded-2xl border border-white/10 bg-navy/30 p-4">
+              <div className="rounded-2xl border border-black/10 bg-slate-50 p-4">
                 <div className="text-xs font-semibold text-foreground/70">
                   Starting from
                 </div>
@@ -129,7 +129,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
               <div className="grid gap-2 sm:grid-cols-2">
                 <button
                   type="button"
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-teal px-4 py-3 text-sm font-semibold text-ink shadow-sm shadow-teal/20 transition hover:bg-teal/90"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-gold/90"
                   onClick={() => {
                     // Static demo UI only: no backend.
                     window.alert(
@@ -143,20 +143,20 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
                   href={whatsappHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center rounded-xl border border-teal/40 bg-navy/40 px-4 py-3 text-sm font-semibold text-sand shadow-sm shadow-navy/40 transition hover:border-teal/70 hover:bg-navy/60"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-gold/30 bg-white px-4 py-3 text-sm font-semibold text-foreground shadow-sm shadow-black/5 transition hover:border-gold/50 hover:bg-slate-50"
                 >
                   WhatsApp enquiry
                 </a>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="rounded-2xl border border-black/10 bg-white p-4">
                 <div className="text-xs font-semibold text-foreground/70">
                   Facilities
                 </div>
                 <ul className="mt-2 space-y-2 text-sm text-foreground/75">
                   {listing.facilities.slice(0, 6).map((f) => (
                     <li key={f} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -165,10 +165,10 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
             </div>
           </div>
 
-          <div className="hidden overflow-hidden rounded-3xl border border-white/10 bg-navy/20 md:block">
+          <div className="hidden overflow-hidden rounded-3xl border border-black/10 bg-white md:block">
             <div className="relative aspect-[16/10]">
               <Image src={cover} alt="" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             </div>
             <div className="p-5">
               <div className="text-xs font-semibold text-foreground/70">
@@ -184,4 +184,3 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
     </section>
   );
 }
-

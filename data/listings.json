@@ -20,9 +20,9 @@
     "about": "Settle into a slow, luxurious rhythm aboard Lagoon Queen. Drift through Alleppey backwaters with attentive hospitality, panoramic decks, and curated moments designed for couples and families.",
     "facilities": ["AC Bedrooms", "Private Deck", "Restaurant Meals", "Wi-Fi", "Sunset Barbecue"],
     "images": [
-      "/images/gallery-1.svg",
-      "/images/gallery-2.svg",
-      "/images/gallery-3.svg"
+      "/images/hero-home-bg.jpeg",
+      "/images/canoe-card.png",
+      "/images/spa-card.png"
     ]
   },
   {
@@ -46,9 +46,9 @@
     "about": "Vembanad Silk Suite blends classic charm with modern comfort. Expect warm hospitality, soothing interiors, and a smooth itinerary that lets the backwaters set the pace.",
     "facilities": ["Spacious Lounge", "AC Cabins", "Cooked Meals", "Cultural Evening", "Private Bathrooms"],
     "images": [
-      "/images/gallery-4.svg",
-      "/images/gallery-2.svg",
-      "/images/gallery-5.svg"
+      "/images/hero-home-bg.jpeg",
+      "/images/room-card.png",
+      "/images/canoe-card.png"
     ]
   },
   {
@@ -72,9 +72,9 @@
     "about": "Drift along serene canals in Aurora Shikkara. This premium ride is curated for romance - gentle waves, warm lighting, and unforgettable Kerala scenery.",
     "facilities": ["Heated Seating", "Beverage Tray", "Photo Stops", "Safety Gear", "Music Playback"],
     "images": [
-      "/images/gallery-6.svg",
-      "/images/gallery-1.svg",
-      "/images/gallery-3.svg"
+      "/images/shikkara-real.png",
+      "/images/hero-home-bg.jpeg",
+      "/images/canoe-card.png"
     ]
   },
   {
@@ -98,9 +98,9 @@
     "about": "Experience iconic backwater views with Heritage Breeze Shikkara. Smooth cruising, comfortable seating, and friendly local guidance make every moment feel special.",
     "facilities": ["Canopy Seating", "Fresh Drinks", "Local Guide", "Safety Brief", "Comfort Cushions"],
     "images": [
-      "/images/gallery-2.svg",
-      "/images/gallery-5.svg",
-      "/images/gallery-4.svg"
+      "/images/shikkara-real.png",
+      "/images/spa-card.png",
+      "/images/hero-home-bg.jpeg"
     ]
   },
   {
@@ -124,9 +124,9 @@
     "about": "Emerald Current is calm, scenic, and thoughtfully guided. Glide past rice fields and small canals in a relaxing session designed for discovery.",
     "facilities": ["Life Jackets", "Paddle Training", "Dry Bag", "Guide Support", "Warm Towels"],
     "images": [
-      "/images/gallery-3.svg",
-      "/images/gallery-6.svg",
-      "/images/gallery-1.svg"
+      "/images/kayaking-card.png",
+      "/images/canoe-card.png",
+      "/images/hero-home-bg.jpeg"
     ]
   },
   {
@@ -150,9 +150,9 @@
     "about": "When the monsoon softens the landscape, the canals become a living mirror. Monsoon Whisper offers an immersive, calm kayak experience for small groups.",
     "facilities": ["Dry Gear", "Guide", "Life Jackets", "Warm Tea", "Photo Stop"],
     "images": [
-      "/images/gallery-5.svg",
-      "/images/gallery-2.svg",
-      "/images/gallery-6.svg"
+      "/images/kayaking-card.png",
+      "/images/shikkara-real.png",
+      "/images/hero-home-bg.jpeg"
     ]
   },
   {
@@ -176,9 +176,9 @@
     "about": "Unwind in a bungalow-style stay that feels like home. Clean, comfortable interiors with thoughtful touches, perfect for slow Kerala mornings.",
     "facilities": ["Breakfast", "AC", "Balcony", "Hot Showers", "Local Host"],
     "images": [
-      "/images/gallery-1.svg",
-      "/images/gallery-4.svg",
-      "/images/gallery-5.svg"
+      "/images/room-card.png",
+      "/images/spa-card.png",
+      "/images/hero-home-bg.jpeg"
     ]
   },
   {
@@ -202,10 +202,9 @@
     "about": "Coir Lane Suite is a calming retreat with subtle luxury. Designed for comfort and quiet - ideal for couples and small families visiting Kerala.",
     "facilities": ["Balcony Views", "Breakfast", "AC", "Premium Linens", "Concierge Support"],
     "images": [
-      "/images/gallery-6.svg",
-      "/images/gallery-3.svg",
-      "/images/gallery-4.svg"
+      "/images/room-card.png",
+      "/images/hero-home-bg.jpeg",
+      "/images/spa-card.png"
     ]
   }
 ]
-

@@ -7,11 +7,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { categories } from "@/lib/tranquil-data";
 
 const navItems = [
-  { href: "/experience", label: "Destinations" },
-  { href: "/experience", label: "Find a yacht" },
-  { href: "/about", label: "About us" },
-  { href: "/about", label: "Guides" },
-  { href: "/contact", label: "Yacht sale" },
+  { href: "/experience", label: "Explore" },
+  { href: "/", label: "Home" },
+  { href: "/experience", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function Navbar() {
@@ -32,7 +32,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-black/55 via-black/35 to-transparent backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-black/10 bg-[#fbf7ee]/88 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 text-sand">
           <span className="text-base font-semibold tracking-[0.35em]">
@@ -45,8 +45,8 @@ export default function Navbar() {
           aria-label="Primary"
         >
           {navItems.map((item, index) => {
-            const isActive = activeHref === item.href;
-            const hasChevron = index === 0 || index === 2;
+            const isActive = activeHref === item.href && item.label !== "Explore";
+            const hasChevron = index === 0;
             if (index === 0) {
               return (
                 <div
@@ -81,13 +81,13 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.16, ease: "easeOut" }}
-                        className="absolute left-1/2 top-full z-50 mt-3 w-[360px] -translate-x-1/2 overflow-hidden rounded-3xl border border-white/10 bg-navy/80 shadow-lg shadow-black/30 backdrop-blur"
+                        className="absolute left-1/2 top-full z-50 mt-4 w-[380px] -translate-x-1/2 overflow-hidden rounded-3xl border border-black/10 bg-[#fbf7ee]/94 shadow-lg shadow-black/10 backdrop-blur"
                       >
-                        <div className="p-3">
-                          <div className="px-3 pb-2 pt-1 text-[0.7rem] font-semibold tracking-[0.18em] text-foreground/60">
+                        <div className="p-4">
+                          <div className="px-4 pb-3 pt-1 text-[0.7rem] font-semibold tracking-[0.18em] text-foreground/60">
                             CATEGORIES
                           </div>
-                          <div className="grid gap-1">
+                          <div className="grid gap-2">
                             {categories.map((c) => (
                               <Link
                                 key={c.type}
@@ -95,25 +95,27 @@ export default function Navbar() {
                                 href={`/experience?category=${encodeURIComponent(
                                   c.type
                                 )}`}
-                                className="flex items-center justify-between rounded-2xl px-3 py-2 text-sm text-foreground/85 transition hover:bg-white/5 hover:text-foreground"
+                                className="flex flex-col items-start rounded-2xl px-4 py-3 text-left text-sm text-foreground/85 transition hover:bg-black/5 hover:text-foreground"
                                 onClick={() => setDestinationsOpen(false)}
                               >
-                                <span className="font-semibold">{c.title}</span>
-                                <span className="text-xs text-foreground/60">
+                                <span className="font-semibold leading-5">
+                                  {c.title}
+                                </span>
+                                <span className="mt-1 text-xs leading-5 text-foreground/60">
                                   {c.subtitle}
                                 </span>
                               </Link>
                             ))}
                           </div>
 
-                          <div className="mt-2 border-t border-white/10 pt-2">
+                          <div className="mt-3 border-t border-black/10 pt-3">
                             <Link
                               role="menuitem"
                               href="/experience"
-                              className="flex items-center justify-center rounded-2xl bg-teal px-3 py-2 text-sm font-semibold text-ink shadow-sm shadow-teal/20 transition hover:bg-teal/90"
+                              className="flex items-center justify-center rounded-2xl bg-gold px-4 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-gold/90"
                               onClick={() => setDestinationsOpen(false)}
                             >
-                              View all experience
+                              View full gallery
                             </Link>
                           </div>
                         </div>
@@ -144,18 +146,9 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <Link
-            href="/contact"
-            className="text-xs font-medium tracking-[0.18em] text-foreground/80 hover:text-foreground"
-          >
-            CONTACT
-          </Link>
-        </div>
-
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-sm text-foreground/90 transition hover:bg-black/50 md:hidden"
+          className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white/70 px-3 py-2 text-sm text-foreground/90 transition hover:bg-black/5 md:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -199,30 +192,25 @@ export default function Navbar() {
             className="md:hidden"
           >
             <div className="mx-auto max-w-7xl px-4 pb-4">
-              <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-navy/60 p-3 backdrop-blur">
+              <div className="flex flex-col gap-2 rounded-2xl border border-black/10 bg-[#fbf7ee]/94 p-3 backdrop-blur">
                 {navItems.map((item) => {
-                  const isActive = activeHref === item.href;
+                  const isActive =
+                    activeHref === item.href && item.label !== "Explore";
                   return (
                     <Link
-                      key={item.href}
+                      key={`${item.href}-${item.label}`}
                       href={item.href}
                       className={[
                         "rounded-xl px-3 py-2 text-sm font-medium transition",
                         isActive
-                          ? "bg-white/10 text-sand"
-                          : "text-foreground/80 hover:bg-white/5 hover:text-foreground",
+                          ? "bg-black/5 text-sand"
+                          : "text-foreground/80 hover:bg-black/5 hover:text-foreground",
                       ].join(" ")}
                     >
                       {item.label}
                     </Link>
                   );
                 })}
-                <Link
-                  href="/experience"
-                  className="mt-2 rounded-xl bg-teal px-3 py-2 text-center text-sm font-semibold text-ink shadow-sm shadow-teal/20 transition hover:bg-teal/90"
-                >
-                  Book Now
-                </Link>
               </div>
             </div>
           </motion.div>
@@ -231,4 +219,3 @@ export default function Navbar() {
     </header>
   );
 }
-
