@@ -78,7 +78,7 @@ export default function Home() {
         <HeroSection />
 
         <section className="px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr,1.08fr] lg:items-start">
+          <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[0.92fr,1.08fr] lg:items-start">
             <div className="space-y-6">
               <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
                 Private Planning
@@ -107,7 +107,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto mt-14 max-w-7xl overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_80px_rgba(23,50,71,0.1)]">
+          <div className="mx-auto mt-14 max-w-screen-2xl overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_80px_rgba(23,50,71,0.1)]">
             <div className="grid lg:grid-cols-[1.12fr,0.88fr]">
               <div className="relative min-h-[24rem] lg:min-h-[38rem]">
                 <Image
@@ -188,22 +188,20 @@ export default function Home() {
                       <Link
                         key={card.title}
                         href={card.href}
-                        className={`group relative overflow-hidden rounded-[1.6rem] border border-white/60 bg-white shadow-[0_14px_34px_rgba(23,50,71,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(23,50,71,0.16)] ${
-                          index === 0
-                            ? "lg:row-span-2"
-                            : index === serviceCards.length - 1
-                              ? "lg:col-span-2"
-                              : ""
-                        }`}
+                        className={`group relative overflow-hidden rounded-[1.6rem] border border-white/60 bg-white shadow-[0_14px_34px_rgba(23,50,71,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_52px_rgba(23,50,71,0.16)] ${index === 0
+                          ? "lg:row-span-2"
+                          : index === serviceCards.length - 1
+                            ? "lg:col-span-2"
+                            : ""
+                          }`}
                       >
                         <div
-                          className={`relative overflow-hidden ${
-                            index === 0
-                              ? "h-[21rem] sm:h-[24rem] lg:h-full"
-                              : index === serviceCards.length - 1
-                                ? "h-[17rem] sm:h-[19rem]"
-                                : "h-64"
-                          }`}
+                          className={`relative overflow-hidden ${index === 0
+                            ? "h-[21rem] sm:h-[24rem] lg:h-full"
+                            : index === serviceCards.length - 1
+                              ? "h-[17rem] sm:h-[19rem]"
+                              : "h-64"
+                            }`}
                         >
                           <Image
                             src={card.image}
