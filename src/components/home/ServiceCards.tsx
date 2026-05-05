@@ -228,15 +228,14 @@ export default function ServiceCards({
               {/* Fallback gradient */}
               {!c.image && (
                 <div
-                  className={`absolute inset-0 ${
-                    c.type === "houseboat"
+                  className={`absolute inset-0 ${c.type === "houseboat"
                       ? "bg-gradient-to-br from-teal via-navy/85 to-ink"
                       : c.type === "shikkara"
-                      ? "bg-gradient-to-br from-gold via-sand to-navy"
-                      : c.type === "kayaking" || c.type === "canoe"
-                      ? "bg-gradient-to-br from-teal/85 via-navy/85 to-navy"
-                      : "bg-gradient-to-br from-sand via-gold/80 to-navy"
-                  }`}
+                        ? "bg-gradient-to-br from-gold via-sand to-navy"
+                        : c.type === "kayaking" || c.type === "canoe"
+                          ? "bg-gradient-to-br from-teal/85 via-navy/85 to-navy"
+                          : "bg-gradient-to-br from-sand via-gold/80 to-navy"
+                    }`}
                   aria-hidden="true"
                 />
               )}
@@ -252,7 +251,7 @@ export default function ServiceCards({
                 className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/link:opacity-100"
                 style={{
                   background:
-                    "radial-gradient(circle at 30% 20%, rgba(215, 166, 79, 0.28), transparent 40%), radial-gradient(circle at 70% 30%, rgba(111, 146, 136, 0.22), transparent 55%)",
+                    "radial-gradient(circle at 30% 20%, rgba(143, 179, 209, 0.3), transparent 40%), radial-gradient(circle at 70% 30%, rgba(111, 149, 171, 0.22), transparent 55%)",
                 }}
                 aria-hidden="true"
               />
@@ -267,15 +266,14 @@ export default function ServiceCards({
                   className="flex items-start pr-12"
                 >
                   <div
-                    className={`inline-flex max-w-full items-center gap-2.5 rounded-full border px-4 py-2 text-sm font-semibold text-white ring-1 backdrop-blur-lg transition-all duration-300 group-hover/link:scale-105 ${
-                      c.type === "houseboat"
+                    className={`inline-flex max-w-full items-center gap-2.5 rounded-full border px-4 py-2 text-sm font-semibold text-white ring-1 backdrop-blur-lg transition-all duration-300 group-hover/link:scale-105 ${c.type === "houseboat"
                         ? "border-teal/45 bg-teal/30 ring-teal/50"
                         : c.type === "shikkara"
-                        ? "border-gold/45 bg-gold/35 ring-gold/55"
-                      : c.type === "kayaking" || c.type === "canoe"
-                        ? "border-teal/45 bg-navy/35 ring-teal/55"
-                        : "border-sand/45 bg-sand/35 ring-sand/55"
-                    }`}
+                          ? "border-gold/45 bg-gold/35 ring-gold/55"
+                          : c.type === "kayaking" || c.type === "canoe"
+                            ? "border-teal/45 bg-navy/35 ring-teal/55"
+                            : "border-sand/45 bg-sand/35 ring-sand/55"
+                      }`}
                   >
                     <span className="text-white transition-transform duration-300 group-hover/link:scale-110">
                       {iconFor(c.type)}
@@ -333,7 +331,7 @@ export default function ServiceCards({
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#f2dfba]/70 bg-[#f5ead4] px-6 py-3 text-sm font-semibold text-ink backdrop-blur-sm transition-all duration-200 hover:bg-[#fff1d3] hover:shadow-lg hover:shadow-black/20 active:shadow-none"
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/45 bg-[#edf5f9] px-6 py-3 text-sm font-semibold text-ink backdrop-blur-sm transition-all duration-200 hover:bg-[#f8fbfd] hover:shadow-lg hover:shadow-black/20 active:shadow-none"
                     aria-hidden="true"
                   >
                     <span>Explore</span>

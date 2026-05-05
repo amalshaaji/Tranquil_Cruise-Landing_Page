@@ -2,145 +2,110 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
-export default function PremiumHeroSection() {
-  const breadcrumbs = [
-    { label: "Destinations", href: "/experience" },
-    { label: "Kerala", href: "/about" },
-    { label: "Alleppey", href: "/experience" },
-  ];
+const heroDetails = [
+  "Houseboats",
+  "Private journeys",
+  "Kerala stays",
+];
 
-  const stats = [
-    { label: "BEST TIME TO VISIT", value: "October - March" },
-    { label: "CURRENCY", value: "Indian Rupee (INR)" },
-    { label: "LANGUAGE", value: "Malayalam, English" },
-    { label: "CRUISING STYLE", value: "Luxury houseboats, backwater hopping" },
-  ];
+export default function HeroSection() {
+  function scrollToExperiences() {
+    const section = document.getElementById("explore-experiences");
+    if (!section) return;
+
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", "#explore-experiences");
+  }
 
   return (
-    <section className="relative min-h-[calc(100svh-73px)] w-full overflow-hidden md:min-h-[calc(100svh-57px)]">
+    <section className="relative min-h-screen overflow-hidden bg-[#8fb3d1] text-white">
       <div className="absolute inset-0">
         <Image
           src="/images/home-hero-backwater-canoe.jpg"
-          alt="Traditional canoe on Kerala backwaters"
+          alt="Traditional canoe gliding across the Kerala backwaters"
           fill
-          preload
+          priority
           sizes="100vw"
-          className="object-cover object-[center_58%]"
+          className="object-cover object-[center_57%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/62 via-black/24 to-black/6" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/68 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,63,88,0.12)_0%,rgba(24,63,88,0.18)_34%,rgba(8,20,31,0.34)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_32%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[32svh] bg-[linear-gradient(180deg,rgba(7,20,31,0)_0%,rgba(7,20,31,0.16)_42%,rgba(7,20,31,0.42)_100%)]" />
       </div>
 
-      <div className="relative z-20 mx-auto flex min-h-[calc(100svh-73px)] w-full max-w-7xl flex-col justify-between px-4 pb-10 pt-20 sm:px-6 sm:pb-12 sm:pt-24 md:min-h-[calc(100svh-57px)] lg:pb-10 lg:pt-24">
-        <div className="flex flex-col gap-8 sm:gap-9 lg:gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex items-center gap-3 sm:gap-4"
-          >
-            {breadcrumbs.map((crumb, idx) => (
-              <div key={crumb.label} className="flex items-center gap-3 sm:gap-4">
-                <Link
-                  href={crumb.href}
-                  className="text-xs font-medium text-[#f4ead3]/88 transition-colors duration-300 hover:text-[#ddb56f] sm:text-sm"
-                >
-                  {crumb.label}
-                </Link>
-                {idx < breadcrumbs.length - 1 && (
-                  <span className="text-[#f4ead3]/42">/</span>
-                )}
-              </div>
-            ))}
-          </motion.div>
-
+      <div className="relative z-10 flex min-h-screen flex-col justify-between px-5 pb-8 pt-28 sm:px-8 sm:pb-10 sm:pt-32 lg:px-10">
+        <div className="flex flex-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
-            className="max-w-5xl"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="mx-auto flex max-w-7xl justify-center"
           >
-            <h1 className="text-4xl font-medium leading-[0.95] text-[#fff5df] text-balance drop-shadow-[0_8px_26px_rgba(0,0,0,0.58)] sm:text-6xl md:text-7xl lg:text-8xl">
-              Discover Alappuzha
-            </h1>
-            <h2 className="bg-gradient-to-r from-[#d7a64f] via-[#f4dfad] to-[#7fa397] bg-clip-text text-4xl font-normal leading-[0.95] text-transparent text-balance drop-shadow-[0_8px_24px_rgba(0,0,0,0.54)] sm:text-6xl md:text-7xl lg:text-8xl">
-              Backwaters
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-2xl text-sm font-normal leading-relaxed tracking-wide text-[#f1eadc]/90 drop-shadow-[0_4px_16px_rgba(0,0,0,0.52)] sm:text-base md:text-lg"
-          >
-            Serene coconut-lined canals, traditional houseboats, and golden sunsets.
-            Experience the soul of Kerala on the water.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 sm:gap-6"
-          >
-            <Link
-              href="/experience"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#d7a64f] px-8 py-3.5 text-xs font-bold tracking-widest text-[#152523] shadow-2xl shadow-black/28 transition-all duration-500 hover:bg-[#e1b767] hover:shadow-black/36 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d7a64f] sm:px-10 sm:py-4 sm:text-sm"
-            >
-              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                EXPLORE
+            <div className="flex flex-col items-center">
+              <span className="mb-4 h-px w-16 bg-white/45 sm:w-20" aria-hidden="true" />
+              <div className="text-center font-[var(--font-display)] text-white/95 [text-shadow:0_12px_30px_rgba(0,0,0,0.16)]">
+                <span className="block text-[clamp(2.9rem,6vw,6.2rem)] font-semibold uppercase leading-[0.82] tracking-[0.28em]">
+                  Tranquil
+                </span>
+                <span className="mt-1 block pl-[0.26em] text-[clamp(3.05rem,6.5vw,6.9rem)] uppercase leading-[0.78] tracking-[0.34em] text-white/98">
+                  Cruise
+                </span>
+              </div>
+              <span className="mt-5 text-[0.62rem] font-medium uppercase tracking-[0.52em] text-white/70 sm:text-[0.68rem]">
+                Alleppey Backwater Houseboats
               </span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center rounded-full border border-[#f1dfb8]/58 bg-black/18 px-8 py-3.5 text-xs font-semibold tracking-widest text-[#f7edd7] shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-500 hover:border-[#e1b767]/80 hover:bg-black/28 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f7edd7] sm:px-10 sm:py-4 sm:text-sm"
-            >
-              LEARN MORE
-            </Link>
+            </div>
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="border-t border-white/15 pt-6 sm:pt-8"
+          transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
+          className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8"
         >
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 + idx * 0.05 }}
-                className="flex min-w-0 flex-col gap-2 sm:gap-3"
+          <div className="flex w-full items-end justify-center gap-6">
+            <div className="mx-auto flex max-w-3xl flex-1 flex-col items-center text-center">
+              <div className="mb-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.64rem] font-medium uppercase tracking-[0.42em] text-white/78 sm:text-[0.68rem]">
+                {heroDetails.map((detail, index) => (
+                  <div key={detail} className="flex items-center gap-4">
+                    <span>{detail}</span>
+                    {index < heroDetails.length - 1 ? (
+                      <span className="hidden h-3 w-px bg-white/45 sm:block" />
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+
+              <h1 className="max-w-4xl text-balance text-[1.38rem] font-semibold uppercase tracking-[0.42em] text-white/96 sm:text-[1.9rem]">
+                The Curated Backwater House
+              </h1>
+
+              <button
+                type="button"
+                onClick={scrollToExperiences}
+                className="mt-8 inline-flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border-2 border-white/85 bg-white/6 text-white transition duration-300 hover:scale-[1.04] hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-20 sm:w-20"
+                aria-label="Scroll to explore experiences"
               >
-                <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#d7a64f]/88 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] sm:text-xs">
-                  {stat.label}
-                </div>
-                <div className="text-xs font-normal leading-snug text-[#f1eadc]/92 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] sm:text-sm md:text-base">
-                  {stat.value}
-                </div>
-              </motion.div>
-            ))}
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 10l5 5 5-5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

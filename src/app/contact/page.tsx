@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ContactForm from "@/components/contact/ContactForm";
+import InnerPageHeader from "@/components/layout/InnerPageHeader";
 
 type ContactIconName = "location" | "phone" | "mail" | "clock" | "instagram";
 
@@ -139,54 +140,43 @@ const mapHref = "https://maps.app.goo.gl/9pHo2hY7kWP4MCW28";
 
 export default function ContactPage() {
   return (
-    <main className="w-full">
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f1e3] via-[#fbf8f1] to-transparent px-4 py-12 sm:px-6 sm:py-20">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at top center, rgba(215,166,79,0.14), transparent 30%), radial-gradient(circle at left bottom, rgba(111,146,136,0.08), transparent 34%)",
-          }}
-        />
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="text-xs font-bold uppercase tracking-[0.22em] text-teal/80 sm:text-sm">
-            Private Enquiries
-          </div>
+    <main className="w-full pb-16 sm:pb-24">
+      <InnerPageHeader
+        eyebrow="Private Enquiries"
+        title="Tell us how you want the backwaters to feel."
+        description="Share your dates, group details, and the kind of Kerala experience you are hoping for. We will help shape a journey that feels calm, personal, and beautifully paced."
+        crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        sideLabel="Planning support"
+        sideValue="Reach us directly on WhatsApp or email for houseboats, scenic rides, stays, and custom backwater plans shaped around your pace."
+      />
 
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-sand sm:text-5xl md:text-6xl">
-            Plan your Kerala escape with a more personal touch.
-          </h1>
+      <section className="px-4 pt-8 sm:px-6 sm:pt-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-[2rem] border border-navy/10 bg-[linear-gradient(180deg,rgba(248,251,252,0.94)_0%,rgba(237,245,248,0.94)_100%)] p-5 shadow-[0_24px_70px_rgba(23,50,71,0.08)] sm:p-6 lg:p-8">
+            <div className="mb-8 flex flex-col gap-4 border-b border-navy/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-teal/78">
+                  Reach Out
+                </div>
+                <h2 className="mt-3 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
+                  Everything you need to start the conversation.
+                </h2>
+              </div>
+              <p className="max-w-xl text-sm leading-7 text-foreground/68 sm:text-base">
+                Ask about routes, stays, timing, or custom plans and we will
+                help shape a more relaxed Kerala experience around you.
+              </p>
+            </div>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-foreground/70 sm:text-lg">
-            Share your preferred dates, group details, and the experience you have
-            in mind. We will help shape a calm, well-planned backwater itinerary.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground/55">
-            <span className="rounded-full border border-gold/20 bg-white/70 px-4 py-2">
-              Houseboats
-            </span>
-            <span className="rounded-full border border-gold/20 bg-white/70 px-4 py-2">
-              Shikkara Rides
-            </span>
-            <span className="rounded-full border border-gold/20 bg-white/70 px-4 py-2">
-              Tailored Stays
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 pb-16 pt-6 sm:px-6 sm:pb-24 sm:pt-12">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr,1.12fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[1fr,1.12fr] lg:items-start">
           <div className="space-y-5">
-            <section className="relative overflow-hidden rounded-[28px] border border-gold/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(250,245,235,0.98)_42%,rgba(244,239,227,1)_100%)] px-6 py-7 text-foreground shadow-[0_18px_60px_rgba(165,121,60,0.12)] sm:px-7 sm:py-8">
+            <section className="relative overflow-hidden rounded-[28px] border border-gold/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(242,248,251,0.98)_42%,rgba(231,241,246,1)_100%)] px-6 py-7 text-foreground shadow-[0_18px_60px_rgba(23,50,71,0.12)] sm:px-7 sm:py-8">
               <div
                 aria-hidden="true"
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(circle at top left, rgba(215,166,79,0.18), transparent 30%), radial-gradient(circle at right center, rgba(111,146,136,0.12), transparent 24%)",
+                    "radial-gradient(circle at top left, rgba(143,179,209,0.24), transparent 30%), radial-gradient(circle at right center, rgba(111,149,171,0.12), transparent 24%)",
                 }}
               />
               <div className="relative">
@@ -197,17 +187,17 @@ export default function ContactPage() {
                   Tranquil Cruise, Alappuzha
                 </h2>
                 <div className="mt-4 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground/68">
-                  <span className="rounded-full border border-gold/20 bg-white/80 px-3 py-1.5">
+                  <span className="rounded-full border border-gold/20 bg-white/85 px-3 py-1.5">
                     5.0 Rating
                   </span>
-                  <span className="rounded-full border border-gold/20 bg-white/80 px-3 py-1.5">
+                  <span className="rounded-full border border-gold/20 bg-white/85 px-3 py-1.5">
                     90 Reviews
                   </span>
-                  <span className="rounded-full border border-gold/20 bg-white/80 px-3 py-1.5">
-                    Boat Tour Agency
+                  <span className="rounded-full border border-gold/20 bg-white/85 px-3 py-1.5">
+                    Personal travel planning
                   </span>
                 </div>
-                <div className="mt-6 grid gap-4 rounded-[24px] border border-black/8 bg-white/72 p-5 shadow-sm shadow-black/5 sm:grid-cols-[1.2fr,0.8fr]">
+                <div className="mt-6 grid gap-4 rounded-[24px] border border-navy/8 bg-white/80 p-5 shadow-sm shadow-black/5 sm:grid-cols-[1.2fr,0.8fr]">
                   <div>
                     <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-foreground/42">
                       Address
@@ -234,7 +224,7 @@ export default function ContactPage() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
                     href={mapHref}
-                    className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-[#e0b45d]"
+                    className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8]"
                   >
                     Open in Google Maps
                   </Link>
@@ -249,7 +239,7 @@ export default function ContactPage() {
             </section>
 
             <section className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_16px_50px_rgba(21,37,35,0.06)]">
-              <div className="border-b border-black/8 bg-[linear-gradient(180deg,rgba(251,247,238,0.95)_0%,rgba(255,255,255,1)_100%)] px-6 py-5 sm:px-7">
+              <div className="border-b border-navy/8 bg-[linear-gradient(180deg,rgba(241,247,250,0.95)_0%,rgba(255,255,255,1)_100%)] px-6 py-5 sm:px-7">
                 <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
                   Contact Details
                 </div>
@@ -262,7 +252,7 @@ export default function ContactPage() {
                 {contactCards.map((card) => {
                   const row = (
                     <div className="grid gap-4 px-6 py-5 sm:grid-cols-[auto,9rem,1fr] sm:items-start sm:px-7">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(215,166,79,0.18),rgba(111,146,136,0.12))]">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(143,179,209,0.2),rgba(111,149,171,0.12))]">
                         <ContactIcon name={card.icon} />
                       </div>
                       <div className="pt-1 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-foreground/42">
@@ -288,7 +278,7 @@ export default function ContactPage() {
                       <Link
                         key={card.title}
                         href={card.href}
-                        className="block transition hover:bg-gold/5"
+                        className="block transition hover:bg-gold/8"
                       >
                         {row}
                       </Link>
@@ -299,11 +289,49 @@ export default function ContactPage() {
                 })}
               </div>
             </section>
+
+            <section className="rounded-[28px] border border-navy/10 bg-white p-6 shadow-[0_16px_50px_rgba(21,37,35,0.06)] sm:p-7">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
+                Why Guests Reach Out
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-[1.4rem] bg-[#f4f9fb] p-4">
+                  <div className="text-sm font-semibold text-sand">Route help</div>
+                  <p className="mt-2 text-sm leading-6 text-foreground/70">
+                    Find the right backwater pace for your trip.
+                  </p>
+                </div>
+                <div className="rounded-[1.4rem] bg-[#f4f9fb] p-4">
+                  <div className="text-sm font-semibold text-sand">Stay advice</div>
+                  <p className="mt-2 text-sm leading-6 text-foreground/70">
+                    Choose between houseboats, rooms, or quieter combinations.
+                  </p>
+                </div>
+                <div className="rounded-[1.4rem] bg-[#f4f9fb] p-4">
+                  <div className="text-sm font-semibold text-sand">Custom plans</div>
+                  <p className="mt-2 text-sm leading-6 text-foreground/70">
+                    Shape timing, guest count, and experience style around you.
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
 
-          <section className="rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_18px_60px_rgba(21,37,35,0.08)] transition hover:border-gold/20 sm:p-8">
-            <ContactForm />
+          <section className="relative overflow-hidden rounded-[30px] border border-black/10 bg-white p-6 shadow-[0_18px_60px_rgba(21,37,35,0.08)] transition hover:border-gold/25 sm:p-8">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(circle at top right, rgba(143,179,209,0.16), transparent 28%), radial-gradient(circle at bottom left, rgba(111,149,171,0.09), transparent 30%)",
+              }}
+            />
+            <div className="relative">
+              <ContactForm />
+            </div>
           </section>
+        </div>
+          </div>
         </div>
       </section>
     </main>

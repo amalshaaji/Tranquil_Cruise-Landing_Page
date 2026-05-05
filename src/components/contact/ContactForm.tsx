@@ -3,7 +3,7 @@
 import { type FormEvent, useState } from "react";
 
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-black/10 bg-[#fcfaf5] px-4 py-3 text-sm text-foreground outline-none ring-gold/20 transition placeholder:text-foreground/40 focus:border-gold/40 focus:ring-2";
+  "mt-2 w-full rounded-2xl border border-navy/10 bg-[#f7fbfc] px-4 py-3.5 text-sm text-foreground outline-none ring-gold/20 transition placeholder:text-foreground/40 focus:border-gold/45 focus:ring-2";
 
 const labelClass = "text-sm font-semibold text-foreground";
 
@@ -19,28 +19,55 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-7">
       <div>
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
           Enquiry Preview
         </div>
-        <h2 className="mt-2 text-2xl font-semibold text-sand">
+        <h2 className="mt-2 text-3xl font-semibold text-sand">
           Begin your private enquiry
         </h2>
-        <p className="mt-2 text-sm leading-6 text-foreground/70">
+        <p className="mt-3 text-sm leading-7 text-foreground/70">
           Tell us how you would like to experience the backwaters and we will
           shape the details around your dates, group size, and preferred style.
         </p>
-        <div className="mt-4 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground/55">
-          <span className="rounded-full border border-gold/20 bg-gold/8 px-3 py-1.5">
+        <div className="mt-5 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground/55">
+          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
             Tailored planning
           </span>
-          <span className="rounded-full border border-gold/20 bg-gold/8 px-3 py-1.5">
+          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
             Fast response
           </span>
-          <span className="rounded-full border border-gold/20 bg-gold/8 px-3 py-1.5">
-            Client-side demo
+          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
+            Calm guidance
           </span>
+        </div>
+      </div>
+
+      <div className="grid gap-3 rounded-[1.7rem] border border-navy/10 bg-[linear-gradient(180deg,#f8fbfc_0%,#eef6f9_100%)] p-4 sm:grid-cols-3">
+        <div className="rounded-[1.2rem] bg-white/80 p-4">
+          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
+            Response
+          </div>
+          <div className="mt-2 text-sm font-medium text-foreground">
+            Personal follow-up
+          </div>
+        </div>
+        <div className="rounded-[1.2rem] bg-white/80 p-4">
+          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
+            Planning
+          </div>
+          <div className="mt-2 text-sm font-medium text-foreground">
+            Dates, pace, and route
+          </div>
+        </div>
+        <div className="rounded-[1.2rem] bg-white/80 p-4">
+          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
+            Style
+          </div>
+          <div className="mt-2 text-sm font-medium text-foreground">
+            Houseboat to wellness
+          </div>
         </div>
       </div>
 
@@ -129,7 +156,7 @@ export default function ContactForm() {
       {submitted && (
         <div
           role="status"
-          className="rounded-2xl border border-gold/25 bg-gold/10 px-4 py-3 text-sm text-foreground"
+          className="rounded-2xl border border-gold/25 bg-gold/12 px-4 py-3 text-sm leading-6 text-foreground"
         >
           Your enquiry was captured for preview. This demo does not send data yet.
         </div>
@@ -137,7 +164,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-gold/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        className="inline-flex w-full items-center justify-center rounded-2xl bg-gold px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
       >
         Check Availability
       </button>

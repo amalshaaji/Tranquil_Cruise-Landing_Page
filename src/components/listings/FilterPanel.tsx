@@ -28,7 +28,7 @@ export default function FilterPanel({
   setSort: (v: "recommended" | "priceAsc" | "priceDesc" | "ratingDesc") => void;
 }) {
   return (
-    <aside className="rounded-3xl border border-black/10 bg-white p-5">
+    <aside className="rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(244,249,251,1)_100%)] p-5 shadow-[0_16px_40px_rgba(23,50,71,0.06)]">
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-sand">Filters</h3>
         <button
@@ -135,4 +135,3 @@ export default function FilterPanel({
     </aside>
   );
 }
-

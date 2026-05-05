@@ -40,7 +40,7 @@ export default function ListingCard({ listing }: { listing: Listing }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.28, ease: "easeOut" }}
-      className="group rounded-3xl border border-black/10 bg-white p-4 shadow-sm shadow-black/5 transition hover:-translate-y-0.5 hover:border-black/20"
+      className="group rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(246,250,252,1)_100%)] p-4 shadow-[0_16px_40px_rgba(23,50,71,0.08)] transition hover:-translate-y-0.5 hover:border-gold/25"
     >
       <Link href={`/experience/${listing.id}`}>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
@@ -92,7 +92,7 @@ export default function ListingCard({ listing }: { listing: Listing }) {
             {listing.tags.slice(0, 3).map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-black/10 bg-slate-50 px-2.5 py-1 text-xs text-foreground/70 transition group-hover:bg-slate-100"
+                className="rounded-full border border-navy/10 bg-[#f2f8fb] px-2.5 py-1 text-xs text-foreground/70 transition group-hover:bg-[#e7f1f6]"
               >
                 {t}
               </span>
@@ -108,4 +108,3 @@ export default function ListingCard({ listing }: { listing: Listing }) {
     </motion.article>
   );
 }
-

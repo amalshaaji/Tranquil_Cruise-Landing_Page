@@ -51,7 +51,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
               onClick={() => setActiveIndex(absoluteIndex)}
               className={[
                 "relative h-14 w-20 shrink-0 overflow-hidden rounded-2xl border bg-navy/20 transition",
-                selected ? "border-gold/60 ring-2 ring-gold/20" : "border-white/10 hover:border-white/20",
+                selected ? "border-gold/65 ring-2 ring-gold/25" : "border-white/10 hover:border-gold/25",
               ].join(" ")}
               aria-label={`View photo ${absoluteIndex + 1}`}
             >

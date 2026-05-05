@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categories } from "@/lib/tranquil-data";
+import { services } from "@/lib/services-data";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -16,15 +16,15 @@ const contactLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto overflow-hidden border-t border-black/10 bg-[linear-gradient(180deg,#f6f1e7_0%,#fbf7ee_42%,#ffffff_100%)]">
+    <footer className="mt-auto overflow-hidden border-t border-navy/10 bg-[linear-gradient(180deg,#edf5f8_0%,#f7fbfc_46%,#ffffff_100%)]">
       <div className="mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pt-16">
-        <section className="relative overflow-hidden rounded-[28px] border-2 border-gold/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.92)_0%,rgba(251,247,238,0.98)_38%,rgba(244,239,227,1)_100%)] px-6 py-8 text-foreground shadow-[0_24px_80px_rgba(165,121,60,0.12)] sm:px-8 sm:py-10 lg:px-10">
+        <section className="relative overflow-hidden rounded-[28px] border border-gold/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.94)_0%,rgba(241,247,250,0.98)_42%,rgba(231,241,246,1)_100%)] px-6 py-8 text-foreground shadow-[0_24px_80px_rgba(23,50,71,0.12)] sm:px-8 sm:py-10 lg:px-10">
           <div
             aria-hidden="true"
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(circle at top left, rgba(215,166,79,0.18), transparent 36%), radial-gradient(circle at right center, rgba(111,146,136,0.12), transparent 32%)",
+                "radial-gradient(circle at top left, rgba(143,179,209,0.22), transparent 36%), radial-gradient(circle at right center, rgba(111,149,171,0.14), transparent 32%)",
             }}
           />
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="flex">
               <Link
                 href="https://wa.me/917994073491"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-[#e0b45d]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-gold/45 bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8]"
               >
                 <svg
                   width="18"
@@ -75,13 +75,13 @@ export default function Footer() {
               experiences crafted for slower, more memorable days on the water.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-xs font-medium text-foreground/60">
-              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5">
+              <span className="rounded-full border border-navy/10 bg-white/80 px-3 py-1.5">
                 Luxury stays
               </span>
-              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5">
+              <span className="rounded-full border border-navy/10 bg-white/80 px-3 py-1.5">
                 Private cruises
               </span>
-              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5">
+              <span className="rounded-full border border-navy/10 bg-white/80 px-3 py-1.5">
                 Kerala hospitality
               </span>
             </div>
@@ -105,13 +105,13 @@ export default function Footer() {
           <div>
             <div className="text-sm font-semibold text-sand">Experiences</div>
             <div className="mt-4 flex flex-col gap-3 text-sm">
-              {categories.map((category) => (
+              {services.map((s) => (
                 <Link
-                  key={category.type}
-                  href={`/experience?category=${encodeURIComponent(category.type)}`}
+                  key={s.slug}
+                  href={`/${s.slug}`}
                   className="text-foreground/72 transition hover:text-foreground"
                 >
-                  {category.title}
+                  {s.title}
                 </Link>
               ))}
             </div>
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
         </section>
 
-        <div className="flex flex-col gap-3 border-t border-black/10 pt-6 text-xs text-foreground/58 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-navy/10 pt-6 text-xs text-foreground/58 sm:flex-row sm:items-center sm:justify-between">
           <div>© 2026 Tranquil Cruise. Crafted for calm travel across Kerala.</div>
         </div>
       </div>
