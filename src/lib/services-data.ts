@@ -266,6 +266,75 @@ export const services: ServicePage[] = [
     ctaHref: "/contact",
   },
   {
+    slug: "kayaking",
+    title: "Kayaking Trails",
+    subtitle: "Active paddling routes through Kerala's quieter backwaters",
+    eyebrow: "Active Waterways",
+    heroImage: "/images/kayaking-card.png",
+    description: [
+      "Our kayaking trails are designed for guests who want to feel closer to the water and move through the backwaters at a more active, personal pace. Paddle past narrow canals, open lake edges, coconut groves, and calm village stretches that feel far quieter than the usual boat routes.",
+      "Whether you are trying kayaking for the first time or already love being on the water, each route is shaped around comfort, scenery, and rhythm. We guide you toward gentler morning rides, golden-hour paddles, or longer exploratory sessions depending on the mood you want from the day.",
+    ],
+    highlights: [
+      {
+        title: "Quiet Paddling Routes",
+        description:
+          "Explore calmer waterways where you can paddle without the rush of heavier traffic or crowded cruise routes.",
+        icon: "compass",
+      },
+      {
+        title: "Beginner-Friendly Options",
+        description:
+          "Easy introductory sessions with guidance on paddling technique, balance, and safe route pacing.",
+        icon: "shield",
+      },
+      {
+        title: "Sunrise & Sunset Sessions",
+        description:
+          "Choose softer light and cooler air for a more comfortable, cinematic ride across the water.",
+        icon: "sun",
+      },
+      {
+        title: "Closer to Nature",
+        description:
+          "Spot birds, floating plants, village life, and reflections at eye level from a low, intimate vantage point.",
+        icon: "leaf",
+      },
+      {
+        title: "Private Guided Trails",
+        description:
+          "Go with a local guide who knows the quieter inlets, scenic turns, and relaxed pacing that suits your group.",
+        icon: "star",
+      },
+      {
+        title: "Flexible Intensity",
+        description:
+          "Short scenic paddles and longer active sessions are both available depending on your energy and experience.",
+        icon: "heart",
+      },
+    ],
+    facilities: [
+      "Single and tandem kayak options",
+      "Life jackets provided",
+      "Basic paddling instruction",
+      "Private guided sessions",
+      "Waterproof dry bags",
+      "Flexible route lengths",
+      "Morning and sunset slots",
+      "Photo-friendly stop points",
+    ],
+    priceLabel: "From ₹1,200 / person",
+    priceNote:
+      "Rates vary by route length, guide type, and private or shared session format. Beginner sessions and longer scenic trails are both available.",
+    gallery: [
+      "/images/kayaking-card.png",
+      "/images/home-hero-backwater-canoe.jpg",
+      "/images/canoe-card.png",
+    ],
+    ctaText: "Book a Kayaking Trail",
+    ctaHref: "/contact",
+  },
+  {
     slug: "rooms",
     title: "Rooms & Homestays",
     subtitle: "Comfort stays with authentic Kerala charm",

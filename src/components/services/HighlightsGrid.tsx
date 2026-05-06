@@ -214,21 +214,11 @@ export default function HighlightsGrid({
                 ease: "easeOut",
                 delay: idx * 0.08,
               }}
-              className="group relative overflow-hidden rounded-[1.75rem] border border-navy/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(244,249,251,1)_100%)] p-6 shadow-sm transition-all duration-300 hover:border-gold/30 hover:shadow-[0_16px_48px_rgba(23,50,71,0.1)]"
+              className="group relative overflow-hidden rounded-[1.75rem] border border-navy/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-gold/30 hover:shadow-[0_16px_48px_rgba(23,50,71,0.1)]"
             >
-              {/* Hover glow */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  background:
-                    "radial-gradient(circle at top left, rgba(143,179,209,0.14), transparent 50%)",
-                }}
-                aria-hidden="true"
-              />
-
               <div className="relative">
                 {/* Icon */}
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(143,179,209,0.2),rgba(111,149,171,0.12))] text-teal transition-transform duration-300 group-hover:scale-105">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#edf5f8] text-teal transition-transform duration-300 group-hover:scale-105">
                   <HighlightIcon name={h.icon} />
                 </div>
 

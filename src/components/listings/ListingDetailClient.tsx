@@ -63,7 +63,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
         <div className="space-y-6">
           <ImageGallery images={listing.images} title={listing.title} />
 
-          <div className="rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(246,250,252,1)_100%)] p-6 shadow-[0_16px_40px_rgba(23,50,71,0.06)]">
+          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_16px_40px_rgba(23,50,71,0.06)]">
             <h2 className="text-xl font-semibold text-sand">What you will love</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {listing.highlights.map((h) => (
@@ -83,7 +83,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(246,250,252,1)_100%)] p-6 shadow-[0_16px_40px_rgba(23,50,71,0.06)]">
+          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_16px_40px_rgba(23,50,71,0.06)]">
             <h2 className="text-xl font-semibold text-sand">Details</h2>
             <p className="mt-4 text-sm leading-relaxed text-foreground/75">
               {listing.about}
@@ -103,7 +103,7 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
         </div>
 
         <aside className="sticky top-24 space-y-4">
-          <div className="rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(246,250,252,1)_100%)] p-6 shadow-[0_16px_40px_rgba(23,50,71,0.08)]">
+          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_16px_40px_rgba(23,50,71,0.08)]">
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2">
                 <div className="text-xs font-semibold text-foreground/70">

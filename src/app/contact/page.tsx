@@ -152,7 +152,7 @@ export default function ContactPage() {
 
       <section className="px-4 pt-8 sm:px-6 sm:pt-12">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-[2rem] border border-navy/10 bg-[linear-gradient(180deg,rgba(248,251,252,0.94)_0%,rgba(237,245,248,0.94)_100%)] p-5 shadow-[0_24px_70px_rgba(23,50,71,0.08)] sm:p-6 lg:p-8">
+          <div className="rounded-[2rem] border border-navy/10 bg-white p-5 shadow-[0_24px_70px_rgba(23,50,71,0.08)] sm:p-6 lg:p-8">
             <div className="mb-8 flex flex-col gap-4 border-b border-navy/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-teal/78">
@@ -170,15 +170,7 @@ export default function ContactPage() {
 
         <div className="grid gap-8 lg:grid-cols-[1fr,1.12fr] lg:items-start">
           <div className="space-y-5">
-            <section className="relative overflow-hidden rounded-[28px] border border-gold/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(242,248,251,0.98)_42%,rgba(231,241,246,1)_100%)] px-6 py-7 text-foreground shadow-[0_18px_60px_rgba(23,50,71,0.12)] sm:px-7 sm:py-8">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(circle at top left, rgba(143,179,209,0.24), transparent 30%), radial-gradient(circle at right center, rgba(111,149,171,0.12), transparent 24%)",
-                }}
-              />
+            <section className="relative overflow-hidden rounded-[28px] border border-gold/25 bg-white px-6 py-7 text-foreground shadow-[0_18px_60px_rgba(23,50,71,0.12)] sm:px-7 sm:py-8">
               <div className="relative">
                 <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
                   Visit Our Location
@@ -239,7 +231,7 @@ export default function ContactPage() {
             </section>
 
             <section className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_16px_50px_rgba(21,37,35,0.06)]">
-              <div className="border-b border-navy/8 bg-[linear-gradient(180deg,rgba(241,247,250,0.95)_0%,rgba(255,255,255,1)_100%)] px-6 py-5 sm:px-7">
+              <div className="border-b border-navy/8 bg-[#f3f8fa] px-6 py-5 sm:px-7">
                 <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
                   Contact Details
                 </div>
@@ -252,7 +244,7 @@ export default function ContactPage() {
                 {contactCards.map((card) => {
                   const row = (
                     <div className="grid gap-4 px-6 py-5 sm:grid-cols-[auto,9rem,1fr] sm:items-start sm:px-7">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(143,179,209,0.2),rgba(111,149,171,0.12))]">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#edf5f8]">
                         <ContactIcon name={card.icon} />
                       </div>
                       <div className="pt-1 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-foreground/42">
@@ -318,14 +310,6 @@ export default function ContactPage() {
           </div>
 
           <section className="relative overflow-hidden rounded-[30px] border border-black/10 bg-white p-6 shadow-[0_18px_60px_rgba(21,37,35,0.08)] transition hover:border-gold/25 sm:p-8">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(circle at top right, rgba(143,179,209,0.16), transparent 28%), radial-gradient(circle at bottom left, rgba(111,149,171,0.09), transparent 30%)",
-              }}
-            />
             <div className="relative">
               <ContactForm />
             </div>

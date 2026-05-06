@@ -191,7 +191,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-12 rounded-[2rem] border border-navy/10 bg-[linear-gradient(180deg,#f8fbfc_0%,#edf5f8_100%)] p-6 shadow-[0_20px_60px_rgba(23,50,71,0.08)] sm:p-8 lg:p-10">
+        <section className="mt-12 rounded-[2rem] border border-navy/10 bg-white p-6 shadow-[0_20px_60px_rgba(23,50,71,0.08)] sm:p-8 lg:p-10">
           <div className="flex flex-col gap-4 border-b border-navy/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <div className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-teal/78">
@@ -211,9 +211,9 @@ export default function AboutPage() {
             {values.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[1.6rem] border border-white/80 bg-white/90 p-6 shadow-[0_14px_34px_rgba(23,50,71,0.06)]"
+                className="rounded-[1.6rem] border border-white/80 bg-white p-6 shadow-[0_14px_34px_rgba(23,50,71,0.06)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,#dcecf3_0%,#eef6f9_55%,#ffffff_100%)] text-sand shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_20px_rgba(23,50,71,0.08)]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#edf5f8] text-sand shadow-[0_10px_20px_rgba(23,50,71,0.08)]">
                   {item.icon}
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-sand">

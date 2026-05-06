@@ -40,7 +40,7 @@ export default function ListingCard({ listing }: { listing: Listing }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.28, ease: "easeOut" }}
-      className="group rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(246,250,252,1)_100%)] p-4 shadow-[0_16px_40px_rgba(23,50,71,0.08)] transition hover:-translate-y-0.5 hover:border-gold/25"
+      className="group rounded-3xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(23,50,71,0.08)] transition hover:-translate-y-0.5 hover:border-gold/25"
     >
       <Link href={`/experience/${listing.id}`}>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">

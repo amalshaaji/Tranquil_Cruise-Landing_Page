@@ -44,7 +44,7 @@ const serviceCards = [
     eyebrow: "Active Waterways",
     title: "Backwater Kayaking Trails",
     copy: "Paddle through quieter stretches of Kerala with a more active, close-to-the-water experience.",
-    href: "/experience?category=kayaking",
+    href: "/kayaking",
     image: "/images/kayaking-card.png",
   },
 ];
@@ -78,32 +78,45 @@ export default function Home() {
         <HeroSection />
 
         <section className="px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[0.92fr,1.08fr] lg:items-start">
-            <div className="space-y-6">
-              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
-                Private Planning
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_70px_rgba(23,50,71,0.08)]">
+            <div className="grid gap-0 lg:grid-cols-[0.9fr,1.1fr]">
+              <div className="border-b border-navy/10 px-7 py-8 sm:px-10 sm:py-10 lg:border-b-0 lg:border-r lg:px-12 lg:py-12">
+                <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
+                  Private Planning
+                </div>
+                <h2 className="mt-4 max-w-md text-4xl font-semibold leading-[0.98] text-sand sm:text-5xl">
+                  Simple on the page, beautifully tailored in real life.
+                </h2>
+                <p className="mt-6 max-w-lg text-sm leading-7 text-foreground/72 sm:text-base">
+                  We keep the homepage calm and uncluttered so the journey can
+                  be shaped around you. Share the pace you want, and we plan
+                  the route, stay, and moments around that rhythm.
+                </p>
               </div>
-              <h2 className="max-w-xl text-4xl font-semibold leading-[0.98] text-sand sm:text-5xl">
-                Simple on the page, beautifully tailored in real life.
-              </h2>
-              <p className="max-w-xl text-sm leading-7 text-foreground/72 sm:text-base">
-                We keep the homepage calm and uncluttered so the journey can be
-                shaped around you. Share the pace you want, and we plan the
-                route, stay, and moments around that rhythm.
-              </p>
-            </div>
 
-            <div className="grid gap-6 text-sm leading-7 text-foreground/74 sm:grid-cols-2">
-              <p>
-                Some guests want an early quiet cruise with soft morning light.
-                Others want village canals, a slower afternoon, or a sunset
-                stretch before dinner on board.
-              </p>
-              <p>
-                Instead of crowding the page with every package combination, we
-                plan the details with you directly and keep each itinerary warm,
-                personal, and easy to settle into.
-              </p>
+              <div className="grid gap-5 px-7 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+                <div className="rounded-[1.5rem] border border-white/80 bg-white/90 p-5 shadow-[0_12px_32px_rgba(23,50,71,0.06)] sm:p-6">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/76">
+                    Your Pace
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-foreground/74 sm:text-base">
+                    Some guests want an early quiet cruise with soft morning
+                    light. Others want village canals, a slower afternoon, or a
+                    sunset stretch before dinner on board.
+                  </p>
+                </div>
+
+                <div className="rounded-[1.5rem] border border-white/80 bg-white/90 p-5 shadow-[0_12px_32px_rgba(23,50,71,0.06)] sm:p-6">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/76">
+                    Our Approach
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-foreground/74 sm:text-base">
+                    Instead of crowding the page with every package
+                    combination, we plan the details with you directly and keep
+                    each itinerary warm, personal, and easy to settle into.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -119,7 +132,7 @@ export default function Home() {
                 />
               </div>
 
-              <div className="flex flex-col justify-between bg-[linear-gradient(180deg,#ffffff_0%,#f2f8fb_100%)] p-8 sm:p-10 lg:p-12">
+              <div className="flex flex-col justify-between bg-white p-8 sm:p-10 lg:p-12">
                 <div>
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-teal/75">
                     Tailored Escapes
@@ -166,7 +179,7 @@ export default function Home() {
 
                 <div
                   id="explore-experiences"
-                  className="mt-6 scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-[#d9e5eb] bg-[linear-gradient(180deg,#f8fbfc_0%,#edf5f8_100%)] p-5 shadow-[0_18px_50px_rgba(23,50,71,0.08)] sm:scroll-mt-32 sm:p-6"
+                  className="mt-6 scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-[#d9e5eb] bg-white p-5 shadow-[0_18px_50px_rgba(23,50,71,0.08)] sm:scroll-mt-32 sm:p-6"
                 >
                   <div className="flex flex-col gap-3 border-b border-navy/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
                     <div>

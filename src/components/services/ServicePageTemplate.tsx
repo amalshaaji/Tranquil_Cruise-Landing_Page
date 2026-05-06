@@ -81,7 +81,7 @@ export default function ServicePageTemplate({
                     ease: "easeOut",
                     delay: idx * 0.08,
                   }}
-                  className="rounded-[1.75rem] border border-navy/10 bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(244,249,251,1)_100%)] p-6 shadow-sm"
+                  className="rounded-[1.75rem] border border-navy/10 bg-white p-6 shadow-sm"
                 >
                   <h3 className="text-xl font-semibold text-sand">
                     {option.title}
@@ -144,16 +144,8 @@ export default function ServicePageTemplate({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] border border-gold/35 bg-[linear-gradient(135deg,#173247_0%,#1e4562_50%,#173247_100%)] px-6 py-12 text-white shadow-[0_24px_80px_rgba(23,50,71,0.2)] sm:px-10 sm:py-16"
+          className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] border border-gold/35 bg-[#173247] px-6 py-12 text-white shadow-[0_24px_80px_rgba(23,50,71,0.2)] sm:px-10 sm:py-16"
         >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at top right, rgba(143,179,209,0.2), transparent 40%), radial-gradient(circle at bottom left, rgba(111,149,171,0.12), transparent 35%)",
-            }}
-          />
           <div className="relative flex flex-col items-center text-center">
             <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/60">
               Ready to Experience

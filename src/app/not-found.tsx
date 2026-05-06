@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <main className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24">
-      <div className="rounded-3xl border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(244,249,251,1)_100%)] p-8 shadow-[0_18px_50px_rgba(23,50,71,0.08)]">
+      <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-[0_18px_50px_rgba(23,50,71,0.08)]">
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-teal/80">
           404
         </div>

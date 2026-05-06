@@ -27,15 +27,7 @@ export default function PricingCard({
           className="grid gap-6 lg:grid-cols-[1.15fr,0.85fr] lg:items-start"
         >
           {/* Pricing Card */}
-          <div className="relative overflow-hidden rounded-[28px] border border-gold/30 bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(242,248,251,0.98)_42%,rgba(231,241,246,1)_100%)] p-7 shadow-[0_24px_70px_rgba(23,50,71,0.1)] sm:p-9">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(circle at top left, rgba(143,179,209,0.2), transparent 35%), radial-gradient(circle at bottom right, rgba(111,149,171,0.1), transparent 30%)",
-              }}
-            />
+          <div className="relative overflow-hidden rounded-[28px] border border-gold/30 bg-white p-7 shadow-[0_24px_70px_rgba(23,50,71,0.1)] sm:p-9">
             <div className="relative">
               <div className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
                 Pricing

@@ -23,7 +23,7 @@ export default function InnerPageHeader({
   actions?: React.ReactNode;
 }) {
   return (
-    <section className="border-b border-navy/10 bg-[linear-gradient(180deg,#edf5f8_0%,#f8fbfc_100%)]">
+    <section className="border-b border-navy/10 bg-[#eef4f7]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         {crumbs && crumbs.length > 0 ? (
           <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-foreground/52">

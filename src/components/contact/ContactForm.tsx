@@ -44,7 +44,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-3 rounded-[1.7rem] border border-navy/10 bg-[linear-gradient(180deg,#f8fbfc_0%,#eef6f9_100%)] p-4 sm:grid-cols-3">
+      <div className="grid gap-3 rounded-[1.7rem] border border-navy/10 bg-white p-4 sm:grid-cols-3">
         <div className="rounded-[1.2rem] bg-white/80 p-4">
           <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
             Response

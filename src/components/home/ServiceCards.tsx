@@ -138,6 +138,11 @@ export default function ServiceCards({
 }: {
   categories: ServiceCardCategory[];
 }) {
+  function categoryHref(type: ServiceType) {
+    if (type === "kayaking") return "/kayaking";
+    return `/experience?category=${encodeURIComponent(type)}`;
+  }
+
   return (
     <section className="relative w-full bg-background px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-20">
       {/* Header */}
@@ -151,7 +156,7 @@ export default function ServiceCards({
         >
           <h2 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Discover Your
-            <span className="block bg-gradient-to-r from-sand via-gold to-teal bg-clip-text text-transparent">
+            <span className="block text-sand">
               Next Escape
             </span>
           </h2>
@@ -177,8 +182,7 @@ export default function ServiceCards({
             }}
             className="group relative min-h-[32rem] w-full"
           >
-            {/* Card Border Glow Effect */}
-            <div className="pointer-events-none absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-gold/28 via-sand/18 to-teal/20 opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
+            <div className="pointer-events-none absolute -inset-0.5 rounded-3xl bg-white/20 opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
 
             {/* Wishlist Heart */}
             <motion.button
@@ -203,10 +207,7 @@ export default function ServiceCards({
             </motion.button>
 
             <Link
-              href={
-                c.href ??
-                `/experience?category=${encodeURIComponent(c.type)}`
-              }
+              href={c.href ?? categoryHref(c.type)}
               className="group/link relative block h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/40"
             >
               {/* Background Image with Advanced Effects */}
@@ -229,12 +230,12 @@ export default function ServiceCards({
               {!c.image && (
                 <div
                   className={`absolute inset-0 ${c.type === "houseboat"
-                      ? "bg-gradient-to-br from-teal via-navy/85 to-ink"
+                      ? "bg-teal"
                       : c.type === "shikkara"
-                        ? "bg-gradient-to-br from-gold via-sand to-navy"
+                        ? "bg-gold"
                         : c.type === "kayaking" || c.type === "canoe"
-                          ? "bg-gradient-to-br from-teal/85 via-navy/85 to-navy"
-                          : "bg-gradient-to-br from-sand via-gold/80 to-navy"
+                          ? "bg-navy"
+                          : "bg-sand"
                     }`}
                   aria-hidden="true"
                 />
@@ -248,11 +249,7 @@ export default function ServiceCards({
 
               {/* Dynamic Glow Overlay (appears on hover) */}
               <div
-                className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/link:opacity-100"
-                style={{
-                  background:
-                    "radial-gradient(circle at 30% 20%, rgba(143, 179, 209, 0.3), transparent 40%), radial-gradient(circle at 70% 30%, rgba(111, 149, 171, 0.22), transparent 55%)",
-                }}
+                className="absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-500 group-hover/link:opacity-100"
                 aria-hidden="true"
               />
 
