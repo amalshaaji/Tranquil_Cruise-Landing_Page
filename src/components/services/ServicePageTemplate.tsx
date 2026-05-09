@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import ServiceHero from "./ServiceHero";
 import HighlightsGrid from "./HighlightsGrid";
 import ServiceGallery from "./ServiceGallery";
@@ -14,7 +15,7 @@ export default function ServicePageTemplate({
 }: {
   service: ServicePage;
 }) {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -22,9 +23,13 @@ export default function ServicePageTemplate({
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
   };
 
   return (
@@ -104,12 +109,16 @@ export default function ServicePageTemplate({
                   className="group relative aspect-[4/5] sm:aspect-auto lg:h-[600px] rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-xl"
                 >
                   {/* Background Image - Full Bleed */}
-                  <Image
-                    src={option.image}
-                    alt={option.title}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
+                  {option.image ? (
+                    <Image
+                      src={option.image}
+                      alt={option.title}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,#dcecf1_0%,#b9d8df_100%)]" />
+                  )}
 
                   {/* Gradient Overlay - Essential for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#173247] via-[#173247]/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
