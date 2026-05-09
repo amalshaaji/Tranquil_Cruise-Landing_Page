@@ -36,7 +36,7 @@ export default function Footer() {
               <span>Tranquil Cruise</span>
             </div>
             <p className="mt-4 text-sm leading-6 text-foreground/65">
-              Calm travel across Kerala's backwaters — houseboats, shikara rides,
+              Calm travel across Kerala&apos;s backwaters — houseboats, shikara rides,
               kayaking, and stays shaped for slower, more memorable days.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">

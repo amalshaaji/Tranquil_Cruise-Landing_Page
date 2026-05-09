@@ -20,6 +20,7 @@ export type ServicePage = {
     title: string;
     description: string;
     details: string[];
+    image?: string;
     href?: string;
     ctaLabel?: string;
   }[];
@@ -105,24 +106,25 @@ export const services: ServicePage[] = [
         title: "Single Bed Houseboat",
         description:
           "A cozy choice for solo guests or couples who want a more compact and peaceful stay on the backwaters.",
+        image: "/images/single-bed-houseboat.jpeg",
         details: [
           "Comfortable private bedroom layout",
           "Ideal for short stays and intimate getaways",
           "Private deck access and scenic cruising",
         ],
-        href: "/contact?experience=houseboat&option=single-bed",
+        href: "/houseboats/single-bed",
         ctaLabel: "Enquire About Single Bed",
       },
       {
         title: "2 Bedroom Houseboat",
         description:
           "A spacious two-bedroom houseboat designed for families, small groups, or guests who want more room to relax across the backwaters.",
+        image: "/images/two-bedroom-gallery/exterior.jpeg",
         details: [
           "Two private air-conditioned bedrooms",
           "Large indoor lounge and dining space",
-          "Open upper deck for sitting, views, and evening cruising",
         ],
-        href: "/contact?experience=houseboat&option=2-bedroom",
+        href: "/houseboats/2-bedroom",
         ctaLabel: "Enquire About 2 Bedroom",
       },
     ],

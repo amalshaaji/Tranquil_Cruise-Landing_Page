@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { services } from "@/lib/services-data";
 
@@ -27,7 +27,10 @@ export default function Navbar() {
   const isServicePage = services.some((service) => pathname === `/${service.slug}`);
 
   useEffect(() => {
-    setMenuOpen(false);
+    startTransition(() => {
+      setMenuOpen(false);
+      setDestinationsOpen(false);
+    });
   }, [pathname]);
 
   const activeHref = useMemo(() => {

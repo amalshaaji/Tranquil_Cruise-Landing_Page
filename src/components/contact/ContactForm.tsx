@@ -2,10 +2,11 @@
 
 import { type FormEvent, useState } from "react";
 
+// Refined shared styles for a "High-Fashion" travel look
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-navy/10 bg-[#f7fbfc] px-4 py-3.5 text-sm text-foreground outline-none ring-gold/20 transition placeholder:text-foreground/40 focus:border-gold/45 focus:ring-2";
+  "mt-2 w-full rounded-2xl border border-navy/10 bg-white/60 px-4 py-3.5 text-sm text-foreground outline-none ring-gold/20 transition-all placeholder:text-foreground/30 focus:border-gold/50 focus:bg-white focus:ring-4 focus:ring-gold/10 backdrop-blur-sm";
 
-const labelClass = "text-sm font-semibold text-foreground";
+const labelClass = "text-[0.65rem] font-bold uppercase tracking-[0.15em] text-navy/50 ml-1 mb-1";
 
 export default function ContactForm() {
   const [experience, setExperience] = useState("houseboat");
@@ -16,158 +17,156 @@ export default function ContactForm() {
     event.currentTarget.reset();
     setExperience("houseboat");
     setSubmitted(true);
+    // Reset submitted state after 5 seconds
+    setTimeout(() => setSubmitted(false), 5000);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-7">
-      <div>
-        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
-          Enquiry Preview
+    <form onSubmit={handleSubmit} className="space-y-12 max-w-3xl mx-auto">
+
+      {/* --- Header Section: The Welcome --- */}
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-navy/[0.03] via-white to-teal/[0.03] p-10 text-center sm:text-left border border-navy/5 shadow-sm">
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-teal">
+            <span className="relative flex h-1.5 w-1.5 rounded-full bg-teal animate-pulse" />
+            Bespoke Planning
+          </div>
+          <h2 className="mt-6 text-4xl font-semibold leading-[1.1] text-sand sm:text-5xl">
+            Begin your <span className="italic text-navy/80">private enquiry</span>
+          </h2>
+          <p className="mt-5 max-w-lg text-sm leading-relaxed text-foreground/60 sm:text-base font-light">
+            We don&apos;t believe in standard packages. Tell us about your
+            dream rhythm, and we will craft a journey that mirrors it.
+          </p>
         </div>
-        <h2 className="mt-2 text-3xl font-semibold text-sand">
-          Begin your private enquiry
-        </h2>
-        <p className="mt-3 text-sm leading-7 text-foreground/70">
-          Tell us how you would like to experience the backwaters and we will
-          shape the details around your dates, group size, and preferred style.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-foreground/55">
-          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
-            Tailored planning
-          </span>
-          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
-            Fast response
-          </span>
-          <span className="rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
-            Calm guidance
-          </span>
+        {/* Soft Ambient Glows */}
+        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
+        <div className="absolute -left-10 -bottom-10 h-64 w-64 rounded-full bg-teal/10 blur-3xl" />
+      </div>
+
+      {/* --- Concierge Trust Bar --- */}
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          { label: "Response", text: "Personal follow-up", icon: "✉️" },
+          { label: "Planning", text: "Dates, pace, and route", icon: "🗺️" },
+          { label: "Style", text: "Houseboat to wellness", icon: "🌿" },
+        ].map((item, i) => (
+          <div key={i} className="group relative overflow-hidden rounded-2xl border border-navy/10 bg-white/80 p-5 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/5">
+            <div className="text-xl mb-3 transform transition-transform group-hover:scale-110 duration-300">{item.icon}</div>
+            <div className="text-[0.6rem] font-bold uppercase tracking-widest text-teal/70">
+              {item.label}
+            </div>
+            <div className="mt-1 text-sm font-medium text-navy/70 group-hover:text-navy transition-colors">
+              {item.text}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* --- Main Form Body --- */}
+      <div className="grid gap-12 rounded-[3rem] border border-navy/10 bg-white/40 p-8 sm:p-14 shadow-sm backdrop-blur-xl">
+
+        {/* Section 1: The Guest */}
+        <div className="space-y-8">
+          <div className="flex items-center gap-4">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-white text-xs font-bold">01</span>
+            <h3 className="text-lg font-semibold text-sand tracking-tight">The Guest</h3>
+            <div className="h-px flex-1 bg-navy/10" />
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="flex flex-col">
+              <label className={labelClass}>Full Name</label>
+              <input className={fieldClass} name="name" placeholder="e.g. Julianne Moore" required />
+            </div>
+            <div className="flex flex-col">
+              <label className={labelClass}>Phone Number</label>
+              <input className={fieldClass} name="phone" type="tel" placeholder="+91 00000 00000" required />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label className={labelClass}>Email Address</label>
+            <input className={fieldClass} name="email" type="email" placeholder="you@luxurytravel.com" required />
+          </div>
+        </div>
+
+        {/* Section 2: The Vision */}
+        <div className="space-y-8">
+          <div className="flex items-center gap-4">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-white text-xs font-bold">02</span>
+            <h3 className="text-lg font-semibold text-sand tracking-tight">The Vision</h3>
+            <div className="h-px flex-1 bg-navy/10" />
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="flex flex-col">
+              <label className={labelClass}>Preferred Experience</label>
+              <select
+                className={fieldClass}
+                name="experience"
+                value={experience}
+                onChange={(event) => setExperience(event.target.value)}
+              >
+                <option value="houseboat">Houseboat cruise</option>
+                <option value="shikkara">Shikkara ride</option>
+                <option value="kayaking">Kayaking session</option>
+                <option value="room">Room or homestay</option>
+                <option value="custom">Custom Kerala plan</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label className={labelClass}>Number of Guests</label>
+              <input className={fieldClass} name="guests" type="number" min={1} max={20} defaultValue={2} required />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label className={labelClass}>Anticipated Date</label>
+            <input className={fieldClass} name="date" type="date" />
+          </div>
+
+          <div className="flex flex-col">
+            <label className={labelClass}>Trip Notes & Desires</label>
+            <textarea
+              className={`${fieldClass} min-h-32 resize-none`}
+              name="message"
+              placeholder="Tell us about your ideal backwater escape... (e.g. 'We are celebrating an anniversary and prefer a slower pace')"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="grid gap-3 rounded-[1.7rem] border border-navy/10 bg-white p-4 sm:grid-cols-3">
-        <div className="rounded-[1.2rem] bg-white/80 p-4">
-          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
-            Response
-          </div>
-          <div className="mt-2 text-sm font-medium text-foreground">
-            Personal follow-up
-          </div>
-        </div>
-        <div className="rounded-[1.2rem] bg-white/80 p-4">
-          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
-            Planning
-          </div>
-          <div className="mt-2 text-sm font-medium text-foreground">
-            Dates, pace, and route
-          </div>
-        </div>
-        <div className="rounded-[1.2rem] bg-white/80 p-4">
-          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/76">
-            Style
-          </div>
-          <div className="mt-2 text-sm font-medium text-foreground">
-            Houseboat to wellness
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label>
-          <span className={labelClass}>Name</span>
-          <input
-            className={fieldClass}
-            name="name"
-            autoComplete="name"
-            placeholder="Your name"
-            required
-          />
-        </label>
-
-        <label>
-          <span className={labelClass}>Phone</span>
-          <input
-            className={fieldClass}
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="+91 98765 43210"
-            required
-          />
-        </label>
-      </div>
-
-      <label className="block">
-        <span className={labelClass}>Email</span>
-        <input
-          className={fieldClass}
-          name="email"
-          type="email"
-          autoComplete="email"
-          placeholder="you@example.com"
-          required
-        />
-      </label>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label>
-          <span className={labelClass}>Experience</span>
-          <select
-            className={fieldClass}
-            name="experience"
-            value={experience}
-            onChange={(event) => setExperience(event.target.value)}
+      {/* --- Footer / Submission --- */}
+      <div className="flex flex-col items-center gap-8">
+        {submitted && (
+          <div
+            role="status"
+            className="animate-in fade-in zoom-in-95 duration-500 rounded-2xl border border-gold/30 bg-gold/10 px-8 py-4 text-sm font-medium text-navy/80 backdrop-blur-sm shadow-sm"
           >
-            <option value="houseboat">Houseboat cruise</option>
-            <option value="shikkara">Shikkara ride</option>
-            <option value="kayaking">Kayaking session</option>
-            <option value="room">Room or homestay</option>
-            <option value="custom">Custom Kerala plan</option>
-          </select>
-        </label>
+            ✨ Your enquiry has been captured. Our concierge will contact you shortly.
+          </div>
+        )}
 
-        <label>
-          <span className={labelClass}>Guests</span>
-          <input
-            className={fieldClass}
-            name="guests"
-            type="number"
-            min={1}
-            max={20}
-            defaultValue={2}
-            required
-          />
-        </label>
-      </div>
-
-      <label className="block">
-        <span className={labelClass}>Preferred date</span>
-        <input className={fieldClass} name="date" type="date" />
-      </label>
-
-      <label className="block">
-        <span className={labelClass}>Trip notes</span>
-        <textarea
-          className={`${fieldClass} min-h-32 resize-y`}
-          name="message"
-          placeholder="Tell us about your ideal backwater escape."
-        />
-      </label>
-
-      {submitted && (
-        <div
-          role="status"
-          className="rounded-2xl border border-gold/25 bg-gold/12 px-4 py-3 text-sm leading-6 text-foreground"
+        <button
+          type="submit"
+          className="group relative inline-flex w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] text-ink shadow-xl shadow-gold/20 transition-all hover:bg-gold/90 hover:scale-[1.02] active:scale-[0.98]"
         >
-          Your enquiry was captured for preview. This demo does not send data yet.
-        </div>
-      )}
+          <span className="relative z-10">Check Availability</span>
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full -translate-x-full" />
+        </button>
 
-      <button
-        type="submit"
-        className="inline-flex w-full items-center justify-center rounded-2xl bg-gold px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-      >
-        Check Availability
-      </button>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-[0.6rem] uppercase tracking-widest text-foreground/40 font-medium">
+            Secure & Private Enquiry System
+          </p>
+          <div className="flex gap-1">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-1 w-1 rounded-full bg-navy/20" />
+            ))}
+          </div>
+        </div>
+      </div>
     </form>
   );
 }

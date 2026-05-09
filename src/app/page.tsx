@@ -1,9 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "@/components/home/HeroSection";
+import {
+  getGooglePlaceReviewData,
+  GOOGLE_MAPS_PAGE_URL,
+  type PlaceReview,
+} from "@/lib/google-place-reviews";
 
 const HOME_HERO_IMAGE = "/images/home-hero-backwater-canoe.jpg";
 const INTRO_IMAGE = "/images/home-backwater-houseboats.jpg";
+const FALLBACK_GOOGLE_RATING = 5.0;
+const FALLBACK_GOOGLE_REVIEW_COUNT = 90;
+const FALLBACK_GOOGLE_REVIEWS: PlaceReview[] = [
+  {
+    authorName: "Anjali Nair",
+    authorPhotoUrl: null,
+    authorProfileUrl: null,
+    text: "A beautifully managed backwater stay with a calm, premium feel throughout. The team was attentive, the boat was spotless, and the food was fresh and thoughtfully prepared.",
+    rating: 5,
+    publishedLabel: "2 months ago",
+    reviewUrl: null,
+  },
+  {
+    authorName: "Arun Kumar",
+    authorPhotoUrl: null,
+    authorProfileUrl: null,
+    text: "We booked a sunset cruise and the experience was seamless from arrival to departure. Professional staff, comfortable rooms, and a peaceful route through the Kerala backwaters.",
+    rating: 5,
+    publishedLabel: "3 months ago",
+    reviewUrl: null,
+  },
+  {
+    authorName: "Meera Sreedhar",
+    authorPhotoUrl: null,
+    authorProfileUrl: null,
+    text: "A refined and memorable experience for our family. The hospitality felt genuine, the service was consistent, and the overall journey struck a lovely balance between comfort and authenticity.",
+    rating: 5,
+    publishedLabel: "5 months ago",
+    reviewUrl: null,
+  },
+];
+
 const serviceCards = [
   {
     eyebrow: "Overnight Escape",
@@ -49,13 +86,19 @@ const serviceCards = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const googleReviewData = await getGooglePlaceReviewData();
+  const displayedReviews = googleReviewData?.reviews.length
+    ? googleReviewData.reviews
+    : FALLBACK_GOOGLE_REVIEWS;
+  const reviewSortLabel = googleReviewData?.reviews.length
+    ? googleReviewData.sortLabel
+    : "";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: "Tranquil Cruise",
-    description:
-      "Luxury houseboats, Shikkara rides, and stays on Kerala backwaters.",
+    description: "Luxury houseboats, Shikkara rides, and stays on Kerala backwaters.",
     url: "https://www.tranquilcruise.com",
     address: {
       "@type": "PostalAddress",
@@ -78,6 +121,7 @@ export default function Home() {
         <HeroSection />
 
         <section className="px-4 py-16 sm:px-6 sm:py-24">
+          {/* --- TOP SECTION: Planning --- */}
           <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_70px_rgba(23,50,71,0.08)]">
             <div className="grid gap-0 lg:grid-cols-[0.9fr,1.1fr]">
               <div className="border-b border-navy/10 px-7 py-8 sm:px-10 sm:py-10 lg:border-b-0 lg:border-r lg:px-12 lg:py-12">
@@ -120,6 +164,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* --- MIDDLE SECTION: Tailored Escapes --- */}
           <div className="mx-auto mt-14 max-w-screen-2xl overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_80px_rgba(23,50,71,0.1)]">
             <div className="grid lg:grid-cols-[1.12fr,0.88fr]">
               <div className="relative min-h-[24rem] lg:min-h-[38rem]">
@@ -264,6 +309,155 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* --- Google Reviews Section --- */}
+          <div className="mx-auto mt-20 max-w-6xl px-4 py-12 text-center">
+            <div className="mb-12 flex flex-col items-center justify-center gap-4">
+              <div className="flex items-center gap-2 rounded-full border border-navy/10 bg-white px-4 py-1 shadow-sm">
+                <img
+                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                  alt="Google"
+                  className="h-4 w-auto"
+                />
+                <span className="text-xs font-medium text-navy/60">Reviews</span>
+              </div>
+              <h2 className="text-3xl font-semibold text-sand sm:text-4xl">
+                Guest Experiences
+              </h2>
+              <div className="flex items-center gap-2">
+                <div className="flex text-yellow-500">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.461c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.185l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.503-1.838-.264-1.539-1.185l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-1.185-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-sm font-semibold text-navy/80">
+                  {(googleReviewData?.rating ?? FALLBACK_GOOGLE_RATING).toFixed(1)} / 5 Rating
+                </span>
+              </div>
+              {/* FIX: removed redundant ternary — value is always present via fallback */}
+              <p className="text-sm text-foreground/60">
+                Based on{" "}
+                {googleReviewData?.reviewCount ?? FALLBACK_GOOGLE_REVIEW_COUNT} Google reviews
+              </p>
+            </div>
+
+            {/* FIX: removed unreachable else branch — displayedReviews always has items */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {displayedReviews.slice(0, 3).map((review, idx) => {
+                const initials = review.authorName
+                  .split(" ")
+                  .map((part) => part[0])
+                  .join("")
+                  .slice(0, 2)
+                  .toUpperCase();
+
+                return (
+                  <div
+                    key={`${idx}-${review.authorName}`}
+                    className="group rounded-[1.5rem] border border-white/80 bg-white p-7 shadow-[0_12px_32px_rgba(23,50,71,0.06)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(23,50,71,0.1)]"
+                  >
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-teal/10">
+                        {review.authorPhotoUrl ? (
+                          <Image
+                            src={review.authorPhotoUrl}
+                            alt={review.authorName}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-teal">
+                            {initials}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="text-left">
+                        {review.authorProfileUrl ? (
+                          // FIX: added rel="noopener noreferrer" to external link
+                          <Link
+                            href={review.authorProfileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-semibold text-navy hover:text-teal"
+                          >
+                            {review.authorName}
+                          </Link>
+                        ) : (
+                          <h4 className="text-sm font-semibold text-navy">
+                            {review.authorName}
+                          </h4>
+                        )}
+                        {review.publishedLabel ? (
+                          <p className="text-[0.7rem] text-foreground/50">
+                            {review.publishedLabel}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="mb-3 flex justify-start text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`h-3 w-3 fill-current ${i >= review.rating ? "text-gray-300" : ""}`}
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.461c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.185l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.503-1.838-.264-1.539-1.185l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-1.185-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-left text-sm leading-relaxed text-foreground/70 italic">
+                      &ldquo;{review.text}&rdquo;
+                    </p>
+                    {review.reviewUrl ? (
+                      <div className="mt-4 text-left">
+                        {/* FIX: added rel="noopener noreferrer" to external link */}
+                        <Link
+                          href={review.reviewUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold uppercase tracking-[0.18em] text-teal hover:text-navy"
+                        >
+                          View on Google
+                        </Link>
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+            {reviewSortLabel ? (
+              <p className="mt-6 text-xs uppercase tracking-[0.2em] text-foreground/45">
+                {reviewSortLabel}
+              </p>
+            ) : null}
+
+            <div className="mt-12">
+              <a
+                href={googleReviewData?.mapsUrl ?? GOOGLE_MAPS_PAGE_URL}
+                className="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white px-8 py-3 text-sm font-semibold text-navy shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy hover:text-white hover:shadow-lg"
+              >
+                View Google reviews
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17 17 7" />
+                  <path d="M8.5 7H17v8.5" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>

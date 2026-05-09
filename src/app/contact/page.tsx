@@ -17,7 +17,7 @@ const contactCards: {
       "8/308B, Chungam Road, Pallathuruthy,",
       "chungam, Alappuzha, Kerala 688011",
     ],
-    href: "https://maps.app.goo.gl/9pHo2hY7kWP4MCW28",
+    href: "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7",
   },
   {
     icon: "phone",
@@ -136,7 +136,7 @@ function ContactIcon({ name }: { name: ContactIconName }) {
   }
 }
 
-const mapHref = "https://maps.app.goo.gl/9pHo2hY7kWP4MCW28";
+const mapHref = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
 
 export default function ContactPage() {
   return (
