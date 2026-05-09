@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import InnerPageHeader from "@/components/layout/InnerPageHeader";
-import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import ScrollableImageRow from "../../../components/services/ScrollableImageRow";
 
 const highlights = [
   "Two private air-conditioned bedrooms",
