@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 type Crumb = {
   label: string;
   href?: string;
@@ -22,51 +20,25 @@ export default function InnerPageHeader({
   sideValue?: string;
   actions?: React.ReactNode;
 }) {
+  void crumbs;
+  void sideLabel;
+  void sideValue;
+  void actions;
+
   return (
-    <section className="border-b border-navy/10 bg-[#eef4f7]">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-        {crumbs && crumbs.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-foreground/52">
-            {crumbs.map((crumb, index) => (
-              <div key={`${crumb.label}-${index}`} className="flex items-center gap-2">
-                {crumb.href ? (
-                  <Link href={crumb.href} className="transition hover:text-foreground">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="text-foreground/72">{crumb.label}</span>
-                )}
-                {index < crumbs.length - 1 ? <span>/</span> : null}
-              </div>
-            ))}
-          </div>
-        ) : null}
-
-        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr,18rem] lg:items-end">
-          <div>
-            <div className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
-              {eyebrow}
-            </div>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[0.97] text-sand sm:text-5xl md:text-6xl">
-              {title}
-            </h1>
-            {description ? (
-              <p className="mt-6 max-w-3xl text-sm leading-8 text-foreground/72 sm:text-base">
-                {description}
-              </p>
-            ) : null}
-            {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
-          </div>
-
-          {sideLabel && sideValue ? (
-            <div className="border-l border-navy/10 pl-6">
-              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-foreground/44">
-                {sideLabel}
-              </div>
-              <div className="mt-3 text-sm leading-7 text-foreground/72">{sideValue}</div>
-            </div>
-          ) : null}
+    <section className="border-b border-navy/10 bg-[linear-gradient(180deg,#eef4f7_0%,#f8fbfc_100%)]">
+      <div className="mx-auto w-full max-w-6xl px-4 py-12 text-center sm:px-6 sm:py-20">
+        <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/80 sm:text-[0.72rem] sm:tracking-[0.26em]">
+          {eyebrow}
         </div>
+        <h1 className="mx-auto mt-3 max-w-4xl text-[2.1rem] font-semibold leading-[1.02] text-sand sm:mt-5 sm:text-5xl sm:leading-[0.98] md:text-6xl">
+          {title}
+        </h1>
+        {description ? (
+          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-foreground/70 sm:mt-6 sm:text-base sm:leading-8">
+            {description}
+          </p>
+        ) : null}
       </div>
     </section>
   );

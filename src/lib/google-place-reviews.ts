@@ -1,4 +1,5 @@
 import "server-only";
+import scrapedPlaceData from "../../data/google-place-scrape.json";
 
 const GOOGLE_MAPS_PAGE_URL = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
 const DEFAULT_TEXT_QUERY =
@@ -54,6 +55,17 @@ export type GooglePlaceReviewData = {
   sortLabel: string;
 };
 
+type ScrapedGooglePlaceReviewData = GooglePlaceReviewData & {
+  sourceUrl: string;
+  resolvedUrl: string;
+  scrapedAt: string;
+  address: string;
+  hours: string;
+  category: string;
+  instagramUrl: string;
+  description: string;
+};
+
 function extractText(review: GoogleReview) {
   return review.originalText?.text ?? review.text?.text ?? "";
 }
@@ -82,6 +94,19 @@ function mapPlace(place: GooglePlace): GooglePlaceReviewData {
       .filter((review) => review.text),
     mapsUrl: GOOGLE_MAPS_PAGE_URL,
     sortLabel: "Sorted by Google relevance",
+  };
+}
+
+function getScrapedFallbackData(): GooglePlaceReviewData {
+  const data = scrapedPlaceData as ScrapedGooglePlaceReviewData;
+
+  return {
+    placeName: data.placeName,
+    rating: data.rating,
+    reviewCount: data.reviewCount,
+    reviews: data.reviews,
+    mapsUrl: data.mapsUrl,
+    sortLabel: data.sortLabel,
   };
 }
 
@@ -138,7 +163,7 @@ export async function getGooglePlaceReviewData(): Promise<GooglePlaceReviewData 
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
-    return null;
+    return getScrapedFallbackData();
   }
 
   try {
@@ -150,13 +175,13 @@ export async function getGooglePlaceReviewData(): Promise<GooglePlaceReviewData 
       : await fetchPlaceByText(apiKey, textQuery);
 
     if (!place) {
-      return null;
+      return getScrapedFallbackData();
     }
 
     return mapPlace(place);
   } catch (error) {
     console.error("Unable to load Google reviews", error);
-    return null;
+    return getScrapedFallbackData();
   }
 }
 

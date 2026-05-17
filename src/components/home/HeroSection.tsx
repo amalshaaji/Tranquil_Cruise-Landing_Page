@@ -4,9 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const heroDetails = [
-  "Houseboats",
-  "Private journeys",
-  "Kerala stays",
+  "Private houseboats",
+  "Curated routes",
+  "Slower Kerala stays",
 ];
 
 export default function HeroSection() {
@@ -22,8 +22,8 @@ export default function HeroSection() {
     <section className="relative min-h-screen overflow-hidden bg-[#8fb3d1] text-white">
       <div className="absolute inset-0">
         <Image
-          src="/images/home-hero-backwater-canoe.jpg"
-          alt="Traditional canoe gliding across the Kerala backwaters"
+          src="/images/home-hero-rainbow-houseboat.jpg"
+          alt="Traditional Kerala houseboat resting on calm water beneath a rainbow"
           fill
           priority
           sizes="100vw"
@@ -66,7 +66,7 @@ export default function HeroSection() {
           className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8"
         >
           <div className="flex w-full items-end justify-center gap-6">
-            <div className="mx-auto flex max-w-3xl flex-1 flex-col items-center text-center">
+            <div className="mx-auto flex max-w-4xl flex-1 flex-col items-center text-center">
               <div className="mb-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.64rem] font-medium uppercase tracking-[0.42em] text-white/78 sm:text-[0.68rem]">
                 {heroDetails.map((detail, index) => (
                   <div key={detail} className="flex items-center gap-4">
@@ -78,19 +78,19 @@ export default function HeroSection() {
                 ))}
               </div>
 
-              <h1 className="max-w-4xl text-balance text-[1.38rem] font-semibold uppercase tracking-[0.42em] text-white/96 sm:text-[1.9rem]">
-                The Curated Backwater House
+              <h1 className="max-w-4xl text-balance text-[1.28rem] font-semibold uppercase tracking-[0.34em] text-white/96 sm:text-[1.7rem]">
+                Kerala backwater stays with more calm, space, and intention
               </h1>
 
               <button
                 type="button"
                 onClick={scrollToExperiences}
-                className="mt-8 inline-flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border-2 border-white/85 bg-white/6 text-white transition duration-300 hover:scale-[1.04] hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-20 sm:w-20"
+                className="mt-7 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/50 bg-white/6 text-white transition duration-300 hover:scale-[1.04] hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-16 sm:w-16"
                 aria-label="Scroll to explore experiences"
               >
                 <svg
-                  width="28"
-                  height="28"
+                  width="24"
+                  height="24"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

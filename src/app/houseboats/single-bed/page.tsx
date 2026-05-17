@@ -1,10 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import InnerPageHeader from "@/components/layout/InnerPageHeader";
+import { motion } from "framer-motion";
 import ScrollableImageRow from "../../../components/services/ScrollableImageRow";
+import { buildWhatsAppHref, buildInquiryMessage } from "@/lib/whatsapp";
 
-// --- DATA CONSTANTS ---
+const whatsappHref = buildWhatsAppHref(
+  buildInquiryMessage({
+    experience: "houseboat",
+    option: "single-bed",
+    message: "Please share availability, pricing, and route options for this stay.",
+  }),
+);
+
+// --- Data ---
 const highlights = [
   "Comfortable private bedroom layout",
   "Ideal for short stays and intimate getaways",
@@ -27,9 +36,18 @@ const favoriteFacilities = [
 ];
 
 const reasonsToLove = [
-  "A more intimate houseboat format that still feels calm, polished, and scenic.",
-  "A mix of private room comfort and shared deck or lounge spaces for slower backwater moments.",
-  "Well-suited for short stays, solo guests, or couples who do not need a larger multi-room boat.",
+  {
+    title: "Intimate Atmosphere",
+    text: "A more intimate houseboat format that still feels calm, polished, and scenic.",
+  },
+  {
+    title: "Balanced Layout",
+    text: "A mix of private room comfort and shared deck or lounge spaces for slower backwater moments.",
+  },
+  {
+    title: "Perfectly Sized",
+    text: "Well-suited for short stays, solo guests, or couples who do not need a larger multi-room boat.",
+  },
 ];
 
 const planningPrompts = [
@@ -41,15 +59,38 @@ const planningPrompts = [
 ];
 
 const galleryImages = [
-  { src: "/images/single-bed-gallery/exterior-view.jpeg", alt: "Exterior" },
-  { src: "/images/single-bed-gallery/bedroom-blue.jpeg", alt: "Bedroom Blue" },
-  { src: "/images/single-bed-gallery/bedroom-green.jpeg", alt: "Bedroom Green" },
-  { src: "/images/single-bed-gallery/open-deck-night.jpeg", alt: "Deck" },
-  { src: "/images/single-bed-gallery/corridor.jpeg", alt: "Corridor" },
-  { src: "/images/single-bed-gallery/lounge-view.jpeg", alt: "Lounge" },
-  { src: "/images/single-bed-gallery/bedroom-gold.jpeg", alt: "Bedroom Gold" },
-  { src: "/images/single-bed-gallery/bedroom-floral.jpeg", alt: "Bedroom Floral" },
-  { src: "/images/single-bed-gallery/washroom.jpeg", alt: "Washroom" },
+  {
+    src: "/images/single-bed-gallery/exterior-view.jpeg",
+    alt: "Single bed houseboat exterior view on the backwaters",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_29__1_.jpeg",
+    alt: "Single bed houseboat lounge with feature wall and central seating",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_28__1_.jpeg",
+    alt: "Single bed houseboat bedroom with red bedspread",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_29__2_.jpeg",
+    alt: "Single bed houseboat bedroom with gray bedspread",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_30.jpeg",
+    alt: "Single bed houseboat vanity area with textured wall finish",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_30__1_.jpeg",
+    alt: "Single bed houseboat attached washroom with toilet",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_28.jpeg",
+    alt: "Single bed houseboat side corridor with water-facing windows",
+  },
+  {
+    src: "/images/single-bed-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_30__2_.jpeg",
+    alt: "Single bed houseboat interior hallway with Mithram sign",
+  },
 ];
 
 const faqs = [
@@ -71,222 +112,266 @@ const faqs = [
   },
 ];
 
+// --- Animation Variants ---
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
 export default function SingleBedHouseboatPage() {
   return (
-    <main className="pb-24 sm:pb-32 bg-white font-sans antialiased">
-      {/* HEADER SECTION */}
-      <InnerPageHeader
-        eyebrow="Houseboat Stay"
-        title="Single Bed Houseboat"
-        description="A quieter houseboat stay for solo guests or couples who want a more compact room, calm water views, and an easy backwater rhythm."
-        crumbs={[
-          { label: "Home", href: "/" },
-          { label: "Houseboats", href: "/houseboats" },
-          { label: "Single Bed Houseboat" },
-        ]}
-        sideLabel="Best For"
-        sideValue="Short stays, peaceful getaways, couple-friendly plans, and guests who want a comfortable private room with scenic cruising."
-        actions={
-          <div className="flex gap-3">
-            <Link
-              href="/contact?experience=houseboat&option=single-bed"
-              className="inline-flex items-center justify-center rounded-full bg-[#173247] px-6 py-3 text-sm font-semibold text-white transition hover:bg-sand hover:text-[#173247] shadow-lg"
-            >
-              Enquire Now
-            </Link>
-            <Link
-              href="/houseboats"
-              className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-[#f4f9fb]"
-            >
-              Back
-            </Link>
-          </div>
-        }
-      />
-
-      <section className="px-6 py-16 sm:py-24 max-w-7xl mx-auto">
-        {/* --- VISUAL PREVIEW SECTION --- */}
-        <div className="grid gap-12 lg:grid-cols-12 items-start">
-          <div className="lg:col-span-8">
-            <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80 mb-4 block">
-              Stay Preview
+    <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
+      {/* HERO SECTION */}
+      <section className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-24 sm:pt-24">
+        <div className="grid items-start gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-16">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            className="min-w-0 lg:col-span-8"
+          >
+            <div className="mb-3 inline-block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-teal-600/80 sm:mb-4 sm:text-[0.7rem] sm:tracking-[0.3em]">
+              Boutique Houseboat Collection
             </div>
-            <h2 className="text-4xl font-semibold tracking-tight text-sand sm:text-5xl leading-[1.1] mb-6">
-              A sanctuary of silence <br /> and scenic movement.
-            </h2>
-            <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl mb-10">
-              Experience the backwaters in their most intimate form.
-              Scroll through our gallery to feel the rhythm of the rooms, the breeze of the deck, and the warmth of the lounge.
+            <h1 className="mb-4 text-[clamp(2.15rem,10vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
+              A sanctuary of silence
+              <span className="hidden sm:inline"> <br /></span>{" "}
+              <span className="text-navy/40 italic font-serif">and scenic movement.</span>
+            </h1>
+            <p className="mb-7 max-w-2xl text-sm leading-7 text-foreground/60 sm:mb-10 sm:text-lg sm:leading-relaxed">
+              Experience the backwaters in their most intimate form, with a
+              compact private stay designed for quiet cruising, restful
+              evenings, and a slower rhythm on the water.
             </p>
 
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-teal/20 to-navy/10 rounded-[2rem] blur-xl opacity-50" />
-              <div className="relative bg-white rounded-[2rem] p-2 shadow-sm border border-navy/5">
-                <ScrollableImageRow images={galleryImages} />
+            <div className="group relative">
+              <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-teal-100/40 to-navy-100/20 blur-2xl opacity-60" />
+              <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
+                <ScrollableImageRow
+                  images={galleryImages}
+                  showFeaturedSpace={false}
+                />
               </div>
             </div>
-          </div>
 
-          {/* Boutique Rating Badge */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="relative p-8 rounded-[2.5rem] bg-white border border-navy/5 shadow-[0_20px_50px_rgba(23,50,71,0.08)] text-center group">
-              <div className="absolute -top-3 -right-3 h-12 w-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-lg">
-                TOP
+            <div className="mt-8 flex flex-wrap gap-4 sm:mt-10 lg:justify-start">
+              <Link
+                href={whatsappHref}
+                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#173247] px-6 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:shadow-2xl hover:shadow-navy-500/30 active:scale-95 sm:w-auto sm:px-8"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10 rounded-full bg-white/10 px-2 py-0.5 text-[0.6rem] tracking-widest text-white/80 backdrop-blur-md">
+                  STAY
+                </span>
+                <span className="relative z-10">Book Now</span>
+                <span className="relative z-10 text-lg transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* RATING CARD - Float Effect */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="min-w-0 lg:col-span-4"
+          >
+            <div className="group relative w-full rounded-[1.75rem] border border-navy/5 bg-white p-5 text-center shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] transition-all duration-500 hover:-translate-y-2 sm:rounded-[2.5rem] sm:p-8">
+              <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
+                Guest Experience
               </div>
-              <div className="text-xs font-bold uppercase tracking-[0.2em] text-teal/80 mb-2">Guest Feel</div>
-              <div className="text-6xl font-semibold tracking-tighter text-sand">8.4</div>
-              <div className="mt-2 text-sm font-medium text-foreground/50 italic">
+              <div className="text-5xl font-bold tracking-tighter text-sand sm:text-7xl">
+                8.4
+              </div>
+              <div className="mt-2 text-xs font-medium italic text-foreground/40 sm:text-sm">
                 &quot;Very Good&quot;
               </div>
-              <div className="mt-6 pt-6 border-t border-navy/5 text-[0.7rem] text-foreground/40 uppercase tracking-widest">
+              <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
                 Verified Experience
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Facilities Pill Cloud */}
-        <div className="mt-16 flex flex-wrap gap-3 justify-center lg:justify-start">
+        {/* FACILITY TAGS */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+          className="mt-10 flex flex-wrap justify-center gap-2.5 sm:mt-16 sm:gap-3 lg:justify-start"
+        >
           {favoriteFacilities.map((facility) => (
             <div
               key={facility}
-              className="rounded-full border border-navy/10 bg-white px-5 py-2 text-xs font-medium text-foreground/70 shadow-sm hover:border-teal/40 transition-colors cursor-default"
+              className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
             >
               {facility}
             </div>
           ))}
-        </div>
+        </motion.div>
+      </section>
 
-        {/* --- BENTO GRID SECTION --- */}
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
-          {/* Why This Works - Large Card */}
-          <section className="lg:col-span-2 rounded-[2.5rem] bg-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(23,50,71,0.06)] border border-navy/5">
-            <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/80 mb-4 block">
+      {/* BENTO SECTION */}
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* The Appeal - Main Bento Box */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="min-w-0 rounded-[1.75rem] border border-navy/5 bg-white p-5 shadow-sm sm:rounded-[3rem] sm:p-12 lg:col-span-2"
+          >
+            <div className="mb-4 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
               The Appeal
             </div>
-            <h3 className="text-3xl font-semibold tracking-tight text-sand mb-8">
+            <h3 className="mb-6 text-2xl font-semibold tracking-tight text-sand sm:mb-10 sm:text-4xl">
               Why guests love this format
             </h3>
             <div className="grid gap-6 sm:grid-cols-2">
               {reasonsToLove.map((reason, idx) => (
-                <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-[#FBFBFC] border border-navy/5 hover:border-teal/30 transition-colors group">
-                  <div className="h-6 w-6 rounded-full bg-[#173247] text-white text-center flex items-center justify-center text-xs font-bold shrink-0 group-hover:bg-teal-500 transition-colors">
+                <div
+                  key={idx}
+                  className="group flex flex-col gap-4 rounded-[1.5rem] border border-navy/5 bg-[#FBFBFC] p-4 transition-all hover:border-teal-200 hover:bg-white hover:shadow-lg sm:flex-row sm:gap-5 sm:rounded-3xl sm:p-6"
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy-900 text-center text-xs font-bold text-white transition-colors group-hover:bg-teal-500">
                     {idx + 1}
                   </div>
-                  <p className="text-sm leading-relaxed text-foreground/70">
-                    {reason}
-                  </p>
+                  <div>
+                    <h4 className="mb-1 font-bold text-sand text-sm">{reason.title}</h4>
+                    <p className="text-sm leading-relaxed text-foreground/60">
+                      {reason.text}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-          </section>
+          </motion.div>
 
-          {/* Good For - Vertical Card */}
-          <section className="rounded-[2.5rem] bg-[#eef5f8] p-8 sm:p-12 shadow-sm border border-navy/5">
-            <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/80 mb-4 block">
+          {/* Planning Cues - Accent Box */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="min-w-0 rounded-[1.75rem] border border-navy/5 bg-gradient-to-b from-[#eef5f8] to-white p-5 shadow-sm sm:rounded-[3rem] sm:p-12"
+          >
+            <div className="mb-4 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
               Ideal For
             </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-sand mb-8">
+            <h3 className="mb-6 text-2xl font-semibold tracking-tight text-sand sm:mb-8">
               Planning cues
             </h3>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               {planningPrompts.map((prompt) => (
                 <div
                   key={prompt}
-                  className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-sm border border-white text-sm font-medium text-foreground/70"
+                  className="flex items-center gap-3 rounded-2xl border border-white bg-white/70 px-4 py-3.5 text-sm font-medium leading-6 text-foreground/70 backdrop-blur-md transition-all hover:translate-x-2 hover:shadow-md sm:gap-4 sm:px-5 sm:py-4"
                 >
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#173247]" />
+                  <div className="h-1.5 w-1.5 rounded-full bg-teal-500" />
                   {prompt}
                 </div>
               ))}
             </div>
-          </section>
+          </motion.div>
         </div>
+      </section>
 
-        {/* --- OVERVIEW & INCLUSIONS --- */}
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {/* Detailed Overview - Deep Navy Card */}
-          <section className="relative overflow-hidden rounded-[2.5rem] bg-[#173247] p-8 sm:p-12 text-white shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/20 rounded-full blur-3xl -mr-20 -mt-20" />
+      {/* EXPERIENCE & ESSENTIALS SECTION */}
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* The Experience Card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="group relative min-w-0 overflow-hidden rounded-[1.75rem] bg-[#173247] p-5 text-white shadow-2xl sm:rounded-[3rem] sm:p-16"
+          >
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-teal-500/20 blur-3xl transition-all group-hover:bg-teal-500/30" />
             <div className="relative z-10">
-              <span className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-teal/80 mb-6 block">
+              <span className="mb-6 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-400/80">
                 The Experience
               </span>
-              <h3 className="text-3xl font-semibold tracking-tight mb-6">
-                A compact, private stay on the backwaters.
+              <h3 className="mb-5 text-2xl font-semibold tracking-tight sm:mb-6 sm:text-4xl">
+                A compact, private stay
+                <span className="hidden sm:inline"> <br /></span>{" "}
+                <span className="text-teal-300">on the backwaters.</span>
               </h3>
-              <p className="text-white/70 leading-relaxed mb-10 max-w-md">
-                This option is shaped for guests who want the charm of a
-                houseboat stay without needing a larger multi-room setup.
-                You still get the scenic route, deck access, and a calm
-                overnight feel in a more intimate format.
+              <p className="mb-7 max-w-md text-sm leading-7 text-white/70 sm:mb-12 sm:text-lg sm:leading-relaxed">
+                This option is shaped for guests who want the charm of a houseboat
+                stay without needing a larger multi-room setup.
               </p>
 
               <div className="grid gap-4">
                 {highlights.map((highlight, index) => (
-                  <div key={highlight} className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-sm group hover:bg-white/20 transition-all">
-                    <div className="h-8 w-8 rounded-full bg-white text-[#173247] flex items-center justify-center text-xs font-bold shrink-0 group-hover:scale-110 transition-transform">
+                  <div
+                    key={highlight}
+                    className="group/item flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/15 sm:items-center sm:gap-4 sm:p-5"
+                  >
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold text-[#173247] transition-transform group-hover/item:scale-110">
                       {index + 1}
                     </div>
-                    <span className="text-sm text-white/90 font-medium">{highlight}</span>
+                    <span className="text-sm font-medium leading-6 text-white/90">
+                      {highlight}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
+          </motion.div>
 
-          {/* Included Facilities - Pearl Card */}
-          <section className="rounded-[2.5rem] bg-white p-8 sm:p-12 border border-navy/5 shadow-[0_20px_60px_rgba(23,50,71,0.06)]">
-            <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-teal/80 mb-4 block">
+          {/* The Essentials Card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="min-w-0 rounded-[1.75rem] border border-navy/5 bg-white p-5 shadow-sm sm:rounded-[3rem] sm:p-16"
+          >
+            <div className="mb-4 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
               The Essentials
             </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-sand mb-8">
+            <h3 className="mb-6 text-2xl font-semibold tracking-tight text-sand sm:mb-10 sm:text-3xl">
               Everything for a calm, comfortable stay.
             </h3>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2">
               {features.map((feature) => (
                 <div
                   key={feature}
-                  className="flex items-center gap-4 p-5 rounded-2xl bg-[#FBFBFC] border border-navy/5 text-sm font-medium text-foreground/70 hover:border-teal/40 transition-colors"
+                  className="flex items-start gap-4 rounded-2xl border border-navy/5 bg-[#FBFBFC] p-4 text-sm font-medium leading-6 text-foreground/70 transition-all hover:border-teal-300 hover:bg-white hover:shadow-md sm:items-center sm:p-6"
                 >
-                  <div className="h-2 w-2 rounded-full bg-teal-500 shadow-[0_0_0_4px_rgba(20,184,166,0.1)]" />
+                  <div className="h-2 w-2 rounded-full bg-teal-500 shadow-[0_0_0_4px_rgba(20,184,166,0.15)]" />
                   {feature}
                 </div>
               ))}
             </div>
-
-            {/* Integrated Mini-CTA */}
-            <div className="mt-12 p-8 rounded-[2rem] bg-[#eef5f8] border border-navy/5 relative overflow-hidden group">
-              <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-sand mb-2">Ready to plan?</h4>
-                <p className="text-sm text-foreground/60 mb-6">
-                  Share your dates and group details, and we&apos;ll help you
-                  confirm availability for this stay.
-                </p>
-                <Link
-                  href="/contact?experience=houseboat&option=single-bed"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[#173247] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-sand hover:text-[#173247] shadow-lg"
-                >
-                  <span className="uppercase tracking-wider">Book Your Stay</span>
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
-            </div>
-          </section>
+          </motion.div>
         </div>
       </section>
 
-      {/* --- LUXE FAQ SECTION --- */}
-      <section className="px-6 mt-12 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/80 mb-3 block">
+      {/* FAQ SECTION */}
+      <section className="mx-auto mt-14 max-w-4xl px-4 sm:mt-24 sm:px-6">
+        <div className="mb-10 text-center sm:mb-16">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mb-3 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80"
+          >
             Guest Inquiries
-          </span>
-          <h3 className="text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+          </motion.span>
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-[1.9rem] font-semibold tracking-tight text-sand sm:text-5xl"
+          >
             Common Questions
-          </h3>
-          <p className="mt-4 text-foreground/60">
+          </motion.h3>
+          <p className="mt-4 text-sm leading-7 text-foreground/50 sm:text-lg sm:leading-relaxed">
             Quick answers to help you settle into your backwater rhythm.
           </p>
         </div>
@@ -295,19 +380,19 @@ export default function SingleBedHouseboatPage() {
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-[2rem] border border-navy/5 bg-white transition-all duration-300 open:shadow-[0_20px_40px_rgba(23,50,71,0.06)]"
+              className="group rounded-[1.6rem] border border-navy/5 bg-white transition-all duration-300 open:shadow-xl open:shadow-navy-500/5 sm:rounded-[2rem]"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between p-6 text-left transition-all group-hover:bg-[#fbfbfc]">
-                <span className="text-base font-semibold text-[#173247] leading-tight">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 p-5 text-left transition-all group-hover:bg-[#fbfbfc] sm:items-center sm:p-6">
+                <span className="pr-2 text-base font-semibold leading-7 text-[#173247] sm:text-lg sm:leading-tight">
                   {faq.question}
                 </span>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef5f8] text-[#173247] transition-all group-open:rotate-45 group-open:bg-[#173247] group-open:text-white">
+                <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-50 text-[#173247] transition-all group-open:rotate-45 group-open:bg-[#173247] group-open:text-white sm:mt-0">
                   <span className="text-xl font-light">+</span>
                 </div>
               </summary>
-              <div className="px-6 pb-6">
-                <div className="h-px w-full bg-navy/5 mb-4" />
-                <p className="text-sm leading-relaxed text-foreground/70 sm:text-base">
+              <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                <div className="mb-4 h-px w-full bg-navy/5" />
+                <p className="text-sm leading-relaxed text-foreground/70 sm:text-lg">
                   {faq.answer}
                 </p>
               </div>

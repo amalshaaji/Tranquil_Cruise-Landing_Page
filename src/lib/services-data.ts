@@ -39,9 +39,9 @@ export const services: ServicePage[] = [
     ],
     highlights: [
       {
-        title: "Single & Double Bed Options",
+        title: "Houseboat Sizes for Every Stay",
         description:
-          "Choose from cozy single-bed houseboats or more spacious double-bed options depending on your group and style of stay.",
+          "Choose from intimate single-bedroom stays, family-friendly two-bedroom layouts, or larger three- and five-bedroom houseboats depending on your group and style of stay.",
         icon: "home",
       },
       {
@@ -103,29 +103,56 @@ export const services: ServicePage[] = [
     ],
     options: [
       {
-        title: "Single Bed Houseboat",
+        title: "Intimate Retreat",
         description:
-          "A cozy choice for solo guests or couples who want a more compact and peaceful stay on the backwaters.",
-        image: "/images/single-bed-houseboat.jpeg",
+          "A cozy single-bedroom houseboat for solo guests or couples who want a more private, compact, and peaceful stay on the backwaters.",
+        image: "/images/single-bed-gallery/exterior-view.jpeg",
         details: [
-          "Comfortable private bedroom layout",
+          "Single Bedroom",
           "Ideal for short stays and intimate getaways",
           "Private deck access and scenic cruising",
         ],
         href: "/houseboats/single-bed",
-        ctaLabel: "Enquire About Single Bed",
+        ctaLabel: "Plan an Intimate Escape",
       },
       {
-        title: "2 Bedroom Houseboat",
+        title: "Family Retreat",
         description:
           "A spacious two-bedroom houseboat designed for families, small groups, or guests who want more room to relax across the backwaters.",
-        image: "/images/two-bedroom-gallery/exterior.jpeg",
+        image: "/images/family-retreat-houseboat.jpg",
         details: [
-          "Two private air-conditioned bedrooms",
+          "Two Bedroom",
           "Large indoor lounge and dining space",
+          "Comfortable fit for families and small groups",
         ],
         href: "/houseboats/2-bedroom",
-        ctaLabel: "Enquire About 2 Bedroom",
+        ctaLabel: "Plan a Family Retreat",
+      },
+      {
+        title: "Gathering Retreat",
+        description:
+          "A larger private houseboat suited to extended families or small groups who want extra bedrooms, more shared lounge space, and an easy overnight flow on the backwaters.",
+        image: "/images/gathering-retreat-houseboat.jpg",
+        details: [
+          "Three Bedroom",
+          "Spacious lounge and dining layout for groups",
+          "Comfortable fit for family stays and longer cruising",
+        ],
+        href: "/houseboats/3-bedroom",
+        ctaLabel: "Plan a Group Getaway",
+      },
+      {
+        title: "Celebration Retreat",
+        description:
+          "A premium multi-room houseboat for larger family gatherings, celebrations, or group escapes that need generous space across the deck, dining, and bedroom areas.",
+        image: "/images/five-bedroom-gallery/WhatsApp_Image_2026-05-14_at_18_04_15.jpeg",
+        details: [
+          "Five Bedroom",
+          "Ideal for celebrations, reunions, and bigger groups",
+          "Expanded deck and common areas for relaxed group time",
+        ],
+        href: "/houseboats/5-bedroom",
+        ctaLabel: "Plan a Celebration Stay",
       },
     ],
     ctaText: "Reserve Your Houseboat",
@@ -136,7 +163,7 @@ export const services: ServicePage[] = [
     title: "Shikkara Rides",
     subtitle: "Romantic boat rides through Kerala's most scenic canals",
     eyebrow: "Heritage Rides",
-    heroImage: "/images/shikkara-real.png",
+    heroImage: "/images/shikkara-real.jpg",
     description: [
       "The Shikkara is Kerala's iconic country boat — an elegant, canopied vessel that has been the heart of backwater transport for centuries. Our curated Shikkara rides offer an intimate way to experience the narrow canals, village waterways, and hidden lagoons that larger boats cannot reach.",
       "Perfect for couples, small families, or anyone seeking a slower, more personal connection with the water. Each ride includes a knowledgeable boatman who shares local stories, points out rare birdlife, and navigates the quieter, more magical waterways.",
@@ -193,21 +220,21 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates depend on duration (1–3 hours) and route. Sunset and sunrise premium slots available. Group discounts for 4+ guests.",
     gallery: [
-      "/images/shikkara-real.png",
-      "/images/shikkara.jpeg",
+      "/images/shikkara-real.jpg",
+      "/images/shikkara.jpg",
     ],
     ctaText: "Book a Shikkara Ride",
     ctaHref: "/contact",
   },
   {
     slug: "canoe-boats",
-    title: "Canoe Boats",
+    title: "Country Boats",
     subtitle: "Paddle through untouched backwater villages",
     eyebrow: "Adventure & Nature",
     heroImage: "/images/canoe-card.png",
     description: [
-      "Our canoe experiences offer the most authentic way to explore Kerala's backwaters. These open boats take you through the quietest, narrowest waterways — past village homes, coconut groves, coir-making workshops, and lush paddy fields stretching to the horizon.",
-      "Whether you prefer a guided paddling adventure or a relaxed motorized canoe journey, each trip is designed to immerse you in the daily rhythms of backwater life. It's the closest you can get to the water, with nothing between you and nature.",
+      "Our country boat experiences offer the most authentic way to explore Kerala's backwaters. These open boats take you through the quietest, narrowest waterways — past village homes, coconut groves, coir-making workshops, and lush paddy fields stretching to the horizon.",
+      "Whether you prefer a guided paddling adventure or a relaxed motorized country boat journey, each trip is designed to immerse you in the daily rhythms of backwater life. It's the closest you can get to the water, with nothing between you and nature.",
     ],
     highlights: [
       {
@@ -225,19 +252,19 @@ export const services: ServicePage[] = [
       {
         title: "Guided or Self-Paddle",
         description:
-          "Choose between a guided motorized canoe or grab a paddle and explore at your own pace.",
+          "Choose between a guided motorized country boat or grab a paddle and explore at your own pace.",
         icon: "compass",
       },
       {
         title: "Birdwatching Routes",
         description:
-          "Quiet canoe paths through mangroves — ideal for spotting kingfishers, herons, and egrets.",
+          "Quiet country boat paths through mangroves — ideal for spotting kingfishers, herons, and egrets.",
         icon: "leaf",
       },
       {
         title: "Eco-Friendly",
         description:
-          "Zero-emission paddled canoes that leave no trace on the fragile backwater ecosystem.",
+          "Zero-emission paddled country boats that leave no trace on the fragile backwater ecosystem.",
         icon: "heart",
       },
       {
@@ -259,20 +286,20 @@ export const services: ServicePage[] = [
     ],
     priceLabel: "From ₹800 / person",
     priceNote:
-      "Rates vary by route length (1–4 hours) and group size. Private canoe options available. Morning slots recommended for birdwatching.",
+      "Rates vary by route length (1–4 hours) and group size. Private country boat options available. Morning slots recommended for birdwatching.",
     gallery: [
-      "/images/canoe-card.png",
+      "/images/village-open-boat-rides.webp",
       "/images/home-hero-backwater-canoe.jpg",
     ],
-    ctaText: "Book a Canoe Trip",
+    ctaText: "Book a Country Boat Trip",
     ctaHref: "/contact",
   },
   {
     slug: "kayaking",
-    title: "Kayaking Trails",
+    title: "Backwater Kayaking Trails",
     subtitle: "Active paddling routes through Kerala's quieter backwaters",
     eyebrow: "Active Waterways",
-    heroImage: "/images/kayaking-card.png",
+    heroImage: "/images/kayaking-card.jpg",
     description: [
       "Our kayaking trails are designed for guests who want to feel closer to the water and move through the backwaters at a more active, personal pace. Paddle past narrow canals, open lake edges, coconut groves, and calm village stretches that feel far quieter than the usual boat routes.",
       "Whether you are trying kayaking for the first time or already love being on the water, each route is shaped around comfort, scenery, and rhythm. We guide you toward gentler morning rides, golden-hour paddles, or longer exploratory sessions depending on the mood you want from the day.",
@@ -329,9 +356,10 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates vary by route length, guide type, and private or shared session format. Beginner sessions and longer scenic trails are both available.",
     gallery: [
-      "/images/kayaking-card.png",
-      "/images/home-hero-backwater-canoe.jpg",
-      "/images/canoe-card.png",
+      "/images/kayaking-gallery/IMG_0757.webp",
+      "/images/kayaking-gallery/IMG_0772.webp",
+      "/images/kayaking-gallery/IMG_1810.webp",
+      "/images/kayaking-gallery/IMG_9378.webp",
     ],
     ctaText: "Book a Kayaking Trail",
     ctaHref: "/contact",
@@ -380,7 +408,7 @@ export const services: ServicePage[] = [
       {
         title: "Activity Planning",
         description:
-          "Your host arranges canoe rides, fishing trips, cooking classes, and village walks from your doorstep.",
+          "Your host arranges country boat rides, fishing trips, cooking classes, and village walks from your doorstep.",
         icon: "compass",
       },
     ],
@@ -394,7 +422,7 @@ export const services: ServicePage[] = [
       "Parking available",
       "24-hour assistance",
     ],
-    priceLabel: "From ₹2,500 / night",
+    priceLabel: "₹1,500 - ₹15,000 / night",
     priceNote:
       "Rates depend on room type (standard, deluxe, heritage suite), season, and meal plan. Long-stay discounts available.",
     gallery: [
@@ -408,7 +436,7 @@ export const services: ServicePage[] = [
     title: "Spa & Wellness",
     subtitle: "Ayurvedic healing in the heart of the backwaters",
     eyebrow: "Wellness & Rejuvenation",
-    heroImage: "/images/spa-card.png",
+    heroImage: "/images/spa-gallery/spa1.webp",
     description: [
       "Our spa experiences draw from Kerala's centuries-old Ayurvedic tradition — the world's oldest healing system. Treatments are administered by certified Ayurvedic therapists using natural oils, herbal preparations, and time-tested techniques passed down through generations.",
       "Whether on the deck of a houseboat or in a waterfront wellness room, each session is designed to restore balance, calm the mind, and rejuvenate the body. The sounds of the backwaters become your natural soundtrack as ancient healing meets serene surroundings.",
@@ -465,7 +493,10 @@ export const services: ServicePage[] = [
     priceNote:
       "Single sessions, half-day, and multi-day wellness packages available. Combine with a houseboat stay for an on-water spa experience.",
     gallery: [
-      "/images/spa-card.png",
+      "/images/spa-gallery/spa1.webp",
+      "/images/spa-gallery/spa3.webp",
+      "/images/spa-gallery/spa4.webp",
+      "/images/spa-gallery/spa5.webp",
     ],
     ctaText: "Book a Spa Session",
     ctaHref: "/contact",

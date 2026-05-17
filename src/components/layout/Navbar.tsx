@@ -13,6 +13,8 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+const whatsappHref = "https://wa.me/917994073491";
+
 const exploreItems = services.map((service) => ({
   href: `/${service.slug}`,
   label: service.title,
@@ -127,7 +129,7 @@ export default function Navbar() {
           {/* Desktop: Book Now */}
           <div className="hidden lg:block">
             <Link
-              href="/contact"
+              href={whatsappHref}
               className="inline-flex min-w-[260px] items-center justify-center border-2 border-white px-10 py-5 text-lg font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:bg-white hover:text-[#274865]"
             >
               Book Now
@@ -236,7 +238,7 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/contact"
+                  href={whatsappHref}
                   className="mt-2 inline-flex items-center justify-center rounded-2xl border border-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-[#274865]"
                 >
                   Book Now
@@ -251,55 +253,55 @@ export default function Navbar() {
 
   // Non-home pages
   const navBg = isServicePage
-    ? "border border-white/18 bg-[rgba(15,34,48,0.34)] shadow-[0_20px_60px_rgba(0,0,0,0.2)]"
+    ? "border border-[#6f95ab]/20 bg-[rgba(16,36,51,0.58)] shadow-[0_20px_60px_rgba(10,24,35,0.28)]"
     : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.94)] shadow-[0_26px_70px_rgba(23,50,71,0.12)]";
 
   const textColor = isServicePage ? "text-white" : "text-[#173247]";
-  const subtleText = isServicePage ? "text-white/55" : "text-[#173247]/48";
+  const subtleText = isServicePage ? "text-[#d7e8f2]/74" : "text-[#173247]/48";
   const logoBg = isServicePage
-    ? "bg-white/10 shadow-[0_10px_24px_rgba(0,0,0,0.2)]"
+    ? "bg-[#6f95ab]/16 shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
     : "bg-[#173247] shadow-[0_10px_24px_rgba(23,50,71,0.16)]";
   const badgeBg = isServicePage
-    ? "border border-white/18 bg-white/8 text-white/65 shadow-[0_8px_18px_rgba(0,0,0,0.14)]"
+    ? "border border-[#6f95ab]/22 bg-[#6f95ab]/12 text-[#e2eef5]/82 shadow-[0_8px_18px_rgba(0,0,0,0.14)]"
     : "border border-[#d7e3ea] bg-white/80 text-[#173247]/56 shadow-[0_8px_18px_rgba(23,50,71,0.06)]";
-  const dotColor = isServicePage ? "bg-white/70" : "bg-[#b89356]";
-  const navPillBg = isServicePage ? "bg-white/8" : "bg-[#edf4f7]";
+  const dotColor = isServicePage ? "bg-[#9ec0d3]" : "bg-[#b89356]";
+  const navPillBg = isServicePage ? "bg-[#6f95ab]/12" : "bg-[#edf4f7]";
   const dropdownBg = isServicePage
-    ? "border border-white/18 bg-[rgba(15,34,48,0.86)] shadow-black/20"
+    ? "border border-[#6f95ab]/22 bg-[rgba(14,31,44,0.94)] shadow-black/20"
     : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.14)]";
-  const dropdownLabel = isServicePage ? "text-white/48" : "text-[#173247]/44";
-  const dropdownItemText = isServicePage ? "text-white/84 hover:bg-white/10 hover:text-white" : "text-[#173247]/84 hover:bg-[#edf4f7] hover:text-[#173247]";
-  const dropdownSubtext = isServicePage ? "text-white/58" : "text-[#173247]/52";
-  const dropdownDivider = isServicePage ? "border-t border-white/12" : "border-t border-[#d7e3ea]";
+  const dropdownLabel = isServicePage ? "text-[#d7e8f2]/54" : "text-[#173247]/44";
+  const dropdownItemText = isServicePage ? "text-[#eef7fb]/88 hover:bg-white/10 hover:text-white" : "text-[#173247]/84 hover:bg-[#edf4f7] hover:text-[#173247]";
+  const dropdownSubtext = isServicePage ? "text-[#c6dbe8]/64" : "text-[#173247]/52";
+  const dropdownDivider = isServicePage ? "border-t border-[#6f95ab]/16" : "border-t border-[#d7e3ea]";
   const dropdownCta = isServicePage
-    ? "border border-white/16 bg-white/10 text-white hover:bg-white hover:text-[#274865]"
+    ? "border border-[#6f95ab]/22 bg-[#6f95ab]/14 text-[#f4fbff] hover:bg-[#9ec0d3] hover:text-[#173247]"
     : "bg-[#173247] text-white hover:bg-[#234760]";
   const navLinkActive = "bg-[#173247] text-white shadow-sm";
   const navLinkInactive = isServicePage
-    ? "text-white/78 hover:bg-white/12 hover:text-white"
+    ? "text-[#eef7fb]/82 hover:bg-white/12 hover:text-white"
     : "text-[#173247]/76 hover:bg-white hover:text-[#173247]";
   const bookNowBtn = isServicePage
-    ? "border border-white/18 bg-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.18)] hover:bg-white hover:text-[#274865]"
+    ? "border border-[#6f95ab]/20 bg-[#6f95ab]/14 shadow-[0_12px_30px_rgba(0,0,0,0.18)] hover:bg-[#9ec0d3] hover:text-[#173247]"
     : "bg-[#173247] shadow-[0_12px_30px_rgba(23,50,71,0.14)] hover:bg-[#234760]";
   const mobileMenuBtn = isServicePage
-    ? "border border-white/18 bg-white/10 hover:bg-white hover:text-[#274865]"
+    ? "border border-[#6f95ab]/20 bg-[#6f95ab]/14 hover:bg-[#9ec0d3] hover:text-[#173247]"
     : "bg-[#173247] hover:bg-[#234760]";
   const mobilePanelBg = isServicePage
-    ? "border border-white/18 bg-[rgba(15,34,48,0.8)] shadow-black/20"
+    ? "border border-[#6f95ab]/20 bg-[rgba(14,31,44,0.9)] shadow-black/20"
     : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.12)]";
   const mobileLinkInactive = isServicePage
-    ? "text-white/84 hover:bg-white/10 hover:text-white"
+    ? "text-[#eef7fb]/84 hover:bg-white/10 hover:text-white"
     : "text-[#173247]/80 hover:bg-[#edf4f7] hover:text-[#173247]";
 
   return (
-    <header className={isServicePage ? "absolute inset-x-0 top-0 z-50 px-4 pt-4 text-white sm:px-6" : "sticky top-0 z-50 px-4 pt-4 sm:px-6"}>
+    <header className={isServicePage ? "absolute inset-x-0 top-0 z-50 px-2 pt-2 text-white sm:px-6 sm:pt-4" : "sticky top-0 z-50 px-2 pt-2 sm:px-6 sm:pt-4"}>
       <div className="mx-auto max-w-7xl">
-        <div className={`rounded-[2rem] px-3 py-3 backdrop-blur-xl sm:px-4 ${navBg}`}>
-          <div className="flex items-center gap-3">
+        <div className={`rounded-[1.4rem] px-2 py-2 backdrop-blur-xl sm:rounded-[2rem] sm:px-4 sm:py-3 ${navBg}`}>
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Logo */}
             <Link
               href="/"
-              className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 hover:scale-[1.03] ${logoBg}`}
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 hover:scale-[1.03] sm:h-14 sm:w-14 ${logoBg}`}
               aria-label="Go to homepage"
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -309,9 +311,9 @@ export default function Navbar() {
               </svg>
             </Link>
 
-            <div className="min-w-0 flex-1 md:px-2">
+            <div className="min-w-0 flex-1 lg:px-2">
               {/* Desktop nav */}
-              <div className="hidden items-center justify-between gap-5 md:flex">
+              <div className="hidden items-center justify-between gap-5 lg:flex">
                 {/* Brand */}
                 <div className="min-w-[220px]">
                   <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.24em] ${badgeBg}`}>
@@ -404,7 +406,7 @@ export default function Navbar() {
                 </nav>
 
                 <Link
-                  href="/contact"
+                  href={whatsappHref}
                   className={`inline-flex min-w-[180px] items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:translate-y-[-1px] ${bookNowBtn}`}
                 >
                   Book Now
@@ -412,13 +414,16 @@ export default function Navbar() {
               </div>
 
               {/* Mobile brand */}
-              <div className="md:hidden">
-                <div className="flex flex-col">
-                  <span className={`text-[0.55rem] font-semibold uppercase tracking-[0.22em] ${subtleText}`}>
+              <div className="lg:hidden">
+                <div className="flex min-w-0 flex-col">
+                  <span className={`truncate text-[0.5rem] font-semibold uppercase tracking-[0.18em] sm:text-[0.55rem] sm:tracking-[0.22em] ${subtleText}`}>
                     Kerala Backwaters
                   </span>
-                  <span className={`mt-1 font-[var(--font-display)] text-[1rem] font-semibold uppercase leading-none tracking-[0.24em] ${textColor}`}>
-                    Tranquil Cruise
+                  <span className={`mt-1 truncate font-[var(--font-display)] text-[0.9rem] font-semibold uppercase leading-none tracking-[0.12em] sm:text-[1rem] sm:tracking-[0.24em] ${textColor}`}>
+                    Tranquil
+                  </span>
+                  <span className={`mt-0.5 truncate font-[var(--font-display)] text-[0.9rem] font-semibold uppercase leading-none tracking-[0.14em] sm:text-[1rem] sm:tracking-[0.28em] ${textColor}`}>
+                    Cruise
                   </span>
                 </div>
               </div>
@@ -427,12 +432,13 @@ export default function Navbar() {
             {/* Mobile menu toggle */}
             <button
               type="button"
-              className={`inline-flex h-14 items-center gap-2 rounded-full px-4 text-sm font-semibold text-white transition md:hidden ${mobileMenuBtn}`}
+              className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full px-0 text-[0.8rem] font-semibold text-white transition sm:h-14 sm:w-auto sm:gap-2 sm:px-4 sm:text-sm lg:hidden ${mobileMenuBtn}`}
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              <span>{menuOpen ? "Close" : "Menu"}</span>
+              <span className="sr-only sm:not-sr-only">{menuOpen ? "Close" : "Menu"}</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 {menuOpen ? (
                   <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -454,7 +460,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="mx-auto mt-3 max-w-7xl px-4 sm:px-6 md:hidden"
+            className="mx-auto mt-3 max-w-7xl px-3 sm:px-6 lg:hidden"
           >
             <div className={`rounded-[1.75rem] p-3 shadow-2xl backdrop-blur-xl ${mobilePanelBg}`}>
               <div className="flex flex-col gap-2">
@@ -471,7 +477,7 @@ export default function Navbar() {
                   );
                 })}
                 <Link
-                  href="/contact"
+                  href={whatsappHref}
                   className={`mt-2 inline-flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold text-white transition ${mobileMenuBtn}`}
                 >
                   Book Now

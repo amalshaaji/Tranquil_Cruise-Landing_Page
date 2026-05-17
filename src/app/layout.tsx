@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     siteName: "Tranquil Cruise",
     images: [
       {
-        url: "/images/home-hero-backwater-canoe.jpg",
-        width: 6000,
-        height: 4000,
-        alt: "Traditional canoe on Kerala backwaters",
+        url: "/images/home-hero-rainbow-houseboat.jpg",
+        width: 4640,
+        height: 3739,
+        alt: "Traditional Kerala houseboat resting on calm water beneath a rainbow",
       },
     ],
     locale: "en_US",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tranquil Cruise | Luxury Houseboats & Backwater Tours",
     description: "Experience the ultimate luxury backwater cruise with Tranquil Cruise.",
-    images: ["/images/home-hero-backwater-canoe.jpg"],
+    images: ["/images/home-hero-rainbow-houseboat.jpg"],
   },
   robots: {
     index: true,

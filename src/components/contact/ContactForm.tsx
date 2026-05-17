@@ -1,6 +1,8 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { buildInquiryMessage, buildWhatsAppHref } from "@/lib/whatsapp";
 
 // Refined shared styles for a "High-Fashion" travel look
 const fieldClass =
@@ -8,15 +10,44 @@ const fieldClass =
 
 const labelClass = "text-[0.65rem] font-bold uppercase tracking-[0.15em] text-navy/50 ml-1 mb-1";
 
+function buildDefaultMessage(experience: string, option?: string | null) {
+  if (experience === "houseboat" && option) {
+    return `I would like to enquire about the ${option} houseboat. Please share availability and pricing.`;
+  }
+
+  return "";
+}
+
 export default function ContactForm() {
-  const [experience, setExperience] = useState("houseboat");
+  const searchParams = useSearchParams();
+  const selectedExperience = searchParams.get("experience") ?? "houseboat";
+  const selectedOption = searchParams.get("option");
+  const [experience, setExperience] = useState(selectedExperience);
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    event.currentTarget.reset();
-    setExperience("houseboat");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const whatsappHref = buildWhatsAppHref(
+      buildInquiryMessage({
+        name: String(formData.get("name") ?? "").trim(),
+        phone: String(formData.get("phone") ?? "").trim(),
+        email: String(formData.get("email") ?? "").trim(),
+        experience: String(formData.get("experience") ?? experience).trim(),
+        option: selectedOption,
+        guests: String(formData.get("guests") ?? "").trim(),
+        date: String(formData.get("date") ?? "").trim(),
+        message: String(formData.get("message") ?? "").trim(),
+      }),
+    );
+
+    window.open(whatsappHref, "_blank", "noopener,noreferrer");
+    form.reset();
+    setExperience(selectedExperience);
     setSubmitted(true);
+
     // Reset submitted state after 5 seconds
     setTimeout(() => setSubmitted(false), 5000);
   }
@@ -127,13 +158,14 @@ export default function ContactForm() {
           </div>
 
           <div className="flex flex-col">
-            <label className={labelClass}>Trip Notes & Desires</label>
-            <textarea
-              className={`${fieldClass} min-h-32 resize-none`}
-              name="message"
-              placeholder="Tell us about your ideal backwater escape... (e.g. 'We are celebrating an anniversary and prefer a slower pace')"
-            />
-          </div>
+              <label className={labelClass}>Trip Notes & Desires</label>
+              <textarea
+                className={`${fieldClass} min-h-32 resize-none`}
+                name="message"
+                defaultValue={buildDefaultMessage(selectedExperience, selectedOption)}
+                placeholder="Tell us about your ideal backwater escape... (e.g. 'We are celebrating an anniversary and prefer a slower pace')"
+              />
+            </div>
         </div>
       </div>
 
@@ -144,7 +176,7 @@ export default function ContactForm() {
             role="status"
             className="animate-in fade-in zoom-in-95 duration-500 rounded-2xl border border-gold/30 bg-gold/10 px-8 py-4 text-sm font-medium text-navy/80 backdrop-blur-sm shadow-sm"
           >
-            ✨ Your enquiry has been captured. Our concierge will contact you shortly.
+            WhatsApp is ready with your enquiry details. Send the message and our concierge will take it from there.
           </div>
         )}
 
@@ -152,7 +184,7 @@ export default function ContactForm() {
           type="submit"
           className="group relative inline-flex w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] text-ink shadow-xl shadow-gold/20 transition-all hover:bg-gold/90 hover:scale-[1.02] active:scale-[0.98]"
         >
-          <span className="relative z-10">Check Availability</span>
+          <span className="relative z-10">Send on WhatsApp</span>
           <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full -translate-x-full" />
         </button>
 

@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { getServiceBySlug } from "@/lib/services-data";
-import ServicePageTemplate from "@/components/services/ServicePageTemplate";
-import { notFound } from "next/navigation";
-
-const service = getServiceBySlug("shikkara")!;
+import ShikkaraExperiencePage from "@/components/services/ShikkaraExperiencePage";
 
 export const metadata: Metadata = {
   title: "Shikkara Rides | Tranquil Cruise",
@@ -13,11 +9,10 @@ export const metadata: Metadata = {
     title: "Shikkara Rides | Tranquil Cruise",
     description:
       "Romantic boat rides through Kerala's most scenic canals.",
-    images: [{ url: "/images/shikkara-real.png", width: 1200, height: 630 }],
+    images: [{ url: "/images/shikkara-real.jpg", width: 1200, height: 630 }],
   },
 };
 
 export default function ShikkaraPage() {
-  if (!service) notFound();
-  return <ServicePageTemplate service={service} />;
+  return <ShikkaraExperiencePage />;
 }

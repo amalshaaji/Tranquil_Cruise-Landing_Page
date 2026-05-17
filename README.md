@@ -23,6 +23,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ## Google Reviews Setup
 
 The homepage Google reviews section reads from the Google Places API.
+If the API key is missing or the request fails, the app falls back to
+[`data/google-place-scrape.json`](./data/google-place-scrape.json), which is a
+static scrape captured from the shared Google place panel.
 
 1. Copy `.env.example` to `.env.local`.
 2. Add your Google Maps Platform key as `GOOGLE_MAPS_API_KEY`.

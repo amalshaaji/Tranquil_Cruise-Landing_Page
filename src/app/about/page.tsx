@@ -144,7 +144,7 @@ export default function AboutPage() {
             </p>
             <p className="max-w-2xl text-sm leading-8 text-foreground/72 sm:text-base">
               Whether you are planning an overnight houseboat, a scenic
-              shikkara ride, a village canoe experience, or a quiet room by the
+              shikkara ride, a village country boat experience, or a quiet room by the
               water, our focus stays the same: thoughtful choices, local
               warmth, and a feeling of space throughout the journey.
             </p>

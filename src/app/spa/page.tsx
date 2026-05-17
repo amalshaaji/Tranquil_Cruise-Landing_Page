@@ -13,7 +13,9 @@ export const metadata: Metadata = {
     title: "Spa & Wellness | Tranquil Cruise",
     description:
       "Ayurvedic healing in the heart of the backwaters.",
-    images: [{ url: "/images/spa-card.png", width: 1200, height: 630 }],
+    images: [
+      { url: "/images/spa-gallery/spa1.webp", width: 1200, height: 630 },
+    ],
   },
 };
 

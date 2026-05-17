@@ -6,14 +6,16 @@ import { getServiceBySlug } from "@/lib/services-data";
 const service = getServiceBySlug("kayaking");
 
 export const metadata: Metadata = {
-  title: "Kayaking Trails | Tranquil Cruise",
+  title: "Backwater Kayaking Trails | Tranquil Cruise",
   description:
     "Explore Kerala backwaters by kayak with guided paddling trails, quiet canal routes, and scenic sunrise or sunset sessions in Alleppey.",
   openGraph: {
-    title: "Kayaking Trails | Tranquil Cruise",
+    title: "Backwater Kayaking Trails | Tranquil Cruise",
     description:
       "Active paddling routes through Kerala's quieter backwaters.",
-    images: [{ url: "/images/kayaking-card.png", width: 1200, height: 630 }],
+    images: [
+      { url: "/images/kayaking-card.jpg", width: 533, height: 800 },
+    ],
   },
 };
 
