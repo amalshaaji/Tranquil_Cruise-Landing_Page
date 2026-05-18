@@ -13,146 +13,142 @@ import {
   generatePageMetadata,
 } from "@/lib/seo";
 
-const dayCruiseFaqs = [
+const overnightFaqs = [
   {
-    question: "What is a day cruise houseboat in Alappuzha?",
+    question: "What is included in an overnight houseboat stay in Alappuzha?",
     answer:
-      "A day cruise is a private houseboat experience that gives you backwater views, open-deck time, and onboard meals without planning a full overnight stay. It suits guests who want the houseboat atmosphere within one daytime schedule.",
+      "An overnight stay usually includes private houseboat access, cruising time, bedroom use, dinner and breakfast planning, and time on deck after the daytime cruise rhythm has slowed down.",
   },
   {
-    question: "What time does a day cruise in Alleppey usually start and end?",
+    question: "Do overnight houseboats in Alleppey have private rooms and attached bathrooms?",
     answer:
-      "Timing depends on the plan, but most guests book a daytime cruise that covers lunch-hour hospitality, scenic cruising, and enough relaxed deck time before returning in the afternoon or early evening.",
+      "Yes. The exact layout depends on the boat you choose, but overnight houseboats are usually planned around private bedrooms, attached washrooms, and enough shared lounge space for the group size.",
   },
   {
-    question: "Are meals included on a day cruise houseboat?",
+    question: "How do AC timings usually work on an overnight houseboat?",
     answer:
-      "Yes, day cruise enquiries usually focus on meal planning because lunch is often one of the anchors of the experience. Exact meal details still depend on your route, group size, and the houseboat format you choose.",
+      "AC timings vary by boat and package, so it is best to confirm the exact schedule during booking. Most guests specifically ask about nighttime air-conditioning because that is the part of the stay that matters most for sleeping comfort.",
   },
   {
-    question: "Is a day cruise better than an overnight houseboat stay?",
+    question: "Is an overnight houseboat better than a day cruise in Alappuzha?",
     answer:
-      "A day cruise is better if you want the scenery, meals, and private boat comfort without committing to an overnight schedule. Overnight stays are better if you want slower evening time, room access for longer, and a fuller backwater rhythm.",
+      "An overnight stay is better if you want dinner on board, more room access, evening calm, and a slower morning on the water. A day cruise is better if you want the houseboat experience within one daytime schedule.",
   },
 ];
 
 const galleryImages = [
   {
     src: "/images/home-backwater-houseboats.jpg",
-    alt: "Day cruise houseboat on the Alappuzha backwaters",
+    alt: "Overnight houseboat stay in Alappuzha",
   },
   {
-    src: "/images/houseboats-card-blue.jpg",
-    alt: "Private daytime houseboat cruise in Alleppey",
+    src: "/images/single-bed-gallery/bedroom-blue.jpeg",
+    alt: "Private overnight houseboat bedroom in Alleppey",
   },
   {
     src: "/images/two-bedroom-gallery/lounge.jpeg",
-    alt: "Houseboat dining and lounge area for a Kerala day cruise",
+    alt: "Indoor lounge for an overnight houseboat stay in Kerala",
   },
   {
-    src: "/images/home-houseboat-backwater.jpg",
-    alt: "Scenic daytime route through the Kerala backwaters",
+    src: "/images/single-bed-gallery/open-deck-night.jpeg",
+    alt: "Night deck atmosphere on an overnight houseboat in Alappuzha",
   },
 ];
 
-const timingMoments = [
+const stayDetails = [
   {
-    title: "Late morning boarding",
-    text: "Most day-cruise guests want a smooth start that gives them enough time to settle in, enjoy the first canal stretches, and ease into the houseboat atmosphere instead of feeling hurried from the start.",
+    title: "A fuller backwater rhythm",
+    text: "An overnight stay gives the cruise time to breathe. Instead of fitting everything into one daytime block, the route can hold space for evening quiet, dinner, and a gentler morning before checkout.",
   },
   {
-    title: "Midday cruising and lunch",
-    text: "The center of the experience is usually the combination of scenic cruising and an onboard meal, so timing needs to leave room for both views and a comfortable lunch rhythm.",
+    title: "More usable time on board",
+    text: "Guests comparing overnight plans usually care less about raw cruise hours and more about whether the stay feels complete. Bedroom access, longer deck time, and a slower pace are what change the experience most.",
   },
   {
-    title: "Afternoon route flow",
-    text: "A strong day cruise balances village canals, wider water, and softer afternoon light so the trip keeps changing without feeling overpacked.",
-  },
-  {
-    title: "Easy return before evening",
-    text: "Guests often choose a day cruise because they want the backwater experience within a defined daytime window, so the return timing matters just as much as the departure.",
+    title: "A better fit for private trips",
+    text: "Couples, families, and small groups often choose an overnight houseboat because it keeps the trip in one place instead of splitting the experience across transport, meals, and separate stays.",
   },
 ];
 
-const routeStyles = [
-  "Village canal stretches for a slower and more intimate backwater feel",
-  "Broader open-water sections when you want iconic Alleppey houseboat views",
-  "Mixed routes that combine quieter local scenery with wider lake-facing moments",
-  "Cruising paced around meal service instead of squeezing lunch between stops",
+const roomDetails = [
+  "Private bedrooms are the center of the overnight format, whether you choose a single-bedroom couple stay or a larger family layout.",
+  "Attached washrooms matter because they make the night feel simpler and more comfortable, especially for children, older guests, and mixed-age groups.",
+  "Indoor lounge and dining space become more important once the stay stretches past sunset, because the boat needs to feel livable, not just scenic.",
+  "The right room setup depends on guest count, privacy expectations, and whether you want an intimate stay or a more social family boat.",
 ] as const;
 
-const mealNotes = [
+const acTimingNotes = [
   {
-    title: "Lunch as the anchor meal",
-    copy: "For most day cruises, lunch is the meal guests plan around first. The experience feels strongest when the meal is part of the cruise flow instead of a rushed interruption.",
+    title: "Ask for the exact AC window",
+    copy: "This is one of the most important overnight-booking questions because comfort at sleeping time matters more than daytime cooling. The exact AC schedule should always be confirmed with your selected boat.",
   },
   {
-    title: "Snacks and softer pacing",
-    copy: "Families and private groups often care about whether the day feels easy between boarding and return, so lighter refreshments and comfortable breaks matter more than a long fixed program.",
+    title: "Night comfort is the real priority",
+    copy: "Most overnight guests judge AC value by how well the room supports sleep through the night, not by whether cooling runs constantly during every part of the cruise.",
   },
   {
-    title: "Group-based meal planning",
-    copy: "Meal expectations usually change with the group. Couples, families, and mixed-age guests all value slightly different rhythms, so the plan should match the people on board.",
-  },
-];
-
-const itineraryFlow = [
-  {
-    title: "Boarding and welcome",
-    copy: "Board, settle into the lounge or deck, and begin with calmer backwater stretches that ease the group into the cruise.",
-  },
-  {
-    title: "Scenic midday route",
-    copy: "Cruise through a mix of village scenery and broader water depending on the route style chosen for your group and timing.",
-  },
-  {
-    title: "Lunch on board",
-    copy: "Pause the pace enough to enjoy a proper onboard meal without losing the relaxed feeling of being on the water.",
-  },
-  {
-    title: "Afternoon backwater views",
-    copy: "Continue through quieter canals or open-water stretches before returning with enough time to keep the day feeling balanced.",
+    title: "Boat category affects expectations",
+    copy: "Luxury, family, and compact couple formats can differ in room feel, layout, and hospitality rhythm, so AC expectations should be discussed alongside the boat type rather than treated as a separate detail.",
   },
 ];
 
-const cruiseComparisons = [
+const nightExperience = [
   {
-    title: "Day Cruise Houseboat",
-    href: "/day-cruise-alappuzha",
-    fit: "Best if you want a full daytime experience with meals and private cruising",
-    copy: "A good fit when you want the houseboat atmosphere, route planning, and onboard lunch without carrying the trip into the night.",
+    title: "Sunset and dinner",
+    copy: "The emotional shift from daytime cruising to evening calm is what makes overnight houseboats distinct. Dinner on board feels strongest when it arrives as part of that slower sunset transition.",
   },
   {
-    title: "Overnight Houseboat Stay",
-    href: "/overnight-houseboat-alappuzha",
-    fit: "Best if you want more time on the water",
-    copy: "Usually the better match when evening calm, bedroom access, and a slower overnight rhythm matter more than finishing within the day.",
+    title: "A quieter deck atmosphere",
+    copy: "After the daytime pace settles, the deck becomes a place for conversation, still water, softer light, and a more private backwater mood that short rides cannot really replicate.",
   },
   {
-    title: "Shikara Ride",
-    href: "/shikkara",
-    fit: "Best if you want a shorter canal-focused ride",
-    copy: "A stronger option if your priority is a lighter scenic outing through narrow canals rather than a fuller houseboat day with meals and lounge space.",
+    title: "Sleep on the water",
+    copy: "For many guests, this is the real reason to choose an overnight plan. The room, washroom access, and nighttime AC window all come together around the simple appeal of staying on the backwaters instead of only visiting them.",
+  },
+  {
+    title: "Morning calm before checkout",
+    copy: "An overnight stay usually ends with a softer, less hurried feel than a day cruise. That final morning stretch often becomes one of the most memorable parts of the trip.",
+  },
+];
+
+const overnightFormats = [
+  {
+    title: "Single Bedroom Overnight Stay",
+    href: "/houseboats/single-bed",
+    fit: "Best for couples or solo guests",
+    copy: "Usually the clearest fit when privacy, a compact room setup, and a calmer overnight atmosphere matter more than a larger shared layout.",
+  },
+  {
+    title: "2 Bedroom Family Overnight Houseboat",
+    href: "/houseboats/2-bedroom",
+    fit: "Best for smaller families",
+    copy: "A practical option for families who want private rooms, shared lounge comfort, and a smoother overnight rhythm without stepping into a large-group format.",
+  },
+  {
+    title: "3 or 5 Bedroom Group Overnight Stay",
+    href: "/houseboats/3-bedroom",
+    fit: "Best for larger private groups",
+    copy: "Usually the right direction when the trip includes extended family, more private rooms, or a celebration group that needs the boat to function as a shared social space overnight.",
   },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Day Cruise Alappuzha | Alleppey Houseboat Day Trip",
+    title: "Overnight Houseboat Alappuzha | Alleppey Night Stay Cruise",
     description:
-      "Plan a day cruise in Alappuzha with private houseboat timing, route guidance, onboard meals, and a clear Alleppey day-trip itinerary.",
-    path: "/day-cruise-alappuzha",
+      "Plan an overnight houseboat in Alappuzha with stay details, room guidance, AC timing expectations, and a clearer picture of the Alleppey night-cruise experience.",
+    path: "/overnight-houseboat-alappuzha",
     keywords: [
-      "day cruise alappuzha",
-      "alleppey houseboat day trip",
-      "day cruise houseboat alleppey",
-      "houseboat day cruise kerala",
+      "overnight houseboat alappuzha",
+      "alleppey night stay cruise",
+      "overnight houseboat alleppey",
+      "kerala overnight houseboat stay",
     ],
     image: {
       url: "/images/home-backwater-houseboats.jpg",
       width: 1200,
       height: 630,
-      alt: "Day cruise houseboat in Alappuzha",
+      alt: "Overnight houseboat in Alappuzha",
     },
   });
 }
@@ -160,43 +156,46 @@ export async function generateMetadata(): Promise<Metadata> {
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },
   { name: "Houseboats", path: "/houseboats" },
-  { name: "Day Cruise Alappuzha", path: "/day-cruise-alappuzha" },
+  {
+    name: "Overnight Houseboat Alappuzha",
+    path: "/overnight-houseboat-alappuzha",
+  },
 ]);
 
-const faqJsonLd = createFaqSchema(dayCruiseFaqs);
+const faqJsonLd = createFaqSchema(overnightFaqs);
 
 const imageJsonLd = createImageObjectSchema({
   path: "/images/home-backwater-houseboats.jpg",
-  alt: "Day cruise houseboat in Alappuzha",
+  alt: "Overnight houseboat in Alappuzha",
   width: 1200,
   height: 630,
 });
 
 const serviceJsonLd = createServiceSchema({
-  name: "Day Cruise Alappuzha",
+  name: "Overnight Houseboat Alappuzha",
   description:
-    "Private houseboat day cruises in Alappuzha with daytime timing, route planning, onboard meals, and scenic Kerala backwater itineraries.",
-  path: "/day-cruise-alappuzha",
-  serviceType: "Houseboat day cruise",
+    "Private overnight houseboat stays in Alappuzha with bedroom access, dinner-and-breakfast pacing, nighttime comfort planning, and a slower Kerala backwater rhythm.",
+  path: "/overnight-houseboat-alappuzha",
+  serviceType: "Overnight houseboat stay",
 });
 
 const touristTripJsonLd = createTouristTripSchema({
-  name: "Day Cruise Houseboat Experience in Alappuzha",
+  name: "Overnight Houseboat Experience in Alappuzha",
   description:
-    "A private Kerala backwater day cruise in Alappuzha designed around daytime timing, scenic routes, onboard lunch, and a well-paced itinerary.",
-  path: "/day-cruise-alappuzha",
+    "A private Kerala backwater overnight cruise in Alappuzha designed around room comfort, AC timing clarity, evening calm, and a more complete stay on the water.",
+  path: "/overnight-houseboat-alappuzha",
   image: {
     path: "/images/home-backwater-houseboats.jpg",
-    alt: "Day cruise houseboat in Alappuzha",
+    alt: "Overnight houseboat in Alappuzha",
     width: 1200,
     height: 630,
   },
   itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
-  touristType: ["Day travelers", "Families", "Couples", "Private groups"],
-  keywords: ["day cruise alappuzha", "alleppey houseboat day trip"],
+  touristType: ["Couples", "Families", "Private groups"],
+  keywords: ["overnight houseboat alappuzha", "overnight houseboat alleppey"],
 });
 
-export default function DayCruiseAlappuzhaPage() {
+export default function OvernightHouseboatAlappuzhaPage() {
   return (
     <>
       <JsonLd
@@ -217,20 +216,21 @@ export default function DayCruiseAlappuzhaPage() {
                 crumbs={[
                   { label: "Home", href: "/" },
                   { label: "Houseboats", href: "/houseboats" },
-                  { label: "Day Cruise Alappuzha" },
+                  { label: "Overnight Houseboat Alappuzha" },
                 ]}
               />
               <div className="mb-4 inline-block text-[0.7rem] font-bold uppercase tracking-[0.3em] text-teal-600/80">
-                Private Day Cruise
+                Overnight Backwater Stay
               </div>
               <h1 className="text-[clamp(2.35rem,9vw,4.8rem)] font-semibold leading-[1.02] tracking-tight text-sand">
-                Day cruises in Alappuzha for guests who want the houseboat experience within one well-paced backwater day.
+                Overnight houseboats in Alappuzha for guests who want the backwaters after the day visitors have gone.
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/68 sm:text-lg">
-                This page is for travelers comparing a private Alleppey
-                houseboat day trip, not a full overnight stay. If you want
-                clear timing, route expectations, onboard meals, and a day
-                itinerary that feels relaxed rather than rushed, start here.
+                This page is for travelers comparing a real Alleppey overnight
+                stay, not just a daytime boat ride. If you want clear stay
+                details, room guidance, AC timing expectations, and a better
+                sense of what the night experience actually feels like, start
+                here.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -238,7 +238,7 @@ export default function DayCruiseAlappuzhaPage() {
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-full bg-[#173247] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#234760]"
                 >
-                  Plan a day cruise
+                  Plan an overnight houseboat
                 </Link>
                 <Link
                   href="/houseboats"
@@ -250,7 +250,7 @@ export default function DayCruiseAlappuzhaPage() {
             </div>
 
             <div className="group relative">
-              <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-[#dff3ef]/70 via-[#eef7d7]/50 to-navy-100/15 blur-2xl opacity-70" />
+              <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-[#dfeef6]/70 via-[#f6f1df]/55 to-[#173247]/10 blur-2xl opacity-70" />
               <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
                 <ScrollableImageRow
                   images={galleryImages}
@@ -263,16 +263,16 @@ export default function DayCruiseAlappuzhaPage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
-          <div className="grid gap-6 lg:grid-cols-[1fr,0.96fr]">
-            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+          <div className="grid gap-6 lg:grid-cols-[0.98fr,1.02fr]">
+            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                Timing
+                Stay Details
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-                A good day cruise works because the timing supports the whole experience.
+                Overnight stays work best when the boat feels like more than transport.
               </h2>
               <div className="mt-8 grid gap-4">
-                {timingMoments.map((item) => (
+                {stayDetails.map((item) => (
                   <div
                     key={item.title}
                     className="rounded-[1.5rem] border border-navy/8 bg-[#f8fcfd] p-5"
@@ -286,15 +286,15 @@ export default function DayCruiseAlappuzhaPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#edf6f4_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#edf5f8_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                Route
+                Room Details
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-                Route planning shapes whether the cruise feels scenic, smooth, and worth the day.
+                Room comfort shapes how restful the overnight experience feels.
               </h2>
               <div className="mt-8 grid gap-3">
-                {routeStyles.map((item) => (
+                {roomDetails.map((item) => (
                   <div
                     key={item}
                     className="rounded-[1.35rem] border border-[#dce8df] bg-white px-4 py-4 text-sm leading-7 text-foreground/70"
@@ -304,9 +304,10 @@ export default function DayCruiseAlappuzhaPage() {
                 ))}
               </div>
               <div className="mt-6 rounded-[1.6rem] border border-gold/25 bg-[#edf5f8] p-5 text-sm leading-7 text-foreground/72">
-                If you are choosing between a day cruise and a shorter scenic
-                ride, the biggest difference is usually route depth and how
-                much time the itinerary leaves for meals and deck time.
+                If you are unsure which room format suits your stay, the
+                simplest way to decide is by guest count first, then privacy
+                needs, and then the kind of shared lounge flow you want on
+                board.
               </div>
             </div>
           </div>
@@ -317,20 +318,21 @@ export default function DayCruiseAlappuzhaPage() {
             <div className="grid gap-8 lg:grid-cols-[0.95fr,1.05fr] lg:items-start">
               <div>
                 <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-white/70">
-                  Meals
+                  AC Timings
                 </div>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Meals matter because they help turn a boat ride into a fuller day-cruise experience.
+                  AC timing questions belong right at the center of overnight planning.
                 </h2>
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-white/74 sm:text-lg">
-                  Guests usually remember whether the cruise had enough time to
-                  enjoy lunch, rest a little, and take in the backwaters
-                  without rushing from one segment to the next. That is why
-                  meal planning belongs in the center of a day-cruise page.
+                  Guests rarely ask about AC for curiosity alone. They ask
+                  because cooling, sleep quality, and night comfort strongly
+                  shape whether the stay feels relaxing. That is why this page
+                  makes AC expectations explicit instead of leaving them hidden
+                  until the booking conversation.
                 </p>
               </div>
               <div className="grid gap-4">
-                {mealNotes.map((item) => (
+                {acTimingNotes.map((item) => (
                   <div
                     key={item.title}
                     className="rounded-[1.5rem] border border-white/10 bg-white/8 p-5 backdrop-blur-sm"
@@ -350,15 +352,15 @@ export default function DayCruiseAlappuzhaPage() {
           <div className="rounded-[2rem] border border-navy/8 bg-[#fbfbf8] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
             <div className="max-w-3xl">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                Itinerary
+                Night Experience
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-                A strong day-cruise itinerary usually follows a simple four-part rhythm.
+                The night experience is what separates an overnight stay from a longer boat ride.
               </h2>
             </div>
 
             <div className="mt-8 grid gap-4 lg:grid-cols-4">
-              {itineraryFlow.map((item) => (
+              {nightExperience.map((item) => (
                 <div
                   key={item.title}
                   className="rounded-[1.6rem] border border-navy/8 bg-white p-6"
@@ -382,17 +384,17 @@ export default function DayCruiseAlappuzhaPage() {
                 Compare Formats
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-5xl">
-                Compare a day cruise with the other common backwater trip styles
+                Compare the overnight format with the houseboat layouts that support it best
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-foreground/66 sm:text-base">
-                The best choice depends on whether you want a full daytime
-                houseboat plan, a longer overnight rhythm, or a lighter scenic
-                ride through narrower canals.
+                The best overnight choice depends on whether you want an
+                intimate room for two, a family-friendly setup, or extra shared
+                space for a larger private group.
               </p>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3">
-              {cruiseComparisons.map((item) => (
+              {overnightFormats.map((item) => (
                 <article
                   key={item.title}
                   className="rounded-[2rem] border border-navy/10 bg-white p-6 shadow-[0_20px_46px_rgba(23,50,71,0.08)]"
@@ -418,10 +420,10 @@ export default function DayCruiseAlappuzhaPage() {
         </section>
 
         <FaqSection
-          eyebrow="Day Cruise FAQs"
-          title="Questions guests usually ask before booking"
-          intro="These answers focus on day-cruise intent in Alleppey and Alappuzha."
-          faqs={dayCruiseFaqs}
+          eyebrow="Overnight Stay FAQs"
+          title="Questions guests usually ask before booking an overnight houseboat"
+          intro="These answers focus on overnight stay intent in Alleppey and Alappuzha."
+          faqs={overnightFaqs}
         />
 
         <section className="px-4 py-12 sm:px-6 lg:py-20">
@@ -432,13 +434,13 @@ export default function DayCruiseAlappuzhaPage() {
                 Ready To Plan
               </span>
               <h2 className="mb-8 text-3xl font-semibold tracking-tight sm:text-5xl">
-                Start planning an Alappuzha day cruise
+                Start planning an overnight houseboat in Alappuzha
               </h2>
               <p className="mx-auto mb-12 max-w-2xl text-sm leading-7 text-white/72 sm:text-base">
-                Share your dates, guest count, preferred day timing, and
-                whether your priority is route scenery, onboard lunch, or a
-                private houseboat day that fits neatly into the rest of your
-                Kerala itinerary.
+                Share your dates, guest count, preferred room layout, and AC
+                expectations, and we can help match you with the overnight
+                houseboat format that feels right for your Kerala backwater
+                stay.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link

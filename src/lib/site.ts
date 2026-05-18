@@ -37,6 +37,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/honeymoon-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/family-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/day-cruise-alappuzha", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/overnight-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/houseboats/single-bed", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/2-bedroom", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/3-bedroom", changeFrequency: "monthly", priority: 0.9 },
