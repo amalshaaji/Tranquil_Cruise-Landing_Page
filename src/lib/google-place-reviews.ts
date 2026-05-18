@@ -4,6 +4,7 @@ import scrapedPlaceData from "../../data/google-place-scrape.json";
 const GOOGLE_MAPS_PAGE_URL = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
 const DEFAULT_TEXT_QUERY =
   "Tranquil Cruise, 8/308B Chungam Road, Pallathuruthy, Alappuzha, Kerala 688011";
+const GOOGLE_PLACE_REVALIDATE_SECONDS = 60 * 60 * 24;
 
 type GoogleLocalizedText = {
   text?: string;
@@ -44,6 +45,7 @@ export type PlaceReview = {
   rating: number;
   publishedLabel: string;
   reviewUrl: string | null;
+  publishedAt?: string | null;
 };
 
 export type GooglePlaceReviewData = {
@@ -71,29 +73,45 @@ function extractText(review: GoogleReview) {
 }
 
 function mapPlace(place: GooglePlace): GooglePlaceReviewData {
+  const reviews = (place.reviews ?? [])
+    .map((review) => ({
+      authorName: review.authorAttribution?.displayName ?? "Google guest",
+      authorPhotoUrl: review.authorAttribution?.photoUri ?? null,
+      authorProfileUrl: review.authorAttribution?.uri ?? null,
+      text: extractText(review),
+      rating: review.rating ?? 0,
+      publishedLabel:
+        review.relativePublishTimeDescription ??
+        (review.publishTime
+          ? new Intl.DateTimeFormat("en", {
+              dateStyle: "medium",
+            }).format(new Date(review.publishTime))
+          : "Google review"),
+      reviewUrl: review.googleMapsUri ?? null,
+      publishedAt: review.publishTime ?? null,
+    }))
+    .filter((review) => review.text)
+    .sort((a, b) => {
+      if (a.publishedAt && b.publishedAt) {
+        return (
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+      }
+
+      if (a.publishedAt) return -1;
+      if (b.publishedAt) return 1;
+      return 0;
+    });
+
   return {
     placeName: place.displayName?.text ?? "Tranquil Cruise",
     rating: place.rating ?? null,
     reviewCount: place.userRatingCount ?? null,
-    reviews: (place.reviews ?? [])
-      .map((review) => ({
-        authorName: review.authorAttribution?.displayName ?? "Google guest",
-        authorPhotoUrl: review.authorAttribution?.photoUri ?? null,
-        authorProfileUrl: review.authorAttribution?.uri ?? null,
-        text: extractText(review),
-        rating: review.rating ?? 0,
-        publishedLabel:
-          review.relativePublishTimeDescription ??
-          (review.publishTime
-            ? new Intl.DateTimeFormat("en", {
-                dateStyle: "medium",
-              }).format(new Date(review.publishTime))
-            : "Google review"),
-        reviewUrl: review.googleMapsUri ?? null,
-      }))
-      .filter((review) => review.text),
+    reviews,
     mapsUrl: GOOGLE_MAPS_PAGE_URL,
-    sortLabel: "Sorted by Google relevance",
+    sortLabel: reviews.some((review) => review.publishedAt)
+      ? "Showing the latest Google reviews available through the live Places feed."
+      : "Showing recent Google review highlights.",
   };
 }
 
@@ -117,7 +135,7 @@ async function fetchPlaceById(apiKey: string, placeId: string) {
       "X-Goog-FieldMask":
         "displayName,rating,userRatingCount,reviews,googleMapsUri",
     },
-    cache: "no-store",
+    next: { revalidate: GOOGLE_PLACE_REVALIDATE_SECONDS },
   });
 
   if (!response.ok) {
@@ -144,7 +162,7 @@ async function fetchPlaceByText(apiKey: string, textQuery: string) {
       textQuery,
       maxResultCount: 1,
     }),
-    cache: "no-store",
+    next: { revalidate: GOOGLE_PLACE_REVALIDATE_SECONDS },
   });
 
   if (!response.ok) {

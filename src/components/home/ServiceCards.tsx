@@ -161,8 +161,8 @@ export default function ServiceCards({
             </span>
           </h2>
           <p className="mt-4 text-base font-light text-foreground/70 sm:text-lg">
-            Curated experiences tailored to your travel style—from serene
-            water journeys to immersive cultural stays.
+            Choose from calm boat rides, backwater stays, and local
+            experiences that suit your trip.
           </p>
         </motion.div>
       </div>
@@ -317,7 +317,7 @@ export default function ServiceCards({
                         </span>
                       </div>
                       {c.description && (
-                        <p className="text-white/70 text-sm font-light">
+                        <p className="break-normal whitespace-normal text-left text-sm font-light text-white/70 [word-break:normal] [overflow-wrap:break-word]">
                           {c.description}
                         </p>
                       )}

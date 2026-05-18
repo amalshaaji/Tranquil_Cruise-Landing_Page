@@ -43,7 +43,7 @@ export default function Navbar() {
   if (isHomePage) {
     return (
       <header className="pointer-events-none absolute inset-x-0 top-0 z-50 text-white">
-        <div className="pointer-events-auto mx-auto flex w-full max-w-[1600px] items-start justify-between gap-4 px-5 py-6 sm:px-8 lg:px-10 lg:py-8">
+        <div className="pointer-events-auto mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-8">
           {/* Desktop left: Menu + Explore */}
           <div className="hidden items-center gap-5 lg:flex">
             <button
@@ -136,11 +136,10 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile: Explore + Hamburger */}
-          <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <div className="ml-auto grid w-full max-w-[15.5rem] grid-cols-2 gap-2 lg:hidden">
             <button
               type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/8 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm transition hover:bg-white/16"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/16"
               onClick={() => setDestinationsOpen((v) => !v)}
               aria-haspopup="menu"
               aria-expanded={destinationsOpen}
@@ -152,13 +151,13 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/8 p-3 text-white backdrop-blur-sm transition hover:bg-white/16"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/16"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="home-overlay-menu"
             >
-              <span className="sr-only">Toggle menu</span>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <span>{menuOpen ? "Close" : "Menu"}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 {menuOpen ? (
                   <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 ) : (

@@ -1,6 +1,48 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import InnerPageHeader from "@/components/layout/InnerPageHeader";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "About Tranquil Cruise | Kerala Backwater Experience",
+  description:
+    "Learn how Tranquil Cruise crafts slower, more personal Kerala backwater journeys — private houseboats, shikkara rides, village canals, and quiet stays shaped around your pace.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Tranquil Cruise | Kerala Backwater Experience",
+    description:
+      "A quieter, more personal way to discover Kerala's backwaters. Private houseboats, scenic rides, and warm local hospitality.",
+    url: "https://www.tranquilcruise.com/about",
+    images: [{ url: "/images/home-backwater-houseboats.jpg", width: 1200, height: 630, alt: "Kerala backwaters with houseboats framed by palms" }],
+  },
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Tranquil Cruise",
+  description:
+    "Luxury houseboats, Shikkara rides, village country boat rides, kayaking, spa, and rooms on Kerala's backwaters in Alappuzha.",
+  url: "https://www.tranquilcruise.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Alappuzha",
+    addressRegion: "Kerala",
+    addressCountry: "IN",
+  },
+  hasMap: "https://maps.google.com/?q=Tranquil+Cruise+Alappuzha+Kerala",
+  sameAs: ["https://www.tranquilcruise.com"],
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "About", item: `${SITE_URL}/about` },
+  ],
+};
 
 const values = [
   {
@@ -100,6 +142,15 @@ const journeySteps = [
 
 export default function AboutPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     <main className="pb-16 sm:pb-24">
       <InnerPageHeader
         eyebrow="About Tranquil Cruise"
@@ -153,8 +204,8 @@ export default function AboutPage() {
           <div className="relative overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-[0_24px_70px_rgba(23,50,71,0.1)]">
             <div className="relative min-h-[22rem] sm:min-h-[28rem]">
               <Image
-                src="https://images.pexels.com/photos/11168844/pexels-photo-11168844.jpeg"
-                alt="Kerala backwater scene on the About page"
+                src="/images/home-backwater-houseboats.jpg"
+                alt="Houseboats gliding through Kerala's backwaters"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 45vw"
@@ -272,5 +323,6 @@ export default function AboutPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

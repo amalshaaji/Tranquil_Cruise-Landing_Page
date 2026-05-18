@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.tranquilcruise.com</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/about</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/canoe-boats</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/contact</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/experience</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/houseboats</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/houseboats/2-bedroom</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/houseboats/single-bed</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/kayaking</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/rooms</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/shikkara</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.tranquilcruise.com/spa</loc><lastmod>2026-05-09T13:28:00.231Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com</loc><lastmod>2026-05-17T11:25:41.427Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/about</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/canoe-boats</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/contact</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/experience</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/houseboats</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/houseboats/2-bedroom</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/houseboats/3-bedroom</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/houseboats/5-bedroom</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/houseboats/single-bed</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/kayaking</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/rooms</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/shikkara</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.tranquilcruise.com/spa</loc><lastmod>2026-05-17T11:25:41.428Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -92,11 +92,11 @@ export default function ScrollableImageRow({
           {showIntroCopy ? (
             <div className="space-y-1">
               <h3 className="text-base font-semibold tracking-tight text-[#173247] sm:text-xl">
-                Browse the stay with a cleaner visual flow
+                Explore the gallery with a cleaner visual flow
               </h3>
               <p className="max-w-xl text-xs leading-relaxed text-foreground/55 sm:text-sm">
-                Swipe through the highlights, then tap any frame below to jump into a
-                specific space on board.
+                Swipe through the highlights, then tap any frame below to jump to a
+                specific view.
               </p>
             </div>
           ) : null}

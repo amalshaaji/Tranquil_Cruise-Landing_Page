@@ -1,19 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { SITE_URL } from "@/lib/site";
 import TransitionProvider from "./transition-provider";
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   title: "Tranquil Cruise | Luxury Houseboats & Backwater Tours",
-  description: "Experience the ultimate luxury backwater cruise with Tranquil Cruise. Book premium houseboats, Shikkara rides, and rooms in Kerala.",
-  metadataBase: new URL("https://www.tranquilcruise.com"),
-  alternates: {
-    canonical: "/",
-  },
+  description: "Private houseboats, shikkara rides, country boat trips, rooms, and spa experiences in the Alleppey backwaters of Kerala.",
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "Tranquil Cruise | Luxury Houseboats & Backwater Tours",
-    description: "Experience the ultimate luxury backwater cruise with Tranquil Cruise.",
+    description: "Private houseboats, scenic rides, and relaxed backwater stays in Alleppey, Kerala.",
     url: "https://www.tranquilcruise.com",
     siteName: "Tranquil Cruise",
     images: [
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Tranquil Cruise | Luxury Houseboats & Backwater Tours",
-    description: "Experience the ultimate luxury backwater cruise with Tranquil Cruise.",
+    description: "Private houseboats, scenic rides, and relaxed backwater stays in Alleppey, Kerala.",
     images: ["/images/home-hero-rainbow-houseboat.jpg"],
   },
   robots: {
@@ -44,11 +45,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: "your-google-site-verification", // Replace with your actual Google Search Console code
-  },
   keywords: ["Kerala houseboats", "Alleppey backwaters", "Shikkara ride", "luxury cruise Kerala", "boat booking Alleppey"],
   authors: [{ name: "Tranquil Cruise" }],
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
 };
 
 export const viewport: Viewport = {
@@ -70,6 +71,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col text-foreground">
+        <GoogleAnalytics />
         <Navbar />
         <TransitionProvider>{children}</TransitionProvider>
         <Footer />
