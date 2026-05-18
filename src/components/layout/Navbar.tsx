@@ -310,7 +310,6 @@ export default function Navbar() {
                     fill
                     sizes="168px"
                     className="object-contain object-center scale-[2.35]"
-                    priority={false}
                   />
                 </Link>
 

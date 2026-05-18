@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
 import TwoBedroomHouseboatPage from "@/components/houseboats/TwoBedroomHouseboatPage";
 import { twoBedroomFaqs as faqs } from "@/components/houseboats/houseboatFaqs";
-import { generatePageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbSchema,
+  createFaqSchema,
+  createImageObjectSchema,
+  createLodgingBusinessSchema,
+  generatePageMetadata,
+} from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
@@ -23,54 +30,42 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tranquilcruise.com" },
-    { "@type": "ListItem", position: 2, name: "Houseboats", item: "https://www.tranquilcruise.com/houseboats" },
-    { "@type": "ListItem", position: 3, name: "2 Bedroom Houseboat", item: "https://www.tranquilcruise.com/houseboats/2-bedroom" },
-  ],
-};
-
-const lodgingJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+const faqJsonLd = createFaqSchema(faqs);
+const breadcrumbJsonLd = createBreadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Houseboats", path: "/houseboats" },
+  { name: "2 Bedroom Houseboat", path: "/houseboats/2-bedroom" },
+]);
+const lodgingJsonLd = createLodgingBusinessSchema({
   name: "2 Bedroom Houseboat — Tranquil Cruise",
   description:
     "A two-bedroom family houseboat on the Kerala backwaters in Alappuzha. Includes two air-conditioned rooms, attached washrooms, indoor lounge, deck access, and scenic backwater cruising.",
-  url: "https://www.tranquilcruise.com/houseboats/2-bedroom",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Alappuzha",
-    addressRegion: "Kerala",
-    addressCountry: "IN",
+  path: "/houseboats/2-bedroom",
+  image: {
+    path: "/images/two-bedroom-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_01.jpeg",
+    alt: "2 bedroom houseboat on Kerala backwaters",
+    width: 1200,
+    height: 630,
   },
-  amenityFeature: [
-    { "@type": "LocationFeatureSpecification", name: "2 private air-conditioned bedrooms", value: true },
-    { "@type": "LocationFeatureSpecification", name: "2 attached washrooms", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Indoor lounge and dining area", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Upper deck access", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Backwater cruising", value: true },
+  amenities: [
+    "2 private air-conditioned bedrooms",
+    "2 attached washrooms",
+    "Indoor lounge and dining area",
+    "Upper deck access",
+    "Backwater cruising",
   ],
-};
+});
+const imageJsonLd = createImageObjectSchema({
+  path: "/images/two-bedroom-gallery-v2/WhatsApp_Image_2026-05-04_at_19_44_01.jpeg",
+  alt: "2 bedroom houseboat on Kerala backwaters",
+  width: 1200,
+  height: 630,
+});
 
 export default function TwoBedroomPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd) }} />
+      <JsonLd data={[faqJsonLd, breadcrumbJsonLd, lodgingJsonLd, imageJsonLd]} />
       <TwoBedroomHouseboatPage />
     </>
   );

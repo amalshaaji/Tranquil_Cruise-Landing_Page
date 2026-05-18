@@ -136,7 +136,6 @@ export default function GuestMomentsGallery() {
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  priority={index < 4}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute bottom-3 right-3 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
@@ -173,7 +172,6 @@ export default function GuestMomentsGallery() {
               fill
               sizes="100vw"
               className="object-contain"
-              priority
             />
           </div>
         </div>

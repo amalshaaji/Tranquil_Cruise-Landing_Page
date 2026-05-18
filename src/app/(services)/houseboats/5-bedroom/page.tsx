@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
 import FiveBedroomHouseboatPage from "@/components/houseboats/FiveBedroomHouseboatPage";
 import { fiveBedroomFaqs as faqs } from "@/components/houseboats/houseboatFaqs";
-import { generatePageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbSchema,
+  createFaqSchema,
+  createImageObjectSchema,
+  createLodgingBusinessSchema,
+  generatePageMetadata,
+} from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
@@ -23,53 +30,41 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tranquilcruise.com" },
-    { "@type": "ListItem", position: 2, name: "Houseboats", item: "https://www.tranquilcruise.com/houseboats" },
-    { "@type": "ListItem", position: 3, name: "5 Bedroom Houseboat", item: "https://www.tranquilcruise.com/houseboats/5-bedroom" },
-  ],
-};
-
-const lodgingJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+const faqJsonLd = createFaqSchema(faqs);
+const breadcrumbJsonLd = createBreadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Houseboats", path: "/houseboats" },
+  { name: "5 Bedroom Houseboat", path: "/houseboats/5-bedroom" },
+]);
+const lodgingJsonLd = createLodgingBusinessSchema({
   name: "5 Bedroom Houseboat — Tranquil Cruise",
   description:
     "A five-bedroom celebration houseboat on the Kerala backwaters in Alappuzha. Includes five private bedrooms, washroom access, large shared lounge, and scenic backwater cruising. Ideal for large groups and celebrations.",
-  url: "https://www.tranquilcruise.com/houseboats/5-bedroom",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Alappuzha",
-    addressRegion: "Kerala",
-    addressCountry: "IN",
+  path: "/houseboats/5-bedroom",
+  image: {
+    path: "/images/five-bedroom-gallery/WhatsApp_Image_2026-05-14_at_18_04_14.jpeg",
+    alt: "5 bedroom houseboat on Kerala backwaters",
+    width: 1200,
+    height: 630,
   },
-  amenityFeature: [
-    { "@type": "LocationFeatureSpecification", name: "5 private bedrooms", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Attached washroom access", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Large shared lounge and dining area", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Backwater cruising", value: true },
+  amenities: [
+    "5 private bedrooms",
+    "Attached washroom access",
+    "Large shared lounge and dining area",
+    "Backwater cruising",
   ],
-};
+});
+const imageJsonLd = createImageObjectSchema({
+  path: "/images/five-bedroom-gallery/WhatsApp_Image_2026-05-14_at_18_04_14.jpeg",
+  alt: "5 bedroom houseboat on Kerala backwaters",
+  width: 1200,
+  height: 630,
+});
 
 export default function FiveBedroomPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd) }} />
+      <JsonLd data={[faqJsonLd, breadcrumbJsonLd, lodgingJsonLd, imageJsonLd]} />
       <FiveBedroomHouseboatPage />
     </>
   );

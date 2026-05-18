@@ -1,28 +1,16 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site";
+import { SITE_ROUTES } from "@/lib/site";
+import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
-
-const routes = [
-  "/",
-  "/houseboats",
-  "/shikkara",
-  "/canoe-boats",
-  "/kayaking",
-  "/rooms",
-  "/spa",
-  "/experience",
-  "/about",
-  "/contact",
-] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return routes.map((route, index) => ({
-    url: `${SITE_URL}${route}`,
+  return SITE_ROUTES.map((route) => ({
+    url: absoluteUrl(route.path),
     lastModified: now,
-    changeFrequency: route === "/" ? "weekly" : "monthly",
-    priority: index === 0 ? 1 : 0.8,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

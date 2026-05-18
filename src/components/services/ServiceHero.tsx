@@ -22,7 +22,7 @@ export default function ServiceHero({
           src={heroImage}
           alt={title}
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover object-center"
         />

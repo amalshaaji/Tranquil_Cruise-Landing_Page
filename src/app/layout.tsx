@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Navbar from "@/components/layout/Navbar";
@@ -7,6 +8,13 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import TransitionProvider from "./transition-provider";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
+const editorialFont = localFont({
+  src: "../../node_modules/@fontsource/playfair-display/files/playfair-display-latin-700-italic.woff2",
+  variable: "--font-editorial",
+  display: "swap",
+  preload: true,
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -46,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="h-full antialiased"
+      className={`${editorialFont.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col text-foreground">

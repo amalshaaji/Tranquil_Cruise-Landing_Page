@@ -6,7 +6,9 @@ import JsonLd from "@/components/seo/JsonLd";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
+  createImageObjectSchema,
   createServiceSchema,
+  createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 
@@ -66,6 +68,13 @@ const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Houseboats", path: "/houseboats" },
 ]);
 
+const heroImageJsonLd = createImageObjectSchema({
+  path: "/images/houseboats-card-blue.jpg",
+  alt: "Luxury houseboat in Alleppey",
+  width: 1200,
+  height: 630,
+});
+
 const serviceJsonLd = {
   ...createServiceSchema({
     name: "Luxury Houseboats in Alleppey",
@@ -86,13 +95,31 @@ const serviceJsonLd = {
   },
 };
 
+const touristTripJsonLd = createTouristTripSchema({
+  name: "Luxury Houseboat Stay in Alleppey",
+  description:
+    "Private Kerala houseboat stays in Alleppey with overnight cruising, family-friendly layouts, curated routes, and slower backwater experiences.",
+  path: "/houseboats",
+  image: {
+    path: "/images/houseboats-card-blue.jpg",
+    alt: "Luxury houseboat in Alleppey",
+    width: 1200,
+    height: 630,
+  },
+  itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
+  touristType: ["Couples", "Families", "Private groups"],
+  keywords: [
+    "luxury houseboats Alleppey",
+    "private houseboat Alappuzha",
+    "Kerala backwater cruise",
+  ],
+});
+
 export default function HouseboatsPage() {
   if (!service) notFound();
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd} />
-      <JsonLd data={serviceJsonLd} />
-      <JsonLd data={createFaqSchema(faqs)} />
+      <JsonLd data={[breadcrumbJsonLd, heroImageJsonLd, serviceJsonLd, touristTripJsonLd, createFaqSchema(faqs)]} />
       <ServicePageTemplate service={service} />
     </>
   );

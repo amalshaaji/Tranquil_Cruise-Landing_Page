@@ -10,7 +10,10 @@ import {
 } from "@/lib/google-place-reviews";
 import {
   createBreadcrumbSchema,
-  createOrganizationSchema,
+  createImageObjectSchema,
+  createLocalBusinessSchema,
+  createReviewSchema,
+  createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 import {
@@ -18,7 +21,7 @@ import {
   BUSINESS_LOCATION,
   BUSINESS_PHONE,
   BUSINESS_PHONE_LINK,
-  SERVICE_AREAS,
+  SITE_URL,
   WHATSAPP_URL,
 } from "@/lib/site";
 
@@ -99,50 +102,115 @@ export default async function Home() {
   const reviewSourceNote = reviewSortLabel.startsWith("Visible snippets scraped")
     ? "Review snippets captured from Google on May 15, 2026."
     : reviewSortLabel;
-  const jsonLd = {
-    ...createOrganizationSchema(
+  const homepageImageSchema = createImageObjectSchema({
+    path: "/images/home-hero-rainbow-houseboat.jpg",
+    alt: "Private Alleppey houseboat cruising through the Kerala backwaters beneath a rainbow",
+    width: 1200,
+    height: 630,
+  });
+  const introImageSchema = createImageObjectSchema({
+    path: INTRO_IMAGE,
+    alt: "Houseboats and backwater scenery in Alleppey",
+    width: 1200,
+    height: 630,
+  });
+  const reviewSchemas = displayedReviews.map((review) =>
+    createReviewSchema({
+      authorName: review.authorName,
+      reviewBody: review.text,
+      reviewRating: review.rating,
+      datePublished: review.publishedAt,
+      reviewUrl: review.reviewUrl,
+    }),
+  );
+  const localBusinessJsonLd = createLocalBusinessSchema({
+    description:
       "Tranquil Cruise offers private houseboats, shikara rides, country boat tours, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey and the Kerala backwaters.",
-    ),
-    telephone: BUSINESS_PHONE,
-    openingHours: "Mo-Su 08:00-20:00",
-    areaServed: SERVICE_AREAS.map((area) => ({
-      "@type": "Place",
-      name: area,
-    })),
+    image: {
+      path: "/images/home-hero-rainbow-houseboat.jpg",
+      alt: "Private Kerala houseboat in the Alleppey backwaters",
+      width: 1200,
+      height: 630,
+    },
+    images: [
+      {
+        path: "/images/home-hero-rainbow-houseboat.jpg",
+        alt: "Private Kerala houseboat in the Alleppey backwaters",
+        width: 1200,
+        height: 630,
+      },
+      {
+        path: INTRO_IMAGE,
+        alt: "Houseboats and backwater scenery in Alleppey",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    sameAs: [GOOGLE_MAPS_PAGE_URL, WHATSAPP_URL],
+    aggregateRating:
+      googleReviewData?.rating && googleReviewData?.reviewCount
+        ? {
+            ratingValue: googleReviewData.rating,
+            reviewCount: googleReviewData.reviewCount,
+          }
+        : undefined,
     makesOffer: [
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Luxury Houseboat Stay", url: "https://www.tranquilcruise.com/houseboats" },
+        itemOffered: { "@type": "Service", name: "Luxury Houseboat Stay", url: `${SITE_URL}/houseboats` },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Shikkara Rides", url: "https://www.tranquilcruise.com/shikkara" },
+        itemOffered: { "@type": "Service", name: "Shikkara Rides", url: `${SITE_URL}/shikkara` },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Village Country Boat Rides", url: "https://www.tranquilcruise.com/canoe-boats" },
+        itemOffered: { "@type": "Service", name: "Village Country Boat Rides", url: `${SITE_URL}/canoe-boats` },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Backwater Kayaking", url: "https://www.tranquilcruise.com/kayaking" },
+        itemOffered: { "@type": "Service", name: "Backwater Kayaking", url: `${SITE_URL}/kayaking` },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Ayurvedic Spa", url: "https://www.tranquilcruise.com/spa" },
+        itemOffered: { "@type": "Service", name: "Ayurvedic Spa", url: `${SITE_URL}/spa` },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Waterside Rooms", url: "https://www.tranquilcruise.com/rooms" },
+        itemOffered: { "@type": "Service", name: "Waterside Rooms", url: `${SITE_URL}/rooms` },
       },
     ],
-  };
+  });
+  const touristTripJsonLd = createTouristTripSchema({
+    name: "Alleppey Houseboat and Backwater Experience",
+    description:
+      "Private Kerala backwater experiences in Alleppey including houseboats, shikara rides, village country boats, kayaking, and waterside stays.",
+    path: "/houseboats",
+    image: {
+      path: "/images/home-hero-rainbow-houseboat.jpg",
+      alt: "Private Kerala houseboat in the Alleppey backwaters",
+      width: 1200,
+      height: 630,
+    },
+    itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
+    touristType: ["Couples", "Families", "Private groups"],
+    keywords: ["Alleppey houseboat", "Kerala backwater cruise", "Alappuzha boat tour"],
+  });
 
   const breadcrumbJsonLd = createBreadcrumbSchema([{ name: "Home", path: "/" }]);
 
   return (
     <>
-      <JsonLd data={jsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd
+        data={[
+          localBusinessJsonLd,
+          breadcrumbJsonLd,
+          touristTripJsonLd,
+          homepageImageSchema,
+          introImageSchema,
+          ...reviewSchemas,
+        ]}
+      />
 
       <main className="home-water-theme flex min-h-screen flex-col">
         <HeroSection />

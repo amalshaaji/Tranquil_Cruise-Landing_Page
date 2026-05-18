@@ -25,7 +25,7 @@ export default function HeroSection() {
           src="/images/home-hero-rainbow-houseboat.jpg"
           alt="Private Alleppey houseboat cruising through the Kerala backwaters beneath a rainbow"
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover object-[58%_54%] scale-[1.08] sm:object-[center_57%] sm:scale-100"
         />
