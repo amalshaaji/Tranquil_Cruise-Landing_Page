@@ -48,6 +48,8 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/rooms", changeFrequency: "weekly", priority: 0.8 },
   { path: "/spa", changeFrequency: "monthly", priority: 0.75 },
   { path: "/experience", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/kerala-backwaters-guide", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/alleppey-backwater-tour", changeFrequency: "weekly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
