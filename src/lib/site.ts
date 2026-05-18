@@ -50,6 +50,9 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/experience", changeFrequency: "weekly", priority: 0.8 },
   { path: "/kerala-backwaters-guide", changeFrequency: "weekly", priority: 0.8 },
   { path: "/alleppey-backwater-tour", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/things-to-do-in-alappuzha", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/best-time-to-visit-alappuzha", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/alappuzha-vs-kumarakom", changeFrequency: "weekly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
 ] as const;
