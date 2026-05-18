@@ -93,9 +93,9 @@ export const services: ServicePage[] = [
       "LED TV entertainment",
       "Fishing equipment",
     ],
-    priceLabel: "From ₹8,000 / night",
+    priceLabel: "Custom pricing on request",
     priceNote:
-      "Rates vary by season, boat size, and route. Includes all meals, crew, and fuel. Custom multi-day packages available.",
+      "Rates vary by season, boat size, route, and stay length. Ask for current availability and package details for your dates.",
     gallery: [
       "/images/houseboats-card-blue.jpg",
       "/images/home-backwater-houseboats.jpg",
@@ -216,9 +216,9 @@ export const services: ServicePage[] = [
       "Flexible timing",
       "Multi-language guides",
     ],
-    priceLabel: "From ₹1,500 / ride",
+    priceLabel: "Private ride pricing on request",
     priceNote:
-      "Rates depend on duration (1–3 hours) and route. Sunset and sunrise premium slots available. Group discounts for 4+ guests.",
+      "Rates depend on ride duration, route choice, timing, and guest count. Ask us for the most suitable option for your trip.",
     gallery: [
       "/images/shikkara-real.jpg",
       "/images/shikkara.jpg",
@@ -284,9 +284,9 @@ export const services: ServicePage[] = [
       "Flexible routes",
       "Camera-friendly design",
     ],
-    priceLabel: "From ₹800 / person",
+    priceLabel: "Route-based pricing on request",
     priceNote:
-      "Rates vary by route length (1–4 hours) and group size. Private country boat options available. Morning slots recommended for birdwatching.",
+      "Rates vary by route length, private or guided format, and group size. Morning village routes are especially popular for quieter canals and birdlife.",
     gallery: [
       "/images/village-open-boat-rides.webp",
       "/images/home-hero-backwater-canoe.jpg",
@@ -352,9 +352,9 @@ export const services: ServicePage[] = [
       "Morning and sunset slots",
       "Photo-friendly stop points",
     ],
-    priceLabel: "From ₹1,200 / person",
+    priceLabel: "Trail pricing on request",
     priceNote:
-      "Rates vary by route length, guide type, and private or shared session format. Beginner sessions and longer scenic trails are both available.",
+      "Rates vary by route length, guide support, timing, and private or shared format. Beginner-friendly sessions and longer paddles are both available.",
     gallery: [
       "/images/kayaking-gallery/IMG_0757.webp",
       "/images/kayaking-gallery/IMG_0772.webp",
@@ -422,9 +422,9 @@ export const services: ServicePage[] = [
       "Parking available",
       "24-hour assistance",
     ],
-    priceLabel: "₹1,500 - ₹15,000 / night",
+    priceLabel: "Stay pricing on request",
     priceNote:
-      "Rates depend on room type (standard, deluxe, heritage suite), season, and meal plan. Long-stay discounts available.",
+      "Rates depend on room type, season, meal plan, and whether you combine your stay with a boat ride or houseboat experience.",
     gallery: [
       "/images/room-card.png",
     ],
@@ -489,9 +489,9 @@ export const services: ServicePage[] = [
       "Consultation included",
       "Couples treatment option",
     ],
-    priceLabel: "From ₹3,000 / session",
+    priceLabel: "Wellness pricing on request",
     priceNote:
-      "Single sessions, half-day, and multi-day wellness packages available. Combine with a houseboat stay for an on-water spa experience.",
+      "Single sessions and longer wellness combinations are available. Ask about pairing spa time with a backwater stay or curated boat experience.",
     gallery: [
       "/images/spa-gallery/spa1.webp",
       "/images/spa-gallery/spa3.webp",

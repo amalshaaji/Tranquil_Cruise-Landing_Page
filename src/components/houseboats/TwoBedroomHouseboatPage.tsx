@@ -138,7 +138,7 @@ export default function TwoBedroomHouseboatPage() {
             </div>
           </motion.div>
 
-          {/* RATING CARD */}
+          {/* PLANNING CARD */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -147,14 +147,17 @@ export default function TwoBedroomHouseboatPage() {
           >
             <div className="group relative w-full rounded-[1.75rem] border border-navy/5 bg-white p-5 text-center shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] transition-all duration-500 hover:-translate-y-2 sm:rounded-[2.5rem] sm:p-8">
               <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                Guest Experience
+                Best For
               </div>
-              <div className="text-5xl font-bold tracking-tighter text-sand sm:text-7xl">9.1</div>
-              <div className="mt-2 text-xs font-medium italic text-foreground/40 sm:text-sm">
-                &quot;Exceptional Comfort&quot;
+              <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                Families and small groups
+              </div>
+              <div className="mt-2 text-sm leading-7 text-foreground/50 sm:text-base">
+                More shared lounge space and separate bedrooms for a comfortable
+                private backwater stay.
               </div>
               <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
-                Verified Spacious Experience
+                Spacious Family Layout
               </div>
             </div>
           </motion.div>

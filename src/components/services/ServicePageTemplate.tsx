@@ -6,7 +6,11 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import ScrollableImageRow from "./ScrollableImageRow";
 import ServiceGallery from "./ServiceGallery";
-import type { ServicePage } from "@/lib/services-data";
+import FaqSection from "@/components/seo/FaqSection";
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
+import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
+import type { FaqItem } from "@/lib/seo";
+import { services, type ServicePage } from "@/lib/services-data";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -25,6 +29,102 @@ const stagger: Variants = {
   },
 };
 
+const serviceFaqs: Record<string, FaqItem[]> = {
+  houseboats: [
+    {
+      question: "How much does a private houseboat in Alleppey cost?",
+      answer:
+        "Houseboat pricing depends on the season, boat size, route, meal plan, and whether you want a day cruise or an overnight stay. Contact Tranquil Cruise for current private houseboat rates for your dates.",
+    },
+    {
+      question: "What is included in a Tranquil Cruise houseboat stay?",
+      answer:
+        "A typical private houseboat stay includes the boat, crew, cruising time, bedroom access, meals or refreshments based on the plan, and help shaping the route around your group and timing.",
+    },
+    {
+      question: "Which is better: houseboat or shikara ride?",
+      answer:
+        "A houseboat is better if you want more comfort, privacy, dining space, and time on the water. A shikara ride is better if you want a shorter, more intimate canal experience through narrower Alleppey routes.",
+    },
+    {
+      question: "Is the houseboat suitable for families?",
+      answer:
+        "Yes. Families often choose the two-bedroom, three-bedroom, or five-bedroom houseboats because they offer more shared space, private rooms, and an easier pace for children and older guests.",
+    },
+    {
+      question: "Where does the cruise start?",
+      answer:
+        "Houseboat departures are arranged in the Alappuzha area. Your exact starting point depends on the route, boat selection, and date, and we confirm those details during booking.",
+    },
+  ],
+  "canoe-boats": [],
+  kayaking: [
+    {
+      question: "Is kayaking in Alleppey safe for beginners?",
+      answer:
+        "Yes. Beginner-friendly kayaking routes are available, and we help match you with calmer backwater stretches and a suitable pace if you are new to paddling.",
+    },
+    {
+      question: "What should I wear for backwater kayaking?",
+      answer:
+        "Wear light, quick-drying clothes, sun protection, and footwear that can handle water. Morning and sunset sessions are usually the most comfortable in Kerala's climate.",
+    },
+  ],
+  rooms: [
+    {
+      question: "Are rooms near the Alleppey backwaters available?",
+      answer:
+        "Yes. Tranquil Cruise can help arrange backwater rooms and homestays in the Alappuzha area based on your travel dates, comfort preferences, and whether you want water-facing surroundings.",
+    },
+    {
+      question: "Can I combine a room stay with a houseboat or shikara ride?",
+      answer:
+        "Yes. Many guests pair a room stay with a private houseboat cruise, a Shikara or Shikkara ride, or another backwater activity so the trip feels more balanced.",
+    },
+  ],
+  spa: [
+    {
+      question: "What wellness or spa services are available?",
+      answer:
+        "Spa and wellness options can include Ayurvedic massages, restorative treatments, and slower wellness-focused sessions shaped around your stay and timing.",
+    },
+    {
+      question: "Can spa services be combined with a backwater stay?",
+      answer:
+        "Yes. Spa sessions can be paired with a room stay, a houseboat plan, or a slower Kerala backwater itinerary for guests who want both rest and sightseeing.",
+    },
+  ],
+};
+
+function descriptiveGalleryAlt(service: ServicePage, index: number) {
+  const labels: Record<string, string[]> = {
+    houseboats: [
+      "Luxury houseboat cruising through the Alleppey backwaters",
+      "Private Kerala houseboat stay in Alappuzha",
+      "Backwater houseboat deck and canal views in Alleppey",
+    ],
+    "canoe-boats": [
+      "Country boat ride through a village canal in Alleppey",
+      "Open country boat on the Kerala backwaters",
+    ],
+    kayaking: [
+      "Guided kayaking trail in the Alleppey backwaters",
+      "Kayaking through quiet Alappuzha canals",
+      "Kerala backwater kayak route near village waterways",
+      "Sunset kayaking in Alleppey",
+    ],
+    rooms: ["Backwater room and homestay setting in Alappuzha"],
+    spa: [
+      "Ayurvedic spa room near the Kerala backwaters",
+      "Wellness space for spa treatments in Alappuzha",
+      "Backwater wellness retreat setting in Kerala",
+      "Relaxing spa area near Alleppey waterways",
+    ],
+  };
+
+  return labels[service.slug]?.[index] ?? `${service.title} in Alleppey, Kerala`;
+}
+
 export default function ServicePageTemplate({
   service,
 }: {
@@ -36,13 +136,19 @@ export default function ServicePageTemplate({
     service.slug !== "spa" &&
     service.slug !== "houseboats" &&
     service.slug !== "canoe-boats";
-  const priceText = service.priceLabel.replace("From ", "");
-  const [priceAmount, priceUnitRaw] = priceText.split("/");
-  const priceUnit = priceUnitRaw?.trim();
   const galleryImages = service.gallery.map((src, index) => ({
     src,
-    alt: `${service.title} view ${index + 1}`,
+    alt: descriptiveGalleryAlt(service, index),
   }));
+  const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
+  const faqs = serviceFaqs[service.slug] ?? [];
+  const titleBySlug: Record<string, string> = {
+    houseboats: "Luxury Houseboats in Alleppey",
+    kayaking: "Backwater Kayaking in Alleppey",
+    rooms: "Backwater Rooms & Homestays in Alleppey",
+    spa: "Ayurvedic Spa & Wellness in Alleppey Backwaters",
+    "canoe-boats": "Country Boat Rides in Alleppey",
+  };
 
   const featuredHighlights = service.highlights.slice(0, 3);
   const supportingHighlights = service.highlights.slice(3);
@@ -66,11 +172,17 @@ export default function ServicePageTemplate({
             variants={fadeInUp}
             className={isHouseboatsPage ? "max-w-4xl" : "lg:col-span-8"}
           >
+            <PageBreadcrumbs
+              crumbs={[
+                { label: "Home", href: "/" },
+                { label: service.slug === "canoe-boats" ? "Country Boats" : service.title },
+              ]}
+            />
             <div className="mb-4 inline-block text-[0.7rem] font-bold uppercase tracking-[0.3em] text-teal-600/80">
               {service.eyebrow}
             </div>
             <h1 className="mb-5 text-[clamp(2.45rem,11vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
-              {service.title}
+              {titleBySlug[service.slug] ?? service.title}
               <span className="hidden sm:inline"> <br /></span>
               <span
                 className={`font-[var(--font-luxe)] text-[1.08em] italic tracking-[-0.02em] ${
@@ -135,25 +247,21 @@ export default function ServicePageTemplate({
                 </div>
                 <div className="rounded-[1.6rem] border border-navy/8 bg-white/90 p-5 shadow-sm">
                   <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-foreground/40">
-                    Indicative Price
+                    Booking Guidance
                   </div>
-                  <div className="mt-3 flex flex-wrap items-end gap-x-2 gap-y-1">
-                    <div className="text-4xl font-bold tracking-tighter text-sand sm:text-5xl">
-                      {priceAmount.trim()}
-                    </div>
-                    {priceUnit ? (
-                      <div className="pb-1 text-sm font-medium uppercase tracking-[0.16em] text-foreground/45">
-                        per {priceUnit}
-                      </div>
-                    ) : null}
+                  <div className="mt-3 text-2xl font-bold tracking-tight text-sand sm:text-3xl">
+                    {service.priceLabel}
                   </div>
                 </div>
 
                 <div className="mt-5 rounded-[1.5rem] border border-teal-100 bg-teal-50/60 p-5">
                   <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-teal-700/80">
-                    Package Note
+                    Booking Note
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">
+                  <p className="mt-3 text-sm font-semibold leading-relaxed text-foreground/72">
+                    {service.priceLabel}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                     {service.priceNote}
                   </p>
                 </div>
@@ -399,8 +507,48 @@ export default function ServicePageTemplate({
       )}
 
       {showCloserLookGallery && (
-        <ServiceGallery images={service.gallery} title={service.title} />
+        <ServiceGallery images={service.gallery} />
       )}
+
+      <ExperienceComparisonSection />
+
+      {faqs.length > 0 ? (
+        <FaqSection
+          title={`FAQs about ${titleBySlug[service.slug] ?? service.title}`}
+          intro="These answers reflect the visible planning details on this page."
+          faqs={faqs}
+        />
+      ) : null}
+
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+        <div className="rounded-[2rem] border border-navy/8 bg-[#f7fbfc] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:p-10">
+          <span className="block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+            Related Experiences
+          </span>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+            Explore related Alleppey backwater options
+          </h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {relatedServices.map((item) => (
+              <article
+                key={item.slug}
+                className="rounded-[1.6rem] border border-white bg-white p-5"
+              >
+                <h3 className="text-xl font-semibold text-sand">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-foreground/65">
+                  {item.description[0]}
+                </p>
+                <Link
+                  href={`/${item.slug}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-teal hover:text-navy"
+                >
+                  View {item.title}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="px-4 py-12 sm:px-6 lg:py-20">
         <motion.div
