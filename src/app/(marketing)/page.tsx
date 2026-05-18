@@ -4,12 +4,14 @@ import Link from "next/link";
 import HeroSection from "@/components/home/HeroSection";
 import JsonLd from "@/components/seo/JsonLd";
 import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
+import FaqSection from "@/components/seo/FaqSection";
 import {
   getGooglePlaceReviewData,
   GOOGLE_MAPS_PAGE_URL,
 } from "@/lib/google-place-reviews";
 import {
   createBreadcrumbSchema,
+  createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
   createReviewSchema,
@@ -69,6 +71,85 @@ const serviceCards = [
     copy: "Paddle through quieter stretches of the backwaters if you want something active and close to nature.",
     href: "/kayaking",
     image: "/images/kayaking-card.jpg",
+  },
+];
+
+const houseboatTypes = [
+  {
+    title: "Single Bed Houseboat",
+    description:
+      "Best for couples or solo guests who want a private overnight stay with a calmer, more intimate format.",
+    href: "/houseboats/single-bed",
+    label: "Couples",
+  },
+  {
+    title: "2 Bedroom Houseboat",
+    description:
+      "A strong fit for small families or friends who want more room, separate bedrooms, and a slower cruise pace.",
+    href: "/houseboats/2-bedroom",
+    label: "Families",
+  },
+  {
+    title: "3 Bedroom Houseboat",
+    description:
+      "Well suited to extended families and private groups who want a larger lounge setup and shared time on deck.",
+    href: "/houseboats/3-bedroom",
+    label: "Groups",
+  },
+  {
+    title: "5 Bedroom Houseboat",
+    description:
+      "Ideal for reunions, celebrations, and larger group stays that need more bedrooms and broader common space.",
+    href: "/houseboats/5-bedroom",
+    label: "Celebrations",
+  },
+] as const;
+
+const routeHighlights = [
+  {
+    title: "Village canals",
+    copy:
+      "Great if you want everyday backwater life, narrow waterways, palms, and a quieter local feel.",
+  },
+  {
+    title: "Open lake stretches",
+    copy:
+      "A better match for bigger views, wider water, slower cruising, and that iconic Kerala houseboat mood.",
+  },
+  {
+    title: "Sunrise or sunset plans",
+    copy:
+      "Choose timing based on whether you want soft morning light, a relaxed afternoon, or golden evening routes.",
+  },
+] as const;
+
+const trustSignals = [
+  "Private planning help based on dates, group size, and comfort level",
+  "Google-reviewed Alleppey backwater operator with verified guest feedback",
+  "Houseboats, shikara rides, country boats, kayaking, rooms, and wellness in one place",
+  "Route guidance across Alleppey, Alappuzha, Kuttanad, and Vembanad Lake",
+] as const;
+
+const homepageFaqs = [
+  {
+    question: "Which is the best houseboat in Alappuzha for families?",
+    answer:
+      "For families, two-bedroom and three-bedroom houseboats are usually the easiest fit because they offer separate rooms, more shared lounge space, and a slower overnight rhythm on the backwaters.",
+  },
+  {
+    question: "Is Alleppey the same as Alappuzha when booking a houseboat?",
+    answer:
+      "Yes. Alleppey and Alappuzha refer to the same destination, so searches for an Alleppey houseboat or a houseboat in Alappuzha usually mean the same backwater region.",
+  },
+  {
+    question: "Should I book a houseboat or a shikara ride in Alleppey?",
+    answer:
+      "Choose a houseboat if you want more comfort, onboard time, meals, and an overnight stay. Choose a shikara ride if you want a shorter scenic trip through narrower canals at a lighter budget.",
+  },
+  {
+    question: "Can I plan a Kerala backwater cruise with custom timing?",
+    answer:
+      "Yes. Guests often choose morning, afternoon, sunset, or overnight plans based on mood, route type, group size, and how much time they want on the water.",
   },
 ];
 
@@ -198,6 +279,7 @@ export default async function Home() {
   });
 
   const breadcrumbJsonLd = createBreadcrumbSchema([{ name: "Home", path: "/" }]);
+  const faqJsonLd = createFaqSchema(homepageFaqs);
 
   return (
     <>
@@ -208,6 +290,7 @@ export default async function Home() {
           touristTripJsonLd,
           homepageImageSchema,
           introImageSchema,
+          faqJsonLd,
           ...reviewSchemas,
         ]}
       />
@@ -470,6 +553,112 @@ export default async function Home() {
 
           <ExperienceComparisonSection />
 
+          <section className="mx-auto mt-12 max-w-6xl px-4 sm:px-6 lg:mt-16">
+            <div className="overflow-hidden rounded-[2.4rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(242,248,250,0.98)_100%)] shadow-[0_28px_80px_rgba(23,50,71,0.12)]">
+              <div className="grid gap-0 lg:grid-cols-[0.92fr,1.08fr]">
+                <div className="border-b border-navy/10 px-6 py-8 sm:px-10 sm:py-10 lg:border-b-0 lg:border-r">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-teal/75">
+                    Houseboat Types
+                  </div>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
+                    Choose the right Alleppey houseboat for your group.
+                  </h2>
+                  <p className="mt-4 max-w-lg text-sm leading-7 text-foreground/68 sm:text-base">
+                    If you are comparing a cozy couple stay, a family houseboat,
+                    or a larger celebration plan, start with the layout that
+                    matches your trip and refine the route from there.
+                  </p>
+                </div>
+
+                <div className="grid gap-4 px-6 py-8 sm:px-10 sm:py-10 md:grid-cols-2">
+                  {houseboatTypes.map((item) => (
+                    <Link
+                      key={item.title}
+                      href={item.href}
+                      className="group rounded-[1.7rem] border border-navy/10 bg-white/90 p-5 shadow-[0_16px_38px_rgba(23,50,71,0.06)] transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(23,50,71,0.1)]"
+                    >
+                      <span className="inline-flex rounded-full border border-[#cfe0e7] bg-[#f4f9fb] px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-teal">
+                        {item.label}
+                      </span>
+                      <h3 className="mt-4 text-xl font-semibold text-sand">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-foreground/66">
+                        {item.description}
+                      </p>
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal transition group-hover:text-navy">
+                        Explore this houseboat
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mx-auto mt-12 max-w-6xl px-4 sm:px-6 lg:mt-16">
+            <div className="rounded-[2.4rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(241,247,250,0.98)_100%)] p-6 shadow-[0_28px_80px_rgba(23,50,71,0.12)] sm:p-10">
+              <div className="grid gap-8 lg:grid-cols-[1fr,0.95fr]">
+                <div>
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                    Routes & Trust
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
+                    Built around real Alleppey routes and straightforward local guidance.
+                  </h2>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/68 sm:text-base">
+                    The best Kerala backwater cruise is not one fixed package.
+                    It depends on how much time you have, whether you want
+                    village canals or wider water, and whether your trip is
+                    better suited to a shikara, a country boat, kayaking, or a
+                    private houseboat stay.
+                  </p>
+
+                  <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                    {routeHighlights.map((route) => (
+                      <div
+                        key={route.title}
+                        className="rounded-[1.6rem] border border-white/85 bg-[linear-gradient(180deg,#f7fbfd_0%,#edf5f8_100%)] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]"
+                      >
+                        <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                          {route.title}
+                        </div>
+                        <p className="mt-3 text-sm leading-7 text-foreground/66">
+                          {route.copy}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-[1.9rem] border border-navy/10 bg-white/92 p-6 shadow-[0_18px_42px_rgba(23,50,71,0.08)]">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                    Trust Signals
+                  </div>
+                  <div className="mt-5 grid gap-3">
+                    {trustSignals.map((signal) => (
+                      <div
+                        key={signal}
+                        className="flex items-start gap-3 rounded-[1.2rem] border border-navy/8 bg-[#f7fbfd] px-4 py-4"
+                      >
+                        <span className="mt-1 inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-teal" />
+                        <p className="text-sm leading-7 text-foreground/68">
+                          {signal}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 rounded-[1.4rem] border border-gold/25 bg-[#edf5f8] p-4 text-sm leading-7 text-foreground/72">
+                    Guests usually book with us after comparing comfort, route
+                    style, and group fit, not after being pushed into one
+                    pre-set package.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section className="mx-auto mt-8 max-w-6xl px-4 sm:px-6 lg:mt-12">
             <div className="rounded-[2.4rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(242,248,250,0.98)_100%)] p-6 shadow-[0_28px_80px_rgba(23,50,71,0.12)] sm:p-10">
               <div className="grid gap-6 lg:grid-cols-[1fr,0.9fr]">
@@ -505,6 +694,13 @@ export default async function Home() {
               </div>
             </div>
           </section>
+
+          <FaqSection
+            eyebrow="Alleppey Houseboat FAQs"
+            title="Questions guests ask before booking a Kerala backwater cruise"
+            intro="Short answers to the questions we hear most often when guests are choosing between an Alleppey houseboat, a shikara ride, or another backwater experience."
+            faqs={homepageFaqs}
+          />
 
           {/* --- Google Reviews Section --- */}
           <div className="mx-auto mt-20 max-w-6xl px-4 py-12">
