@@ -3,6 +3,7 @@ import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -35,33 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqs = [
-  {
-    question: "How much does a private houseboat in Alleppey cost?",
-    answer:
-      "Pricing depends on your travel dates, boat size, route, and whether you want a day cruise or an overnight stay. Ask Tranquil Cruise for current houseboat availability and rates.",
-  },
-  {
-    question: "What is included in a Tranquil Cruise houseboat stay?",
-    answer:
-      "A typical stay includes the private houseboat, crew, cruising time, bedroom access, and hospitality arranged around the experience you choose.",
-  },
-  {
-    question: "Which is better: houseboat or shikara ride?",
-    answer:
-      "Choose a houseboat if you want more comfort, privacy, and time on the water. Choose a shikara ride if you want a shorter and more intimate canal experience.",
-  },
-  {
-    question: "Is the houseboat suitable for families?",
-    answer:
-      "Yes. Multi-bedroom houseboats are well suited to families and private groups who want more space and a slower Alleppey backwater stay.",
-  },
-  {
-    question: "Where does the cruise start?",
-    answer:
-      "Cruise starting points are arranged in the Alappuzha area and confirmed with your route and boat selection at booking time.",
-  },
-];
+const faqs = getServiceFaqs("houseboats");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },

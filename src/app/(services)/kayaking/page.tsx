@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { getServiceBySlug } from "@/lib/services-data";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -32,18 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqs = [
-  {
-    question: "Is kayaking in Alleppey safe for beginners?",
-    answer:
-      "Yes. Beginner-friendly routes and calmer backwater stretches are available, and the experience can be planned around a gentler pace.",
-  },
-  {
-    question: "What should I wear for backwater kayaking?",
-    answer:
-      "Wear light, comfortable clothes that dry quickly, along with sun protection and footwear that can handle water.",
-  },
-];
+const faqs = getServiceFaqs("kayaking");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },

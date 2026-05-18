@@ -3,6 +3,7 @@ import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -32,18 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqs = [
-  {
-    question: "Are rooms near the Alleppey backwaters available?",
-    answer:
-      "Yes. Tranquil Cruise can help arrange rooms and homestays in the Alappuzha area for guests who want a stay close to the backwaters.",
-  },
-  {
-    question: "Can I combine a room stay with a houseboat or shikara ride?",
-    answer:
-      "Yes. A room stay can be paired with a houseboat cruise, a Shikara ride, or another backwater activity depending on how you want to pace the trip.",
-  },
-];
+const faqs = getServiceFaqs("rooms");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },

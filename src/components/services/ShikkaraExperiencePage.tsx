@@ -4,8 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
 import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
+import { getInternalLinkGraph, getServiceFaqs } from "@/lib/seo-content";
 
 const whatsappHref = "https://wa.me/917994073491";
 
@@ -53,21 +55,6 @@ const planningPrompts = [
   "Perfect for narrow canal routes",
 ];
 
-const faqs = [
-  {
-    question: "What is a shikara ride in Alleppey?",
-    answer: "A shikara ride is a private, canopied boat experience that moves through Alleppey's narrower canals and quieter backwater routes at a slower pace than larger boats.",
-  },
-  {
-    question: "How long is a shikara ride?",
-    answer: "Most rides are planned around 1 to 3 hours depending on the route, timing, and whether you want a sunrise, daytime, or sunset experience.",
-  },
-  {
-    question: "Is shikara better than a houseboat?",
-    answer: "A shikara is better for a shorter scenic ride and quieter canal access. A houseboat is better if you want more comfort, more time on the water, meals, or an overnight Kerala backwater stay.",
-  },
-];
-
 const galleryImages = [
   {
     src: "/images/shikkara-gallery/shikkara-exterior-day.webp",
@@ -101,6 +88,9 @@ const fadeIn = {
 };
 
 export default function ShikkaraExperiencePage() {
+  const faqs = getServiceFaqs("shikkara");
+  const internalLinkGraph = getInternalLinkGraph("/shikkara");
+
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:pt-44">
@@ -341,6 +331,7 @@ export default function ShikkaraExperiencePage() {
         intro="Quick answers before you choose your backwater timing."
         faqs={faqs}
       />
+      {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
     </main>
   );
 }

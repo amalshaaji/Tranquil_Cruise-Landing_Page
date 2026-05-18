@@ -7,10 +7,11 @@ import type { Variants } from "framer-motion";
 import ScrollableImageRow from "./ScrollableImageRow";
 import ServiceGallery from "./ServiceGallery";
 import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
-import type { FaqItem } from "@/lib/seo";
-import { services, type ServicePage } from "@/lib/services-data";
+import { getInternalLinkGraph, getServiceFaqs } from "@/lib/seo-content";
+import type { ServicePage } from "@/lib/services-data";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -27,73 +28,6 @@ const stagger: Variants = {
     opacity: 1,
     transition: { staggerChildren: 0.12 },
   },
-};
-
-const serviceFaqs: Record<string, FaqItem[]> = {
-  houseboats: [
-    {
-      question: "How much does a private houseboat in Alleppey cost?",
-      answer:
-        "Houseboat pricing depends on the season, boat size, route, meal plan, and whether you want a day cruise or an overnight stay. Contact Tranquil Cruise for current private houseboat rates for your dates.",
-    },
-    {
-      question: "What is included in a Tranquil Cruise houseboat stay?",
-      answer:
-        "A typical private houseboat stay includes the boat, crew, cruising time, bedroom access, meals or refreshments based on the plan, and help shaping the route around your group and timing.",
-    },
-    {
-      question: "Which is better: houseboat or shikara ride?",
-      answer:
-        "A houseboat is better if you want more comfort, privacy, dining space, and time on the water. A shikara ride is better if you want a shorter, more intimate canal experience through narrower Alleppey routes.",
-    },
-    {
-      question: "Is the houseboat suitable for families?",
-      answer:
-        "Yes. Families often choose the two-bedroom, three-bedroom, or five-bedroom houseboats because they offer more shared space, private rooms, and an easier pace for children and older guests.",
-    },
-    {
-      question: "Where does the cruise start?",
-      answer:
-        "Houseboat departures are arranged in the Alappuzha area. Your exact starting point depends on the route, boat selection, and date, and we confirm those details during booking.",
-    },
-  ],
-  "canoe-boats": [],
-  kayaking: [
-    {
-      question: "Is kayaking in Alleppey safe for beginners?",
-      answer:
-        "Yes. Beginner-friendly kayaking routes are available, and we help match you with calmer backwater stretches and a suitable pace if you are new to paddling.",
-    },
-    {
-      question: "What should I wear for backwater kayaking?",
-      answer:
-        "Wear light, quick-drying clothes, sun protection, and footwear that can handle water. Morning and sunset sessions are usually the most comfortable in Kerala's climate.",
-    },
-  ],
-  rooms: [
-    {
-      question: "Are rooms near the Alleppey backwaters available?",
-      answer:
-        "Yes. Tranquil Cruise can help arrange backwater rooms and homestays in the Alappuzha area based on your travel dates, comfort preferences, and whether you want water-facing surroundings.",
-    },
-    {
-      question: "Can I combine a room stay with a houseboat or shikara ride?",
-      answer:
-        "Yes. Many guests pair a room stay with a private houseboat cruise, a Shikara or Shikkara ride, or another backwater activity so the trip feels more balanced.",
-    },
-  ],
-  spa: [
-    {
-      question: "What wellness or spa services are available?",
-      answer:
-        "Spa and wellness options can include Ayurvedic massages, restorative treatments, and slower wellness-focused sessions shaped around your stay and timing.",
-    },
-    {
-      question: "Can spa services be combined with a backwater stay?",
-      answer:
-        "Yes. Spa sessions can be paired with a room stay, a houseboat plan, or a slower Kerala backwater itinerary for guests who want both rest and sightseeing.",
-    },
-  ],
 };
 
 const houseboatPricingBands = [
@@ -191,8 +125,8 @@ export default function ServicePageTemplate({
     src,
     alt: descriptiveGalleryAlt(service, index),
   }));
-  const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
-  const faqs = serviceFaqs[service.slug] ?? [];
+  const faqs = getServiceFaqs(service.slug);
+  const internalLinkGraph = getInternalLinkGraph(`/${service.slug}`);
   const titleBySlug: Record<string, string> = {
     houseboats: "Luxury Houseboats in Alleppey",
     kayaking: "Backwater Kayaking in Alleppey",
@@ -691,40 +625,7 @@ export default function ServicePageTemplate({
         />
       ) : null}
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
-        <div className="rounded-[2rem] border border-navy/8 bg-[#f7fbfc] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:p-10">
-          <span className="block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-            Continue Planning
-          </span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-            Keep comparing houseboat options and related backwater experiences
-          </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-foreground/66 sm:text-base">
-            Use the houseboat bedroom pages to compare layout and group fit, or
-            branch into other Alleppey backwater experiences if a shorter scenic
-            ride makes more sense for this trip.
-          </p>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {relatedServices.map((item) => (
-              <article
-                key={item.slug}
-                className="rounded-[1.6rem] border border-white bg-white p-5"
-              >
-                <h3 className="text-xl font-semibold text-sand">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-foreground/65">
-                  {item.description[0]}
-                </p>
-                <Link
-                  href={`/${item.slug}`}
-                  className="mt-4 inline-flex text-sm font-semibold text-teal hover:text-navy"
-                >
-                  View {item.title}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
 
       <section className="px-4 py-12 sm:px-6 lg:py-20">
         <motion.div

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ShikkaraExperiencePage from "@/components/services/ShikkaraExperiencePage";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -29,23 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqs = [
-  {
-    question: "What is a shikara ride in Alleppey?",
-    answer:
-      "A shikara ride is a smaller canopied boat experience that moves through Alleppey's scenic canals, making it a gentle way to see village routes and quieter backwater stretches.",
-  },
-  {
-    question: "How long is a shikara ride?",
-    answer:
-      "Most rides are planned around 1 to 3 hours depending on the route, the time of day, and whether you want a sunrise, daytime, or sunset plan.",
-  },
-  {
-    question: "Is shikara better than a houseboat?",
-    answer:
-      "A shikara is better for a shorter, more intimate ride through narrow canals. A houseboat is better if you want more space, onboard comfort, meals, or an overnight backwater stay.",
-  },
-];
+const faqs = getServiceFaqs("shikkara");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },

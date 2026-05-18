@@ -3,6 +3,7 @@ import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -32,18 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const faqs = [
-  {
-    question: "What wellness or spa services are available?",
-    answer:
-      "Spa and wellness experiences can include Ayurvedic massages and slower restorative sessions shaped around your trip timing and preferences.",
-  },
-  {
-    question: "Can spa services be combined with a backwater stay?",
-    answer:
-      "Yes. Spa time can be paired with a room stay, a houseboat plan, or another backwater experience for a calmer Kerala itinerary.",
-  },
-];
+const faqs = getServiceFaqs("spa");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },

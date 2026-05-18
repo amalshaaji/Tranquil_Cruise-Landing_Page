@@ -3,8 +3,10 @@ import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
+  createFaqSchema,
   createServiceSchema,
   generatePageMetadata,
 } from "@/lib/seo";
@@ -46,10 +48,12 @@ const serviceJsonLd = createServiceSchema({
 
 export default function CanoeBoatsPage() {
   if (!service) notFound();
+  const faqs = getServiceFaqs("canoe-boats");
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
+      {faqs.length > 0 ? <JsonLd data={createFaqSchema(faqs)} /> : null}
       <ServicePageTemplate service={service} />
     </>
   );
