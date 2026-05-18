@@ -96,6 +96,57 @@ const serviceFaqs: Record<string, FaqItem[]> = {
   ],
 };
 
+const houseboatPricingBands = [
+  {
+    title: "Couple stays",
+    detail: "Usually best matched to the single-bedroom format for shorter or more intimate overnight plans.",
+  },
+  {
+    title: "Family stays",
+    detail: "Most families look first at two-bedroom or three-bedroom layouts for privacy, pacing, and shared lounge comfort.",
+  },
+  {
+    title: "Group celebrations",
+    detail: "Larger gatherings usually need three-bedroom or five-bedroom houseboats with more generous common space.",
+  },
+] as const;
+
+const houseboatExperiencePaths = [
+  {
+    title: "Overnight cruising",
+    description:
+      "Best if you want the full Kerala backwater rhythm with dinner, slower evening light, and time to stay on the water.",
+  },
+  {
+    title: "Family-focused stays",
+    description:
+      "A better fit for mixed-age groups that need separate bedrooms, easier movement, and more shared indoor space.",
+  },
+  {
+    title: "Celebration getaways",
+    description:
+      "Well suited to reunions, birthday trips, and larger private groups who want a more social deck-and-dining setup.",
+  },
+] as const;
+
+const houseboatRouteIdeas = [
+  {
+    title: "Village canal routes",
+    description:
+      "A calmer option for guests who want palms, local life, narrow waterways, and a more intimate sense of the backwaters.",
+  },
+  {
+    title: "Lake-facing stretches",
+    description:
+      "A stronger match for bigger open-water views, softer evening light, and that iconic Alleppey houseboat mood.",
+  },
+  {
+    title: "Mixed pace itineraries",
+    description:
+      "A balanced route that combines quieter canal sections with wider water depending on timing, group size, and comfort.",
+  },
+] as const;
+
 function descriptiveGalleryAlt(service: ServicePage, index: number) {
   const labels: Record<string, string[]> = {
     houseboats: [
@@ -411,6 +462,74 @@ export default function ServicePageTemplate({
         </section>
       )}
 
+      {isHouseboatsPage ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
+            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+              <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+                Pricing Guidance
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+                How houseboat pricing usually works in Alleppey
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/66 sm:text-base">
+                We do not publish one flat rate because price changes with the
+                boat size, route, season, guest count, and whether you want a
+                day cruise or an overnight stay. The easiest way to compare is
+                to start with the right layout for your group and then refine
+                the route and timing.
+              </p>
+
+              <div className="mt-8 grid gap-4">
+                {houseboatPricingBands.map((band) => (
+                  <div
+                    key={band.title}
+                    className="rounded-[1.5rem] border border-navy/8 bg-[#f7fbfd] p-5"
+                  >
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                      {band.title}
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-foreground/66">
+                      {band.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#eef5f8_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+              <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+                What Changes the Price
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {[
+                  "Boat size and bedroom count",
+                  "Overnight stay versus shorter plan",
+                  "Meal style and hospitality preferences",
+                  "Route length and canal versus open-water mix",
+                  "Season and date demand",
+                  "Family trip versus larger group celebration",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 rounded-[1.4rem] border border-white bg-white/90 px-4 py-4 shadow-sm"
+                  >
+                    <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-teal-500" />
+                    <p className="text-sm leading-7 text-foreground/68">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[1.6rem] border border-gold/25 bg-[#edf5f8] p-5 text-sm leading-7 text-foreground/72">
+                If you already know your dates and guest count, the fastest way
+                to get the right recommendation is to start with the bedroom
+                layout below and then ask about route and meal preferences.
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
         <div className="grid gap-6 lg:grid-cols-3">
           <motion.div
@@ -506,9 +625,61 @@ export default function ServicePageTemplate({
         </section>
       )}
 
+      {isHouseboatsPage ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="grid gap-6 lg:grid-cols-[1fr,1fr]">
+            <div className="rounded-[2rem] border border-navy/8 bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+              <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+                Experience Paths
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+                Different kinds of houseboat stays suit different trips
+              </h2>
+              <div className="mt-8 grid gap-4">
+                {houseboatExperiencePaths.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[1.5rem] border border-navy/8 bg-[#f7fbfd] p-5"
+                  >
+                    <h3 className="text-lg font-semibold text-sand">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-foreground/66">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#f5fafc_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
+              <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+                Route Ideas
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+                Choose the backwater route style that fits your mood
+              </h2>
+              <div className="mt-8 grid gap-4">
+                {houseboatRouteIdeas.map((route) => (
+                  <div
+                    key={route.title}
+                    className="rounded-[1.5rem] border border-white bg-white/92 p-5 shadow-sm"
+                  >
+                    <h3 className="text-lg font-semibold text-sand">{route.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-foreground/66">
+                      {route.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {showCloserLookGallery && (
         <ServiceGallery images={service.gallery} />
       )}
+
+      {isHouseboatsPage ? <ServiceGallery images={service.gallery} /> : null}
 
       <ExperienceComparisonSection />
 
@@ -523,11 +694,16 @@ export default function ServicePageTemplate({
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
         <div className="rounded-[2rem] border border-navy/8 bg-[#f7fbfc] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:p-10">
           <span className="block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-            Related Experiences
+            Continue Planning
           </span>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-            Explore related Alleppey backwater options
+            Keep comparing houseboat options and related backwater experiences
           </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-foreground/66 sm:text-base">
+            Use the houseboat bedroom pages to compare layout and group fit, or
+            branch into other Alleppey backwater experiences if a shorter scenic
+            ride makes more sense for this trip.
+          </p>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {relatedServices.map((item) => (
               <article
