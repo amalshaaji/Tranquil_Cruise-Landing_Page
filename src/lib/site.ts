@@ -33,6 +33,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/houseboats", changeFrequency: "weekly", priority: 0.95 },
   { path: "/luxury-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/budget-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/houseboats/single-bed", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/2-bedroom", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/3-bedroom", changeFrequency: "monthly", priority: 0.9 },
