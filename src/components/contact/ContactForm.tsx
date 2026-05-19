@@ -2,6 +2,7 @@
 
 import { type FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { trackConversionStep, trackEvent } from "@/lib/analytics";
 import { buildInquiryMessage, buildWhatsAppHref } from "@/lib/whatsapp";
 
 // Refined shared styles for a "High-Fashion" travel look
@@ -42,6 +43,20 @@ export default function ContactForm() {
         message: String(formData.get("message") ?? "").trim(),
       }),
     );
+
+    trackEvent("contact_form_submit", {
+      experience: String(formData.get("experience") ?? experience).trim(),
+      guests: String(formData.get("guests") ?? "").trim(),
+      has_date: Boolean(String(formData.get("date") ?? "").trim()),
+      has_message: Boolean(String(formData.get("message") ?? "").trim()),
+    });
+    trackConversionStep("contact_form_submit", {
+      experience: String(formData.get("experience") ?? experience).trim(),
+    });
+    trackEvent("whatsapp_enquiry_opened", {
+      source: "contact_form",
+      experience: String(formData.get("experience") ?? experience).trim(),
+    });
 
     window.open(whatsappHref, "_blank", "noopener,noreferrer");
     form.reset();

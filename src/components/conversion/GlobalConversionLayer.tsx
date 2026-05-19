@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Clock3, MessageCircle, Phone, ShieldCheck, Sparkles } from "lucide-react";
+import { trackConversionStep, trackEvent } from "@/lib/analytics";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   BUSINESS_HOURS,
@@ -59,6 +60,30 @@ export default function GlobalConversionLayer() {
     `Hi Tranquil Cruise,\nI would like help choosing ${getInquiryContext(pathname)}.\nPlease share availability and the best options for my dates.`,
   );
 
+  function handleWhatsAppClick(surface: "desktop_floating_card" | "mobile_sticky_bar") {
+    trackEvent("whatsapp_cta_click", {
+      surface,
+      page_path: pathname,
+      enquiry_context: getInquiryContext(pathname),
+    });
+    trackConversionStep("whatsapp_click", {
+      surface,
+      page_path: pathname,
+    });
+  }
+
+  function handleContactClick(surface: "desktop_floating_card" | "mobile_sticky_bar") {
+    trackEvent("booking_cta_click", {
+      surface,
+      page_path: pathname,
+      destination: "/contact",
+    });
+    trackConversionStep("contact_form_start", {
+      surface,
+      page_path: pathname,
+    });
+  }
+
   return (
     <>
       <div className="pointer-events-none fixed bottom-5 right-5 z-[70] hidden xl:block">
@@ -92,6 +117,7 @@ export default function GlobalConversionLayer() {
             <div className="mt-5 space-y-3">
               <Link
                 href={whatsappHref}
+                onClick={() => handleWhatsAppClick("desktop_floating_card")}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#173247] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#234760]"
               >
                 <MessageCircle size={16} />
@@ -99,6 +125,7 @@ export default function GlobalConversionLayer() {
               </Link>
               <Link
                 href="/contact"
+                onClick={() => handleContactClick("desktop_floating_card")}
                 className="inline-flex w-full items-center justify-center rounded-2xl border border-navy/12 bg-white px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:bg-[#edf4f7]"
               >
                 Start Booking Request
@@ -155,6 +182,7 @@ export default function GlobalConversionLayer() {
           <div className="mt-3 grid grid-cols-2 gap-3">
             <Link
               href={whatsappHref}
+              onClick={() => handleWhatsAppClick("mobile_sticky_bar")}
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#173247] px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#234760]"
             >
               <MessageCircle size={16} />
@@ -162,6 +190,7 @@ export default function GlobalConversionLayer() {
             </Link>
             <Link
               href="/contact"
+              onClick={() => handleContactClick("mobile_sticky_bar")}
               className="inline-flex items-center justify-center rounded-2xl border border-navy/12 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-foreground transition hover:bg-[#edf4f7]"
             >
               Book Now

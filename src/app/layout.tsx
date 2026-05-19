@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import GoogleTagManagerNoscript from "@/components/analytics/GoogleTagManagerNoscript";
 import GlobalConversionLayer from "@/components/conversion/GlobalConversionLayer";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +10,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import TransitionProvider from "./transition-provider";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
 const editorialFont = localFont({
   src: "../../node_modules/@fontsource/playfair-display/files/playfair-display-latin-700-italic.woff2",
   variable: "--font-editorial",
@@ -35,9 +37,17 @@ export const metadata: Metadata = {
     },
   },
   authors: [{ name: "Tranquil Cruise" }],
-  verification: googleSiteVerification
-    ? { google: googleSiteVerification }
-    : undefined,
+  verification:
+    googleSiteVerification || bingSiteVerification
+      ? {
+          google: googleSiteVerification || undefined,
+          other: bingSiteVerification
+            ? {
+                "msvalidate.01": bingSiteVerification,
+              }
+            : undefined,
+        }
+      : undefined,
 };
 
 export const viewport: Viewport = {
@@ -59,6 +69,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col pb-28 text-foreground xl:pb-0">
+        <GoogleTagManagerNoscript />
         <GoogleAnalytics />
         <Navbar />
         <TransitionProvider>{children}</TransitionProvider>
