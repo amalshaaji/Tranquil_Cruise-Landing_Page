@@ -779,26 +779,34 @@ export default async function Home() {
                     ) : null}
 
                     <div className="mt-7">
-                      <a
-                        href={googleReviewData?.mapsUrl ?? GOOGLE_MAPS_PAGE_URL}
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy hover:text-white hover:shadow-lg sm:w-auto"
-                      >
-                        See all Google reviews
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
+                      <div className="flex flex-col gap-3 sm:flex-row">
+                        <a
+                          href={googleReviewData?.mapsUrl ?? GOOGLE_MAPS_PAGE_URL}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy hover:text-white hover:shadow-lg sm:w-auto"
                         >
-                          <path d="M7 17 17 7" />
-                          <path d="M8.5 7H17v8.5" />
-                        </svg>
-                      </a>
+                          See all Google reviews
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M7 17 17 7" />
+                            <path d="M8.5 7H17v8.5" />
+                          </svg>
+                        </a>
+                        <Link
+                          href="/reviews"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-navy/10 bg-[#edf5f8] px-6 py-3 text-sm font-semibold text-navy transition hover:bg-[#173247] hover:text-white sm:w-auto"
+                        >
+                          Open full reviews page
+                        </Link>
+                      </div>
                     </div>
                   </div>
 
