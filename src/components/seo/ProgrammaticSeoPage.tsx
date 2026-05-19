@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  ComparisonTable,
+  QuestionAnswerList,
+} from "@/components/seo/AiAnswerSections";
 import FaqSection from "@/components/seo/FaqSection";
 import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
@@ -10,6 +14,13 @@ export default function ProgrammaticSeoPage({
 }: {
   page: ProgrammaticSeoPageData;
 }) {
+  const comparisonRows = page.routeFit.map((item, index) => ({
+    label: item.title,
+    bestFor: page.quickFacts[index] ?? page.touristTypes.join(", "),
+    details: item.description,
+  }));
+  const quickQuestions = page.faqs.slice(0, 3);
+
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-44">
@@ -32,7 +43,7 @@ export default function ProgrammaticSeoPage({
               {page.intro.directAnswer}
             </p>
 
-            <div className="mt-6 space-y-4 max-w-2xl text-sm leading-7 text-foreground/64 sm:text-base">
+            <div className="mt-6 max-w-2xl space-y-4 text-sm leading-7 text-foreground/64 sm:text-base">
               {page.intro.supporting.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -95,19 +106,25 @@ export default function ProgrammaticSeoPage({
             <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-200/80">
               Quick Notes
             </div>
-            <div className="mt-5 space-y-3">
+            <ul className="mt-5 space-y-3">
               {page.quickFacts.map((fact) => (
-                <div
+                <li
                   key={fact}
                   className="rounded-[1.2rem] border border-white/10 bg-white/8 px-4 py-3 text-sm leading-6 text-white/86"
                 >
                   {fact}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </aside>
         </div>
       </section>
+
+      <ComparisonTable
+        title="Compare the main versions of this booking intent."
+        intro="This table keeps the page easy to scan for answer engines and for guests who want the fastest route to the right fit."
+        rows={comparisonRows}
+      />
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
         <div className="grid gap-6 lg:grid-cols-[1fr,1fr]">
@@ -153,6 +170,12 @@ export default function ProgrammaticSeoPage({
           </div>
         </div>
       </section>
+
+      <QuestionAnswerList
+        title="Short answers before the full accordion FAQ."
+        intro="These quick answers keep the main booking questions visible in a simple question-and-answer format."
+        items={quickQuestions}
+      />
 
       <FaqSection
         eyebrow="Programmatic SEO FAQ"

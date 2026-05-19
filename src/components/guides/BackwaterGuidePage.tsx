@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  ComparisonTable,
+  QuestionAnswerList,
+} from "@/components/seo/AiAnswerSections";
 import FaqSection from "@/components/seo/FaqSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
@@ -85,6 +89,13 @@ export default function BackwaterGuidePage({
   ctaTitle,
   ctaText,
 }: BackwaterGuidePageProps) {
+  const comparisonRows = compareCards.map((item) => ({
+    label: item.title,
+    bestFor: item.fit,
+    details: item.copy,
+  }));
+  const quickQuestions = faqs.slice(0, 3);
+
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-44">
@@ -97,7 +108,7 @@ export default function BackwaterGuidePage({
             <h1 className="text-[clamp(2.35rem,9vw,4.8rem)] font-semibold leading-[1.02] tracking-tight text-sand">
               {title}
             </h1>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/68 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/72 sm:text-lg">
               {intro}
             </p>
 
@@ -129,16 +140,16 @@ export default function BackwaterGuidePage({
           </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-3">
+        <ul className="mt-12 flex flex-wrap gap-3">
           {quickFacts.map((fact) => (
-            <div
+            <li
               key={fact}
               className="rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.72rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm sm:px-5 sm:text-xs"
             >
               {fact}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
@@ -172,22 +183,28 @@ export default function BackwaterGuidePage({
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
               {practicalTitle}
             </h2>
-            <div className="mt-8 grid gap-3">
+            <ul className="mt-8 grid gap-3">
               {practicalItems.map((item) => (
-                <div
+                <li
                   key={item}
                   className="rounded-[1.35rem] border border-[#dce8df] bg-white px-4 py-4 text-sm leading-7 text-foreground/70"
                 >
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="mt-6 rounded-[1.6rem] border border-gold/25 bg-[#edf5f8] p-5 text-sm leading-7 text-foreground/72">
               {practicalNote}
             </div>
           </div>
         </div>
       </section>
+
+      <ComparisonTable
+        title="Compare the most useful next pages at a glance."
+        intro="This gives searchers a fast way to decide which route answers their question best before they click deeper."
+        rows={comparisonRows}
+      />
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
         <div className="rounded-[2.2rem] border border-navy/8 bg-[#173247] px-6 py-8 text-white shadow-[0_24px_60px_rgba(23,50,71,0.16)] sm:px-10 sm:py-12">
@@ -219,6 +236,12 @@ export default function BackwaterGuidePage({
           </div>
         </div>
       </section>
+
+      <QuestionAnswerList
+        title="Fast answers before you open the full FAQ."
+        intro="These question-and-answer summaries surface the most common planning doubts right in the main page flow."
+        items={quickQuestions}
+      />
 
       <section className="bg-[#f4f8fa] px-4 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-7xl">
