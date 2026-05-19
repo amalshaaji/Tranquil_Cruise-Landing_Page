@@ -658,7 +658,7 @@ export default function ServicePageTemplate({
                 {service.ctaText}
               </Link>
               <Link
-                href="/experience"
+                href="/gallery"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
               >
                 Explore All Experiences

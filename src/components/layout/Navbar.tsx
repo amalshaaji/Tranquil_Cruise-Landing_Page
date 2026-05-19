@@ -9,7 +9,7 @@ import { services } from "@/lib/services-data";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/experience", label: "Gallery" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/reviews", label: "Reviews" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -38,7 +38,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const activeHref = useMemo(() => {
-    if (pathname.startsWith("/experience")) return "/experience";
+    if (pathname.startsWith("/gallery") || pathname.startsWith("/experience")) return "/gallery";
     return pathname;
   }, [pathname]);
 
@@ -112,7 +112,7 @@ export default function Navbar() {
                       <div className="mt-3 border-t border-white/12 pt-3">
                         <Link
                           role="menuitem"
-                          href="/experience"
+                          href="/gallery"
                           className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                           onClick={() => setDestinationsOpen(false)}
                         >
@@ -206,7 +206,7 @@ export default function Navbar() {
               <div className="mt-3 border-t border-white/12 pt-3">
                 <Link
                   role="menuitem"
-                  href="/experience"
+                  href="/gallery"
                   className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                   onClick={() => setDestinationsOpen(false)}
                 >
@@ -364,7 +364,7 @@ export default function Navbar() {
                             <div className={`mt-3 pt-3 ${dropdownDivider}`}>
                               <Link
                                 role="menuitem"
-                                href="/experience"
+                                href="/gallery"
                                 className={`flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition ${dropdownCta}`}
                                 onClick={() => setDestinationsOpen(false)}
                               >

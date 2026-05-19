@@ -3,29 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-const galleryItems = [
-  { src: "/images/experience-gallery/IMG_1810.webp", alt: "Guests enjoying a blue country boat ride across the backwaters" },
-  { src: "/images/experience-gallery/IMG_3677.webp", alt: "Couple on a country boat ride through the palm-lined backwaters" },
-  { src: "/images/experience-gallery/IMG_3781.webp", alt: "Traditional backwater boat resting by the shore" },
-  { src: "/images/experience-gallery/IMG_4387.webp", alt: "Golden canal route through the backwaters at sunset" },
-  { src: "/images/experience-gallery/IMG_4390.webp", alt: "Kayakers crossing the calm backwaters at dusk" },
-  { src: "/images/experience-gallery/IMG_4441.webp", alt: "Soft pink sky above a quiet backwater channel" },
-  { src: "/images/experience-gallery/IMG_4442.webp", alt: "Sunset light over a narrow backwater passage" },
-  { src: "/images/experience-gallery/IMG_4499.webp", alt: "Evening reflections across a peaceful village canal" },
-  { src: "/images/experience-gallery/IMG_4535.webp", alt: "Warm sunset glow over the Kerala backwaters" },
-  { src: "/images/experience-gallery/IMG_4536.webp", alt: "Silhouetted trees and canal under a late-evening sky" },
-  { src: "/images/experience-gallery/IMG_4539.webp", alt: "Sunset over the canal with palm silhouettes" },
-  { src: "/images/experience-gallery/IMG_4575.webp", alt: "Calm orange sunset reflected on the backwaters" },
-  { src: "/images/experience-gallery/IMG_4642.webp", alt: "Guest photographing the sunset from a country boat" },
-  { src: "/images/experience-gallery/IMG_4699.webp", alt: "Sunlit backwater route with palm trees and open sky" },
-  { src: "/images/experience-gallery/IMG_4700.webp", alt: "Boat ride along a canal in the evening light" },
-  { src: "/images/experience-gallery/IMG_4709.webp", alt: "Sunset clouds above houseboats on the water" },
-  { src: "/images/experience-gallery/IMG_4787.webp", alt: "Wide sunset horizon across the open backwaters" },
-  { src: "/images/experience-gallery/IMG_4945.webp", alt: "Orange evening sun over a still canal" },
-  { src: "/images/experience-gallery/IMG_6789.webp", alt: "Quiet canal lined with leaning coconut palms" },
-  { src: "/images/experience-gallery/IMG_7239.webp", alt: "Guests cruising slowly through a shaded narrow canal" },
-] as const;
+import { galleryImages } from "@/lib/gallery-data";
 
 const gallerySizes: ("tall" | "wide")[] = [
   "tall",
@@ -40,7 +18,7 @@ const gallerySizes: ("tall" | "wide")[] = [
 
 export default function GuestMomentsGallery() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
-  const activeImage = activeImageIndex !== null ? galleryItems[activeImageIndex] : null;
+  const activeImage = activeImageIndex !== null ? galleryImages[activeImageIndex] : null;
 
   useEffect(() => {
     if (activeImageIndex === null) return;
@@ -101,7 +79,7 @@ export default function GuestMomentsGallery() {
 
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
-          {galleryItems.map((item, index) => {
+          {galleryImages.map((item, index) => {
             const gallerySize = gallerySizes[index % gallerySizes.length];
 
             return (
@@ -138,8 +116,18 @@ export default function GuestMomentsGallery() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute bottom-3 right-3 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                  Zoom
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4 text-white">
+                  <div className="translate-y-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <p className="max-w-[16rem] text-sm font-semibold leading-snug">
+                      {item.title}
+                    </p>
+                    <p className="mt-2 max-w-[16rem] text-xs leading-5 text-white/80">
+                      {item.location}
+                    </p>
+                  </div>
+                  <div className="absolute bottom-4 right-4 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+                    Zoom
+                  </div>
                 </div>
               </motion.button>
             );
@@ -173,6 +161,17 @@ export default function GuestMomentsGallery() {
               sizes="100vw"
               className="object-contain"
             />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/88 via-black/45 to-transparent px-5 py-6 text-white sm:px-7">
+              <p className="text-lg font-semibold leading-tight sm:text-xl">
+                {activeImage.title}
+              </p>
+              <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-white/72">
+                {activeImage.location}
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/82 sm:text-base">
+                {activeImage.caption}
+              </p>
+            </div>
           </div>
         </div>
       ) : null}

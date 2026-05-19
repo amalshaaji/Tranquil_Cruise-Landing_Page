@@ -44,14 +44,14 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
         description={listing.subtitle}
         crumbs={[
           { label: "Home", href: "/" },
-          { label: "Gallery", href: "/experience" },
+          { label: "Gallery", href: "/gallery" },
           { label: labelFor(listing.type) },
         ]}
         sideLabel="Location"
         sideValue={`${listing.location} · ${listing.duration} · Up to ${listing.maxGuests} guests`}
         actions={
           <Link
-            href="/experience"
+            href="/gallery"
             className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-foreground transition hover:bg-slate-50"
           >
             Back to gallery

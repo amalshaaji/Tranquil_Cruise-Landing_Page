@@ -165,7 +165,7 @@ export default function AboutPage() {
         actions={
           <>
             <Link
-              href="/experience"
+              href="/gallery"
               className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8]"
             >
               Explore gallery

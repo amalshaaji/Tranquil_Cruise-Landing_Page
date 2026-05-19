@@ -220,7 +220,7 @@ export default function AlappuzhaVsKumarakomPage() {
         primaryCtaLabel="See Alappuzha ideas"
         primaryCtaHref="/things-to-do-in-alappuzha"
         secondaryCtaLabel="Browse experiences"
-        secondaryCtaHref="/experience"
+        secondaryCtaHref="/gallery"
         ctaTitle="Use the comparison, then plan the destination that fits better"
         ctaText="If Alappuzha feels like the better match after this comparison, the most useful next step is usually choosing the right local format and timing rather than continuing to compare destination names."
       />

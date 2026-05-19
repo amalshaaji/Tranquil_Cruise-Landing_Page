@@ -140,7 +140,7 @@ export default function ServiceCards({
 }) {
   function categoryHref(type: ServiceType) {
     if (type === "kayaking") return "/kayaking";
-    return `/experience?category=${encodeURIComponent(type)}`;
+    return `/gallery?category=${encodeURIComponent(type)}`;
   }
 
   return (

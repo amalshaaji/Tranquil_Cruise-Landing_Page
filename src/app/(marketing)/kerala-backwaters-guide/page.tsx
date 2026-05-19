@@ -220,7 +220,7 @@ export default function KeralaBackwatersGuidePage() {
         primaryCtaLabel="See Alleppey tour guide"
         primaryCtaHref="/alleppey-backwater-tour"
         secondaryCtaLabel="Browse experiences"
-        secondaryCtaHref="/experience"
+        secondaryCtaHref="/gallery"
         ctaTitle="Use the guide, then choose the format that fits your trip"
         ctaText="If you already know you want Alleppey specifically, move next to the dedicated Alleppey backwater tour page. If you are still comparing formats, the experience gallery and service pages will help narrow the decision."
       />

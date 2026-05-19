@@ -218,7 +218,7 @@ export default function AlleppeyBackwaterTourPage() {
         faqIntro="These answers focus on format choice, trip length, and what makes one Alleppey tour style better than another."
         faqs={faqs}
         primaryCtaLabel="Browse experiences"
-        primaryCtaHref="/experience"
+        primaryCtaHref="/gallery"
         secondaryCtaLabel="Compare houseboats"
         secondaryCtaHref="/houseboats"
         ctaTitle="Use the tour guide, then book the format that matches your trip"

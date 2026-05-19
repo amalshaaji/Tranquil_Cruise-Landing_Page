@@ -220,7 +220,7 @@ export default function BestTimeToVisitAlappuzhaPage() {
         primaryCtaLabel="See things to do"
         primaryCtaHref="/things-to-do-in-alappuzha"
         secondaryCtaLabel="Browse experiences"
-        secondaryCtaHref="/experience"
+        secondaryCtaHref="/gallery"
         ctaTitle="Use the timing guide, then plan the experience that suits the season"
         ctaText="The season question becomes much easier once you know whether you want a short canal ride, a full day cruise, or a slower overnight stay with more time to enjoy the backwaters."
       />

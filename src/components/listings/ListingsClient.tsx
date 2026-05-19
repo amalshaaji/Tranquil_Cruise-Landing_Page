@@ -22,8 +22,8 @@ export default function ListingsClient() {
     <section className="pb-16 sm:pb-20">
       <InnerPageHeader
         eyebrow="Gallery"
-        title="Backwater stories, captured by guests."
-        description="A living scrapbook of twilight rides, sunrise silhouettes, and the quiet in-between moments — all shot by real guests on the water."
+        title="Alleppey backwater stories, captured by guests."
+        description="A descriptive Tranquil Cruise gallery of Alleppey, Alappuzha, Kuttanad, and Vembanad Lake moments, with real guest photography and captioned backwater scenes."
         crumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]}
       />
 

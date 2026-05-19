@@ -218,7 +218,7 @@ export default function ThingsToDoInAlappuzhaPage() {
         faqIntro="These answers stay focused on local trip choices, not filler sightseeing lists."
         faqs={faqs}
         primaryCtaLabel="Browse experiences"
-        primaryCtaHref="/experience"
+        primaryCtaHref="/gallery"
         secondaryCtaLabel="See backwater tour guide"
         secondaryCtaHref="/alleppey-backwater-tour"
         ctaTitle="Use the ideas page, then pick the trip style that fits"

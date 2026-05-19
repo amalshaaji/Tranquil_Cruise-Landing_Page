@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { galleryImages } from "@/lib/gallery-data";
 import { SITE_ROUTES } from "@/lib/site";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -12,5 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
+    images:
+      route.path === "/gallery"
+        ? galleryImages.map((image) => absoluteUrl(image.src))
+        : undefined,
   }));
 }

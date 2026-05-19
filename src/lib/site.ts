@@ -47,7 +47,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/kayaking", changeFrequency: "weekly", priority: 0.85 },
   { path: "/rooms", changeFrequency: "weekly", priority: 0.8 },
   { path: "/spa", changeFrequency: "monthly", priority: 0.75 },
-  { path: "/experience", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/gallery", changeFrequency: "weekly", priority: 0.8 },
   { path: "/reviews", changeFrequency: "weekly", priority: 0.8 },
   { path: "/kerala-backwaters-guide", changeFrequency: "weekly", priority: 0.8 },
   { path: "/alleppey-backwater-tour", changeFrequency: "weekly", priority: 0.8 },
