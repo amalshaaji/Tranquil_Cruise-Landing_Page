@@ -68,7 +68,7 @@ export default function RootLayout({
       className={`${editorialFont.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col pb-28 text-foreground xl:pb-0">
+      <body className="min-h-full flex flex-col text-foreground">
         <GoogleTagManagerNoscript />
         <GoogleAnalytics />
         <Navbar />

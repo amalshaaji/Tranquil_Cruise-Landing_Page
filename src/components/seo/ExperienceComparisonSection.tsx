@@ -8,10 +8,10 @@ const options = [
       "Best for couples, families, and private groups who want a slower overnight stay, more comfort, and time to dine and unwind on the water.",
   },
   {
-    title: "Shikara / Shikkara",
+    title: "Shikara",
     href: "/shikkara",
     description:
-      "Best for guests who want an easy scenic ride through narrower canals, especially for sunrise, sunset, or a shorter private backwater outing.",
+      "Best for guests who want a relaxed scenic ride through narrower canals, especially for sunrise, sunset, or a shorter private backwater trip.",
   },
   {
     title: "Country boat",

@@ -55,6 +55,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/spa", changeFrequency: "monthly", priority: 0.75 },
   { path: "/gallery", changeFrequency: "weekly", priority: 0.8 },
   { path: "/reviews", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/partners", changeFrequency: "monthly", priority: 0.65 },
   { path: "/kerala-backwaters-guide", changeFrequency: "weekly", priority: 0.8 },
   { path: "/alleppey-backwater-tour", changeFrequency: "weekly", priority: 0.8 },
   { path: "/things-to-do-in-alappuzha", changeFrequency: "weekly", priority: 0.8 },

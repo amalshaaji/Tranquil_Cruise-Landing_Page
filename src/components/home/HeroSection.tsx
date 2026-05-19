@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const heroDetails = [
   "Private houseboats in Alleppey",
-  "Scenic shikara rides",
+  "Scenic canal cruises",
   "Easy Kerala backwater stays",
 ];
 
@@ -83,7 +83,7 @@ export default function HeroSection() {
               </div>
 
               <h1 className="max-w-[19rem] text-balance text-[1rem] font-semibold uppercase leading-[1.45] tracking-[0.16em] text-white/96 sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
-                Private Houseboats, Shikara Rides &amp; Backwater Stays in Alleppey
+                Private Houseboats &amp; Backwater Stays in Alleppey
               </h1>
 
               <button

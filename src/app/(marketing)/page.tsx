@@ -48,9 +48,9 @@ const serviceCards = [
   },
   {
     eyebrow: "Slow Cruising",
-    title: "Scenic Shikkara Rides",
-    copy: "Relaxed rides through quiet canals, perfect for couples, families, or a soft evening on the water.",
-    href: "/shikkara",
+    title: "Scenic Canal Cruises",
+    copy: "Relaxed cruising through quiet canals, perfect for couples, families, or a soft evening on the water.",
+    href: "/alleppey-backwater-tour",
     image: "/images/shikkara-card.webp",
   },
   {
@@ -128,7 +128,7 @@ const routeHighlights = [
 const trustSignals = [
   "Private planning help based on dates, group size, and comfort level",
   "Google-reviewed Alleppey backwater operator with verified guest feedback",
-  "Houseboats, shikara rides, country boats, kayaking, rooms, and wellness in one place",
+  "Houseboats, country boats, kayaking, rooms, and wellness in one place",
   "Route guidance across Alleppey, Alappuzha, Kuttanad, and Vembanad Lake",
 ] as const;
 
@@ -689,13 +689,13 @@ export default async function Home() {
                     Plan Your Visit
                   </span>
                   <h2 className="mt-4 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
-                    Private Houseboats, Shikara Rides &amp; Backwater Stays in Alleppey
+                    Private Houseboats &amp; Backwater Stays in Alleppey
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-foreground/68 sm:text-base">
                     Speak with us directly if you want help choosing between a
-                    private houseboat cruise, a Shikara or Shikkara ride, a
-                    country boat route, a kayaking trail, or a calm stay by the
-                    water in Alappuzha.
+                    private houseboat cruise, a slower canal route, a country
+                    boat journey, a kayaking trail, or a calm stay by the water
+                    in Alappuzha.
                   </p>
                 </div>
                 <div className="rounded-[1.8rem] border border-navy/10 bg-white p-6">

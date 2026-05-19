@@ -613,8 +613,6 @@ export default function ServicePageTemplate({
         <ServiceGallery images={service.gallery} />
       )}
 
-      {isHouseboatsPage ? <ServiceGallery images={service.gallery} /> : null}
-
       <ExperienceComparisonSection />
 
       {faqs.length > 0 ? (
