@@ -4,9 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const heroDetails = [
-  "Private houseboats",
-  "Local guidance",
-  "Easygoing Kerala stays",
+  "Private houseboats in Alleppey",
+  "Scenic canal cruises",
+  "Easy Kerala backwater stays",
 ];
 
 export default function HeroSection() {
@@ -23,9 +23,9 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/home-hero-rainbow-houseboat.jpg"
-          alt="Traditional Kerala houseboat resting on calm water beneath a rainbow"
+          alt="Private Alleppey houseboat cruising through the Kerala backwaters beneath a rainbow"
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover object-[58%_54%] scale-[1.08] sm:object-[center_57%] sm:scale-100"
         />
@@ -83,7 +83,7 @@ export default function HeroSection() {
               </div>
 
               <h1 className="max-w-[19rem] text-balance text-[1rem] font-semibold uppercase leading-[1.45] tracking-[0.16em] text-white/96 sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
-                Backwater stays that feel calm, comfortable, and easy
+                Private Houseboats &amp; Backwater Stays in Alleppey
               </h1>
 
               <button

@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
+import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
+import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
+import { getInternalLinkGraph, getServiceFaqs } from "@/lib/seo-content";
 
 const whatsappHref = "https://wa.me/917994073491";
 
@@ -50,25 +55,6 @@ const planningPrompts = [
   "Perfect for narrow canal routes",
 ];
 
-const faqs = [
-  {
-    question: "Who is a shikkara ride best suited for?",
-    answer: "It is a strong fit for couples, small families, and guests who want a quieter, shorter, and more intimate backwater experience than a larger boat cruise.",
-  },
-  {
-    question: "How long does a typical shikkara ride last?",
-    answer: "Most rides are planned around 1 to 3 hours depending on the route, timing, and whether you want a sunrise, daytime, or sunset experience.",
-  },
-  {
-    question: "What makes this different from a houseboat experience?",
-    answer: "A shikkara is smaller, more open, and better suited to scenic movement through narrower canals. It is lighter, simpler, and more focused on the ride itself than an overnight stay.",
-  },
-  {
-    question: "Can we enquire about custom timing or a private ride?",
-    answer: "Yes. Share your preferred timing, group size, and whether you want a quieter village route or a golden-hour plan, and we can shape the ride around that.",
-  },
-];
-
 const galleryImages = [
   {
     src: "/images/shikkara-gallery/shikkara-exterior-day.webp",
@@ -102,6 +88,9 @@ const fadeIn = {
 };
 
 export default function ShikkaraExperiencePage() {
+  const faqs = getServiceFaqs("shikkara");
+  const internalLinkGraph = getInternalLinkGraph("/shikkara");
+
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:pt-44">
@@ -112,11 +101,17 @@ export default function ShikkaraExperiencePage() {
             variants={fadeIn}
             className="min-w-0 lg:col-span-8"
           >
+            <PageBreadcrumbs
+              crumbs={[
+                { label: "Home", href: "/" },
+                { label: "Shikara Rides" },
+              ]}
+            />
             <div className="mb-4 inline-block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-teal-600/80 sm:text-[0.7rem] sm:tracking-[0.3em]">
               Heritage Ride Collection
             </div>
             <h1 className="mb-4 text-[clamp(2.15rem,10vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
-              A slower canal journey
+              Private Shikara Rides in Alleppey
               <span className="hidden sm:inline"> <br /></span>{" "}
               <span className="font-serif italic text-navy/40">with softer views and local rhythm.</span>
             </h1>
@@ -161,16 +156,17 @@ export default function ShikkaraExperiencePage() {
           >
             <div className="group relative w-full rounded-[1.75rem] border border-navy/5 bg-white p-5 text-center shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] transition-all duration-500 hover:-translate-y-2 sm:rounded-[2.5rem] sm:p-8">
               <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                Guest Experience
+                Best Fit
               </div>
-              <div className="text-5xl font-bold tracking-tighter text-sand sm:text-7xl">
-                9.0
+              <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                1 to 3 hours
               </div>
-              <div className="mt-2 text-xs font-medium italic text-foreground/40 sm:text-sm">
-                &quot;Peaceful and scenic&quot;
+              <div className="mt-3 text-sm leading-7 text-foreground/50 sm:text-base">
+                Best for couples, small families, and guests who want calm canal
+                views without committing to an overnight cruise.
               </div>
               <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
-                Verified Ride Experience
+                Private Scenic Ride
               </div>
             </div>
           </motion.div>
@@ -329,51 +325,13 @@ export default function ShikkaraExperiencePage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-16 max-w-4xl px-4 sm:mt-24 sm:px-6">
-        <div className="mb-12 text-center sm:mb-16">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="mb-3 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80"
-          >
-            Guest Inquiries
-          </motion.span>
-          <motion.h3
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-3xl font-semibold tracking-tight text-sand sm:text-5xl"
-          >
-            Common Questions
-          </motion.h3>
-          <p className="mt-4 text-base text-foreground/50 sm:text-lg">
-            Quick answers before you choose your backwater timing.
-          </p>
-        </div>
-
-        <div className="grid gap-4">
-          {faqs.map((faq) => (
-            <details
-              key={faq.question}
-              className="group rounded-[2rem] border border-navy/5 bg-white transition-all duration-300 open:shadow-xl open:shadow-navy-500/5"
-            >
-              <summary className="flex list-none cursor-pointer items-start justify-between gap-4 p-5 text-left transition-all group-hover:bg-[#fbfbfc] sm:items-center sm:p-6">
-                <span className="text-base font-semibold leading-tight text-[#173247] sm:text-lg">
-                  {faq.question}
-                </span>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-50 text-[#173247] transition-all group-open:rotate-45 group-open:bg-[#173247] group-open:text-white">
-                  <span className="text-xl font-light">+</span>
-                </div>
-              </summary>
-              <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                <div className="mb-4 h-px w-full bg-navy/5" />
-                <p className="text-sm leading-relaxed text-foreground/70 sm:text-lg">
-                  {faq.answer}
-                </p>
-              </div>
-            </details>
-          ))}
-        </div>
-      </section>
+      <ExperienceComparisonSection />
+      <FaqSection
+        title="FAQs about private Shikara rides in Alleppey"
+        intro="Quick answers before you choose your backwater timing."
+        faqs={faqs}
+      />
+      {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
     </main>
   );
 }

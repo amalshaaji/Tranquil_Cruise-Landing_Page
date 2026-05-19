@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { startTransition, useEffect, useMemo, useState } from "react";
@@ -8,7 +9,8 @@ import { services } from "@/lib/services-data";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/experience", label: "Gallery" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/reviews", label: "Reviews" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -36,7 +38,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const activeHref = useMemo(() => {
-    if (pathname.startsWith("/experience")) return "/experience";
+    if (pathname.startsWith("/gallery") || pathname.startsWith("/experience")) return "/gallery";
     return pathname;
   }, [pathname]);
 
@@ -110,7 +112,7 @@ export default function Navbar() {
                       <div className="mt-3 border-t border-white/12 pt-3">
                         <Link
                           role="menuitem"
-                          href="/experience"
+                          href="/gallery"
                           className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                           onClick={() => setDestinationsOpen(false)}
                         >
@@ -204,7 +206,7 @@ export default function Navbar() {
               <div className="mt-3 border-t border-white/12 pt-3">
                 <Link
                   role="menuitem"
-                  href="/experience"
+                  href="/gallery"
                   className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                   onClick={() => setDestinationsOpen(false)}
                 >
@@ -252,42 +254,39 @@ export default function Navbar() {
 
   // Non-home pages
   const navBg = isServicePage
-    ? "border border-[#6f95ab]/20 bg-[rgba(16,36,51,0.58)] shadow-[0_20px_60px_rgba(10,24,35,0.28)]"
-    : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.94)] shadow-[0_26px_70px_rgba(23,50,71,0.12)]";
+    ? "border border-[#88aabd]/24 bg-[linear-gradient(180deg,rgba(18,38,52,0.82)_0%,rgba(21,45,61,0.76)_100%)] shadow-[0_22px_60px_rgba(10,24,35,0.28)]"
+    : "border border-[#d4e2ea] bg-[linear-gradient(180deg,rgba(252,254,255,0.96)_0%,rgba(241,247,250,0.94)_100%)] shadow-[0_26px_70px_rgba(23,50,71,0.12)]";
 
-  const textColor = isServicePage ? "text-white" : "text-[#173247]";
-  const subtleText = isServicePage ? "text-[#d7e8f2]/74" : "text-[#173247]/48";
-  const logoBg = isServicePage
-    ? "bg-[#6f95ab]/16 shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
-    : "bg-[#173247] shadow-[0_10px_24px_rgba(23,50,71,0.16)]";
-  const badgeBg = isServicePage
-    ? "border border-[#6f95ab]/22 bg-[#6f95ab]/12 text-[#e2eef5]/82 shadow-[0_8px_18px_rgba(0,0,0,0.14)]"
-    : "border border-[#d7e3ea] bg-white/80 text-[#173247]/56 shadow-[0_8px_18px_rgba(23,50,71,0.06)]";
-  const dotColor = isServicePage ? "bg-[#9ec0d3]" : "bg-[#b89356]";
-  const navPillBg = isServicePage ? "bg-[#6f95ab]/12" : "bg-[#edf4f7]";
+  const navPillBg = isServicePage
+    ? "border border-[#88aabd]/14 bg-[#88aabd]/10"
+    : "border border-[#dbe8ef] bg-[#eef5f8]";
   const dropdownBg = isServicePage
-    ? "border border-[#6f95ab]/22 bg-[rgba(14,31,44,0.94)] shadow-black/20"
-    : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.14)]";
-  const dropdownLabel = isServicePage ? "text-[#d7e8f2]/54" : "text-[#173247]/44";
-  const dropdownItemText = isServicePage ? "text-[#eef7fb]/88 hover:bg-white/10 hover:text-white" : "text-[#173247]/84 hover:bg-[#edf4f7] hover:text-[#173247]";
+    ? "border border-[#88aabd]/18 bg-[rgba(15,34,48,0.95)] shadow-black/20"
+    : "border border-[#d4e2ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.14)]";
+  const dropdownLabel = isServicePage ? "text-[#cfe0ea]/56" : "text-[#173247]/44";
+  const dropdownItemText = isServicePage
+    ? "text-[#eef7fb]/88 hover:bg-white/10 hover:text-white"
+    : "text-[#173247]/84 hover:bg-[#edf4f7] hover:text-[#173247]";
   const dropdownSubtext = isServicePage ? "text-[#c6dbe8]/64" : "text-[#173247]/52";
-  const dropdownDivider = isServicePage ? "border-t border-[#6f95ab]/16" : "border-t border-[#d7e3ea]";
+  const dropdownDivider = isServicePage ? "border-t border-[#88aabd]/16" : "border-t border-[#d4e2ea]";
   const dropdownCta = isServicePage
-    ? "border border-[#6f95ab]/22 bg-[#6f95ab]/14 text-[#f4fbff] hover:bg-[#9ec0d3] hover:text-[#173247]"
+    ? "border border-[#88aabd]/22 bg-[#88aabd]/16 text-[#f4fbff] hover:bg-[#b4cddb] hover:text-[#173247]"
     : "bg-[#173247] text-white hover:bg-[#234760]";
-  const navLinkActive = "bg-[#173247] text-white shadow-sm";
+  const navLinkActive = isServicePage
+    ? "bg-[#d9c28a] text-[#173247] shadow-[0_8px_22px_rgba(0,0,0,0.16)]"
+    : "bg-[#173247] text-white shadow-[0_8px_22px_rgba(23,50,71,0.14)]";
   const navLinkInactive = isServicePage
     ? "text-[#eef7fb]/82 hover:bg-white/12 hover:text-white"
     : "text-[#173247]/76 hover:bg-white hover:text-[#173247]";
   const bookNowBtn = isServicePage
-    ? "border border-[#6f95ab]/20 bg-[#6f95ab]/14 shadow-[0_12px_30px_rgba(0,0,0,0.18)] hover:bg-[#9ec0d3] hover:text-[#173247]"
-    : "bg-[#173247] shadow-[0_12px_30px_rgba(23,50,71,0.14)] hover:bg-[#234760]";
+    ? "border border-[#7fb7b2]/34 bg-[#7fb7b2] text-[#173247] shadow-[0_12px_30px_rgba(0,0,0,0.18)] hover:bg-[#9bc8c4]"
+    : "bg-[#6f95ab] text-white shadow-[0_12px_30px_rgba(23,50,71,0.14)] hover:bg-[#84a9bc]";
   const mobileMenuBtn = isServicePage
-    ? "border border-[#6f95ab]/20 bg-[#6f95ab]/14 hover:bg-[#9ec0d3] hover:text-[#173247]"
-    : "bg-[#173247] hover:bg-[#234760]";
+    ? "border border-[#88aabd]/22 bg-[#88aabd]/14 text-[#f3f9fc] hover:bg-[#d9c28a] hover:text-[#173247]"
+    : "bg-[#173247] text-white hover:bg-[#234760]";
   const mobilePanelBg = isServicePage
-    ? "border border-[#6f95ab]/20 bg-[rgba(14,31,44,0.9)] shadow-black/20"
-    : "border border-[#d7e3ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.12)]";
+    ? "border border-[#88aabd]/20 bg-[rgba(14,31,44,0.92)] shadow-black/20"
+    : "border border-[#d4e2ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.12)]";
   const mobileLinkInactive = isServicePage
     ? "text-[#eef7fb]/84 hover:bg-white/10 hover:text-white"
     : "text-[#173247]/80 hover:bg-[#edf4f7] hover:text-[#173247]";
@@ -297,35 +296,23 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl">
         <div className={`rounded-[1.4rem] px-2 py-2 backdrop-blur-xl sm:rounded-[2rem] sm:px-4 sm:py-3 ${navBg}`}>
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Logo */}
-            <Link
-              href="/"
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 hover:scale-[1.03] sm:h-14 sm:w-14 ${logoBg}`}
-              aria-label="Go to homepage"
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3.5 15.5c2.2-3 4.7-4.5 7.5-4.5 2.1 0 4.1.8 5.9 2.3 1.1.9 2.1 2 3.1 3.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-                <path d="M7 14.5c.6-2.6 2-5 4.3-7 1.4 1 2.4 2.2 3.1 3.6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-                <path d="M5 18.5h13.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-              </svg>
-            </Link>
-
             <div className="min-w-0 flex-1 lg:px-2">
               {/* Desktop nav */}
               <div className="hidden items-center justify-between gap-5 lg:flex">
                 {/* Brand */}
-                <div className="min-w-[220px]">
-                  <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.24em] ${badgeBg}`}>
-                    <span className={`h-1.5 w-1.5 rounded-full ${dotColor}`} />
-                    <span>Kerala Backwaters</span>
-                  </div>
-                  <p className={`mt-3 font-[var(--font-display)] text-[1.6rem] font-semibold uppercase leading-none tracking-[0.28em] ${textColor}`}>
-                    Tranquil
-                  </p>
-                  <p className={`mt-1 pl-[0.26em] font-[var(--font-display)] text-[1.75rem] uppercase leading-none tracking-[0.34em] ${isServicePage ? "text-white/92" : "text-[#173247]/86"}`}>
-                    Cruise
-                  </p>
-                </div>
+                <Link
+                  href="/"
+                  className="relative block h-[4.8rem] w-[10.5rem] shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02]"
+                  aria-label="Go to homepage"
+                >
+                  <Image
+                    src="/images/tranquil-cruise-logo.webp"
+                    alt="Tranquil Cruise"
+                    fill
+                    sizes="168px"
+                    className="object-contain object-center scale-[2.35]"
+                  />
+                </Link>
 
                 {/* Nav links */}
                 <nav className={`flex items-center justify-center gap-2 rounded-full px-3 py-2 text-sm ${navPillBg}`} aria-label="Primary">
@@ -377,7 +364,7 @@ export default function Navbar() {
                             <div className={`mt-3 pt-3 ${dropdownDivider}`}>
                               <Link
                                 role="menuitem"
-                                href="/experience"
+                                href="/gallery"
                                 className={`flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition ${dropdownCta}`}
                                 onClick={() => setDestinationsOpen(false)}
                               >
@@ -414,17 +401,19 @@ export default function Navbar() {
 
               {/* Mobile brand */}
               <div className="lg:hidden">
-                <div className="flex min-w-0 flex-col">
-                  <span className={`truncate text-[0.5rem] font-semibold uppercase tracking-[0.18em] sm:text-[0.55rem] sm:tracking-[0.22em] ${subtleText}`}>
-                    Kerala Backwaters
-                  </span>
-                  <span className={`mt-1 truncate font-[var(--font-display)] text-[0.9rem] font-semibold uppercase leading-none tracking-[0.12em] sm:text-[1rem] sm:tracking-[0.24em] ${textColor}`}>
-                    Tranquil
-                  </span>
-                  <span className={`mt-0.5 truncate font-[var(--font-display)] text-[0.9rem] font-semibold uppercase leading-none tracking-[0.14em] sm:text-[1rem] sm:tracking-[0.28em] ${textColor}`}>
-                    Cruise
-                  </span>
-                </div>
+                <Link
+                  href="/"
+                  className="relative block h-10 w-[7.25rem] overflow-hidden"
+                  aria-label="Go to homepage"
+                >
+                  <Image
+                    src="/images/tranquil-cruise-logo.webp"
+                    alt="Tranquil Cruise"
+                    fill
+                    sizes="116px"
+                    className="object-contain object-center scale-[2.35]"
+                  />
+                </Link>
               </div>
             </div>
 

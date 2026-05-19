@@ -3,7 +3,9 @@ import { services } from "@/lib/services-data";
 
 const quickLinks = [
   { href: "/", label: "Home" },
-  { href: "/experience", label: "Gallery" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/partners", label: "Partners" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

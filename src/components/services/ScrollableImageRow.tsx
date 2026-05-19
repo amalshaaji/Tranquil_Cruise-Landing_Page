@@ -151,7 +151,6 @@ export default function ScrollableImageRow({
                 fill
                 sizes="(max-width: 639px) 100vw, (max-width: 1200px) 80vw, 60rem"
                 className="object-cover"
-                priority
               />
             </motion.div>
           </AnimatePresence>

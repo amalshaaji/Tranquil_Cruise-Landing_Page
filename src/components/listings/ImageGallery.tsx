@@ -33,7 +33,6 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 60vw"
-                preload={activeIndex === 0}
               />
             </motion.div>
           </AnimatePresence>

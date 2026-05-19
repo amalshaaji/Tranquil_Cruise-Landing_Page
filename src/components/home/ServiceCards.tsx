@@ -140,7 +140,7 @@ export default function ServiceCards({
 }) {
   function categoryHref(type: ServiceType) {
     if (type === "kayaking") return "/kayaking";
-    return `/experience?category=${encodeURIComponent(type)}`;
+    return `/gallery?category=${encodeURIComponent(type)}`;
   }
 
   return (
@@ -218,7 +218,6 @@ export default function ServiceCards({
                     alt={c.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover/link:scale-125"
-                    preload={idx < 2}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {/* Image Overlay Shimmer */}

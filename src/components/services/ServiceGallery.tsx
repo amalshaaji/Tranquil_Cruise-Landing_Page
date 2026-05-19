@@ -6,10 +6,8 @@ import { useRef } from "react";
 
 export default function ServiceGallery({
   images,
-  title,
 }: {
   images: string[];
-  title: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -18,21 +16,6 @@ export default function ServiceGallery({
   return (
     <section className="px-4 pb-14 sm:px-6 sm:pb-20">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mb-8 sm:mb-10"
-        >
-          <div className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
-            Gallery
-          </div>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
-            A Closer Look
-          </h2>
-        </motion.div>
-
         {/* Gallery Grid */}
         {images.length === 1 ? (
           <motion.div
@@ -45,7 +28,7 @@ export default function ServiceGallery({
             <div className="relative aspect-[16/9]">
               <Image
                 src={images[0]}
-                alt={`${title} gallery`}
+                alt=""
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 80vw"
@@ -74,7 +57,7 @@ export default function ServiceGallery({
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={img}
-                    alt={`${title} — gallery image ${idx + 1}`}
+                    alt=""
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 40vw"

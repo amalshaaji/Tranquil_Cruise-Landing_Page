@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     // next/image optimization requires a server; disable for static export.
     unoptimized: true,
   },
+  // Normalize public URLs to the non-trailing-slash form used in canonicals.
   trailingSlash: false,
 };
 

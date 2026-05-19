@@ -15,7 +15,7 @@ export default function NotFound() {
           and discover another premium backwater experience.
         </p>
         <Link
-          href="/experience"
+          href="/gallery"
           className="mt-6 inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-ink shadow-sm shadow-gold/20 transition hover:bg-[#a5c1d8]"
         >
           Back to gallery
