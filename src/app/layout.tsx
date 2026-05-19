@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import GlobalConversionLayer from "@/components/conversion/GlobalConversionLayer";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -57,10 +58,11 @@ export default function RootLayout({
       className={`${editorialFont.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col text-foreground">
+      <body className="min-h-full flex flex-col pb-28 text-foreground xl:pb-0">
         <GoogleAnalytics />
         <Navbar />
         <TransitionProvider>{children}</TransitionProvider>
+        <GlobalConversionLayer />
         <Footer />
       </body>
     </html>
