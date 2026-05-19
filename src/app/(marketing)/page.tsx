@@ -14,16 +14,18 @@ import {
   createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
+  createSpeakableSchema,
   createReviewSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 import {
+  BUSINESS_COORDINATES,
   BUSINESS_HOURS,
+  INSTAGRAM_URL,
   BUSINESS_LOCATION,
   BUSINESS_PHONE,
   BUSINESS_PHONE_LINK,
-  SITE_URL,
   WHATSAPP_URL,
 } from "@/lib/site";
 
@@ -227,7 +229,7 @@ export default async function Home() {
         height: 630,
       },
     ],
-    sameAs: [GOOGLE_MAPS_PAGE_URL, WHATSAPP_URL],
+    sameAs: [GOOGLE_MAPS_PAGE_URL, WHATSAPP_URL, INSTAGRAM_URL],
     aggregateRating:
       googleReviewData?.rating && googleReviewData?.reviewCount
         ? {
@@ -237,30 +239,31 @@ export default async function Home() {
         : undefined,
     makesOffer: [
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Luxury Houseboat Stay", url: `${SITE_URL}/houseboats` },
+        name: "Luxury Houseboat Stay",
+        path: "/houseboats",
       },
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Shikkara Rides", url: `${SITE_URL}/shikkara` },
+        name: "Shikkara Rides",
+        path: "/shikkara",
       },
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Village Country Boat Rides", url: `${SITE_URL}/canoe-boats` },
+        name: "Village Country Boat Rides",
+        path: "/canoe-boats",
       },
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Backwater Kayaking", url: `${SITE_URL}/kayaking` },
+        name: "Backwater Kayaking",
+        path: "/kayaking",
       },
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Ayurvedic Spa", url: `${SITE_URL}/spa` },
+        name: "Ayurvedic Spa",
+        path: "/spa",
       },
       {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Waterside Rooms", url: `${SITE_URL}/rooms` },
+        name: "Waterside Rooms",
+        path: "/rooms",
       },
     ],
+    geo: BUSINESS_COORDINATES,
   });
   const touristTripJsonLd = createTouristTripSchema({
     name: "Alleppey Houseboat and Backwater Experience",
@@ -280,12 +283,31 @@ export default async function Home() {
 
   const breadcrumbJsonLd = createBreadcrumbSchema([{ name: "Home", path: "/" }]);
   const faqJsonLd = createFaqSchema(homepageFaqs);
+  const speakableJsonLd = createSpeakableSchema({
+    path: "/",
+    name: "Alleppey Houseboat & Backwater Cruises",
+    description:
+      "Private houseboats, shikara rides, and backwater stays in Alleppey with direct planning help.",
+    cssSelectors: ["main h1", "main section:nth-of-type(2) h2"],
+  });
+  const geoJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    name: "Tranquil Cruise Alappuzha",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: BUSINESS_COORDINATES.latitude,
+      longitude: BUSINESS_COORDINATES.longitude,
+    },
+  };
 
   return (
     <>
       <JsonLd
         data={[
           localBusinessJsonLd,
+          speakableJsonLd,
+          geoJsonLd,
           breadcrumbJsonLd,
           touristTripJsonLd,
           homepageImageSchema,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  BUSINESS_COORDINATES,
   BUSINESS_EMAIL,
   BUSINESS_LOCATION,
   BUSINESS_PHONE,
@@ -36,6 +37,48 @@ export type ReviewInput = {
   reviewUrl?: string | null;
 };
 
+export type GeoCoordinatesInput = {
+  latitude: number;
+  longitude: number;
+};
+
+export type AggregateRatingInput = {
+  ratingValue: number;
+  reviewCount: number;
+};
+
+export type OfferInput = {
+  name: string;
+  path: string;
+  description?: string;
+  category?: string;
+  price?: number | string;
+  priceCurrency?: string;
+  availability?: string;
+};
+
+export type VideoObjectInput = {
+  name: string;
+  description: string;
+  thumbnail: ImageObjectInput;
+  path?: string;
+  url?: string;
+  embedUrl?: string;
+  contentUrl?: string;
+  uploadDate?: string;
+  duration?: string;
+  inLanguage?: string;
+};
+
+export type SpeakableInput = {
+  path: string;
+  name: string;
+  description: string;
+  cssSelectors?: string[];
+  xpaths?: string[];
+  pageType?: "WebPage" | "Article";
+};
+
 export type TouristTripInput = {
   name: string;
   description: string;
@@ -52,11 +95,9 @@ export type LocalBusinessInput = {
   image?: ImageObjectInput;
   images?: ImageObjectInput[];
   sameAs?: string[];
-  aggregateRating?: {
-    ratingValue: number;
-    reviewCount: number;
-  };
-  makesOffer?: Record<string, unknown>[];
+  aggregateRating?: AggregateRatingInput;
+  makesOffer?: OfferInput[];
+  geo?: GeoCoordinatesInput;
 };
 
 export type LodgingBusinessInput = {
@@ -91,6 +132,14 @@ export function normalizeSitePath(path = "/") {
 
   const withLeadingSlash = path.startsWith("/") ? path : `/${path}`;
   return withLeadingSlash.replace(/\/+$/, "");
+}
+
+function resolveSchemaUrl(url: string) {
+  if (/^https?:\/\//.test(url)) {
+    return url;
+  }
+
+  return absoluteUrl(url);
 }
 
 export function createPageMetadata({
@@ -186,6 +235,104 @@ export function createImageObjectSchema({
   };
 }
 
+export function createGeoCoordinatesSchema({
+  latitude,
+  longitude,
+}: GeoCoordinatesInput) {
+  return {
+    "@type": "GeoCoordinates",
+    latitude,
+    longitude,
+  };
+}
+
+export function createAggregateRatingSchema({
+  ratingValue,
+  reviewCount,
+}: AggregateRatingInput) {
+  return {
+    "@type": "AggregateRating",
+    ratingValue,
+    reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  };
+}
+
+export function createOfferSchema({
+  name,
+  path,
+  description,
+  category,
+  price,
+  priceCurrency,
+  availability,
+}: OfferInput) {
+  return {
+    "@type": "Offer",
+    availability,
+    price,
+    priceCurrency,
+    itemOffered: {
+      "@type": "Service",
+      name,
+      description,
+      category,
+      url: absoluteUrl(path),
+    },
+  };
+}
+
+export function createVideoObjectSchema({
+  name,
+  description,
+  thumbnail,
+  path,
+  url,
+  embedUrl,
+  contentUrl,
+  uploadDate,
+  duration,
+  inLanguage = "en",
+}: VideoObjectInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name,
+    description,
+    url: resolveSchemaUrl(url ?? path ?? "/"),
+    mainEntityOfPage: path ? absoluteUrl(path) : undefined,
+    embedUrl: embedUrl ? resolveSchemaUrl(embedUrl) : undefined,
+    contentUrl: contentUrl ? resolveSchemaUrl(contentUrl) : undefined,
+    thumbnailUrl: absoluteUrl(thumbnail.path),
+    uploadDate,
+    duration,
+    inLanguage,
+  };
+}
+
+export function createSpeakableSchema({
+  path,
+  name,
+  description,
+  cssSelectors,
+  xpaths,
+  pageType = "WebPage",
+}: SpeakableInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": pageType,
+    name,
+    description,
+    url: absoluteUrl(path),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: cssSelectors?.length ? cssSelectors : undefined,
+      xpath: xpaths?.length ? xpaths : undefined,
+    },
+  };
+}
+
 export function createReviewSchema({
   authorName,
   reviewBody,
@@ -227,6 +374,8 @@ type ServiceSchemaInput = {
   description: string;
   path: string;
   serviceType?: string;
+  aggregateRating?: AggregateRatingInput;
+  makesOffer?: OfferInput[];
 };
 
 export function createServiceSchema({
@@ -234,6 +383,8 @@ export function createServiceSchema({
   description,
   path,
   serviceType,
+  aggregateRating,
+  makesOffer,
 }: ServiceSchemaInput) {
   return {
     "@context": "https://schema.org",
@@ -247,6 +398,10 @@ export function createServiceSchema({
       name: SITE_NAME,
       url: SITE_URL,
     },
+    aggregateRating: aggregateRating
+      ? createAggregateRatingSchema(aggregateRating)
+      : undefined,
+    offers: makesOffer?.map((offer) => createOfferSchema(offer)),
     areaServed: [
       { "@type": "Place", name: "Alleppey" },
       { "@type": "Place", name: "Alappuzha" },
@@ -265,6 +420,7 @@ export function createLocalBusinessSchema({
   sameAs,
   aggregateRating,
   makesOffer,
+  geo = BUSINESS_COORDINATES,
 }: LocalBusinessInput) {
   const primaryImage = image ?? {
     path: DEFAULT_OG_IMAGE,
@@ -290,20 +446,15 @@ export function createLocalBusinessSchema({
       postalCode: "688011",
       addressCountry: "IN",
     },
+    geo: createGeoCoordinatesSchema(geo),
     areaServed: SERVICE_AREAS.map((area) => ({
       "@type": "Place",
       name: area,
     })),
     sameAs,
-    makesOffer,
+    makesOffer: makesOffer?.map((offer) => createOfferSchema(offer)),
     aggregateRating: aggregateRating
-      ? {
-          "@type": "AggregateRating",
-          ratingValue: aggregateRating.ratingValue,
-          reviewCount: aggregateRating.reviewCount,
-          bestRating: 5,
-          worstRating: 1,
-        }
+      ? createAggregateRatingSchema(aggregateRating)
       : undefined,
     photo: (images?.length ? images : [primaryImage]).map((item) => ({
       "@type": "ImageObject",

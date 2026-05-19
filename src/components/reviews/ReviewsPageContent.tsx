@@ -149,7 +149,10 @@ export default function ReviewsPageContent({
         </div>
       </section>
 
-      <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="video-testimonials"
+        className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8"
+      >
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">

@@ -4,10 +4,16 @@ export const DEFAULT_OG_IMAGE = "/images/home-hero-rainbow-houseboat.jpg";
 export const BUSINESS_PHONE = "+91 79940 73491";
 export const BUSINESS_PHONE_LINK = "tel:+917994073491";
 export const WHATSAPP_URL = "https://wa.me/917994073491";
+export const INSTAGRAM_URL =
+  "https://www.instagram.com/tra.nquil__cruise?igsh=MWNtaGlub2c4ZnRydg==";
 export const BUSINESS_EMAIL = "info@tranquilcruise.com";
 export const BUSINESS_EMAIL_LINK = "mailto:info@tranquilcruise.com";
 export const BUSINESS_LOCATION = "Alappuzha, Kerala";
 export const BUSINESS_HOURS = "8:00 AM – 8:00 PM daily";
+export const BUSINESS_COORDINATES = {
+  latitude: 9.4981,
+  longitude: 76.3388,
+} as const;
 export const SERVICE_AREAS = [
   "Alleppey",
   "Alappuzha",
