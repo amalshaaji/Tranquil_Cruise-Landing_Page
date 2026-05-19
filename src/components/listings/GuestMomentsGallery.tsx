@@ -83,17 +83,11 @@ export default function GuestMomentsGallery() {
             const gallerySize = gallerySizes[index % gallerySizes.length];
 
             return (
-              <motion.button
+              <motion.figure
                 key={item.src}
-                type="button"
                 className={[
-                  "group relative overflow-hidden rounded-2xl border border-white/50 shadow-md shadow-black/8 lg:rounded-3xl lg:border-white/40 lg:shadow-lg lg:shadow-black/10",
-                  "cursor-zoom-in text-left",
-                  gallerySize === "tall"
-                    ? "aspect-[3/4] lg:aspect-[4/5]"
-                    : "aspect-[4/3] lg:aspect-[5/4]",
+                  "group overflow-hidden rounded-2xl border border-white/50 bg-white/92 shadow-md shadow-black/8 lg:rounded-3xl lg:border-white/40 lg:shadow-lg lg:shadow-black/10",
                 ].join(" ")}
-                onClick={() => setActiveImageIndex(index)}
                 initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-30px" }}
@@ -103,33 +97,50 @@ export default function GuestMomentsGallery() {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
                 whileHover={{
-                  scale: 1.03,
+                  scale: 1.02,
                   zIndex: 20,
                   transition: { duration: 0.25, ease: "easeOut" },
                 }}
               >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-4 text-white">
-                  <div className="translate-y-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <p className="max-w-[16rem] text-sm font-semibold leading-snug">
+                <button
+                  type="button"
+                  className="relative block w-full cursor-zoom-in text-left"
+                  onClick={() => setActiveImageIndex(index)}
+                  aria-label={`Open image: ${item.alt}`}
+                >
+                  <div
+                    className={[
+                      "relative overflow-hidden",
+                      gallerySize === "tall"
+                        ? "aspect-[3/4] lg:aspect-[4/5]"
+                        : "aspect-[4/3] lg:aspect-[5/4]",
+                    ].join(" ")}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute bottom-4 right-4 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+                      Zoom
+                    </div>
+                  </div>
+                </button>
+                <figcaption className="space-y-3 px-4 py-4 sm:px-5">
+                  <div>
+                    <p className="text-sm font-semibold leading-snug text-[#173247]">
                       {item.title}
                     </p>
-                    <p className="mt-2 max-w-[16rem] text-xs leading-5 text-white/80">
+                    <p className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-teal/75">
                       {item.location}
                     </p>
                   </div>
-                  <div className="absolute bottom-4 right-4 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
-                    Zoom
-                  </div>
-                </div>
-              </motion.button>
+                  <p className="text-sm leading-6 text-foreground/72">{item.caption}</p>
+                </figcaption>
+              </motion.figure>
             );
           })}
         </div>
