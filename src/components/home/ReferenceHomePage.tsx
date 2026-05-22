@@ -286,16 +286,7 @@ export default function ReferenceHomePage({
           ) : (
             <div className="col-span-full flex flex-col items-center justify-center rounded-[2rem] border border-dashed border-[#b7d1df] bg-[#fcfdfe] p-8 text-center shadow-[0_12px_28px_rgba(20,50,69,0.04)] sm:p-12">
               <p className="text-lg font-semibold text-[#173247]">No packages match your filters.</p>
-              <p className="mt-2 text-sm text-[#173247]/70">Try adjusting your Room Type or Category selection to see more options.</p>
-              <button
-                onClick={() => {
-                  setRoomType("all");
-                  setCategory("all");
-                }}
-                className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-[#173247] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[#21445c] cursor-pointer"
-              >
-                Reset Filters
-              </button>
+              <p className="mt-2 text-sm text-[#173247]/70">No packages are available to show right now.</p>
             </div>
           )}
           </div>

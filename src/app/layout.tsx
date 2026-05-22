@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleTagManagerNoscript from "@/components/analytics/GoogleTagManagerNoscript";
@@ -58,7 +59,9 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col text-foreground">
         <GoogleTagManagerNoscript />
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <Navbar />
         <TransitionProvider>{children}</TransitionProvider>
         <GlobalConversionLayer />
