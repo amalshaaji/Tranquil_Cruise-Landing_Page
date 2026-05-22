@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!www\\.tranquilcruise\\.com$).*\\.vercel\\.app$"
+        }
+      ],
+      "destination": "https://www.tranquilcruise.com/:path*",
+      "permanent": true
+    }
+  ]
+}

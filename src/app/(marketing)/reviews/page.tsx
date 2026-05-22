@@ -12,7 +12,6 @@ import {
   createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
-  createReviewSchema,
   createSpeakableSchema,
   createVideoObjectSchema,
   generatePageMetadata,
@@ -65,7 +64,6 @@ export default async function ReviewsPage() {
   const googleReviewData = await getGooglePlaceReviewData();
   const mapsUrl = googleReviewData?.mapsUrl ?? GOOGLE_MAPS_PAGE_URL;
   const reviewSourceNote = googleReviewData?.sortLabel ?? "Showing recent guest review highlights.";
-  const displayedReviews = googleReviewData?.reviews.slice(0, 6) ?? [];
   const instagramUrl =
     "instagramUrl" in scrapedPlaceData ? scrapedPlaceData.instagramUrl : null;
 
@@ -106,24 +104,7 @@ export default async function ReviewsPage() {
       caption: image.caption,
     })),
     sameAs: [mapsUrl, WHATSAPP_URL, ...(instagramUrl ? [instagramUrl] : [])],
-    aggregateRating:
-      googleReviewData?.rating && googleReviewData?.reviewCount
-        ? {
-            ratingValue: googleReviewData.rating,
-            reviewCount: googleReviewData.reviewCount,
-          }
-        : undefined,
   });
-
-  const reviewSchemas = displayedReviews.map((review) =>
-    createReviewSchema({
-      authorName: review.authorName,
-      reviewBody: review.text,
-      reviewRating: review.rating,
-      datePublished: review.publishedAt,
-      reviewUrl: review.reviewUrl,
-    }),
-  );
 
   const imageSchemas = reviewMomentImages.map((image) =>
     createImageObjectSchema({
@@ -165,7 +146,7 @@ export default async function ReviewsPage() {
       <JsonLd data={localBusinessJsonLd} />
       <JsonLd data={speakableJsonLd} />
       <JsonLd data={createFaqSchema(reviewFaqs)} />
-      <JsonLd data={[...reviewSchemas, ...imageSchemas, ...videoSchemas]} />
+      <JsonLd data={[...imageSchemas, ...videoSchemas]} />
       <ReviewsPageContent
         googleReviewData={googleReviewData}
         mapsUrl={mapsUrl}

@@ -373,7 +373,7 @@ export default function ServicePageTemplate({
                     {option.image ? (
                       <Image
                         src={option.image}
-                        alt={option.title}
+                        alt={`${option.title} option for ${service.title} in Alleppey`}
                         fill
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 600px"
                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -647,7 +647,7 @@ export default function ServicePageTemplate({
       ) : null}
 
       {showCloserLookGallery && (
-        <ServiceGallery images={service.gallery} />
+        <ServiceGallery images={service.gallery} title={service.title} />
       )}
 
       <ExperienceComparisonSection />

@@ -7,7 +7,6 @@ import GlobalConversionLayer from "@/components/conversion/GlobalConversionLayer
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-import TransitionProvider from "./transition-provider";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
@@ -59,13 +58,19 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col text-foreground">
         <GoogleTagManagerNoscript />
+        <a
+          href="#main-content"
+          className="sr-only absolute left-4 top-4 z-[90] rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#173247] shadow-lg focus:not-sr-only"
+        >
+          Skip to main content
+        </a>
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
         <Navbar />
-        <TransitionProvider>{children}</TransitionProvider>
-        <GlobalConversionLayer />
+        {children}
         <Footer />
+        <GlobalConversionLayer />
       </body>
     </html>
   );

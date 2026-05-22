@@ -109,9 +109,9 @@ export default function InformationalPage({
         </section>
 
         <FaqSection
-          eyebrow={`${page.title} FAQ`}
-          title={`Questions people ask about ${page.title.toLowerCase()}`}
-          intro="These short answers are here to keep the page practical and easy to scan."
+          eyebrow={page.faqEyebrow ?? `${page.title} FAQ`}
+          title={page.faqTitle ?? `Questions people ask about ${page.title.toLowerCase()}`}
+          intro={page.faqIntro ?? "These short answers are here to keep the page practical and easy to scan."}
           faqs={page.faqs}
         />
       </main>

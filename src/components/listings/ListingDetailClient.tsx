@@ -176,7 +176,12 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
 
           <div className="hidden overflow-hidden rounded-3xl border border-black/10 bg-white shadow-[0_16px_40px_rgba(23,50,71,0.06)] md:block">
             <div className="relative aspect-[16/10]">
-              <Image src={cover} alt="" fill className="object-cover" />
+              <Image
+                src={cover}
+                alt={`${listing.title} luxury stay or cruise view in ${listing.location}`}
+                fill
+                className="object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             </div>
             <div className="p-5">

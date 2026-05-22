@@ -1,4 +1,5 @@
 export const SITE_URL = "https://www.tranquilcruise.com";
+export const SITE_HOSTNAME = "www.tranquilcruise.com";
 export const SITE_NAME = "Tranquil Cruise";
 export const DEFAULT_OG_IMAGE = "/images/home-hero-rainbow-houseboat.jpg";
 export const BUSINESS_PHONE = "+91 79940 73491";
@@ -71,6 +72,3 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   { path: "/refund-policy", changeFrequency: "yearly", priority: 0.3 },
 ] as const;
-
-// TODO: Configure a permanent 301 redirect from the Vercel deployment URL to
-// https://www.tranquilcruise.com so search engines index only the production domain.

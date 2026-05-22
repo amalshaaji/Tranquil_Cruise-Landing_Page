@@ -29,7 +29,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
             >
               <Image
                 src={active}
-                alt={`${title} photo ${activeIndex + 1}`}
+                alt={`${title} view ${activeIndex + 1} in the Alleppey backwaters`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 60vw"
@@ -54,7 +54,13 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
               ].join(" ")}
               aria-label={`View photo ${absoluteIndex + 1}`}
             >
-              <Image src={src} alt="" fill className="object-cover" sizes="80px" />
+              <Image
+                src={src}
+                alt={`${title} thumbnail ${absoluteIndex + 1}`}
+                fill
+                className="object-cover"
+                sizes="80px"
+              />
             </button>
           );
         })}

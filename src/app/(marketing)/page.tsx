@@ -10,7 +10,7 @@ import {
   createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
-  createReviewSchema,
+  createServiceSchema,
   createSpeakableSchema,
   createTouristTripSchema,
   generatePageMetadata,
@@ -23,22 +23,22 @@ const homepageFaqs = [
   {
     question: "Which is the best houseboat in Alappuzha for families?",
     answer:
-      "For families, two-bedroom and three-bedroom houseboats are usually the easiest fit because they offer separate rooms, more shared lounge space, and a slower overnight rhythm on the backwaters.",
+      "The best houseboat in Alappuzha for families is usually a two-bedroom or three-bedroom option. These Alleppey houseboat stays give families separate rooms, more shared lounge space, and a calmer overnight pace on the Kerala backwaters, which makes them a better fit than smaller boats for parents, children, or multi-generation trips.",
   },
   {
     question: "Is Alleppey the same as Alappuzha when booking a houseboat?",
     answer:
-      "Yes. Alleppey and Alappuzha refer to the same destination, so searches for an Alleppey houseboat or a houseboat in Alappuzha usually mean the same backwater region.",
+      "Yes, Alleppey and Alappuzha are the same destination when booking a houseboat. Travelers use both names for the same Kerala backwaters region, so an Alleppey houseboat, an Alappuzha houseboat, and a backwater cruise in Alappuzha usually refer to the same local area and boat routes.",
   },
   {
     question: "Should I book a houseboat or a shikkara ride in Alleppey?",
     answer:
-      "Choose a houseboat if you want more comfort, onboard time, meals, and an overnight stay. Choose a shikkara ride if you want a shorter scenic trip through narrower canals at a lighter budget.",
+      "Book a houseboat in Alleppey if you want more comfort, meals, and longer time on the water. Choose a shikkara ride in Alappuzha if you want a shorter and more affordable trip through narrow Kerala backwaters canals, especially for sightseeing, village routes, or a quick daytime experience.",
   },
   {
     question: "Can I plan a Kerala backwater cruise with custom timing?",
     answer:
-      "Yes. Guests often choose morning, afternoon, sunset, or overnight plans based on mood, route type, group size, and how much time they want on the water.",
+      "Yes, you can plan a Kerala backwater cruise with custom timing in Alleppey or Alappuzha. Many guests choose morning, afternoon, sunset, or overnight houseboat schedules based on group size, route style, and how much time they want on the Kerala backwaters rather than following one fixed departure window.",
   },
 ];
 
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
     title: "Alleppey Houseboat & Backwater Cruises | Tranquil Cruise",
     description:
-      "Private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey, Alappuzha, and the Kerala backwaters.",
+      "Book private Alleppey houseboats, shikkara rides, kayaking trails, country boat cruises, and Kerala backwater stays with Tranquil Cruise in Alappuzha.",
     path: "/",
     keywords: [
       "Alleppey houseboat",
@@ -87,16 +87,6 @@ export default async function Home() {
     height: 630,
   });
 
-  const reviewSchemas = displayedReviews.map((review) =>
-    createReviewSchema({
-      authorName: review.authorName,
-      reviewBody: review.text,
-      reviewRating: review.rating,
-      datePublished: review.publishedAt,
-      reviewUrl: review.reviewUrl,
-    }),
-  );
-
   const localBusinessJsonLd = createLocalBusinessSchema({
     description:
       "Tranquil Cruise offers private houseboats, shikkara rides, country boat tours, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey and the Kerala backwaters.",
@@ -121,13 +111,6 @@ export default async function Home() {
       },
     ],
     sameAs: [GOOGLE_MAPS_PAGE_URL, WHATSAPP_URL, INSTAGRAM_URL],
-    aggregateRating:
-      googleReviewData?.rating && googleReviewData?.reviewCount
-        ? {
-            ratingValue: googleReviewData.rating,
-            reviewCount: googleReviewData.reviewCount,
-          }
-        : undefined,
     makesOffer: [
       { name: "Luxury Houseboat Stay", path: "/houseboats" },
       { name: "Shikkara Rides", path: "/shikkara" },
@@ -138,6 +121,37 @@ export default async function Home() {
     ],
     geo: BUSINESS_COORDINATES,
   });
+
+  const homepageServiceSchemas = [
+    createServiceSchema({
+      name: "Private Alleppey Houseboats",
+      description:
+        "Private houseboat stays and day cruises in Alleppey with one-bedroom, family, and group-friendly options across the Kerala backwaters.",
+      path: "/houseboats",
+      serviceType: "Houseboat cruise",
+    }),
+    createServiceSchema({
+      name: "Private Shikkara Rides in Alleppey",
+      description:
+        "Private shikkara rides through Alleppey canals for village routes, scenic sightseeing, and slower backwater cruising in Alappuzha.",
+      path: "/shikkara",
+      serviceType: "Shikkara ride",
+    }),
+    createServiceSchema({
+      name: "Backwater Kayaking in Alappuzha",
+      description:
+        "Guided kayaking trails through quieter canals and backwater routes in Alleppey and Alappuzha for sunrise, sunset, and beginner-friendly paddling.",
+      path: "/kayaking",
+      serviceType: "Kayaking tour",
+    }),
+    createServiceSchema({
+      name: "Country Boat Cruises in Alleppey",
+      description:
+        "Country boat cruises through village canals and quieter Kerala backwater routes for guests who want local scenery and a calmer pace.",
+      path: "/canoe-boats",
+      serviceType: "Country boat cruise",
+    }),
+  ];
 
   const touristTripJsonLd = createTouristTripSchema({
     name: "Alleppey Houseboat and Backwater Experience",
@@ -188,7 +202,7 @@ export default async function Home() {
           homepageImageSchema,
           introImageSchema,
           faqJsonLd,
-          ...reviewSchemas,
+          ...homepageServiceSchemas,
         ]}
       />
 

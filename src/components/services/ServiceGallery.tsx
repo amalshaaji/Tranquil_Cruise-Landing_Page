@@ -6,8 +6,10 @@ import { useRef } from "react";
 
 export default function ServiceGallery({
   images,
+  title,
 }: {
   images: string[];
+  title: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +30,7 @@ export default function ServiceGallery({
             <div className="relative aspect-[16/9]">
               <Image
                 src={images[0]}
-                alt=""
+                alt={`${title} in the Alleppey and Alappuzha Kerala backwaters`}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 80vw"
@@ -57,7 +59,7 @@ export default function ServiceGallery({
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={img}
-                    alt=""
+                    alt={`${title} gallery view ${idx + 1} in the Kerala backwaters`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 40vw"

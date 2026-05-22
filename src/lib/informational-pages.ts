@@ -13,6 +13,9 @@ export type InformationalPageData = {
     body: string[];
   }[];
   faqs: FaqItem[];
+  faqEyebrow?: string;
+  faqTitle?: string;
+  faqIntro?: string;
   ctas: {
     label: string;
     href: string;
@@ -198,6 +201,10 @@ export const informationalPages: Record<string, InformationalPageData> = {
           "Yes. Route planning is usually shaped around your dates, group size, comfort expectations, and whether you want village canals, open water, or a mix of both.",
       },
     ],
+    faqEyebrow: "Booking & Planning FAQs",
+    faqTitle: "Alleppey Houseboat & Backwater Cruise FAQs",
+    faqIntro:
+      "Answers to common questions about houseboats, shikkara rides, kayaking, pricing, routes, and booking in Alappuzha.",
     ctas: [
       { label: "Explore all houseboats", href: "/houseboats" },
       { label: "Contact us for help", href: "/contact", variant: "secondary" },

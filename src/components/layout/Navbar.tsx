@@ -61,7 +61,7 @@ export default function Navbar() {
               className="inline-flex items-center gap-5 text-white transition hover:text-white/80"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
-              aria-controls="home-overlay-menu"
+              aria-controls={menuOpen ? "home-overlay-menu" : undefined}
             >
               <span className="flex flex-col gap-2" aria-hidden="true">
                 <span className="h-0.5 w-10 bg-current" />
@@ -153,7 +153,7 @@ export default function Navbar() {
               onClick={() => setDestinationsOpen((v) => !v)}
               aria-haspopup="menu"
               aria-expanded={destinationsOpen}
-              aria-controls="home-mobile-explore-menu"
+              aria-controls={destinationsOpen ? "home-mobile-explore-menu" : undefined}
             >
               <span>Explore</span>
               <span className="text-[0.7rem] opacity-80">▾</span>
@@ -164,7 +164,7 @@ export default function Navbar() {
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/16"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
-              aria-controls="home-overlay-menu"
+              aria-controls={menuOpen ? "home-overlay-menu" : undefined}
             >
               <span>{menuOpen ? "Close" : "Menu"}</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -188,6 +188,7 @@ export default function Navbar() {
             <motion.div
               id="home-mobile-explore-menu"
               role="menu"
+              aria-label="Explore experiences"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -230,6 +231,7 @@ export default function Navbar() {
           {menuOpen && (
             <motion.div
               id="home-overlay-menu"
+              aria-label="Homepage quick menu"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -433,7 +435,7 @@ export default function Navbar() {
               className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full px-0 text-[0.8rem] font-semibold text-white transition sm:h-14 sm:w-auto sm:gap-2 sm:px-4 sm:text-sm lg:hidden ${mobileMenuBtn}`}
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
+              aria-controls={menuOpen ? "mobile-menu" : undefined}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
               <span className="sr-only sm:not-sr-only">{menuOpen ? "Close" : "Menu"}</span>
@@ -454,6 +456,7 @@ export default function Navbar() {
         {menuOpen && (
           <motion.div
             id="mobile-menu"
+            aria-label="Mobile navigation"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

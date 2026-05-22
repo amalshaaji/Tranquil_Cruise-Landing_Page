@@ -20,7 +20,7 @@ export default function ServiceHero({
       <div className="absolute inset-0">
         <Image
           src={heroImage}
-          alt={title}
+          alt={`${title} in the Alleppey and Alappuzha Kerala backwaters`}
           fill
           preload
           sizes="100vw"

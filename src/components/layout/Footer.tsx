@@ -7,9 +7,6 @@ const quickLinks = [
   { href: "/gallery", label: "Gallery" },
   { href: "/reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },
-  { href: "/partners", label: "Partners" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ] as const;
 
 const contactLinks = [
@@ -28,7 +25,7 @@ const experienceLinks = [
 const houseboatGuideLinks = routeDirectoryPages
   .filter((page) => page.category === "Houseboat Guides")
   .map((page) => ({
-    href: "/houseboats",
+    href: page.href,
     label: page.title,
   }));
 
@@ -39,12 +36,11 @@ const planningLinks = routeDirectoryPages
     label: page.title,
   }));
 
-const companyLinks = routeDirectoryPages
-  .filter((page) => page.category === "Company")
-  .map((page) => ({
-    href: page.href,
-    label: page.title,
-  }));
+const companyLinks = [
+  { href: "/about", label: "About" },
+  { href: "/partners", label: "Partners" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 const legalLinks = [
   { href: "/privacy-policy", label: "Privacy Policy" },

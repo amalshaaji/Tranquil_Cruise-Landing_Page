@@ -150,34 +150,41 @@ export function createPageMetadata({
   image,
 }: MetadataInput): Metadata {
   const canonicalPath = normalizeSitePath(path);
+  const canonicalUrl = absoluteUrl(canonicalPath);
   const ogImage = image ?? {
     url: DEFAULT_OG_IMAGE,
     width: 4640,
     height: 3739,
     alt: "Private Kerala houseboat in the Alleppey backwaters",
   };
+  const ogImageUrl = resolveSchemaUrl(ogImage.url);
 
   return {
     title,
     description,
     keywords,
     alternates: {
-      canonical: canonicalPath,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
-      url: absoluteUrl(canonicalPath),
+      url: canonicalUrl,
       siteName: SITE_NAME,
       locale: "en_US",
       type: "website",
-      images: [ogImage],
+      images: [
+        {
+          ...ogImage,
+          url: ogImageUrl,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage.url],
+      images: [ogImageUrl],
     },
   };
 }

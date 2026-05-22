@@ -115,7 +115,7 @@ export default function CompareHouseboatsPage() {
                       <div className="relative h-40 overflow-hidden rounded-[1.4rem]">
                         <Image
                           src={boat.image}
-                          alt={boat.title}
+                          alt={`${boat.title} private houseboat on the Alleppey backwaters`}
                           fill
                           sizes="25vw"
                           className="object-cover"
@@ -183,7 +183,7 @@ export default function CompareHouseboatsPage() {
                   <div className="relative h-52">
                     <Image
                       src={boat.image}
-                      alt={boat.title}
+                      alt={`${boat.title} private houseboat on the Alleppey backwaters`}
                       fill
                       sizes="100vw"
                       className="object-cover"
@@ -305,4 +305,3 @@ export default function CompareHouseboatsPage() {
     </main>
   );
 }
-

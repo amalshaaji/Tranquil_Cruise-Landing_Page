@@ -59,7 +59,7 @@ export default function HeroSection() {
               </div>
 
               <h1 className="max-w-[18rem] text-balance text-[0.92rem] font-semibold uppercase leading-[1.45] tracking-[0.12em] text-white/96 sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
-                Reference-style package cards, adapted to your inventory
+                Private Houseboats and Backwater Cruises in Alleppey
               </h1>
 
               <a

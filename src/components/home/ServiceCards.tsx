@@ -215,7 +215,7 @@ export default function ServiceCards({
                 <>
                   <Image
                     src={c.image}
-                    alt={c.title}
+                    alt={`${c.title} experience in the Alleppey and Alappuzha backwaters`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover/link:scale-125"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
