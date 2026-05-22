@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import ScrollableImageRow from "./ScrollableImageRow";
 import ServiceGallery from "./ServiceGallery";
+import GalleryPreviewHero from "@/components/shared/GalleryPreviewHero";
 import FaqSection from "@/components/seo/FaqSection";
 import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
@@ -139,140 +139,177 @@ export default function ServicePageTemplate({
   const supportingHighlights = service.highlights.slice(3);
   const quickFacts = service.facilities.slice(0, 4);
   const isHouseboatsPage = service.slug === "houseboats";
+  const isKayakingPage = service.slug === "kayaking";
+  const showBookingAside = service.slug !== "kayaking";
+  const heroTagItems = service.facilities.slice(0, 5);
   const optionsGridClass = isHouseboatsPage
     ? "grid gap-6 md:grid-cols-2"
     : "grid gap-10 lg:grid-cols-2";
 
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
-      <section className="mx-auto max-w-7xl px-4 pb-14 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:pt-44">
-        <div
-          className={`grid items-start gap-8 sm:gap-12 lg:gap-16 ${
-            isHouseboatsPage ? "lg:grid-cols-1" : "lg:grid-cols-12"
-          }`}
-        >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className={isHouseboatsPage ? "max-w-4xl" : "lg:col-span-8"}
-          >
-            <PageBreadcrumbs
-              crumbs={[
-                { label: "Home", href: "/" },
-                { label: service.slug === "canoe-boats" ? "Country Boats" : service.title },
-              ]}
-            />
-            <div className="mb-4 inline-block text-[0.7rem] font-bold uppercase tracking-[0.3em] text-teal-600/80">
-              {service.eyebrow}
-            </div>
-            <h1 className="mb-5 text-[clamp(2.45rem,11vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
-              {titleBySlug[service.slug] ?? service.title}
-              <span className="hidden sm:inline"> <br /></span>
-              <span
-                className={`font-[var(--font-luxe)] text-[1.08em] italic tracking-[-0.02em] ${
-                  service.slug === "spa" ? "text-[#6b7f73]" : "text-[#5f6f83]"
-                }`}
-              >
-                {" "}
-                {service.subtitle.toLowerCase()}.
-              </span>
-            </h1>
-            <div className="mb-8 max-w-3xl space-y-4 text-base leading-relaxed text-foreground/60 sm:mb-10 sm:text-lg">
-              {service.description.map((paragraph, index) => (
-                <p
-                  key={`${service.slug}-description-${index}`}
-                  className={index === 0 ? "text-foreground/72" : undefined}
+      <section
+        className={`mx-auto max-w-7xl px-4 sm:px-6 ${
+          isKayakingPage ? "pb-12 pt-10 sm:pb-24 sm:pt-24" : "pb-14 pt-28 sm:pb-24 sm:pt-32 lg:pt-44"
+        }`}
+      >
+        {isHouseboatsPage ? (
+          <div className="max-w-4xl">
+            <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+              <PageBreadcrumbs
+                crumbs={[
+                  { label: "Home", href: "/" },
+                  { label: service.slug === "canoe-boats" ? "Country Boats" : service.title },
+                ]}
+              />
+              <div className="mb-4 inline-block text-[0.7rem] font-bold uppercase tracking-[0.3em] text-teal-600/80">
+                {service.eyebrow}
+              </div>
+              <h1 className="responsive-title-flow mb-5 text-[clamp(2.45rem,11vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
+                {titleBySlug[service.slug] ?? service.title}
+                <span className="hidden sm:inline"> <br /></span>
+                <span
+                  className={`font-[var(--font-luxe)] text-[1.08em] italic tracking-[-0.02em] ${
+                    service.slug === "spa" ? "text-[#6b7f73]" : "text-[#5f6f83]"
+                  }`}
                 >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {!isHouseboatsPage && (
-              <>
-                {hasGallery ? (
-                  <div className="group relative">
-                    <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-teal-100/40 to-navy-100/20 blur-2xl opacity-60" />
-                    <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
-                      <ScrollableImageRow images={galleryImages} />
+                  {" "}
+                  {service.subtitle}.
+                </span>
+              </h1>
+              <div className="mb-8 max-w-3xl space-y-4 text-base leading-relaxed text-foreground/60 sm:mb-10 sm:text-lg">
+                {service.description.map((paragraph, index) => (
+                  <p
+                    key={`${service.slug}-description-${index}`}
+                    className={index === 0 ? "text-foreground/72" : undefined}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        ) : (
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <GalleryPreviewHero
+              galleryImages={galleryImages}
+              breadcrumbs={
+                isKayakingPage ? undefined : (
+                  <PageBreadcrumbs
+                    crumbs={[
+                      { label: "Home", href: "/" },
+                      { label: service.slug === "canoe-boats" ? "Country Boats" : service.title },
+                    ]}
+                  />
+                )
+              }
+              eyebrow={service.eyebrow}
+              title={
+                <>
+                  {titleBySlug[service.slug] ?? service.title}
+                  <span className="mt-2 block font-[var(--font-luxe)] text-[0.82em] italic tracking-[-0.02em] text-sand/70">
+                    {service.subtitle}.
+                  </span>
+                </>
+              }
+              description={
+                <>
+                  {service.description.map((paragraph, index) => (
+                    <p
+                      key={`${service.slug}-description-${index}`}
+                      className={index === 0 ? "text-foreground/76" : undefined}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </>
+              }
+              actions={[{ href: service.ctaHref, label: service.ctaText }]}
+              aside={
+                isKayakingPage ? (
+                  <div className="group relative w-full rounded-[2rem] border border-navy/8 bg-white/92 p-6 text-center shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-8">
+                    <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
+                      Best for
+                    </div>
+                    <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                      Scenic active rides
+                    </div>
+                    <div className="mt-2 text-sm leading-7 text-foreground/50 sm:text-base">
+                      A softer adventure format for couples, friends, and first-time paddlers who
+                      want quiet canals with more movement and closer-to-water views.
+                    </div>
+                    <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
+                      Guided Backwater Trail
                     </div>
                   </div>
-                ) : null}
-
-                <div className="mt-8 flex flex-wrap gap-4 sm:mt-10 lg:justify-start">
-                  <Link
-                    href={service.ctaHref}
-                    className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#173247] px-6 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:shadow-2xl active:scale-95 sm:w-auto sm:px-8"
+                ) : showBookingAside ? (
+                  <div className="rounded-[2rem] border border-navy/8 bg-white/90 p-6 shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-7">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
+                      Booking guidance
+                    </div>
+                    <div className="mt-4 rounded-[1.4rem] border border-navy/8 bg-[#f8fbfc] p-4">
+                      <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-foreground/40">
+                        Starting point
+                      </div>
+                      <div className="mt-3 text-2xl font-bold tracking-tight text-navy sm:text-3xl">
+                        {service.priceLabel}
+                      </div>
+                    </div>
+                    <div className="mt-5 rounded-[1.5rem] border border-teal/12 bg-[#edf5f8] p-5">
+                      <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-teal/80">
+                        Booking note
+                      </div>
+                      <p className="mt-3 text-sm font-semibold leading-relaxed text-foreground/72">
+                        {service.priceLabel}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                        {service.priceNote}
+                      </p>
+                    </div>
+                    <div className="mt-6 border-t border-navy/5 pt-6">
+                      <div className="text-[0.65rem] font-semibold uppercase tracking-widest text-foreground/40">
+                        Quick notes
+                      </div>
+                      <div className="mt-4 space-y-3">
+                        {quickFacts.map((fact) => (
+                          <div
+                            key={fact}
+                            className="flex items-start gap-3 rounded-2xl border border-navy/6 bg-white px-4 py-3 text-sm font-medium text-foreground/68 shadow-sm"
+                          >
+                            <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" />
+                            {fact}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null
+              }
+              bottomTags={
+                isKayakingPage ? (
+                  <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeInUp}
+                    className="flex flex-wrap justify-center gap-2.5 sm:gap-3 lg:justify-start"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                    <span className="relative z-10 rounded-full bg-white/10 px-2 py-0.5 text-[0.6rem] tracking-widest text-white/80 backdrop-blur-md">
-                      CURATED
-                    </span>
-                    <span className="relative z-10">{service.ctaText}</span>
-                    <span className="relative z-10 text-lg transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </>
-            )}
-          </motion.div>
-
-          {!isHouseboatsPage && (
-            <motion.aside
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-              className="lg:col-span-4 lg:sticky lg:top-36"
-            >
-              <div className="relative overflow-hidden rounded-[2rem] border border-navy/5 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] sm:rounded-[2.5rem] sm:p-8">
-                <div className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-teal/70">
-                  Starting Point
-                </div>
-                <div className="rounded-[1.6rem] border border-navy/8 bg-white/90 p-5 shadow-sm">
-                  <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-foreground/40">
-                    Booking Guidance
-                  </div>
-                  <div className="mt-3 text-2xl font-bold tracking-tight text-sand sm:text-3xl">
-                    {service.priceLabel}
-                  </div>
-                </div>
-
-                <div className="mt-5 rounded-[1.5rem] border border-teal-100 bg-teal-50/60 p-5">
-                  <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-teal-700/80">
-                    Booking Note
-                  </div>
-                  <p className="mt-3 text-sm font-semibold leading-relaxed text-foreground/72">
-                    {service.priceLabel}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
-                    {service.priceNote}
-                  </p>
-                </div>
-
-                <div className="mt-6 border-t border-navy/5 pt-6">
-                  <div className="text-[0.65rem] font-semibold uppercase tracking-widest text-foreground/40">
-                    Quick Notes
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    {quickFacts.map((fact) => (
+                    {heroTagItems.map((facility) => (
                       <div
-                        key={fact}
-                        className="flex items-start gap-3 rounded-2xl border border-navy/6 bg-white px-4 py-3 text-sm font-medium text-foreground/68 shadow-sm"
+                        key={facility}
+                        className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
                       >
-                        <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" />
-                        {fact}
+                        {facility}
                       </div>
                     ))}
-                  </div>
-                </div>
-              </div>
-            </motion.aside>
-          )}
-        </div>
+                  </motion.div>
+                ) : undefined
+              }
+            />
+          </motion.div>
+        )}
 
-        {!isHouseboatsPage && (
+        {!isHouseboatsPage && !isKayakingPage && (
           <motion.div
             initial="hidden"
             whileInView="visible"

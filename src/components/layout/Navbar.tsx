@@ -29,6 +29,14 @@ export default function Navbar() {
   const [destinationsOpen, setDestinationsOpen] = useState(false);
   const isHomePage = pathname === "/";
   const isServicePage = services.some((service) => pathname === `/${service.slug}`);
+  const desktopLogoBox = isServicePage ? "h-[5rem] w-[9.2rem]" : "h-[5rem] w-[9rem]";
+  const desktopLogoImage = isServicePage
+    ? "object-contain scale-[2.12] drop-shadow-[0_10px_22px_rgba(8,20,30,0.26)]"
+    : "object-contain scale-[2.08]";
+  const mobileLogoBox = isServicePage ? "h-[3.2rem] w-[8.7rem]" : "h-[3.1rem] w-[8.4rem]";
+  const mobileLogoImage = isServicePage
+    ? "object-contain scale-[2.02] drop-shadow-[0_8px_18px_rgba(8,20,30,0.24)]"
+    : "object-contain scale-[1.98]";
 
   useEffect(() => {
     startTransition(() => {
@@ -302,15 +310,16 @@ export default function Navbar() {
                 {/* Brand */}
                 <Link
                   href="/"
-                  className="relative block h-[4.8rem] w-[10.5rem] shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02]"
+                  className={`relative block shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02] ${desktopLogoBox}`}
                   aria-label="Go to homepage"
                 >
                   <Image
                     src="/images/tranquil-cruise-logo.webp"
                     alt="Tranquil Cruise"
                     fill
-                    sizes="168px"
-                    className="object-contain object-center scale-[2.35]"
+                    sizes="360px"
+                    className={`object-center ${desktopLogoImage}`}
+                    style={{ objectPosition: "center 43%" }}
                   />
                 </Link>
 
@@ -403,15 +412,16 @@ export default function Navbar() {
               <div className="lg:hidden">
                 <Link
                   href="/"
-                  className="relative block h-10 w-[7.25rem] overflow-hidden"
+                  className={`relative block overflow-hidden ${mobileLogoBox}`}
                   aria-label="Go to homepage"
                 >
                   <Image
                     src="/images/tranquil-cruise-logo.webp"
                     alt="Tranquil Cruise"
                     fill
-                    sizes="116px"
-                    className="object-contain object-center scale-[2.35]"
+                    sizes="280px"
+                    className={`object-center ${mobileLogoImage}`}
+                    style={{ objectPosition: "center 39%" }}
                   />
                 </Link>
               </div>

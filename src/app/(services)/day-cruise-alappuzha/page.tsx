@@ -241,7 +241,7 @@ export default function DayCruiseAlappuzhaPage() {
                   Plan a day cruise
                 </Link>
                 <Link
-                  href="/houseboats"
+                  href="/houseboats/compare"
                   className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:bg-[#f4f9fb]"
                 >
                   Compare houseboats

@@ -41,10 +41,10 @@ const breadcrumbJsonLd = createBreadcrumbSchema([
 const faqJsonLd = createFaqSchema(faqs);
 
 const imageJsonLd = createImageObjectSchema({
-  path: "/images/home-hero-lake-houseboat.jpg",
-  alt: "Best time to visit Alappuzha for Kerala backwater trips",
-  width: 1200,
-  height: 630,
+  path: "/images/best-time-to-visit-alappuzha-houseboats.jpg",
+  alt: "Houseboats cruising through the Alappuzha backwaters at a calm golden hour",
+  width: 1300,
+  height: 1733,
 });
 
 const articleJsonLd = {
@@ -54,7 +54,7 @@ const articleJsonLd = {
   description:
     "A practical guide to when to visit Alappuzha based on weather feel, backwater mood, and what kind of Kerala trip you want.",
   url: `${SITE_URL}/best-time-to-visit-alappuzha`,
-  image: `${SITE_URL}/images/home-hero-lake-houseboat.jpg`,
+  image: `${SITE_URL}/images/best-time-to-visit-alappuzha-houseboats.jpg`,
   author: {
     "@type": "Organization",
     name: SITE_NAME,
@@ -72,10 +72,10 @@ const touristTripJsonLd = createTouristTripSchema({
     "A local planning guide to the best time to visit Alappuzha based on season, weather feel, backwater comfort, and houseboat timing.",
   path: "/best-time-to-visit-alappuzha",
   image: {
-    path: "/images/home-hero-lake-houseboat.jpg",
-    alt: "Best time to visit Alappuzha for Kerala backwater trips",
-    width: 1200,
-    height: 630,
+    path: "/images/best-time-to-visit-alappuzha-houseboats.jpg",
+    alt: "Houseboats cruising through the Alappuzha backwaters at a calm golden hour",
+    width: 1300,
+    height: 1733,
   },
   itinerary: ["Alappuzha", "Alleppey", "Kerala Backwaters"],
   touristType: ["Seasonal planners", "Couples", "Families", "First-time visitors"],
@@ -99,10 +99,10 @@ export async function generateMetadata(): Promise<Metadata> {
       "when to visit alappuzha",
     ],
     image: {
-      url: "/images/home-hero-lake-houseboat.jpg",
-      width: 1200,
-      height: 630,
-      alt: "Best time to visit Alappuzha for Kerala backwater trips",
+      url: "/images/best-time-to-visit-alappuzha-houseboats.jpg",
+      width: 1300,
+      height: 1733,
+      alt: "Houseboats cruising through the Alappuzha backwaters at a calm golden hour",
     },
   });
 }
@@ -129,8 +129,9 @@ export default function BestTimeToVisitAlappuzhaPage() {
         ]}
         galleryImages={[
           {
-            src: "/images/home-hero-lake-houseboat.jpg",
-            alt: "Comfortable backwater weather in Alappuzha",
+            src: "/images/best-time-to-visit-alappuzha-houseboats.jpg",
+            alt: "Houseboats cruising through the Alappuzha backwaters at a calm golden hour",
+            objectPosition: "center 78%",
           },
           {
             src: "/images/home-hero-rainbow-houseboat.jpg",

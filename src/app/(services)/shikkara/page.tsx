@@ -11,9 +11,9 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Private Shikara Rides in Alleppey | Tranquil Cruise",
+    title: "Private Shikkara Rides in Alleppey | Tranquil Cruise",
     description:
-      "Book a private Shikara or Shikkara ride in Alleppey for scenic Kerala backwater canals, village routes, and calm sunrise or sunset cruising in Alappuzha.",
+      "Book a private Shikkara ride in Alleppey for scenic Kerala backwater canals, village routes, and calm sunrise or sunset cruising in Alappuzha.",
     path: "/shikkara",
     keywords: [
       "private shikara ride Alleppey",
@@ -34,15 +34,15 @@ const faqs = getServiceFaqs("shikkara");
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },
-  { name: "Shikara Rides", path: "/shikkara" },
+  { name: "Shikkara Rides", path: "/shikkara" },
 ]);
 
 const serviceJsonLd = createServiceSchema({
-  name: "Private Shikara Rides in Alleppey",
+  name: "Private Shikkara Rides in Alleppey",
   description:
-    "Private Shikara and Shikkara rides through the Alleppey backwaters for couples, families, village canal routes, and slower scenic sightseeing.",
+    "Private Shikkara rides through the Alleppey backwaters for couples, families, village canal routes, and slower scenic sightseeing.",
   path: "/shikkara",
-  serviceType: "Shikara ride",
+  serviceType: "Shikkara ride",
 });
 
 export default function ShikkaraPage() {

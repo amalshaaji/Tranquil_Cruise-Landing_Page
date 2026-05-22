@@ -12,16 +12,16 @@ export default function FaqSection({
   faqs: FaqItem[];
 }) {
   return (
-    <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:py-20">
-      <div className="mb-10 text-center sm:mb-14">
+    <section className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12 lg:py-20">
+      <div className="mb-8 text-center sm:mb-14">
         <span className="mb-3 block text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
           {eyebrow}
         </span>
-        <h2 className="text-3xl font-semibold tracking-tight text-sand sm:text-5xl">
+        <h2 className="text-[1.9rem] font-semibold tracking-tight text-sand sm:text-5xl">
           {title}
         </h2>
         {intro ? (
-          <p className="mt-4 text-base text-foreground/60 sm:text-lg">
+          <p className="mt-3 text-sm leading-6 text-foreground/60 sm:mt-4 sm:text-lg">
             {intro}
           </p>
         ) : null}

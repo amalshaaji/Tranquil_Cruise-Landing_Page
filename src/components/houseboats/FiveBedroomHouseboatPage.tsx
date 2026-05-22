@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { fiveBedroomFaqs as faqs } from "@/components/houseboats/houseboatFaqs";
-import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import GalleryPreviewHero from "@/components/shared/GalleryPreviewHero";
 import { buildWhatsAppHref, buildInquiryMessage } from "@/lib/whatsapp";
 
 const whatsappHref = buildWhatsAppHref(
@@ -118,88 +117,60 @@ export default function FiveBedroomHouseboatPage() {
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-24 sm:pt-24">
-        <div className="grid items-start gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-16">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="min-w-0 lg:col-span-8"
-          >
-            <div className="mb-3 inline-block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-teal-600/80 sm:mb-4 sm:text-[0.7rem] sm:tracking-[0.3em]">
-              Celebration Houseboat Collection
-            </div>
-            <h1 className="mb-4 text-[clamp(2.15rem,10vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
-              More room to celebrate,
-              <span className="hidden sm:inline"> <br /></span>{" "}
-              <span className="font-serif italic text-navy/40">stay together</span>, and cruise slowly.
-            </h1>
-            <p className="mb-7 max-w-2xl text-sm leading-7 text-foreground/60 sm:mb-10 sm:text-lg sm:leading-relaxed">
-              Step into a larger houseboat format with five bedrooms, broader
-              shared spaces, and a calmer overnight flow for bigger families,
-              reunion groups, or celebratory stays on the backwaters.
-            </p>
-
-            <div className="group relative">
-              <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-teal-100/40 to-navy-100/20 blur-2xl opacity-60" />
-              <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
-                <ScrollableImageRow images={galleryImages} showFeaturedSpace={false} />
+        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+          <GalleryPreviewHero
+            galleryImages={galleryImages}
+            eyebrow="Celebration Houseboat Collection"
+            title={
+              <>
+                More room to celebrate,
+                <span className="mt-2 block text-sand/70">stay together, and cruise slowly.</span>
+              </>
+            }
+            description={
+              <p>
+                Step into a larger houseboat format with five bedrooms, broader shared spaces, and
+                a calmer overnight flow for bigger families, reunion groups, or celebratory stays
+                on the backwaters.
+              </p>
+            }
+            actions={[{ href: whatsappHref, label: "Book Now" }]}
+            aside={
+              <div className="group relative w-full rounded-[2rem] border border-navy/8 bg-white/92 p-6 text-center shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-8">
+                <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
+                  Best for
+                </div>
+                <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                  Celebrations and larger groups
+                </div>
+                <div className="mt-2 text-sm leading-7 text-foreground/50 sm:text-base">
+                  A larger private houseboat layout for reunions, family trips, and slower shared
+                  time on the Kerala backwaters.
+                </div>
+                <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
+                  Celebration Group Layout
+                </div>
               </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4 sm:mt-10 lg:justify-start">
-              <Link
-                href={whatsappHref}
-                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#173247] px-6 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:shadow-2xl hover:shadow-navy-500/30 active:scale-95 sm:w-auto sm:px-8"
+            }
+            bottomTags={
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                className="flex flex-wrap justify-center gap-2.5 sm:gap-3 lg:justify-start"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                <span className="relative z-10 rounded-full bg-white/10 px-2 py-0.5 text-[0.6rem] tracking-widest text-white/80 backdrop-blur-md">
-                  STAY
-                </span>
-                <span className="relative z-10">Book Now</span>
-                <span className="relative z-10 text-lg transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="min-w-0 lg:col-span-4"
-          >
-            <div className="group relative w-full rounded-[1.75rem] border border-navy/5 bg-white p-5 text-center shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] transition-all duration-500 hover:-translate-y-2 sm:rounded-[2.5rem] sm:p-8">
-              <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                Best For
-              </div>
-              <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
-                Celebrations and larger groups
-              </div>
-              <div className="mt-2 text-sm leading-7 text-foreground/50 sm:text-base">
-                A larger private houseboat layout for reunions, family trips,
-                and slower shared time on the Kerala backwaters.
-              </div>
-              <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
-                Celebration Group Layout
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="mt-10 flex flex-wrap justify-center gap-2.5 sm:mt-16 sm:gap-3 lg:justify-start"
-        >
-          {favoriteFacilities.map((facility) => (
-            <div
-              key={facility}
-              className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
-            >
-              {facility}
-            </div>
-          ))}
+                {favoriteFacilities.map((facility) => (
+                  <div
+                    key={facility}
+                    className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
+                  >
+                    {facility}
+                  </div>
+                ))}
+              </motion.div>
+            }
+          />
         </motion.div>
       </section>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
@@ -123,6 +124,31 @@ export default function HouseboatsPage() {
     <>
       <JsonLd data={[breadcrumbJsonLd, heroImageJsonLd, serviceJsonLd, touristTripJsonLd, speakableJsonLd, createFaqSchema(faqs)]} />
       <ServicePageTemplate service={service} />
+      <section className="bg-[linear-gradient(180deg,#edf4f8_0%,#d8e4ec_100%)] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-navy/8 bg-white/92 p-6 shadow-[0_24px_60px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:rounded-[2.4rem] sm:p-8 lg:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
+                Compare Before You Book
+              </p>
+              <h2 className="mt-3 max-w-2xl font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-4xl">
+                View every houseboat side by side for pricing, features, and guest fit
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-foreground/70 sm:text-base">
+                If you are deciding between a couple stay, a family layout, or a larger group
+                boat, our comparison page puts the single-bedroom, two-bedroom, three-bedroom, and
+                five-bedroom options in one practical view.
+              </p>
+            </div>
+            <Link
+              href="/houseboats/compare"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-ink"
+            >
+              Compare houseboats
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

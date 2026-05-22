@@ -234,7 +234,7 @@ export default function ContactPageContent() {
                         href={mapHref}
                         className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-black/5"
                       >
-                        Open map placeholder
+                        Open map
                       </Link>
                     </div>
                   </div>

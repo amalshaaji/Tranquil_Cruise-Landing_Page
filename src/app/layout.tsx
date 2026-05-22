@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleTagManagerNoscript from "@/components/analytics/GoogleTagManagerNoscript";
@@ -11,13 +10,6 @@ import TransitionProvider from "./transition-provider";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
-const editorialFont = localFont({
-  src: "../../node_modules/@fontsource/playfair-display/files/playfair-display-latin-700-italic.woff2",
-  variable: "--font-editorial",
-  display: "swap",
-  preload: true,
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06343D",
+  themeColor: "#2F4F68",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -63,11 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${editorialFont.variable} h-full antialiased`}
-      data-scroll-behavior="smooth"
-    >
+    <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col text-foreground">
         <GoogleTagManagerNoscript />
         <GoogleAnalytics />

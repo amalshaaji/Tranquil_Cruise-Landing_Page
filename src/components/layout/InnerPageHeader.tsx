@@ -31,7 +31,7 @@ export default function InnerPageHeader({
         <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/80 sm:text-[0.72rem] sm:tracking-[0.26em]">
           {eyebrow}
         </div>
-        <h1 className="mx-auto mt-3 max-w-4xl text-[2.1rem] font-semibold leading-[1.02] text-sand sm:mt-5 sm:text-5xl sm:leading-[0.98] md:text-6xl">
+        <h1 className="responsive-title-flow mx-auto mt-3 text-[2.1rem] font-semibold leading-[1.02] text-sand sm:mt-5 sm:text-5xl sm:leading-[0.98] md:text-6xl">
           {title}
         </h1>
         {description ? (

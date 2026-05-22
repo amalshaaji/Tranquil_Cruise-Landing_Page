@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   ComparisonTable,
   QuestionAnswerList,
@@ -6,7 +5,7 @@ import {
 import FaqSection from "@/components/seo/FaqSection";
 import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
-import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import GalleryPreviewHero from "@/components/shared/GalleryPreviewHero";
 import type { ProgrammaticSeoPage as ProgrammaticSeoPageData } from "@/lib/programmatic-seo-pages";
 
 export default function ProgrammaticSeoPage({
@@ -24,8 +23,9 @@ export default function ProgrammaticSeoPage({
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-44">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr,1.08fr] lg:items-start">
-          <div>
+        <GalleryPreviewHero
+          galleryImages={page.gallery}
+          breadcrumbs={
             <PageBreadcrumbs
               crumbs={[
                 { label: "Home", href: "/" },
@@ -33,49 +33,22 @@ export default function ProgrammaticSeoPage({
                 { label: page.title },
               ]}
             />
-            <div className="mb-4 inline-block text-[0.7rem] font-bold uppercase tracking-[0.3em] text-teal-600/80">
-              {page.eyebrow}
-            </div>
-            <h1 className="text-[clamp(2.35rem,9vw,4.9rem)] font-semibold leading-[1.02] tracking-tight text-sand">
-              {page.title}
-            </h1>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-foreground/72 sm:text-lg">
-              {page.intro.directAnswer}
-            </p>
-
-            <div className="mt-6 max-w-2xl space-y-4 text-sm leading-7 text-foreground/64 sm:text-base">
+          }
+          eyebrow={page.eyebrow}
+          title={page.title}
+          description={
+            <>
+              <p className="text-foreground/76">{page.intro.directAnswer}</p>
               {page.intro.supporting.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#173247] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#234760]"
-              >
-                Check availability
-              </Link>
-              <Link
-                href="/houseboats"
-                className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:bg-[#f4f9fb]"
-              >
-                Compare houseboats
-              </Link>
-            </div>
-          </div>
-
-          <div className="group relative">
-            <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-teal-100/40 to-navy-100/20 blur-2xl opacity-60" />
-            <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
-              <ScrollableImageRow
-                images={page.gallery}
-                showFeaturedSpace={false}
-                showIntroCopy={false}
-              />
-            </div>
-          </div>
-        </div>
+            </>
+          }
+          actions={[
+            { href: "/contact", label: "Check availability" },
+            { href: "/houseboats/compare", label: "Compare houseboats", variant: "secondary" },
+          ]}
+        />
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">

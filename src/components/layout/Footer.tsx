@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { services } from "@/lib/services-data";
+import { routeDirectoryPages } from "@/lib/route-directory";
 
 const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/gallery", label: "Gallery" },
   { href: "/reviews", label: "Reviews" },
+  { href: "/faq", label: "FAQ" },
   { href: "/partners", label: "Partners" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -21,6 +23,33 @@ const experienceLinks = [
     href: `/${service.slug}`,
     label: service.title,
   })),
+] as const;
+
+const houseboatGuideLinks = routeDirectoryPages
+  .filter((page) => page.category === "Houseboat Guides")
+  .map((page) => ({
+    href: "/houseboats",
+    label: page.title,
+  }));
+
+const planningLinks = routeDirectoryPages
+  .filter((page) => page.category === "Travel Guides")
+  .map((page) => ({
+    href: page.href,
+    label: page.title,
+  }));
+
+const companyLinks = routeDirectoryPages
+  .filter((page) => page.category === "Company")
+  .map((page) => ({
+    href: page.href,
+    label: page.title,
+  }));
+
+const legalLinks = [
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/refund-policy", label: "Refund Policy" },
 ] as const;
 
 export default function Footer() {
@@ -68,7 +97,7 @@ export default function Footer() {
           </div>
 
           {/* Nav Columns */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-3 lg:gap-x-20">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-3 xl:grid-cols-5 lg:gap-x-20">
 
             {/* Quick Links */}
             <div>
@@ -78,7 +107,7 @@ export default function Footer() {
               <nav className="mt-4 flex flex-col gap-2.5 text-sm" aria-label="Footer quick links">
                 {quickLinks.map((item) => (
                   <Link
-                    key={item.href}
+                    key={`${item.href}-${item.label}`}
                     href={item.href}
                     className="text-foreground/70 transition hover:text-foreground"
                   >
@@ -96,7 +125,58 @@ export default function Footer() {
               <div className="mt-4 flex flex-col gap-2.5 text-sm">
                 {experienceLinks.map((item) => (
                   <Link
-                    key={item.href}
+                    key={`${item.href}-${item.label}`}
+                    href={item.href}
+                    className="text-foreground/70 transition hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sand">
+                Houseboat Booking
+              </p>
+              <div className="mt-4 flex flex-col gap-2.5 text-sm">
+                {houseboatGuideLinks.map((item) => (
+                  <Link
+                    key={`${item.href}-${item.label}`}
+                    href={item.href}
+                    className="text-foreground/70 transition hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sand">
+                Travel Guides
+              </p>
+              <div className="mt-4 flex flex-col gap-2.5 text-sm">
+                {planningLinks.map((item) => (
+                  <Link
+                    key={`${item.href}-${item.label}`}
+                    href={item.href}
+                    className="text-foreground/70 transition hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sand">
+                Company
+              </p>
+              <div className="mt-4 flex flex-col gap-2.5 text-sm">
+                {companyLinks.map((item) => (
+                  <Link
+                    key={`${item.href}-${item.label}`}
                     href={item.href}
                     className="text-foreground/70 transition hover:text-foreground"
                   >
@@ -107,7 +187,7 @@ export default function Footer() {
             </div>
 
             {/* Contact */}
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-2 sm:col-span-1 xl:col-span-1">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sand">
                 Contact
               </p>
@@ -134,7 +214,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-navy/10 pt-6 text-xs text-foreground/50 sm:flex-row sm:items-center">
           <span>© 2026 Tranquil Cruise. All rights reserved.</span>
-          <span>Crafted for calm travel across Kerala.</span>
+          <div className="flex flex-wrap items-center gap-3">
+            {legalLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="transition hover:text-foreground/80">
+                {item.label}
+              </Link>
+            ))}
+            <span>Crafted for calm travel across Kerala.</span>
+          </div>
         </div>
 
       </div>

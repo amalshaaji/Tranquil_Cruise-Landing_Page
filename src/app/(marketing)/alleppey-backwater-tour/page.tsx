@@ -41,7 +41,7 @@ const breadcrumbJsonLd = createBreadcrumbSchema([
 const faqJsonLd = createFaqSchema(faqs);
 
 const imageJsonLd = createImageObjectSchema({
-  path: "/images/home-houseboat-backwater.jpg",
+  path: "/images/alleppey-backwater-tour-houseboat.jpg",
   alt: "Alleppey backwater tour on a houseboat route",
   width: 1200,
   height: 630,
@@ -54,7 +54,7 @@ const articleJsonLd = {
   description:
     "A practical Alleppey backwater tour guide covering route choices, trip lengths, and how to compare houseboats with smaller backwater experiences.",
   url: `${SITE_URL}/alleppey-backwater-tour`,
-  image: `${SITE_URL}/images/home-houseboat-backwater.jpg`,
+  image: `${SITE_URL}/images/alleppey-backwater-tour-houseboat.jpg`,
   author: {
     "@type": "Organization",
     name: SITE_NAME,
@@ -72,7 +72,7 @@ const touristTripJsonLd = createTouristTripSchema({
     "A guide to planning an Alleppey backwater tour with route choices, trip-length comparisons, and format advice across houseboats and smaller boats.",
   path: "/alleppey-backwater-tour",
   image: {
-    path: "/images/home-houseboat-backwater.jpg",
+    path: "/images/alleppey-backwater-tour-houseboat.jpg",
     alt: "Alleppey backwater tour on a houseboat route",
     width: 1200,
     height: 630,
@@ -99,7 +99,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "alleppey houseboat or shikara",
     ],
     image: {
-      url: "/images/home-houseboat-backwater.jpg",
+      url: "/images/alleppey-backwater-tour-houseboat.jpg",
       width: 1200,
       height: 630,
       alt: "Alleppey backwater tour on a houseboat route",
@@ -129,7 +129,7 @@ export default function AlleppeyBackwaterTourPage() {
         ]}
         galleryImages={[
           {
-            src: "/images/home-houseboat-backwater.jpg",
+            src: "/images/alleppey-backwater-tour-houseboat.jpg",
             alt: "Houseboat route on an Alleppey backwater tour",
           },
           {
@@ -191,26 +191,26 @@ export default function AlleppeyBackwaterTourPage() {
             text: "This is the overnight houseboat version. It is the right choice when the evening calm, room access, dinner, and a slower morning matter more than fitting the trip into a few hours.",
           },
         ]}
-        compareTitle="Move from Alleppey tour planning into the exact route or format you want."
-        compareIntro="These are the most useful next pages once you know the kind of Alleppey backwater trip you want to take."
+        compareTitle="Choose the next page based on the kind of backwater trip you actually want."
+        compareIntro="If you already know whether you need broader planning, a daytime houseboat, or a slower overnight stay, these are the clearest next steps."
         compareCards={[
           {
             title: "Kerala Backwaters Guide",
             href: "/kerala-backwaters-guide",
             fit: "Best if you want the bigger picture",
-            copy: "Step back into the broader Kerala context if you are still comparing destinations, backwater styles, and why different trip formats feel so different.",
+            copy: "Use this when you are still comparing Alleppey with the wider Kerala backwaters and want a clearer sense of destinations, route styles, and how the main experience types differ.",
           },
           {
             title: "Day Cruise Alappuzha",
             href: "/day-cruise-alappuzha",
             fit: "Best for a full daytime houseboat",
-            copy: "Go here if you already know you want the houseboat feel, onboard time, and a proper daytime itinerary without staying overnight.",
+            copy: "Choose this if you want houseboat comfort, scenic cruising, and onboard time within one daytime plan, without turning the trip into an overnight stay.",
           },
           {
             title: "Overnight Houseboat Alappuzha",
             href: "/overnight-houseboat-alappuzha",
             fit: "Best for the fullest backwater rhythm",
-            copy: "Go here if evening calm, room comfort, and the slower overnight experience are the real reason you are considering Alleppey in the first place.",
+            copy: "Choose this if the real appeal is evening calm, bedroom comfort, dinner on board, and the slower overnight rhythm that makes the backwaters feel more immersive.",
           },
         ]}
         faqEyebrow="Alleppey Tour FAQs"
@@ -220,7 +220,7 @@ export default function AlleppeyBackwaterTourPage() {
         primaryCtaLabel="Browse experiences"
         primaryCtaHref="/gallery"
         secondaryCtaLabel="Compare houseboats"
-        secondaryCtaHref="/houseboats"
+        secondaryCtaHref="/houseboats/compare"
         ctaTitle="Use the tour guide, then book the format that matches your trip"
         ctaText="If you already know you want a private houseboat, day cruise, or slower overnight stay, the linked service pages will help you move from planning language into the exact trip format."
       />

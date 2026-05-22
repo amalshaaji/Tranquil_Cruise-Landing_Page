@@ -41,10 +41,10 @@ const breadcrumbJsonLd = createBreadcrumbSchema([
 const faqJsonLd = createFaqSchema(faqs);
 
 const imageJsonLd = createImageObjectSchema({
-  path: "/images/home-hero-backwater-canoe.jpg",
-  alt: "Things to do in Alappuzha around the Kerala backwaters",
-  width: 1200,
-  height: 630,
+  path: "/images/things-to-do-in-alappuzha-attractions.jpg",
+  alt: "A visual guide to houseboats, shikara rides, beaches, and the Alappuzha lighthouse",
+  width: 1408,
+  height: 768,
 });
 
 const articleJsonLd = {
@@ -54,7 +54,7 @@ const articleJsonLd = {
   description:
     "A practical guide to the best things to do in Alappuzha, with a focus on backwater experiences, local pacing, and how to choose the right activity.",
   url: `${SITE_URL}/things-to-do-in-alappuzha`,
-  image: `${SITE_URL}/images/home-hero-backwater-canoe.jpg`,
+  image: `${SITE_URL}/images/things-to-do-in-alappuzha-attractions.jpg`,
   author: {
     "@type": "Organization",
     name: SITE_NAME,
@@ -72,10 +72,10 @@ const touristTripJsonLd = createTouristTripSchema({
     "A local guide to what to do in Alappuzha, including houseboats, village canals, shikara rides, kayaking, and slower Kerala backwater experiences.",
   path: "/things-to-do-in-alappuzha",
   image: {
-    path: "/images/home-hero-backwater-canoe.jpg",
-    alt: "Things to do in Alappuzha around the Kerala backwaters",
-    width: 1200,
-    height: 630,
+    path: "/images/things-to-do-in-alappuzha-attractions.jpg",
+    alt: "A visual guide to houseboats, shikara rides, beaches, and the Alappuzha lighthouse",
+    width: 1408,
+    height: 768,
   },
   itinerary: ["Alappuzha", "Alleppey", "Village canals", "Kerala Backwaters"],
   touristType: ["First-time visitors", "Couples", "Families", "Day travelers"],
@@ -99,10 +99,10 @@ export async function generateMetadata(): Promise<Metadata> {
       "alappuzha backwater activities",
     ],
     image: {
-      url: "/images/home-hero-backwater-canoe.jpg",
-      width: 1200,
-      height: 630,
-      alt: "Things to do in Alappuzha around the Kerala backwaters",
+      url: "/images/things-to-do-in-alappuzha-attractions.jpg",
+      width: 1408,
+      height: 768,
+      alt: "A visual guide to houseboats, shikara rides, beaches, and the Alappuzha lighthouse",
     },
   });
 }
@@ -129,8 +129,11 @@ export default function ThingsToDoInAlappuzhaPage() {
         ]}
         galleryImages={[
           {
-            src: "/images/home-hero-backwater-canoe.jpg",
-            alt: "Village canal activity in Alappuzha",
+            src: "/images/things-to-do-in-alappuzha-attractions.jpg",
+            alt: "A visual guide to houseboats, shikara rides, beaches, and the Alappuzha lighthouse",
+            objectFit: "contain",
+            containerClassName: "mb-4 sm:mb-6",
+            aspectRatio: "1408 / 768",
           },
           {
             src: "/images/home-backwater-houseboats.jpg",
@@ -191,28 +194,43 @@ export default function ThingsToDoInAlappuzhaPage() {
             text: "Pick kayaking if you want to turn the visit into a more physical, closer-to-water experience with a different pace from a seated cruise.",
           },
         ]}
-        compareTitle="Use this page as the local ideas hub, then move into the page that sharpens the plan."
-        compareIntro="These pages help you narrow your Alappuzha visit by season, route choice, and local trip style."
-        compareCards={[
+        attractionTableTitle="Compare the main Alappuzha attractions before you plan the day."
+        attractionTableIntro="If you want a quick sense of which places and activities suit your mood, budget, and trip style, this table gives you the fastest overview."
+        attractionRows={[
           {
-            title: "Best Time To Visit Alappuzha",
-            href: "/best-time-to-visit-alappuzha",
-            fit: "Best for timing the trip",
-            copy: "Go here if you are still deciding which season, weather window, or travel month will make the most sense for your Alappuzha plan.",
+            attraction: "Houseboat Cruise",
+            vibe: "Luxurious and relaxing",
+            bestFor: "Backwater scenery and traditional food",
+            typicalCost: "Mid to high, depending on boat size",
           },
           {
-            title: "Alleppey Backwater Tour",
-            href: "/alleppey-backwater-tour",
-            fit: "Best for choosing the tour format",
-            copy: "Go here if you already know you want a backwater experience and need to compare houseboats, shikara rides, and other local route styles.",
+            attraction: "Shikara Boat Tour",
+            vibe: "Authentic and intimate",
+            bestFor: "Narrow canal exploration and budget-friendly rides",
+            typicalCost: "Low to mid",
           },
           {
-            title: "Alappuzha Vs Kumarakom",
-            href: "/alappuzha-vs-kumarakom",
-            fit: "Best for destination comparison",
-            copy: "Go here if you are still choosing between Alappuzha and Kumarakom and want to understand how the trip mood changes between them.",
+            attraction: "Alappuzha Beach",
+            vibe: "Lively and local",
+            bestFor: "Sunset watching and street snacks",
+            typicalCost: "Free entry",
+          },
+          {
+            attraction: "Marari Beach",
+            vibe: "Serene and secluded",
+            bestFor: "Peace, photography, and swimming",
+            typicalCost: "Free entry",
+          },
+          {
+            attraction: "Alappuzha Lighthouse",
+            vibe: "Historic",
+            bestFor: "360-degree views and photography",
+            typicalCost: "Around Rs. 20 for Indians and Rs. 50 for foreign visitors",
           },
         ]}
+        compareTitle=""
+        compareIntro=""
+        compareCards={[]}
         faqEyebrow="Alappuzha Ideas FAQs"
         faqTitle="Questions travelers ask when planning what to do in Alappuzha"
         faqIntro="These answers stay focused on local trip choices, not filler sightseeing lists."

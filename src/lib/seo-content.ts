@@ -189,38 +189,6 @@ const pageLinkGraphs: Record<string, InternalLinkGraph> = {
       },
     ],
   },
-  "/kayaking": {
-    eyebrow: "Route Graph",
-    title: "Compare kayaking with the calmer and more comfort-led backwater formats nearby.",
-    intro:
-      "Kayaking is the active spoke in this cluster. These next pages help guests compare it with smaller scenic rides and bigger comfort-focused plans.",
-    hub: {
-      title: "Alleppey Backwater Tour Guide",
-      href: "/alleppey-backwater-tour",
-      description:
-        "Return to the tour-planning hub if you need help choosing the right format before booking.",
-    },
-    contextualLinks: [
-      {
-        title: "Country Boat Rides",
-        href: "/canoe-boats",
-        description:
-          "Compare this if you want village-canal access without the physical side of kayaking.",
-      },
-      {
-        title: "Private Shikara Rides",
-        href: "/shikkara",
-        description:
-          "Move here if your priority is a softer scenic ride with seating and shade.",
-      },
-      {
-        title: "Kerala Backwaters Guide",
-        href: "/kerala-backwaters-guide",
-        description:
-          "Use the broader guide if you are still comparing destinations, formats, and route styles.",
-      },
-    ],
-  },
   "/rooms": {
     eyebrow: "Stay Planning",
     title: "Use rooms as the base layer, then connect the stay to the right on-water experience.",
@@ -282,38 +250,6 @@ const pageLinkGraphs: Record<string, InternalLinkGraph> = {
         href: "/best-time-to-visit-alappuzha",
         description:
           "Check seasonality if comfort, weather, and trip pacing are still part of the decision.",
-      },
-    ],
-  },
-  "/shikkara": {
-    eyebrow: "Shikara Links",
-    title: "Use Shikara as the lighter scenic spoke, then compare it against the formats around it.",
-    intro:
-      "Shikara rides usually win on intimacy and canal access. These connected pages help guests decide whether they need a more active ride, a bigger cruise, or a broader planning guide.",
-    hub: {
-      title: "Alleppey Backwater Tour Guide",
-      href: "/alleppey-backwater-tour",
-      description:
-        "Go back to the main planning hub if you are still choosing the right Alleppey format.",
-    },
-    contextualLinks: [
-      {
-        title: "Country Boat Rides",
-        href: "/canoe-boats",
-        description:
-          "Compare this if local village routes matter more than cushioned seating and canopy comfort.",
-      },
-      {
-        title: "Backwater Kayaking",
-        href: "/kayaking",
-        description:
-          "Move here if you want to trade passive sightseeing for a more active route.",
-      },
-      {
-        title: "Luxury Houseboats",
-        href: "/houseboats",
-        description:
-          "Choose the houseboat hub if you want more space, onboard comfort, or an overnight plan.",
       },
     ],
   },

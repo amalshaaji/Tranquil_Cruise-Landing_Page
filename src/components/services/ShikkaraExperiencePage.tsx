@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import GalleryPreviewHero from "@/components/shared/GalleryPreviewHero";
 import FaqSection from "@/components/seo/FaqSection";
 import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
@@ -94,99 +93,71 @@ export default function ShikkaraExperiencePage() {
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 sm:pb-24 sm:pt-32 lg:pt-44">
-        <div className="grid items-start gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-16">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="min-w-0 lg:col-span-8"
-          >
-            <PageBreadcrumbs
-              crumbs={[
-                { label: "Home", href: "/" },
-                { label: "Shikara Rides" },
-              ]}
-            />
-            <div className="mb-4 inline-block text-[0.65rem] font-bold uppercase tracking-[0.24em] text-teal-600/80 sm:text-[0.7rem] sm:tracking-[0.3em]">
-              Heritage Ride Collection
-            </div>
-            <h1 className="mb-4 text-[clamp(2.15rem,10vw,4.5rem)] font-semibold leading-[1.02] tracking-tight text-sand sm:mb-6">
-              Private Shikara Rides in Alleppey
-              <span className="hidden sm:inline"> <br /></span>{" "}
-              <span className="font-serif italic text-navy/40">with softer views and local rhythm.</span>
-            </h1>
-            <p className="mb-7 max-w-2xl text-sm leading-7 text-foreground/60 sm:mb-10 sm:text-lg sm:leading-relaxed">
-              Explore the backwaters in the more intimate language of a
-              traditional shikkara. Scroll through the gallery to see the boat,
-              the canopy, and the calm seating layout before you book.
-            </p>
-
-            <div className="group relative">
-              <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-teal-100/40 to-navy-100/20 blur-2xl opacity-60" />
-              <div className="relative rounded-[2rem] border border-navy/10 bg-white/50 p-3 shadow-2xl backdrop-blur-sm sm:rounded-[2.5rem]">
-                <ScrollableImageRow
-                  images={galleryImages.map((image) => ({ ...image }))}
-                  showFeaturedSpace={false}
-                />
+        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+          <GalleryPreviewHero
+            galleryImages={galleryImages.map((image) => ({ ...image }))}
+            breadcrumbs={
+              <PageBreadcrumbs
+                crumbs={[
+                  { label: "Home", href: "/" },
+                  { label: "Shikkara Rides" },
+                ]}
+              />
+            }
+            eyebrow="Heritage Ride Collection"
+            title={
+              <>
+                Private Shikkara Rides in Alleppey
+                <span className="mt-2 block text-sand/70">with softer views and local rhythm.</span>
+              </>
+            }
+            description={
+              <p>
+                Explore the backwaters in the more intimate language of a traditional shikkara.
+                Scroll through the gallery to see the boat, the canopy, and the calm seating
+                layout before you book.
+              </p>
+            }
+            actions={[
+              { href: whatsappHref, label: "Book Now" },
+              { href: "/houseboats", label: "Compare houseboats", variant: "secondary" },
+            ]}
+            aside={
+              <div className="group relative w-full rounded-[2rem] border border-navy/8 bg-white/92 p-6 text-center shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-8">
+                <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
+                  Best fit
+                </div>
+                <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                  1 to 3 hours
+                </div>
+                <div className="mt-3 text-sm leading-7 text-foreground/50 sm:text-base">
+                  Best for couples, small families, and guests who want calm canal views without
+                  committing to an overnight cruise.
+                </div>
+                <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
+                  Private Scenic Ride
+                </div>
               </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4 sm:mt-10 lg:justify-start">
-              <Link
-                href={whatsappHref}
-                className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#173247] px-5 py-4 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:shadow-2xl active:scale-95 sm:w-auto sm:px-8 sm:text-sm sm:tracking-[0.18em]"
+            }
+            bottomTags={
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                className="flex flex-wrap justify-center gap-3 lg:justify-start"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                <span className="relative z-10 rounded-full bg-white/10 px-2 py-0.5 text-[0.6rem] tracking-widest text-white/80 backdrop-blur-md">
-                  RIDE
-                </span>
-                <span className="relative z-10">Book Now</span>
-                <span className="relative z-10 text-lg transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="min-w-0 lg:col-span-4"
-          >
-            <div className="group relative w-full rounded-[1.75rem] border border-navy/5 bg-white p-5 text-center shadow-[0_30px_60px_-15px_rgba(23,50,71,0.1)] transition-all duration-500 hover:-translate-y-2 sm:rounded-[2.5rem] sm:p-8">
-              <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
-                Best Fit
-              </div>
-              <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
-                1 to 3 hours
-              </div>
-              <div className="mt-3 text-sm leading-7 text-foreground/50 sm:text-base">
-                Best for couples, small families, and guests who want calm canal
-                views without committing to an overnight cruise.
-              </div>
-              <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
-                Private Scenic Ride
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="mt-12 flex flex-wrap justify-center gap-3 sm:mt-16 lg:justify-start"
-        >
-          {favoriteFacilities.map((facility) => (
-            <div
-              key={facility}
-              className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
-            >
-              {facility}
-            </div>
-          ))}
+                {favoriteFacilities.map((facility) => (
+                  <div
+                    key={facility}
+                    className="cursor-default rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-[0.7rem] font-medium text-foreground/60 shadow-sm backdrop-blur-sm transition-all hover:border-teal-400 hover:text-teal-700 sm:px-5 sm:text-xs"
+                  >
+                    {facility}
+                  </div>
+                ))}
+              </motion.div>
+            }
+          />
         </motion.div>
       </section>
 
@@ -327,7 +298,7 @@ export default function ShikkaraExperiencePage() {
 
       <ExperienceComparisonSection />
       <FaqSection
-        title="FAQs about private Shikara rides in Alleppey"
+        title="FAQs about private Shikkara rides in Alleppey"
         intro="Quick answers before you choose your backwater timing."
         faqs={faqs}
       />

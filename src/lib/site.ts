@@ -39,6 +39,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/houseboats", changeFrequency: "weekly", priority: 0.95 },
   { path: "/luxury-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/premium-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/budget-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/honeymoon-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/family-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
@@ -48,6 +49,7 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/houseboats/2-bedroom", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/3-bedroom", changeFrequency: "monthly", priority: 0.9 },
   { path: "/houseboats/5-bedroom", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/houseboats/compare", changeFrequency: "monthly", priority: 0.85 },
   { path: "/shikkara", changeFrequency: "weekly", priority: 0.85 },
   { path: "/canoe-boats", changeFrequency: "weekly", priority: 0.85 },
   { path: "/kayaking", changeFrequency: "weekly", priority: 0.85 },
@@ -61,8 +63,13 @@ export const SITE_ROUTES: SiteRoute[] = [
   { path: "/things-to-do-in-alappuzha", changeFrequency: "weekly", priority: 0.8 },
   { path: "/best-time-to-visit-alappuzha", changeFrequency: "weekly", priority: 0.8 },
   { path: "/alappuzha-vs-kumarakom", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/houseboat-food-experience", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/faq", changeFrequency: "monthly", priority: 0.6 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/refund-policy", changeFrequency: "yearly", priority: 0.3 },
 ] as const;
 
 // TODO: Configure a permanent 301 redirect from the Vercel deployment URL to

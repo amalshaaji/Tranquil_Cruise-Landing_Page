@@ -1,31 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #dceaf4;
-  --foreground: #173042;
-  --font-display: "SF Pro Rounded", "SF Pro Display", "SF Pro Text", -apple-system,
-    BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
-  --font-luxe: var(--font-editorial), Georgia, "Times New Roman", serif;
+  --background: #d8e4ee;
+  --foreground: #21394b;
+  --font-display: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    system-ui, "Helvetica Neue", Roboto, Arial, sans-serif;
+  --font-sans: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    system-ui, "Helvetica Neue", Roboto, Arial, sans-serif;
+  --font-luxe: "New York", "NY", "Iowan Old Style", "Palatino Linotype", Georgia,
+    "Times New Roman", serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: #173247;
-  --color-teal: #6f95ab;
-  --color-sand: #32556c;
-  --color-gold: #8fb3d1;
-  --color-ink: #102433;
+  --color-navy: #2f4f68;
+  --color-teal: #6d8fa6;
+  --color-sand: #4f6c82;
+  --color-gold: #a9bfd0;
+  --color-ink: #1f3444;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
 }
 
 body {
   background:
-    radial-gradient(circle at top, rgba(233, 244, 252, 0.95) 0%, rgba(233, 244, 252, 0) 38%),
-    linear-gradient(180deg, #bed6ea 0%, #d7e8f3 22%, #edf6fb 48%, #dbeaf4 74%, #c7dff0 100%);
+    radial-gradient(circle at top, rgba(238, 245, 250, 0.95) 0%, rgba(238, 245, 250, 0) 38%),
+    linear-gradient(180deg, #bfd0dd 0%, #d4e0ea 22%, #eaf1f6 48%, #dbe6ee 74%, #cad8e4 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: clip;
@@ -34,9 +35,9 @@ body {
 .home-water-theme {
   background:
     radial-gradient(circle at top center, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 28%),
-    radial-gradient(circle at bottom left, rgba(123, 159, 183, 0.2) 0%, rgba(123, 159, 183, 0) 24%),
-    radial-gradient(circle at bottom right, rgba(109, 140, 114, 0.14) 0%, rgba(109, 140, 114, 0) 22%),
-    linear-gradient(180deg, #c3dbee 0%, #d9eaf4 18%, #eef6fb 42%, #e0edf6 68%, #cae1f0 100%);
+    radial-gradient(circle at bottom left, rgba(109, 143, 166, 0.2) 0%, rgba(109, 143, 166, 0) 24%),
+    radial-gradient(circle at bottom right, rgba(122, 147, 168, 0.14) 0%, rgba(122, 147, 168, 0) 22%),
+    linear-gradient(180deg, #c5d4e0 0%, #d9e4ec 18%, #edf3f7 42%, #e0e9f0 68%, #ccd8e2 100%);
 }
 
 html {
@@ -64,5 +65,19 @@ html {
   h6 {
     font-family: var(--font-display);
     letter-spacing: 0;
+  }
+}
+
+@layer utilities {
+  .responsive-title-flow {
+    max-width: 12ch;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 640px) {
+    .responsive-title-flow {
+      max-width: none;
+      text-wrap: pretty;
+    }
   }
 }
