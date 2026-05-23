@@ -17,7 +17,7 @@ const budgetFaqs = [
   {
     question: "What is the best budget houseboat in Alappuzha for couples or small families?",
     answer:
-      "For budget-minded guests, the single-bedroom and two-bedroom formats are usually the strongest starting points because they keep the layout practical without stepping into larger group-boat pricing.",
+      "For budget-minded guests, the single-bedroom and two-bedroom formats are usually the strongest starting points because they keep the layout practical without stepping into larger group-boat formats.",
   },
   {
     question: "What is usually included in a budget houseboat in Alleppey?",
@@ -32,7 +32,7 @@ const budgetFaqs = [
   {
     question: "How do I compare a budget houseboat with a shikara ride or country boat?",
     answer:
-      "Choose a budget houseboat if you still want the overnight feel, bedroom access, and slower cruising time. Choose a shikara or country boat if your priority is a shorter scenic ride at a lighter total spend.",
+      "Choose a budget houseboat if you still want the overnight feel, bedroom access, and slower cruising time. Choose a shikara or country boat if your priority is a shorter scenic ride with a lighter overall plan.",
   },
 ];
 
@@ -59,17 +59,17 @@ const priceBands = [
   {
     title: "Single bedroom stays",
     bestFor: "Couples or solo guests",
-    guidance: "Usually the easiest entry point if you want an overnight houseboat feel without moving into larger family-boat pricing.",
+    guidance: "Usually the easiest entry point if you want an overnight houseboat feel without moving into larger family-boat formats.",
   },
   {
     title: "Two bedroom stays",
     bestFor: "Small families or shared bookings",
-    guidance: "Often the most practical value option when you want more space per guest and can split cost across a family or small group.",
+    guidance: "Often the most practical value option when you want more space per guest and a layout that works well for a family or small group.",
   },
   {
     title: "Larger layouts",
     bestFor: "Groups comparing per-person cost",
-    guidance: "Three-bedroom and five-bedroom formats can still make sense on a budget if the cost is shared across enough guests.",
+    guidance: "Three-bedroom and five-bedroom formats can still make sense when the layout suits a larger group well enough.",
   },
 ] as const;
 
@@ -229,10 +229,10 @@ export default function BudgetHouseboatAlappuzhaPage() {
           <div className="grid gap-6 lg:grid-cols-[1fr,1fr]">
             <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                Price Guide
+                Planning Guide
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-                How to think about budget houseboat pricing in Alleppey
+                How to think about budget-friendly houseboat planning in Alleppey
               </h2>
               <div className="mt-8 grid gap-4">
                 {priceBands.map((band) => (

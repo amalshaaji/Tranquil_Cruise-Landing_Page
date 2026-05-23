@@ -245,14 +245,14 @@ export default function ServicePageTemplate({
                 ) : showBookingAside ? (
                   <div className="rounded-[2rem] border border-navy/8 bg-white/90 p-6 shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-7">
                     <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-teal/80">
-                      Booking guidance
+                      Planning guidance
                     </div>
                     <div className="mt-4 rounded-[1.4rem] border border-navy/8 bg-[#f8fbfc] p-4">
                       <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-foreground/40">
-                        Starting point
+                        Best starting point
                       </div>
                       <div className="mt-3 text-2xl font-bold tracking-tight text-navy sm:text-3xl">
-                        {service.priceLabel}
+                        Start with your trip style
                       </div>
                     </div>
                     <div className="mt-5 rounded-[1.5rem] border border-teal/12 bg-[#edf5f8] p-5">
@@ -260,7 +260,7 @@ export default function ServicePageTemplate({
                         Booking note
                       </div>
                       <p className="mt-3 text-sm font-semibold leading-relaxed text-foreground/72">
-                        {service.priceLabel}
+                        Share your dates, guest count, and route preference.
                       </p>
                       <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                         {service.priceNote}
@@ -370,29 +370,18 @@ export default function ServicePageTemplate({
                         : "min-h-[28rem] sm:min-h-0 sm:aspect-[5/4] lg:h-[600px] lg:aspect-auto"
                     }`}
                   >
-                    {option.image ? (
-                      <Image
-                        src={option.image}
-                        alt={`${option.title} option for ${service.title} in Alleppey`}
-                        fill
-                        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 600px"
-                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,#dcecf1_0%,#b9d8df_100%)]" />
-                    )}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#173247] via-[#173247]/46 to-[#173247]/10 opacity-92 transition-opacity duration-500 group-hover:opacity-96" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8fbfd_0%,#ebf4f8_52%,#dcecf1_100%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(104,185,176,0.18),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(23,50,71,0.12),transparent_34%)] opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
 
                     <div className="absolute inset-x-0 bottom-0 flex h-full flex-col justify-end p-5 sm:p-8 lg:p-10">
                       {featuredLabel ? (
                         <div className="mb-3">
-                          <span className="inline-flex rounded-full border border-white/35 bg-white/18 px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-md">
+                          <span className="inline-flex rounded-full border border-[#b9d8df] bg-white/88 px-3 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-[#31546c] shadow-sm">
                             {featuredLabel}
                           </span>
                         </div>
                       ) : null}
-                      <h3 className={`max-w-[12ch] font-semibold tracking-tight text-white ${
+                      <h3 className={`max-w-[12ch] font-semibold tracking-tight text-navy ${
                         isHouseboatsPage ? "text-[1.22rem] leading-[1.06] sm:text-[1.85rem]" : "text-[1.8rem] sm:text-4xl"
                       }`}>
                         {option.title}
@@ -403,9 +392,9 @@ export default function ServicePageTemplate({
                         {visibleDetails.map((detail) => (
                           <div
                             key={detail}
-                            className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-[0.68rem] font-medium leading-tight text-white backdrop-blur-md sm:text-xs"
+                            className="flex items-center gap-2 rounded-full border border-[#cfe1e8] bg-white/92 px-3 py-1.5 text-[0.68rem] font-medium leading-tight text-[#31546c] shadow-sm sm:text-xs"
                           >
-                            <div className="h-1 w-1 rounded-full bg-teal-300" />
+                            <div className="h-1 w-1 rounded-full bg-teal" />
                             {detail}
                           </div>
                         ))}
@@ -438,13 +427,13 @@ export default function ServicePageTemplate({
           <div className="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
             <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                Pricing Guidance
+                Planning Guidance
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-                How houseboat pricing usually works in Alleppey
+                How to choose the right houseboat in Alleppey
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/66 sm:text-base">
-                We do not publish one flat rate because price changes with the
+                We do not publish one flat package because details change with the
                 boat size, route, season, guest count, and whether you want a
                 day cruise or an overnight stay. The easiest way to compare is
                 to start with the right layout for your group and then refine
@@ -470,7 +459,7 @@ export default function ServicePageTemplate({
 
             <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#eef5f8_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
               <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-                What Changes the Price
+                What Shapes the Plan
               </div>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {[

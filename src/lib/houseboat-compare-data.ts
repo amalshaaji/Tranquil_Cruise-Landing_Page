@@ -108,7 +108,6 @@ export const houseboatComparisonItems: HouseboatComparisonItem[] = [
 ];
 
 export const houseboatComparisonRows = [
-  { label: "Starting price", key: "priceLabel" },
   { label: "Guest fit", key: "guestRange" },
   { label: "Best for", key: "bestFor" },
   { label: "Bedrooms", key: "bedrooms" },
@@ -120,4 +119,3 @@ export const houseboatComparisonRows = [
   label: string;
   key: keyof HouseboatComparisonItem;
 }>;
-

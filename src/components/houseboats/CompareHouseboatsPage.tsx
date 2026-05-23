@@ -14,9 +14,9 @@ const compareFaqs = [
       "Most couples start with the single-bedroom houseboat because it feels more private and intimate. If you want extra lounge space or are travelling with children or another couple, the two-bedroom format is often the next step up.",
   },
   {
-    question: "How should I compare pricing across houseboats?",
+    question: "How should I compare houseboats across layouts?",
     answer:
-      "The single-bedroom and two-bedroom layouts have clearer starting rates, while the three-bedroom and five-bedroom options are usually quoted based on group size, dates, route, and stay details. Larger boats are best compared by total fit, not just headline price.",
+      "The single-bedroom and two-bedroom layouts are usually the clearest starting points, while the three-bedroom and five-bedroom options are better compared by group fit, dates, route, and stay details. Larger boats are best compared by total fit, not just one headline detail.",
   },
   {
     question: "When does it make sense to choose a larger group houseboat?",
@@ -39,7 +39,7 @@ export default function CompareHouseboatsPage() {
                 See every houseboat side by side before you decide.
               </h1>
               <p className="mt-5 max-w-xl text-sm leading-7 text-white/74 sm:text-base">
-                Compare pricing guidance, guest fit, room count, shared space, and stay style
+                Compare guest fit, room count, shared space, and stay style
                 across our single-bedroom, two-bedroom, three-bedroom, and five-bedroom
                 houseboats.
               </p>
@@ -77,7 +77,7 @@ export default function CompareHouseboatsPage() {
                   Included here
                 </div>
                 <div className="mt-4 space-y-3">
-                  {["Price guidance", "Feature comparison", "Guest capacity fit", "Direct links to each boat"].map((item) => (
+                  {["Planning guidance", "Feature comparison", "Guest capacity fit", "Direct links to each boat"].map((item) => (
                     <div
                       key={item}
                       className="rounded-[1.2rem] bg-[linear-gradient(180deg,#f7fbfc_0%,#ebf3f7_100%)] px-4 py-3 text-sm font-medium text-foreground/72"
@@ -99,7 +99,7 @@ export default function CompareHouseboatsPage() {
               Side-by-Side View
             </p>
             <h2 className="mt-3 text-[2rem] font-semibold tracking-tight text-navy sm:text-4xl">
-              Compare price, features, and fit in one view
+              Compare features and fit in one view
             </h2>
           </div>
 
@@ -190,9 +190,6 @@ export default function CompareHouseboatsPage() {
                     />
                   </div>
                   <div className="p-5">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-teal/80">
-                      {boat.priceLabel}
-                    </div>
                     <h3 className="mt-3 text-[1.7rem] font-semibold tracking-tight text-navy">
                       {boat.title}
                     </h3>
@@ -236,7 +233,7 @@ export default function CompareHouseboatsPage() {
                         href={whatsappHref}
                         className="inline-flex min-h-11 items-center justify-center rounded-full border border-navy/12 bg-white/80 px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-navy transition hover:bg-white"
                       >
-                        Ask pricing
+                        Ask about this boat
                       </Link>
                     </div>
                   </div>
@@ -298,7 +295,7 @@ export default function CompareHouseboatsPage() {
         <FaqSection
           eyebrow="Compare Houseboats"
           title="Questions guests ask when comparing boats"
-          intro="A few practical answers to help you compare layout, pricing, and fit before you enquire."
+          intro="A few practical answers to help you compare layout, fit, and stay style before you enquire."
           faqs={[...compareFaqs]}
         />
       </section>

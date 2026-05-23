@@ -7,8 +7,8 @@
     system-ui, "Helvetica Neue", Roboto, Arial, sans-serif;
   --font-sans: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
     system-ui, "Helvetica Neue", Roboto, Arial, sans-serif;
-  --font-luxe: "New York", "NY", "Iowan Old Style", "Palatino Linotype", Georgia,
-    "Times New Roman", serif;
+  --font-luxe: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    system-ui, "Helvetica Neue", Roboto, Arial, sans-serif;
 }
 
 @theme inline {

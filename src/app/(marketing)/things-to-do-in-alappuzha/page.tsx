@@ -225,7 +225,7 @@ export default function ThingsToDoInAlappuzhaPage() {
             attraction: "Alappuzha Lighthouse",
             vibe: "Historic",
             bestFor: "360-degree views and photography",
-            typicalCost: "Around Rs. 20 for Indians and Rs. 50 for foreign visitors",
+            typicalCost: "Low entry fee",
           },
         ]}
         compareTitle=""

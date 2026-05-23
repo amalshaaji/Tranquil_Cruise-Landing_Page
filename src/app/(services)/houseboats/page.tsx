@@ -132,7 +132,7 @@ export default function HouseboatsPage() {
                 Compare Before You Book
               </p>
               <h2 className="mt-3 max-w-2xl font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-4xl">
-                View every houseboat side by side for pricing, features, and guest fit
+                View every houseboat side by side for features, layout, and guest fit
               </h2>
               <p className="mt-4 max-w-3xl text-sm leading-7 text-foreground/70 sm:text-base">
                 If you are deciding between a couple stay, a family layout, or a larger group

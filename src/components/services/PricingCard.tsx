@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function PricingCard({
-  priceLabel,
   priceNote,
   facilities,
   ctaText,
@@ -26,27 +25,15 @@ export default function PricingCard({
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="grid gap-6 lg:grid-cols-[1.15fr,0.85fr] lg:items-start"
         >
-          {/* Pricing Card */}
+          {/* Planning Card */}
           <div className="relative overflow-hidden rounded-[28px] border border-gold/30 bg-white p-7 shadow-[0_24px_70px_rgba(23,50,71,0.1)] sm:p-9">
             <div className="relative">
               <div className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
-                Pricing
+                Planning
               </div>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="text-4xl font-semibold text-foreground sm:text-5xl">
-                  {priceLabel.split("/")[0].replace("From ", "")}
-                </span>
-                {priceLabel.includes("/") && (
-                  <span className="text-base text-foreground/60">
-                    / {priceLabel.split("/")[1].trim()}
-                  </span>
-                )}
+              <div className="mt-4 text-4xl font-semibold text-foreground sm:text-5xl">
+                Enquire directly
               </div>
-              {priceLabel.startsWith("From") && (
-                <div className="mt-1 inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal">
-                  Starting from
-                </div>
-              )}
               <p className="mt-5 text-sm leading-7 text-foreground/68">
                 {priceNote}
               </p>

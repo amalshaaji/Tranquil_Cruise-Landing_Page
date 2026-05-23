@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-5 lg:flex">
             <button
               type="button"
-              className="inline-flex items-center gap-5 text-white transition hover:text-white/80"
+              className="inline-flex items-center gap-4 rounded-full border border-white/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(159,214,208,0.2)_48%,rgba(245,214,122,0.18)_100%)] px-4 py-3 text-white shadow-[0_14px_36px_rgba(4,13,22,0.14)] backdrop-blur-md transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(159,214,208,0.28)_48%,rgba(245,214,122,0.24)_100%)]"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls={menuOpen ? "home-overlay-menu" : undefined}
@@ -68,7 +68,9 @@ export default function Navbar() {
                 <span className="h-0.5 w-10 bg-current" />
                 <span className="h-0.5 w-10 bg-current" />
               </span>
-              <span className="text-lg font-semibold uppercase tracking-[0.28em]">Menu</span>
+              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_28%,#9fe0d7_58%,#f5d67a_84%,#ffffff_100%)] bg-clip-text text-lg font-semibold uppercase tracking-[0.28em] text-transparent">
+                Menu
+              </span>
             </button>
 
             <span className="text-white/60">|</span>
@@ -83,9 +85,11 @@ export default function Navbar() {
                 onClick={() => setDestinationsOpen((v) => !v)}
                 aria-haspopup="menu"
                 aria-expanded={destinationsOpen}
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/88 transition hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.14)_0%,rgba(127,212,255,0.18)_34%,rgba(139,224,196,0.2)_64%,rgba(245,214,122,0.16)_100%)] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_14px_34px_rgba(4,13,22,0.12)] backdrop-blur-md transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,rgba(127,212,255,0.24)_34%,rgba(139,224,196,0.26)_64%,rgba(245,214,122,0.22)_100%)]"
               >
-                <span>Explore</span>
+                <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_54%,#f5d67a_82%,#ffffff_100%)] bg-clip-text text-transparent">
+                  Explore
+                </span>
                 <span className="text-[0.7rem] opacity-70">▾</span>
               </button>
 
@@ -149,24 +153,28 @@ export default function Navbar() {
           <div className="ml-auto grid w-full max-w-[15.5rem] grid-cols-2 gap-2 lg:hidden">
             <button
               type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/16"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(127,212,255,0.18)_34%,rgba(139,224,196,0.2)_64%,rgba(245,214,122,0.16)_100%)] px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(127,212,255,0.24)_34%,rgba(139,224,196,0.26)_64%,rgba(245,214,122,0.22)_100%)]"
               onClick={() => setDestinationsOpen((v) => !v)}
               aria-haspopup="menu"
               aria-expanded={destinationsOpen}
               aria-controls={destinationsOpen ? "home-mobile-explore-menu" : undefined}
             >
-              <span>Explore</span>
+              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_54%,#f5d67a_82%,#ffffff_100%)] bg-clip-text text-transparent">
+                Explore
+              </span>
               <span className="text-[0.7rem] opacity-80">▾</span>
             </button>
 
             <button
               type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-white/16"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(159,214,208,0.2)_48%,rgba(245,214,122,0.18)_100%)] px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(159,214,208,0.28)_48%,rgba(245,214,122,0.24)_100%)]"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls={menuOpen ? "home-overlay-menu" : undefined}
             >
-              <span>{menuOpen ? "Close" : "Menu"}</span>
+              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_28%,#9fe0d7_58%,#f5d67a_84%,#ffffff_100%)] bg-clip-text text-transparent">
+                {menuOpen ? "Close" : "Menu"}
+              </span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 {menuOpen ? (
                   <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />

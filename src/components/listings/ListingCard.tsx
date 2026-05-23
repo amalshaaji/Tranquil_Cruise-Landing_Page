@@ -73,11 +73,8 @@ export default function ListingCard({ listing }: { listing: Listing }) {
                 {listing.location}
               </p>
             </div>
-            <div className="text-right">
-              <div className="text-sm font-semibold text-sand">
-                Rs. {listing.priceFrom.toLocaleString("en-IN")}
-              </div>
-              <div className="text-xs text-foreground/60">from / guest</div>
+            <div className="text-right text-xs font-semibold uppercase tracking-[0.18em] text-teal/80">
+              Enquire direct
             </div>
           </div>
 

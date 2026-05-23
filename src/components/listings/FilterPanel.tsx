@@ -86,10 +86,8 @@ export default function FilterPanel({
 
         <section className="space-y-3">
           <div className="flex items-center justify-between gap-3">
-            <div className="text-xs font-semibold text-foreground/70">Max price</div>
-            <div className="text-xs font-semibold text-sand">
-              Rs. {priceMax.toLocaleString("en-IN")}
-            </div>
+            <div className="text-xs font-semibold text-foreground/70">Trip flexibility</div>
+            <div className="text-xs font-semibold text-sand">Flexible</div>
           </div>
           <input
             type="range"
@@ -101,8 +99,8 @@ export default function FilterPanel({
             className="w-full accent-gold"
           />
           <div className="flex items-center justify-between text-xs text-foreground/55">
-            <span>Rs. 1.5k</span>
-            <span>Rs. 15k</span>
+            <span>Simple</span>
+            <span>Premium</span>
           </div>
         </section>
 
@@ -126,8 +124,8 @@ export default function FilterPanel({
             className="w-full rounded-2xl border border-black/10 bg-white px-3 py-3 text-sm outline-none ring-gold/20 focus:ring-2"
           >
             <option value="recommended">Recommended</option>
-            <option value="priceAsc">Price: Low to High</option>
-            <option value="priceDesc">Price: High to Low</option>
+            <option value="priceAsc">Easier to book</option>
+            <option value="priceDesc">More premium</option>
             <option value="ratingDesc">Top Rated</option>
           </select>
         </section>

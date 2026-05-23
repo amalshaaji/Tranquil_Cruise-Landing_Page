@@ -29,12 +29,12 @@ export default function HeroSection() {
           <div className="mx-auto flex w-full max-w-7xl justify-start">
             <div className="flex max-w-[20rem] flex-col items-start rounded-[1.7rem] border border-white/12 bg-[rgba(12,31,44,0.26)] px-4 py-5 shadow-[0_18px_50px_rgba(4,13,22,0.16)] backdrop-blur-[6px] sm:max-w-[28rem] sm:rounded-[2rem] sm:px-7 sm:py-8 lg:max-w-[34rem] lg:px-8">
               <span className="mb-2 h-px w-12 bg-white/45 sm:mb-4 sm:w-20" aria-hidden="true" />
-              <div className="font-[var(--font-display)] text-white/95 [text-shadow:0_12px_30px_rgba(0,0,0,0.16)]">
-                <span className="block text-[clamp(2.1rem,11vw,6.2rem)] font-semibold uppercase leading-[0.86] tracking-[0.14em] text-white/98 sm:tracking-[0.24em] lg:max-w-[11ch] lg:text-balance lg:text-[clamp(3.7rem,5vw,5rem)] lg:leading-[0.88] lg:tracking-[0.14em]">
+              <div className="font-[var(--font-display)] [text-shadow:0_12px_30px_rgba(0,0,0,0.16)]">
+                <span className="block bg-[linear-gradient(135deg,#ffffff_0%,#dff7ff_26%,#9fe0d7_52%,#f5d67a_78%,#ffffff_100%)] bg-clip-text text-[clamp(2.1rem,11vw,6.2rem)] font-semibold uppercase leading-[0.86] tracking-[0.14em] text-transparent sm:tracking-[0.24em] lg:max-w-[11ch] lg:text-balance lg:text-[clamp(3.7rem,5vw,5rem)] lg:leading-[0.88] lg:tracking-[0.14em]">
                   Tranquil Cruise
                 </span>
               </div>
-              <span className="mt-2 max-w-[14rem] text-[0.56rem] font-medium uppercase tracking-[0.2em] text-white/72 sm:mt-5 sm:max-w-none sm:text-[0.68rem] sm:tracking-[0.52em]">
+              <span className="mt-2 max-w-[14rem] bg-[linear-gradient(90deg,#7fd4ff_0%,#ffffff_18%,#ffd86f_48%,#8be0c4_74%,#ffffff_100%)] bg-clip-text text-[0.56rem] font-semibold uppercase tracking-[0.2em] text-transparent sm:mt-5 sm:max-w-none sm:text-[0.68rem] sm:tracking-[0.52em]">
                 Alleppey Backwater Houseboats
               </span>
             </div>
@@ -50,7 +50,9 @@ export default function HeroSection() {
                     key={detail}
                     className="flex items-center justify-center rounded-full border border-white/18 bg-white/10 px-3 py-2 backdrop-blur-[2px] sm:gap-4 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-0"
                   >
-                    <span>{detail}</span>
+                    <span className="bg-[linear-gradient(90deg,#dff7ff_0%,#ffffff_26%,#9fe0d7_54%,#f5d67a_82%,#ffffff_100%)] bg-clip-text text-transparent">
+                      {detail}
+                    </span>
                     {index < heroDetails.length - 1 ? (
                       <span className="hidden h-3 w-px bg-white/45 sm:block" />
                     ) : null}
@@ -58,7 +60,7 @@ export default function HeroSection() {
                 ))}
               </div>
 
-              <h1 className="max-w-[18rem] text-balance text-[0.92rem] font-semibold uppercase leading-[1.45] tracking-[0.12em] text-white/96 sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
+              <h1 className="max-w-[18rem] bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_52%,#f5d67a_78%,#ffffff_100%)] bg-clip-text text-balance text-[0.92rem] font-semibold uppercase leading-[1.45] tracking-[0.12em] text-transparent sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
                 Private Houseboats and Backwater Cruises in Alleppey
               </h1>
 

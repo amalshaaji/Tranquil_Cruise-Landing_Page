@@ -122,14 +122,9 @@ export default function ListingDetailClient({ listing }: { listing: Listing }) {
             <div className="mt-5 grid gap-3">
               <div className="rounded-2xl border border-navy/10 bg-[#f4f9fb] p-4">
                 <div className="text-xs font-semibold text-foreground/70">
-                  Starting from
+                  Booking
                 </div>
-                <div className="mt-1 text-2xl font-semibold text-teal">
-                  Rs. {listing.priceFrom.toLocaleString("en-IN")}
-                  <span className="ml-2 text-sm font-semibold text-foreground/60">
-                    / {listing.minGuests}+ guests
-                  </span>
-                </div>
+                <div className="mt-1 text-2xl font-semibold text-teal">Ask for details</div>
                 <div className="mt-2 text-xs text-foreground/60">
                   {listing.duration} - up to {listing.maxGuests} guests
                 </div>
