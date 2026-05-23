@@ -233,6 +233,10 @@ const reviewDisplayOverrides: Record<
   },
 };
 
+function stripMarkdownHeading(value: string) {
+  return value.replace(/^#{1,6}\s+/, "").trim();
+}
+
 export default function ReferenceHomePage({
   displayedReviews,
   reviewSourceNote,
@@ -272,10 +276,10 @@ export default function ReferenceHomePage({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                Curated Experience Types
+                {stripMarkdownHeading("Curated Experience Types")}
               </p>
               <h2 className="mt-3 max-w-3xl font-[var(--font-display)] text-balance text-[2rem] font-semibold leading-[1.03] tracking-[-0.03em] text-navy sm:text-5xl">
-                Choose the backwater mood that fits the kind of day you want
+                {stripMarkdownHeading("Choose the backwater mood that fits the kind of day you want")}
               </h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
                 Some guests want wide water and a slower deck-side afternoon. Others want narrow
@@ -318,7 +322,7 @@ export default function ReferenceHomePage({
                 <div className="p-4 sm:p-6">
                   <div className="rounded-[1.35rem] border border-white/75 bg-white/72 p-4 text-navy shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-md sm:rounded-[1.7rem] sm:p-5">
                     <h3 className="font-[var(--font-display)] text-[1.45rem] font-semibold leading-tight tracking-[-0.02em] text-navy sm:text-[1.75rem]">
-                      {item.title}
+                      {stripMarkdownHeading(item.title)}
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-foreground/72 sm:mt-3">{item.copy}</p>
                     <div className="mt-4 border-t border-navy/8 pt-3 sm:mt-5 sm:pt-4">
@@ -342,10 +346,10 @@ export default function ReferenceHomePage({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-[var(--font-display)] text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                Signature Houseboat Collection
+                {stripMarkdownHeading("Signature Houseboat Collection")}
               </p>
               <h2 className="mt-3 max-w-2xl font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                Houseboats selected for beautiful stays, polished comfort, and unhurried time on the water
+                {stripMarkdownHeading("Houseboats selected for beautiful stays, polished comfort, and unhurried time on the water")}
               </h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
                 From intimate one-bedroom overnights to larger celebration-ready layouts, these are
@@ -386,7 +390,7 @@ export default function ReferenceHomePage({
                         </span>
                       </div>
                       <h3 className="mt-3 text-[1.55rem] font-semibold leading-tight text-navy sm:mt-4 sm:text-2xl">
-                        {item.title}
+                        {stripMarkdownHeading(item.title)}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-foreground/72 sm:mt-3">{item.description}</p>
                     </div>
@@ -427,10 +431,10 @@ export default function ReferenceHomePage({
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div className="relative rounded-[2.25rem] border border-white/70 bg-white/70 p-6 shadow-[0_26px_70px_rgba(23,50,71,0.08)] backdrop-blur-sm sm:p-8 lg:p-10">
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                Booking Details
+                {stripMarkdownHeading("Booking Details")}
               </p>
               <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                Plan the right experience first, then get the exact quote on WhatsApp
+                {stripMarkdownHeading("Plan the right experience first, then get the exact quote on WhatsApp")}
               </h2>
               <p className="mt-4 max-w-3xl text-sm leading-6 text-foreground/72 sm:text-base sm:leading-7">
                 These details give a clearer starting point for Alleppey houseboat bookings, shikkara rides,
@@ -458,10 +462,10 @@ export default function ReferenceHomePage({
                 aria-hidden="true"
               />
               <div className="relative text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#9cd4d1]">
-                Direct Planning Flow
+                {stripMarkdownHeading("Direct Planning Flow")}
               </div>
               <h3 className="relative mt-3 max-w-sm text-2xl font-semibold leading-tight text-white sm:text-3xl">
-                Tell us your dates, group size, and trip mood.
+                {stripMarkdownHeading("Tell us your dates, group size, and trip mood.")}
               </h3>
               <p className="relative mt-4 max-w-md text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
                 We suggest the right boat or route first, then confirm availability and share the next steps directly
@@ -497,7 +501,9 @@ export default function ReferenceHomePage({
                         {step.step}
                       </div>
                     </div>
-                    <div className="mt-4 text-sm font-semibold sm:text-[0.95rem]">{step.title}</div>
+                    <div className="mt-4 text-sm font-semibold sm:text-[0.95rem]">
+                      {stripMarkdownHeading(step.title)}
+                    </div>
                     <p className="mt-2 text-sm leading-6 text-[#173247]/68">{step.copy}</p>
                   </div>
                 ))}
@@ -529,7 +535,7 @@ export default function ReferenceHomePage({
                   Booking guidance
                 </div>
                 <h3 className="mt-3 text-xl font-semibold text-[#173247] transition group-hover:text-[#234760]">
-                  {item.title}
+                  {stripMarkdownHeading(item.title)}
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.detail}</p>
               </article>
@@ -538,7 +544,9 @@ export default function ReferenceHomePage({
 
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="rounded-[2rem] border border-[#d7e5ec] bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:p-8">
-              <h3 className="text-2xl font-semibold text-[#173247]">What is usually included</h3>
+              <h3 className="text-2xl font-semibold text-[#173247]">
+                {stripMarkdownHeading("What is usually included")}
+              </h3>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {inclusionItems.map((item) => (
                   <li
@@ -552,7 +560,9 @@ export default function ReferenceHomePage({
             </div>
 
             <div className="rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#173247_0%,#234760_100%)] p-6 text-white shadow-[0_22px_55px_rgba(23,50,71,0.16)] sm:p-8">
-              <h3 className="text-2xl font-semibold">Key booking details</h3>
+              <h3 className="text-2xl font-semibold">
+                {stripMarkdownHeading("Key booking details")}
+              </h3>
               <dl className="mt-5 grid gap-4">
                 {bookingDetailFacts.map((item) => (
                   <div
@@ -575,7 +585,7 @@ export default function ReferenceHomePage({
                 key={item.title}
                 className={`group rounded-[2rem] border border-[#d7e5ec] bg-white p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6 ${index >= 1 ? "hidden lg:block" : ""}`}
               >
-                <h3 className="text-xl font-semibold text-[#173247]">{item.title}</h3>
+                <h3 className="text-xl font-semibold text-[#173247]">{stripMarkdownHeading(item.title)}</h3>
                 <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.copy}</p>
                 <Link
                   href={item.href}
@@ -589,7 +599,9 @@ export default function ReferenceHomePage({
 
           <div className="mt-8 flex flex-col gap-3 rounded-[2rem] border border-[#d7e5ec] bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div className="max-w-3xl">
-              <h3 className="text-xl font-semibold text-[#173247]">Need the exact quote for your dates?</h3>
+              <h3 className="text-xl font-semibold text-[#173247]">
+                {stripMarkdownHeading("Need the exact quote for your dates?")}
+              </h3>
               <p className="mt-2 text-sm leading-6 text-[#173247]/72">
                 Final trip planning depends on season, route choice, meal format, guest count, and whether you want a
                 day cruise, overnight houseboat, or lighter canal experience. Message us on WhatsApp and we will
@@ -670,10 +682,10 @@ export default function ReferenceHomePage({
               <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-3xl">
                   <p className="text-[0.74rem] font-semibold uppercase tracking-[0.34em] text-teal/80">
-                    What Our Guests Say
+                    {stripMarkdownHeading("What Our Guests Say")}
                   </p>
                   <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-[0.96] tracking-[-0.03em] text-navy sm:text-5xl lg:text-[3.5rem]">
-                    Recent review highlights
+                    {stripMarkdownHeading("Recent review highlights")}
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
                     Real guest notes from recent Google reviews, chosen to give a quick feel for the
@@ -760,7 +772,7 @@ export default function ReferenceHomePage({
                             <span className="ml-1">review</span>
                           </div>
                           <h3 className="mt-4 text-xl font-semibold text-[#173247]">
-                            {displayAuthorName}
+                            {stripMarkdownHeading(displayAuthorName)}
                           </h3>
                           <p className="mt-1 text-sm text-[#5f839a]">{review.publishedLabel}</p>
                         </div>
@@ -804,10 +816,10 @@ export default function ReferenceHomePage({
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="rounded-[2.25rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_60px_rgba(23,50,71,0.07)] backdrop-blur-sm sm:p-8">
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                Quick Answers
+                {stripMarkdownHeading("Quick Answers")}
               </p>
               <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                Fast answers for common Alleppey booking questions
+                {stripMarkdownHeading("Fast answers for common Alleppey booking questions")}
               </h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
                 These short answer blocks are here for travelers who want a direct starting point before comparing
@@ -828,10 +840,10 @@ export default function ReferenceHomePage({
 
             <div className="rounded-[2.25rem] border border-[#d5e7ee] bg-[linear-gradient(145deg,#ffffff_0%,#eef7fb_100%)] p-6 shadow-[0_22px_56px_rgba(23,50,71,0.06)] sm:p-8">
               <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                Best Use
+                {stripMarkdownHeading("Best Use")}
               </div>
               <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#173247] sm:text-3xl">
-                Start here when you want the simplest route into the decision.
+                {stripMarkdownHeading("Start here when you want the simplest route into the decision.")}
               </h3>
               <p className="mt-4 text-sm leading-6 text-[#173247]/70 sm:text-base sm:leading-7">
                 This section is meant to remove the first layer of confusion before you go deeper into houseboats,
@@ -855,7 +867,7 @@ export default function ReferenceHomePage({
                       Quick answer
                     </div>
                     <h3 className="mt-2 text-xl font-semibold leading-tight text-[#173247] transition group-hover:text-[#234760]">
-                      {item.title.replace("Quick answer: ", "")}
+                      {stripMarkdownHeading(item.title.replace("Quick answer: ", ""))}
                     </h3>
                   </div>
                 </div>
