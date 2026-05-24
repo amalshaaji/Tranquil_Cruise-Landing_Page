@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqSection from "@/components/seo/FaqSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
@@ -136,6 +137,19 @@ const cruiseComparisons = [
   },
 ];
 
+const answerFirstItems = [
+  {
+    question: "What is the day cruise price in Alleppey?",
+    answer:
+      "The day cruise price in Alleppey depends on the boat category, route style, meal plan, and guest count. Private day cruises in Alappuzha are usually quoted around the exact plan, so the most accurate price comes after you share your date and group size.",
+  },
+  {
+    question: "Is a day cruise better than an overnight houseboat?",
+    answer:
+      "A day cruise is better if you want the houseboat atmosphere, scenic cruising, and onboard lunch within one daytime schedule. An overnight stay is better if you want sunset time, dinner on board, and a slower morning rhythm on the water.",
+  },
+];
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
     title: "Day Cruise Alappuzha | Alleppey Houseboat Day Trip",
@@ -261,6 +275,13 @@ export default function DayCruiseAlappuzhaPage() {
             </div>
           </div>
         </section>
+
+        <QuestionAnswerList
+          eyebrow="Answer First"
+          title="Fast answers for travelers comparing a houseboat day trip."
+          intro="These short answers sit near the top so guests can resolve the biggest planning questions before reading the deeper route and timing breakdown."
+          items={answerFirstItems}
+        />
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
           <div className="grid gap-6 lg:grid-cols-[1fr,0.96fr]">

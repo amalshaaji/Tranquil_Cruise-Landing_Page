@@ -12,7 +12,9 @@ import {
   createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
+  createReviewSchema,
   createSpeakableSchema,
+  createTravelAgencySchema,
   createVideoObjectSchema,
   generatePageMetadata,
 } from "@/lib/seo";
@@ -103,8 +105,38 @@ export default async function ReviewsPage() {
       height: 1200,
       caption: image.caption,
     })),
+    aggregateRating:
+      googleReviewData?.rating && googleReviewData.reviewCount
+        ? {
+            ratingValue: googleReviewData.rating,
+            reviewCount: googleReviewData.reviewCount,
+          }
+        : undefined,
     sameAs: [mapsUrl, WHATSAPP_URL, ...(instagramUrl ? [instagramUrl] : [])],
   });
+  const travelAgencyJsonLd = createTravelAgencySchema({
+    path: "/reviews",
+    description:
+      "Review-backed Kerala backwater travel planning from Tranquil Cruise covering Alleppey houseboats, shikkara rides, and private Alappuzha experiences.",
+    aggregateRating:
+      googleReviewData?.rating && googleReviewData.reviewCount
+        ? {
+            ratingValue: googleReviewData.rating,
+            reviewCount: googleReviewData.reviewCount,
+          }
+        : undefined,
+    sameAs: [mapsUrl, WHATSAPP_URL, ...(instagramUrl ? [instagramUrl] : [])],
+  });
+  const reviewSchemas = (googleReviewData?.reviews ?? []).slice(0, 5).map((review) =>
+    createReviewSchema({
+      authorName: review.authorName,
+      reviewBody: review.text,
+      reviewRating: review.rating,
+      datePublished: review.publishedAt,
+      publisherName: "Google",
+      reviewUrl: review.reviewUrl,
+    }),
+  );
 
   const imageSchemas = reviewMomentImages.map((image) =>
     createImageObjectSchema({
@@ -144,9 +176,10 @@ export default async function ReviewsPage() {
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={collectionPageJsonLd} />
       <JsonLd data={localBusinessJsonLd} />
+      <JsonLd data={travelAgencyJsonLd} />
       <JsonLd data={speakableJsonLd} />
       <JsonLd data={createFaqSchema(reviewFaqs)} />
-      <JsonLd data={[...imageSchemas, ...videoSchemas]} />
+      <JsonLd data={[...imageSchemas, ...videoSchemas, ...reviewSchemas]} />
       <ReviewsPageContent
         googleReviewData={googleReviewData}
         mapsUrl={mapsUrl}

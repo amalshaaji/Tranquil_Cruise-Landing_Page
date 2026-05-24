@@ -21,24 +21,29 @@ const INTRO_IMAGE = "/images/home-backwater-houseboats.jpg";
 
 const homepageFaqs = [
   {
-    question: "Which is the best houseboat in Alappuzha for families?",
+    question: "Which is the best houseboat in Alleppey for families?",
     answer:
-      "The best houseboat in Alappuzha for families is usually a two-bedroom or three-bedroom option. These Alleppey houseboat stays give families separate rooms, more shared lounge space, and a calmer overnight pace on the Kerala backwaters, which makes them a better fit than smaller boats for parents, children, or multi-generation trips.",
+      "The best houseboat in Alleppey for families is usually a private two-bedroom or three-bedroom option. These houseboats give families separate rooms, more shared lounge space, and a calmer overnight pace on the Kerala backwaters than smaller couple-focused boats.",
   },
   {
-    question: "Is Alleppey the same as Alappuzha when booking a houseboat?",
+    question: "Houseboat vs shikkara in Alleppey: which is better?",
     answer:
-      "Yes, Alleppey and Alappuzha are the same destination when booking a houseboat. Travelers use both names for the same Kerala backwaters region, so an Alleppey houseboat, an Alappuzha houseboat, and a backwater cruise in Alappuzha usually refer to the same local area and boat routes.",
+      "A houseboat is better when you want more comfort, onboard meals, and enough time to settle into the backwaters. A shikkara is better when you want a shorter, lighter, and more affordable canal ride through Alleppey and Alappuzha.",
   },
   {
-    question: "Should I book a houseboat or a shikkara ride in Alleppey?",
+    question: "What is the day cruise price in Alleppey?",
     answer:
-      "Book a houseboat in Alleppey if you want more comfort, meals, and longer time on the water. Choose a shikkara ride in Alappuzha if you want a shorter and more affordable trip through narrow Kerala backwaters canals, especially for sightseeing, village routes, or a quick daytime experience.",
+      "The day cruise price in Alleppey depends on the boat category, route length, meal plan, and guest count. The clearest way to get an accurate quote is to share your date and group size, because private day cruises are usually priced around the exact plan rather than one fixed public rate.",
   },
   {
-    question: "Can I plan a Kerala backwater cruise with custom timing?",
+    question: "Which honeymoon houseboat in Kerala is best for couples?",
     answer:
-      "Yes, you can plan a Kerala backwater cruise with custom timing in Alleppey or Alappuzha. Many guests choose morning, afternoon, sunset, or overnight houseboat schedules based on group size, route style, and how much time they want on the Kerala backwaters rather than following one fixed departure window.",
+      "For most couples, the best honeymoon houseboat in Kerala is a private one-bedroom overnight houseboat in Alleppey or Alappuzha. That format gives you sunset cruising, dinner on board, privacy, and a slower romantic backwater rhythm.",
+  },
+  {
+    question: "What is the best time to visit Alleppey?",
+    answer:
+      "The best time to visit Alleppey depends on whether you want easier sightseeing weather or a greener monsoon mood. Many travelers prefer the more comfortable cruising months for longer open-deck time, while others choose monsoon for a quieter and more atmospheric Kerala backwaters experience.",
   },
 ];
 
@@ -111,6 +116,13 @@ export default async function Home() {
       },
     ],
     sameAs: [GOOGLE_MAPS_PAGE_URL, WHATSAPP_URL, INSTAGRAM_URL],
+    aggregateRating:
+      googleReviewData?.rating && googleReviewData.reviewCount
+        ? {
+            ratingValue: googleReviewData.rating,
+            reviewCount: googleReviewData.reviewCount,
+          }
+        : undefined,
     makesOffer: [
       { name: "Luxury Houseboat Stay", path: "/houseboats" },
       { name: "Shikkara Rides", path: "/shikkara" },

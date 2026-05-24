@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqSection from "@/components/seo/FaqSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
@@ -112,6 +113,19 @@ const romanticFormats = [
     href: "/houseboats/2-bedroom",
     fit: "For couples wanting more space",
     copy: "A stronger option if you want additional lounge comfort, a more expansive deck rhythm, or a premium-feeling layout beyond the usual honeymoon format.",
+  },
+];
+
+const answerFirstItems = [
+  {
+    question: "Which honeymoon houseboat in Kerala is best for couples?",
+    answer:
+      "For most couples, the best honeymoon houseboat in Kerala is a private one-bedroom overnight houseboat in Alleppey or Alappuzha. It gives you the right balance of privacy, sunset time, dinner on board, and a slower romantic backwater rhythm.",
+  },
+  {
+    question: "Is a honeymoon houseboat better as a day cruise or overnight stay?",
+    answer:
+      "An overnight stay is usually better for a honeymoon because it adds sunset cruising, more quiet private time, dinner atmosphere, and a softer morning on the water. A day cruise works better if you want a shorter romantic outing without staying overnight.",
   },
 ];
 
@@ -240,6 +254,13 @@ export default function HoneymoonHouseboatAlappuzhaPage() {
             </div>
           </div>
         </section>
+
+        <QuestionAnswerList
+          eyebrow="Answer First"
+          title="Fast answers for couples planning a Kerala honeymoon houseboat."
+          intro="These direct answers are placed near the top so couples can settle the main decision before moving into romantic details, route pacing, and stay formats."
+          items={answerFirstItems}
+        />
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
           <div className="grid gap-6 lg:grid-cols-[1fr,0.95fr]">

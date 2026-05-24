@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import scrapedPlaceData from "../../data/google-place-scrape.json";
 
 const GOOGLE_MAPS_PAGE_URL = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
@@ -177,7 +178,7 @@ async function fetchPlaceByText(apiKey: string, textQuery: string) {
   return data.places?.[0] ?? null;
 }
 
-export async function getGooglePlaceReviewData(): Promise<GooglePlaceReviewData | null> {
+export const getGooglePlaceReviewData = cache(async (): Promise<GooglePlaceReviewData | null> => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
@@ -201,6 +202,6 @@ export async function getGooglePlaceReviewData(): Promise<GooglePlaceReviewData 
     console.error("Unable to load Google reviews", error);
     return getScrapedFallbackData();
   }
-}
+});
 
 export { GOOGLE_MAPS_PAGE_URL };

@@ -195,26 +195,36 @@ const groupFitCards = [
 
 const quickAnswerBlocks = [
   {
-    title: "Quick answer: houseboat or shikkara?",
+    title: "Which is the best houseboat in Alleppey?",
+    copy:
+      "For most couples, the best houseboat in Alleppey is a private one-bedroom stay. For families, the best fit is usually a two-bedroom or three-bedroom houseboat because it gives you better room balance, more shared lounge space, and a calmer overnight rhythm on the Kerala backwaters.",
+  },
+  {
+    title: "Houseboat vs shikkara in Alleppey: which should you choose?",
     copy:
       "A private Alleppey houseboat is best for couples, families, and groups who want a slower Kerala backwater experience with onboard comfort, meals, and scenic cruising. Shikkara rides are better for shorter canal sightseeing in Alappuzha when you want a lighter and more affordable trip.",
   },
   {
-    title: "Quick answer: best option for families",
+    title: "What is the day cruise price in Alleppey?",
     copy:
-      "For most families, a two-bedroom or three-bedroom Alappuzha houseboat is the best fit. These Kerala backwaters stays give families more privacy, shared lounge space, and an easier overnight rhythm than smaller houseboats or shorter sightseeing rides.",
+      "The day cruise price in Alleppey depends on the boat category, route length, meal plan, and guest count. Most guests get the most accurate quote by sharing their date and group size first, because private houseboat day trips in Alappuzha are usually priced around the exact plan rather than one flat public rate.",
   },
   {
-    title: "Quick answer: best option for couples",
+    title: "Which honeymoon houseboat in Kerala is best for couples?",
     copy:
-      "For most couples, a one-bedroom Alleppey houseboat or a private shikkara ride is the strongest choice. Choose a houseboat if you want more time, meals, and overnight comfort, and choose a shikkara for a shorter romantic canal ride through the Kerala backwaters.",
+      "For most couples, the best honeymoon houseboat in Kerala is a private one-bedroom houseboat in Alleppey or Alappuzha with an overnight stay. That format gives you sunset cruising, more privacy, dinner on board, and a slower morning atmosphere that feels more romantic than a short daytime ride.",
+  },
+  {
+    title: "What is the best time to visit Alleppey?",
+    copy:
+      "The best time to visit Alleppey depends on the kind of trip you want. Many travelers prefer the more comfortable sightseeing months for longer open-deck cruising, while others choose the monsoon period for a greener, quieter, and moodier Kerala backwaters experience.",
   },
 ] as const;
 
 const quickAnswerHighlights = [
-  "Compare formats faster",
-  "Useful for couples and families",
-  "Clearer first step before WhatsApp",
+  "Exact-match travel questions",
+  "Short direct answers near the top",
+  "Useful before deeper comparison",
 ] as const;
 
 const reviewDisplayOverrides: Record<
@@ -249,7 +259,7 @@ export default function ReferenceHomePage({
   const filteredPackages = featuredPackages;
 
   return (
-    <main id="main-content" className="home-water-theme flex min-h-screen flex-col text-[#143245]">
+    <main className="home-water-theme flex min-h-screen flex-col text-[#143245]">
       <HeroSection />
 
       <section className="border-b border-[#c7dbe4] bg-[#d9eaf4]">
@@ -266,6 +276,73 @@ export default function ReferenceHomePage({
               >
                 {item.label}
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[linear-gradient(180deg,#edf6fb_0%,#f8fcfd_100%)] px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div className="rounded-[2.25rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_60px_rgba(23,50,71,0.07)] backdrop-blur-sm sm:p-8">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
+                {stripMarkdownHeading("Quick Answers")}
+              </p>
+              <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
+                {stripMarkdownHeading("Fast answers for common Alleppey booking questions")}
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
+                These short answer blocks are here for travelers who want a direct starting point before comparing
+                houseboats, shikkara rides, honeymoon stays, day cruises, and Kerala backwaters timing.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {quickAnswerHighlights.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#cfe1e9] bg-[#f8fcfd] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#31546c] shadow-[0_8px_20px_rgba(23,50,71,0.05)]"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-teal" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2.25rem] border border-[#d5e7ee] bg-[linear-gradient(145deg,#ffffff_0%,#eef7fb_100%)] p-6 shadow-[0_22px_56px_rgba(23,50,71,0.06)] sm:p-8">
+              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
+                {stripMarkdownHeading("Best Use")}
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#173247] sm:text-3xl">
+                {stripMarkdownHeading("Start here when you want the simplest route into the decision.")}
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-[#173247]/70 sm:text-base sm:leading-7">
+                This section removes the first layer of confusion before you go deeper into houseboats,
+                shikkara rides, route-specific pages, pricing questions, or seasonal planning.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {quickAnswerBlocks.map((item, index) => (
+              <article
+                key={item.title}
+                className="group rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#173247] text-sm font-semibold text-white shadow-[0_10px_24px_rgba(23,50,71,0.18)]">
+                    {index + 1}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#6f95ab]">
+                      Quick answer
+                    </div>
+                    <h3 className="mt-2 text-xl font-semibold leading-tight text-[#173247] transition group-hover:text-[#234760]">
+                      {stripMarkdownHeading(item.title)}
+                    </h3>
+                  </div>
+                </div>
+                <p className="mt-5 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -748,9 +825,10 @@ export default function ReferenceHomePage({
                           {review.authorPhotoUrl ? (
                             <Image
                               src={review.authorPhotoUrl}
-                              alt=""
+                              alt={`Profile photo of ${displayAuthorName}`}
                               fill
                               className="object-cover"
+                              sizes="56px"
                               unoptimized
                             />
                           ) : (
@@ -805,77 +883,6 @@ export default function ReferenceHomePage({
 
       <section className="hidden bg-[#edf6fb] lg:block">
         <ExperienceComparisonSection />
-      </section>
-
-      <section className="hidden relative overflow-hidden bg-[linear-gradient(180deg,#edf6fb_0%,#f8fcfd_100%)] px-4 py-10 sm:px-6 sm:py-14 lg:block lg:px-8">
-        <div
-          className="pointer-events-none absolute left-0 top-0 h-52 w-52 rounded-full bg-teal/10 blur-3xl"
-          aria-hidden="true"
-        />
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <div className="rounded-[2.25rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_60px_rgba(23,50,71,0.07)] backdrop-blur-sm sm:p-8">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                {stripMarkdownHeading("Quick Answers")}
-              </p>
-              <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                {stripMarkdownHeading("Fast answers for common Alleppey booking questions")}
-              </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
-                These short answer blocks are here for travelers who want a direct starting point before comparing
-                houseboats, shikkara rides, kayaking, and other Kerala backwaters options in Alappuzha.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {quickAnswerHighlights.map((item) => (
-                  <div
-                    key={item}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#cfe1e9] bg-[#f8fcfd] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#31546c] shadow-[0_8px_20px_rgba(23,50,71,0.05)]"
-                  >
-                    <span className="h-2 w-2 rounded-full bg-teal" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[2.25rem] border border-[#d5e7ee] bg-[linear-gradient(145deg,#ffffff_0%,#eef7fb_100%)] p-6 shadow-[0_22px_56px_rgba(23,50,71,0.06)] sm:p-8">
-              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                {stripMarkdownHeading("Best Use")}
-              </div>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#173247] sm:text-3xl">
-                {stripMarkdownHeading("Start here when you want the simplest route into the decision.")}
-              </h3>
-              <p className="mt-4 text-sm leading-6 text-[#173247]/70 sm:text-base sm:leading-7">
-                This section is meant to remove the first layer of confusion before you go deeper into houseboats,
-                shikkara rides, kayaking, or route-specific pages.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {quickAnswerBlocks.map((item, index) => (
-              <article
-                key={item.title}
-                className="group rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#173247] text-sm font-semibold text-white shadow-[0_10px_24px_rgba(23,50,71,0.18)]">
-                    {index + 1}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#6f95ab]">
-                      Quick answer
-                    </div>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight text-[#173247] transition group-hover:text-[#234760]">
-                      {stripMarkdownHeading(item.title.replace("Quick answer: ", ""))}
-                    </h3>
-                  </div>
-                </div>
-                <p className="mt-5 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section className="bg-[#edf6fb] pb-16 sm:pb-20">

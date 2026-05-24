@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import {
   BUSINESS_COORDINATES,
   BUSINESS_EMAIL,
+  BUSINESS_HOURS,
   BUSINESS_LOCATION,
   BUSINESS_PHONE,
   DEFAULT_OG_IMAGE,
+  INSTAGRAM_URL,
   SITE_NAME,
   SITE_URL,
   SERVICE_AREAS,
+  WHATSAPP_URL,
 } from "@/lib/site";
 
 export type FaqItem = {
@@ -100,6 +103,16 @@ export type LocalBusinessInput = {
   geo?: GeoCoordinatesInput;
 };
 
+export type TravelAgencyInput = {
+  description: string;
+  path?: string;
+  image?: ImageObjectInput;
+  sameAs?: string[];
+  aggregateRating?: AggregateRatingInput;
+  makesOffer?: OfferInput[];
+  geo?: GeoCoordinatesInput;
+};
+
 export type LodgingBusinessInput = {
   name: string;
   description: string;
@@ -113,6 +126,8 @@ export type MetadataInput = {
   description: string;
   path: string;
   keywords?: string[];
+  openGraphType?: "website" | "article";
+  robots?: Metadata["robots"];
   image?: {
     url: string;
     width?: number;
@@ -147,6 +162,8 @@ export function createPageMetadata({
   description,
   path,
   keywords,
+  openGraphType = "website",
+  robots,
   image,
 }: MetadataInput): Metadata {
   const canonicalPath = normalizeSitePath(path);
@@ -163,6 +180,18 @@ export function createPageMetadata({
     title,
     description,
     keywords,
+    category: "travel",
+    robots: robots ?? {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     alternates: {
       canonical: canonicalUrl,
     },
@@ -172,7 +201,7 @@ export function createPageMetadata({
       url: canonicalUrl,
       siteName: SITE_NAME,
       locale: "en_US",
-      type: "website",
+      type: openGraphType,
       images: [
         {
           ...ogImage,
@@ -445,6 +474,23 @@ export function createLocalBusinessSchema({
     image: absoluteUrl(primaryImage.path),
     email: BUSINESS_EMAIL,
     telephone: BUSINESS_PHONE,
+    openingHours: "Mo-Su 08:00-20:00",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "08:00",
+        closes: "20:00",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: "8/308B Chungam Road, Pallathuruthy",
@@ -477,6 +523,70 @@ export function createLocalBusinessSchema({
 
 export function createOrganizationSchema(description: string) {
   return createLocalBusinessSchema({ description });
+}
+
+export function createTravelAgencySchema({
+  description,
+  path = "/",
+  image,
+  sameAs = [WHATSAPP_URL, INSTAGRAM_URL],
+  aggregateRating,
+  makesOffer,
+  geo = BUSINESS_COORDINATES,
+}: TravelAgencyInput) {
+  const primaryImage = image ?? {
+    path: DEFAULT_OG_IMAGE,
+    alt: "Private Kerala houseboat in the Alleppey backwaters",
+    width: 4640,
+    height: 3739,
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: SITE_NAME,
+    description,
+    url: absoluteUrl(path),
+    image: absoluteUrl(primaryImage.path),
+    email: BUSINESS_EMAIL,
+    telephone: BUSINESS_PHONE,
+    slogan: "Private Kerala backwater journeys with a calmer local pace.",
+    areaServed: SERVICE_AREAS.map((area) => ({
+      "@type": "Place",
+      name: area,
+    })),
+    sameAs,
+    openingHours: BUSINESS_HOURS,
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "08:00",
+        closes: "20:00",
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "8/308B Chungam Road, Pallathuruthy",
+      addressLocality: "Alappuzha",
+      addressRegion: "Kerala",
+      postalCode: "688011",
+      addressCountry: "IN",
+    },
+    geo: createGeoCoordinatesSchema(geo),
+    aggregateRating: aggregateRating
+      ? createAggregateRatingSchema(aggregateRating)
+      : undefined,
+    makesOffer: makesOffer?.map((offer) => createOfferSchema(offer)),
+  };
 }
 
 export function createTouristTripSchema({

@@ -1,0 +1,5 @@
+http://tranquilcruise.com/* https://www.tranquilcruise.com/:splat 301!
+https://tranquilcruise.com/* https://www.tranquilcruise.com/:splat 301!
+http://www.tranquilcruise.com/* https://www.tranquilcruise.com/:splat 301!
+http://tranquilcruise.netlify.app/* https://www.tranquilcruise.com/:splat 301!
+https://tranquilcruise.netlify.app/* https://www.tranquilcruise.com/:splat 301!

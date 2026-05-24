@@ -1,4 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Page Not Found | Tranquil Cruise",
+  description:
+    "The page you requested could not be found. Browse Alleppey houseboats, shikkara rides, and Kerala backwater experiences from Tranquil Cruise.",
+  path: "/404",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+});
 
 export default function NotFound() {
   return (

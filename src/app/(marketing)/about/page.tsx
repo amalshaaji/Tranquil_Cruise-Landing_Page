@@ -5,8 +5,11 @@ import InnerPageHeader from "@/components/layout/InnerPageHeader";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   createBreadcrumbSchema,
+  createLocalBusinessSchema,
+  createTravelAgencySchema,
   generatePageMetadata,
 } from "@/lib/seo";
+import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
@@ -28,22 +31,19 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Tranquil Cruise",
+const localBusinessJsonLd = createLocalBusinessSchema({
+  path: "/about",
   description:
-    "Luxury houseboats, Shikkara rides, village country boat rides, kayaking, spa, and rooms on Kerala's backwaters in Alappuzha.",
-  url: "https://www.tranquilcruise.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Alappuzha",
-    addressRegion: "Kerala",
-    addressCountry: "IN",
-  },
-  hasMap: "https://maps.google.com/?q=Tranquil+Cruise+Alappuzha+Kerala",
-  sameAs: ["https://www.tranquilcruise.com"],
-};
+    "Luxury houseboats, shikkara rides, village country boat rides, kayaking, spa, and rooms on Kerala's backwaters in Alappuzha.",
+  sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
+});
+
+const travelAgencyJsonLd = createTravelAgencySchema({
+  path: "/about",
+  description:
+    "A local Alappuzha travel agency focused on private Kerala backwater planning, houseboat stays, and slower Alleppey experiences.",
+  sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
+});
 
 const breadcrumbJsonLd = createBreadcrumbSchema([
   { name: "Home", path: "/" },
@@ -149,11 +149,7 @@ const journeySteps = [
 export default function AboutPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-      />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={[localBusinessJsonLd, travelAgencyJsonLd, breadcrumbJsonLd]} />
     <main className="pb-16 sm:pb-24">
       <InnerPageHeader
         eyebrow="About Tranquil Cruise"

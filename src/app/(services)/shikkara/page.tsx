@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import ShikkaraExperiencePage from "@/components/services/ShikkaraExperiencePage";
 import JsonLd from "@/components/seo/JsonLd";
 import { getServiceFaqs } from "@/lib/seo-content";
@@ -45,12 +46,31 @@ const serviceJsonLd = createServiceSchema({
   serviceType: "Shikkara ride",
 });
 
+const answerFirstItems = [
+  {
+    question: "Houseboat vs shikkara in Alleppey: which should you choose?",
+    answer:
+      "Choose a shikkara if you want a shorter, lighter, and more affordable canal ride with a closer local feel. Choose a houseboat if you want more comfort, onboard meals, and a longer Kerala backwaters experience.",
+  },
+  {
+    question: "Who is a shikkara ride best for in Alappuzha?",
+    answer:
+      "A shikkara ride is usually best for couples, small families, and guests who want 1 to 3 hours of calmer sightseeing through village canals without committing to a full houseboat stay.",
+  },
+];
+
 export default function ShikkaraPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={createFaqSchema(faqs)} />
+      <QuestionAnswerList
+        eyebrow="Answer First"
+        title="Fast answers for travelers comparing shikkara rides."
+        intro="These short answers are here near the top so you can understand where a shikkara fits before opening the full ride details."
+        items={answerFirstItems}
+      />
       <ShikkaraExperiencePage />
     </>
   );

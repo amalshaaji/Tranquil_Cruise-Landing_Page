@@ -3,10 +3,23 @@ import { Suspense } from "react";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleTagManagerNoscript from "@/components/analytics/GoogleTagManagerNoscript";
-import GlobalConversionLayer from "@/components/conversion/GlobalConversionLayer";
+import DeferredGlobalConversionLayer from "@/components/conversion/DeferredGlobalConversionLayer";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/seo/JsonLd";
+import { getGooglePlaceReviewData } from "@/lib/google-place-reviews";
+import {
+  createLocalBusinessSchema,
+  createPageMetadata,
+  createTravelAgencySchema,
+} from "@/lib/seo";
+import {
+  DEFAULT_OG_IMAGE,
+  INSTAGRAM_URL,
+  SITE_NAME,
+  SITE_URL,
+  WHATSAPP_URL,
+} from "@/lib/site";
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
@@ -14,21 +27,10 @@ const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
-  title: SITE_NAME,
-  description:
-    "Private houseboats, shikara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey, Alappuzha, and the Kerala backwaters.",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
   authors: [{ name: "Tranquil Cruise" }],
+  creator: "Tranquil Cruise",
+  publisher: "Tranquil Cruise",
+  referrer: "origin-when-cross-origin",
   verification:
     googleSiteVerification || bingSiteVerification
       ? {
@@ -40,6 +42,25 @@ export const metadata: Metadata = {
             : undefined,
         }
       : undefined,
+  ...createPageMetadata({
+    title: SITE_NAME,
+    description:
+      "Private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey, Alappuzha, and the Kerala backwaters.",
+    path: "/",
+    keywords: [
+      "Alleppey houseboat",
+      "Alappuzha backwater cruises",
+      "Kerala backwaters",
+      "private shikkara rides",
+      "day cruise Alleppey",
+    ],
+    image: {
+      url: DEFAULT_OG_IMAGE,
+      width: 4640,
+      height: 3739,
+      alt: "Private Kerala houseboat in the Alleppey backwaters",
+    },
+  }),
 };
 
 export const viewport: Viewport = {
@@ -49,14 +70,50 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const googleReviewData = await getGooglePlaceReviewData();
+  const aggregateRating =
+    googleReviewData?.rating && googleReviewData.reviewCount
+      ? {
+          ratingValue: googleReviewData.rating,
+          reviewCount: googleReviewData.reviewCount,
+        }
+      : undefined;
+
+  const siteOffers = [
+    { name: "Private Alleppey Houseboats", path: "/houseboats" },
+    { name: "Private Shikkara Rides", path: "/shikkara" },
+    { name: "Country Boat Rides", path: "/canoe-boats" },
+    { name: "Backwater Kayaking", path: "/kayaking" },
+    { name: "Backwater Rooms", path: "/rooms" },
+    { name: "Ayurvedic Spa", path: "/spa" },
+  ];
+
+  const globalSchema = [
+    createLocalBusinessSchema({
+      description:
+        "Tranquil Cruise offers private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey and the Kerala backwaters.",
+      sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
+      aggregateRating,
+      makesOffer: siteOffers,
+    }),
+    createTravelAgencySchema({
+      description:
+        "Travel planning and private Kerala backwater experiences in Alappuzha including houseboats, shikkara rides, country boats, kayaking, rooms, and wellness.",
+      sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
+      aggregateRating,
+      makesOffer: siteOffers,
+    }),
+  ];
+
   return (
     <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col text-foreground">
+        <JsonLd data={globalSchema} />
         <GoogleTagManagerNoscript />
         <a
           href="#main-content"
@@ -68,9 +125,11 @@ export default function RootLayout({
           <GoogleAnalytics />
         </Suspense>
         <Navbar />
-        {children}
+        <div id="main-content" tabIndex={-1}>
+          {children}
+        </div>
         <Footer />
-        <GlobalConversionLayer />
+        <DeferredGlobalConversionLayer />
       </body>
     </html>
   );

@@ -12,9 +12,9 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
-    question: "What is the best time to visit Alappuzha?",
+    question: "What is the best time to visit Alleppey?",
     answer:
-      "For many travelers, the best time is when the weather feels more comfortable for cruising and open-deck time. The right season still depends on whether you prefer softer weather, greener monsoon mood, or a busier peak-travel atmosphere.",
+      "For many travelers, the best time to visit Alleppey is when the weather feels more comfortable for cruising and open-deck time. The right season still depends on whether you prefer softer weather, greener monsoon mood, or a busier peak-travel atmosphere.",
   },
   {
     question: "Is Alappuzha worth visiting in the monsoon?",

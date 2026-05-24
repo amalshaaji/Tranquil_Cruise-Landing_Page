@@ -345,17 +345,17 @@ export default function ContactPageContent() {
                   </div>
                 </section>
 
-                <section className="rounded-[28px] border border-dashed border-navy/15 bg-[#f9fcfd] p-6 shadow-[0_16px_50px_rgba(21,37,35,0.04)] sm:p-7">
+                <section className="rounded-[28px] border border-navy/10 bg-[#f9fcfd] p-6 shadow-[0_16px_50px_rgba(21,37,35,0.04)] sm:p-7">
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
-                    Map Placeholder
+                    Location Reference
                   </div>
                   <h3 className="mt-2 text-2xl font-semibold text-sand">
-                    Google Maps embed placeholder
+                    Use Google Maps to verify the Alappuzha base before booking
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-foreground/68">
-                    Use this area for a production Google Maps embed if you want
-                    a live map on the contact page. For now, guests can open the
-                    map link directly.
+                    If you want a quick location check before calling or messaging,
+                    open the map directly and use it alongside the phone,
+                    WhatsApp, and email details above.
                   </p>
                   <Link
                     href={mapHref}

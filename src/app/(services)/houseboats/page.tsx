@@ -4,6 +4,7 @@ import { getServiceBySlug } from "@/lib/services-data";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
@@ -118,11 +119,30 @@ const speakableJsonLd = createSpeakableSchema({
   cssSelectors: ["main h1", "main p"],
 });
 
+const answerFirstItems = [
+  {
+    question: "Which is the best houseboat in Alleppey?",
+    answer:
+      "The best houseboat in Alleppey depends on who is traveling. A private one-bedroom houseboat is usually best for couples, while a two-bedroom or three-bedroom houseboat is usually the best fit for families and small private groups.",
+  },
+  {
+    question: "Is a houseboat better than a shikkara ride in Alleppey?",
+    answer:
+      "A houseboat is better if you want more time, meals, comfort, and a fuller Kerala backwaters experience. A shikkara ride is better if you want a shorter and more affordable canal-focused trip.",
+  },
+];
+
 export default function HouseboatsPage() {
   if (!service) notFound();
   return (
     <>
       <JsonLd data={[breadcrumbJsonLd, heroImageJsonLd, serviceJsonLd, touristTripJsonLd, speakableJsonLd, createFaqSchema(faqs)]} />
+      <QuestionAnswerList
+        eyebrow="Answer First"
+        title="Short answers before you compare every houseboat format."
+        intro="These direct answers are placed high on the page so guests can narrow the main decision quickly before moving into layouts, comparisons, and planning details."
+        items={answerFirstItems}
+      />
       <ServicePageTemplate service={service} />
       <section className="bg-[linear-gradient(180deg,#edf4f8_0%,#d8e4ec_100%)] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-navy/8 bg-white/92 p-6 shadow-[0_24px_60px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:rounded-[2.4rem] sm:p-8 lg:p-10">

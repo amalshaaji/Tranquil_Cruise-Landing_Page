@@ -31,9 +31,27 @@ export const routeDirectoryPages: RouteDirectoryPage[] = [
     category: "Houseboat Guides",
   },
   {
+    href: "/alleppey-houseboat",
+    title: "Alleppey Houseboat",
+    description: "A broad landing page for private houseboat planning, room fit, and route style in Alleppey.",
+    category: "Houseboat Guides",
+  },
+  {
+    href: "/alappuzha-houseboat",
+    title: "Alappuzha Houseboat",
+    description: "Destination-led houseboat guidance for local route fit, room count, and private backwater comfort.",
+    category: "Houseboat Guides",
+  },
+  {
     href: "/day-cruise-alappuzha",
     title: "Day Cruise Alappuzha",
     description: "Private houseboat day plans with route flow, lunch timing, and daytime cruising.",
+    category: "Houseboat Guides",
+  },
+  {
+    href: "/day-cruise-alleppey",
+    title: "Day Cruise Alleppey",
+    description: "Exact-match daytime houseboat guidance with route pacing and pricing context for Alleppey.",
     category: "Houseboat Guides",
   },
   {
@@ -52,6 +70,24 @@ export const routeDirectoryPages: RouteDirectoryPage[] = [
     href: "/honeymoon-houseboat-alappuzha",
     title: "Honeymoon Houseboat Alappuzha",
     description: "Romantic route and privacy guidance for a softer, more intimate backwater stay.",
+    category: "Houseboat Guides",
+  },
+  {
+    href: "/honeymoon-houseboat-alleppey",
+    title: "Honeymoon Houseboat Alleppey",
+    description: "Exact-match romantic landing page for honeymoon pacing, privacy, and private overnight stays.",
+    category: "Houseboat Guides",
+  },
+  {
+    href: "/one-bedroom-houseboat-alleppey",
+    title: "One Bedroom Houseboat Alleppey",
+    description: "Exact-layout guidance for couples comparing private one-bedroom houseboats in Alleppey.",
+    category: "Houseboat Guides",
+  },
+  {
+    href: "/shikkara-ride-alleppey",
+    title: "Shikkara Ride Alleppey",
+    description: "A dedicated landing page for canal-led private shikkara rides and lighter scenic plans.",
     category: "Houseboat Guides",
   },
   {

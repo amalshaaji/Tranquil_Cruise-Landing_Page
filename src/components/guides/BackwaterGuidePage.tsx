@@ -141,6 +141,12 @@ export default function BackwaterGuidePage({
         />
       </section>
 
+      <QuestionAnswerList
+        title="Fast answers before you read the full guide."
+        intro="These short answer blocks are placed near the top so you can get the main takeaway quickly before moving deeper into planning details."
+        items={quickQuestions}
+      />
+
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:py-20">
         <div className="grid gap-6 lg:grid-cols-[1fr,0.96fr]">
           <div className="rounded-[1.8rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
@@ -339,12 +345,6 @@ export default function BackwaterGuidePage({
           </div>
         </section>
       ) : null}
-
-      <QuestionAnswerList
-        title="Fast answers before you open the full FAQ."
-        intro="These question-and-answer summaries surface the most common planning doubts right in the main page flow."
-        items={quickQuestions}
-      />
 
       <section className="bg-[#f4f8fa] px-4 py-10 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-7xl">
