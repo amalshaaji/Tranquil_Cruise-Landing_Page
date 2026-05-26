@@ -14,7 +14,7 @@ const googleReviewsHref = "https://share.google/0gDp3ppL2If4rHVVo";
 
 const categoryLinks = [
   {
-    title: "Day Cruise",
+    title: "Houseboats",
     href: "/houseboats",
     image: "/images/day-cruise-open-water.jpg",
     alt: "Day cruise houseboat on open Alleppey backwaters",
