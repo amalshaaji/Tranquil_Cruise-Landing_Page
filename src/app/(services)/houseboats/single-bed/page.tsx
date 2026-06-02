@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/single-bed-gallery/exterior-view.jpeg",
       width: 1200,
       height: 630,
-      alt: "Single bed houseboat on Kerala backwaters",
+      alt: "Private single-bedroom houseboat cruising in Alappuzha",
     },
   });
 }
@@ -43,7 +43,7 @@ const lodgingJsonLd = createLodgingBusinessSchema({
   path: "/houseboats/single-bed",
   image: {
     path: "/images/single-bed-gallery/exterior-view.jpeg",
-    alt: "Single bed houseboat on Kerala backwaters",
+    alt: "Private single-bedroom houseboat cruising in Alappuzha",
     width: 1200,
     height: 630,
   },
@@ -56,7 +56,7 @@ const lodgingJsonLd = createLodgingBusinessSchema({
 });
 const imageJsonLd = createImageObjectSchema({
   path: "/images/single-bed-gallery/exterior-view.jpeg",
-  alt: "Single bed houseboat on Kerala backwaters",
+  alt: "Private single-bedroom houseboat cruising in Alappuzha",
   width: 1200,
   height: 630,
 });

@@ -10,9 +10,11 @@ import {
   createFaqSchema,
   createImageObjectSchema,
   createLocalBusinessSchema,
+  createOrganizationSchema,
   createServiceSchema,
   createSpeakableSchema,
   createTouristTripSchema,
+  createWebSiteSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 import { BUSINESS_COORDINATES, INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/site";
@@ -31,9 +33,9 @@ const homepageFaqs = [
       "A houseboat is better when you want more comfort, onboard meals, and enough time to settle into the backwaters. A shikkara is better when you want a shorter, lighter, and more affordable canal ride through Alleppey and Alappuzha.",
   },
   {
-    question: "What is the day cruise price in Alleppey?",
+    question: "How much does an Alleppey houseboat cost?",
     answer:
-      "The day cruise price in Alleppey depends on the boat category, route length, meal plan, and guest count. The clearest way to get an accurate quote is to share your date and group size, because private day cruises are usually priced around the exact plan rather than one fixed public rate.",
+      "An Alleppey houseboat quote depends on boat type, route, season, meals, AC timing, and guest count. Private day cruises and overnight stays are usually priced around the exact plan, so the clearest way to get an accurate rate is to share your dates and group size on WhatsApp.",
   },
   {
     question: "Which honeymoon houseboat in Kerala is best for couples?",
@@ -43,17 +45,24 @@ const homepageFaqs = [
   {
     question: "What is the best time to visit Alleppey?",
     answer:
-      "The best time to visit Alleppey depends on whether you want easier sightseeing weather or a greener monsoon mood. Many travelers prefer the more comfortable cruising months for longer open-deck time, while others choose monsoon for a quieter and more atmospheric Kerala backwaters experience.",
+      "The best time to visit Alleppey depends on the mood you want. Many travelers prefer the more comfortable cruising months for longer open-deck time on Punnamada Lake and Vembanad Lake, while others choose monsoon for greener village canals, softer light, and a quieter Kerala backwaters atmosphere.",
+  },
+  {
+    question: "How do I book with Tranquil Cruise?",
+    answer:
+      "Booking is usually simplest through WhatsApp. Share your travel date, guest count, and whether you want a houseboat, shikkara ride, kayaking session, or stay, and Tranquil Cruise can guide you toward the right route, boat format, and next booking step.",
   },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Alleppey Houseboat & Backwater Cruises | Tranquil Cruise",
+    title: "Alappuzha Houseboat | Private Houseboat Booking in Alappuzha",
     description:
-      "Book private Alleppey houseboats, shikkara rides, kayaking trails, country boat cruises, and Kerala backwater stays with Tranquil Cruise in Alappuzha.",
+      "Book an Alappuzha houseboat with private day cruise, overnight stay, luxury, family, and backwater route guidance. Compare Alleppey and Alappuzha houseboat options with Tranquil Cruise.",
     path: "/",
     keywords: [
+      "Alappuzha houseboat",
+      "Alappuzha houseboat booking",
       "Alleppey houseboat",
       "Alappuzha backwater cruise",
       "Kerala backwaters",
@@ -183,11 +192,19 @@ export default async function Home() {
 
   const breadcrumbJsonLd = createBreadcrumbSchema([{ name: "Home", path: "/" }]);
   const faqJsonLd = createFaqSchema(homepageFaqs);
+  const websiteJsonLd = createWebSiteSchema({
+    description:
+      "Book private Alappuzha houseboats, shikkara rides, day cruises, kayaking, and overnight backwater stays with Tranquil Cruise in Alappuzha.",
+    searchTarget: "/alappuzha-houseboat",
+  });
+  const organizationJsonLd = createOrganizationSchema(
+    "Tranquil Cruise is a Kerala backwater travel business focused on Alleppey houseboat booking, private cruises, shikkara rides, kayaking, country boat rides, day cruises, and overnight backwater stays.",
+  );
   const speakableJsonLd = createSpeakableSchema({
     path: "/",
-    name: "Alleppey Houseboat & Backwater Cruises",
+    name: "Alleppey Houseboat Booking and Private Backwater Cruises",
     description:
-      "Private houseboats, shikkara rides, and backwater stays in Alleppey with direct planning help.",
+      "Private houseboats, shikkara rides, day cruises, and backwater stays in Alleppey with direct local planning help.",
     cssSelectors: ["main h1", "main section:nth-of-type(3) h2"],
   });
 
@@ -207,6 +224,8 @@ export default async function Home() {
       <JsonLd
         data={[
           localBusinessJsonLd,
+          websiteJsonLd,
+          organizationJsonLd,
           speakableJsonLd,
           geoJsonLd,
           breadcrumbJsonLd,
@@ -217,7 +236,6 @@ export default async function Home() {
           ...homepageServiceSchemas,
         ]}
       />
-
       <ReferenceHomePage
         displayedReviews={displayedReviews}
         reviewSourceNote={reviewSourceNote}

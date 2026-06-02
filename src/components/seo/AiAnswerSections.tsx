@@ -114,6 +114,7 @@ export function QuestionAnswerList({
   title,
   intro,
   items,
+  sectionClassName,
 }: {
   eyebrow?: string;
   title: string;
@@ -122,9 +123,10 @@ export function QuestionAnswerList({
     question: string;
     answer: string;
   }[];
+  sectionClassName?: string;
 }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+    <section className={`mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20 ${sectionClassName ?? ""}`}>
       <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:p-10">
         <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
           {eyebrow}

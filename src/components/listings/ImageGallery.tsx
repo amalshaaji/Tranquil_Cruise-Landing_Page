@@ -13,6 +13,33 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
     return images.slice(0, 5);
   }, [images]);
 
+  const descriptiveAlt = (index: number) => {
+    const altByTitle: Record<string, string[]> = {
+      "Single Bed Houseboat": [
+        "Single bedroom houseboat exterior in Alleppey backwaters",
+        "Private lounge on a single bedroom houseboat in Alappuzha",
+        "Bedroom inside a single bedroom houseboat in Alleppey",
+      ],
+      "Two Bedroom Houseboat": [
+        "Two bedroom family houseboat on Kerala backwaters",
+        "Family lounge inside a two bedroom houseboat in Alappuzha",
+        "Deck view from a two bedroom houseboat in Alleppey",
+      ],
+      "Three Bedroom Houseboat": [
+        "Three bedroom private houseboat in Alleppey",
+        "Group lounge inside a three bedroom houseboat in Alappuzha",
+        "Upper deck seating on a three bedroom Kerala houseboat",
+      ],
+      "Five Bedroom Houseboat": [
+        "Five bedroom celebration houseboat in Alleppey backwaters",
+        "Large shared lounge inside a five bedroom houseboat in Alappuzha",
+        "Private group deck on a five bedroom Kerala houseboat",
+      ],
+    };
+
+    return altByTitle[title]?.[index] ?? `${title} in Alleppey backwaters`;
+  };
+
   return (
     <div className="space-y-4">
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5">
@@ -29,7 +56,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
             >
               <Image
                 src={active}
-                alt={`${title} view ${activeIndex + 1} in the Alleppey backwaters`}
+                alt={descriptiveAlt(activeIndex)}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 60vw"
@@ -56,7 +83,7 @@ export default function ImageGallery({ images, title }: { images: string[]; titl
             >
               <Image
                 src={src}
-                alt={`${title} thumbnail ${absoluteIndex + 1}`}
+                alt={descriptiveAlt(absoluteIndex)}
                 fill
                 className="object-cover"
                 sizes="80px"

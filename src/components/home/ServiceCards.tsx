@@ -215,7 +215,17 @@ export default function ServiceCards({
                 <>
                   <Image
                     src={c.image}
-                    alt={`${c.title} experience in the Alleppey and Alappuzha backwaters`}
+                    alt={
+                      c.title === "Houseboats"
+                        ? "Private houseboat cruise in Alleppey backwaters"
+                        : c.title === "Shikkara"
+                          ? "Shikkara ride through Alappuzha canals"
+                          : c.title === "Kayaking"
+                            ? "Kerala backwater kayaking near Alleppey"
+                            : c.title === "Rooms"
+                              ? "Backwater room stay in Alappuzha"
+                              : `${c.title} experience in the Alleppey backwaters`
+                    }
                     fill
                     className="object-cover transition-transform duration-700 group-hover/link:scale-125"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

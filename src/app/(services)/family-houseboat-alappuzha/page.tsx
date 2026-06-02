@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import { getInternalLinkGraph } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -119,9 +122,9 @@ const groupStayPlanning = [
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Family Houseboat Alappuzha | Family-Friendly Alleppey Cruise",
+    title: "Family Houseboat in Alleppey | Private Family Cruise in Alappuzha",
     description:
-      "Plan a family houseboat in Alappuzha with family-friendly packages, child-friendly backwater activities, and private group stays in Alleppey.",
+      "Book a private family houseboat in Alleppey with child-friendly layouts, overnight or day-cruise options, and easier group planning in Alappuzha.",
     path: "/family-houseboat-alappuzha",
     keywords: [
       "family houseboat alappuzha",
@@ -133,7 +136,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/family-retreat-houseboat.jpg",
       width: 1200,
       height: 630,
-      alt: "Family houseboat in Alappuzha",
+      alt: "Family houseboat cruise in Alleppey",
     },
   });
 }
@@ -168,16 +171,30 @@ const touristTripJsonLd = createTouristTripSchema({
   path: "/family-houseboat-alappuzha",
   image: {
     path: "/images/family-retreat-houseboat.jpg",
-    alt: "Family houseboat in Alappuzha",
+    alt: "Family houseboat cruise in Alleppey",
     width: 1200,
     height: 630,
   },
-  itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
+  itinerary: ["Alleppey", "Alappuzha", "Punnamada Lake", "Vembanad Lake", "Kainakary"],
   touristType: ["Families", "Children", "Private groups"],
   keywords: ["family houseboat alappuzha", "family houseboat alleppey"],
 });
 
+const answerFirstItems = [
+  {
+    question: "Is an Alleppey houseboat safe for families with kids?",
+    answer:
+      "Yes, when the houseboat layout matches the group and the family follows the basic onboard safety guidance. Families usually prefer private two-bedroom or three-bedroom formats because they offer steadier movement, more shared lounge space, and an easier pace for children, parents, and grandparents together.",
+  },
+  {
+    question: "Which is better for families: day cruise or overnight houseboat?",
+    answer:
+      "A day cruise is better if your family wants the scenery, a meal on board, and a clear daytime schedule. An overnight houseboat is better if you want more time to settle in, slower meals, sunset views, and a less rushed rhythm for mixed-age travelers.",
+  },
+];
+
 export default function FamilyHouseboatAlappuzhaPage() {
+  const internalLinkGraph = getInternalLinkGraph("/family-houseboat-alappuzha");
   return (
     <>
       <JsonLd
@@ -242,6 +259,13 @@ export default function FamilyHouseboatAlappuzhaPage() {
             </div>
           </div>
         </section>
+
+        <QuestionAnswerList
+          eyebrow="Answer First"
+          title="Fast answers for families comparing private houseboat stays."
+          intro="These short answers come first so parents and family groups can narrow the right stay style before moving into layout and planning details."
+          items={answerFirstItems}
+        />
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
           <div className="grid gap-6 lg:grid-cols-[1fr,0.96fr]">
@@ -404,6 +428,8 @@ export default function FamilyHouseboatAlappuzhaPage() {
           intro="These answers focus on family houseboat intent in Alleppey and Alappuzha."
           faqs={familyFaqs}
         />
+
+        {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
 
         <section className="px-4 py-12 sm:px-6 lg:py-20">
           <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-[#173247] px-8 py-16 text-center text-white shadow-[0_24px_80px_rgba(23,50,71,0.2)]">

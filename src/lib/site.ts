@@ -10,7 +10,10 @@ export const INSTAGRAM_URL =
 export const BUSINESS_EMAIL = "info@tranquilcruise.com";
 export const BUSINESS_EMAIL_LINK = "mailto:info@tranquilcruise.com";
 export const BUSINESS_LOCATION = "Alappuzha, Kerala";
+export const BUSINESS_POSTAL_CODE = "688001";
+export const BUSINESS_ADDRESS_CANONICAL = "Alappuzha, Kerala 688001";
 export const BUSINESS_HOURS = "8:00 AM – 8:00 PM daily";
+export const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
 export const BUSINESS_COORDINATES = {
   latitude: 9.4981,
   longitude: 76.3388,
@@ -18,7 +21,9 @@ export const BUSINESS_COORDINATES = {
 export const SERVICE_AREAS = [
   "Alleppey",
   "Alappuzha",
+  "Punnamada Lake",
   "Kuttanad",
+  "Kainakary",
   "Vembanad Lake",
   "Kerala Backwaters",
 ] as const;
@@ -38,6 +43,13 @@ export type SiteRoute = {
 
 export const SITE_ROUTES: SiteRoute[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/alappuzha-houseboat", changeFrequency: "weekly", priority: 0.96 },
+  { path: "/alleppey-houseboat", changeFrequency: "weekly", priority: 0.94 },
+  { path: "/alappuzha-houseboat-booking", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/houseboat-in-alappuzha", changeFrequency: "weekly", priority: 0.88 },
+  { path: "/alappuzha-houseboat-price-guide", changeFrequency: "weekly", priority: 0.88 },
+  { path: "/alappuzha-houseboat-routes-guide", changeFrequency: "weekly", priority: 0.88 },
+  { path: "/boarding-point-alappuzha-houseboat", changeFrequency: "weekly", priority: 0.8 },
   { path: "/houseboats", changeFrequency: "weekly", priority: 0.95 },
   { path: "/luxury-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },
   { path: "/premium-houseboat-alappuzha", changeFrequency: "weekly", priority: 0.9 },

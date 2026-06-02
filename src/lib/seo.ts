@@ -92,6 +92,30 @@ export type TouristTripInput = {
   keywords?: string[];
 };
 
+export type WebSiteInput = {
+  path?: string;
+  description?: string;
+  searchTarget?: string;
+};
+
+export type ItemListInput = {
+  path?: string;
+  items: {
+    name: string;
+    url: string;
+    description?: string;
+  }[];
+};
+
+export type ArticleSchemaInput = {
+  headline: string;
+  description: string;
+  path: string;
+  image?: ImageObjectInput;
+  keywords?: string[];
+  articleSection?: string;
+};
+
 export type LocalBusinessInput = {
   description: string;
   path?: string;
@@ -112,6 +136,13 @@ export type TravelAgencyInput = {
   makesOffer?: OfferInput[];
   geo?: GeoCoordinatesInput;
 };
+
+const DEFAULT_SITE_LOGO = {
+  path: "/tranquil-cruise-logo-search.jpg",
+  alt: "Tranquil Cruise logo",
+  width: 1280,
+  height: 1280,
+} as const;
 
 export type LodgingBusinessInput = {
   name: string;
@@ -471,6 +502,7 @@ export function createLocalBusinessSchema({
     name: SITE_NAME,
     description,
     url: absoluteUrl(path),
+    logo: absoluteUrl(DEFAULT_SITE_LOGO.path),
     image: absoluteUrl(primaryImage.path),
     email: BUSINESS_EMAIL,
     telephone: BUSINESS_PHONE,
@@ -493,10 +525,8 @@ export function createLocalBusinessSchema({
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8/308B Chungam Road, Pallathuruthy",
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
-      postalCode: "688011",
       addressCountry: "IN",
     },
     geo: createGeoCoordinatesSchema(geo),
@@ -521,8 +551,63 @@ export function createLocalBusinessSchema({
   };
 }
 
-export function createOrganizationSchema(description: string) {
-  return createLocalBusinessSchema({ description });
+export function createOrganizationSchema(description: string, path = "/") {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: absoluteUrl(path),
+    logo: absoluteUrl(DEFAULT_SITE_LOGO.path),
+    description,
+    email: BUSINESS_EMAIL,
+    telephone: BUSINESS_PHONE,
+    sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
+    areaServed: SERVICE_AREAS.map((area) => ({
+      "@type": "Place",
+      name: area,
+    })),
+  };
+}
+
+export function createWebSiteSchema({
+  path = "/",
+  description,
+  searchTarget = "/houseboats",
+}: WebSiteInput = {}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: absoluteUrl(path),
+    description,
+    inLanguage: "en",
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: absoluteUrl(DEFAULT_SITE_LOGO.path),
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${absoluteUrl(searchTarget)}?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+export function createItemListSchema({ path = "/", items }: ItemListInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    url: absoluteUrl(path),
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: resolveSchemaUrl(item.url),
+      name: item.name,
+      description: item.description,
+    })),
+  };
 }
 
 export function createTravelAgencySchema({
@@ -547,6 +632,7 @@ export function createTravelAgencySchema({
     name: SITE_NAME,
     description,
     url: absoluteUrl(path),
+    logo: absoluteUrl(DEFAULT_SITE_LOGO.path),
     image: absoluteUrl(primaryImage.path),
     email: BUSINESS_EMAIL,
     telephone: BUSINESS_PHONE,
@@ -575,10 +661,8 @@ export function createTravelAgencySchema({
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8/308B Chungam Road, Pallathuruthy",
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
-      postalCode: "688011",
       addressCountry: "IN",
     },
     geo: createGeoCoordinatesSchema(geo),
@@ -643,10 +727,8 @@ export function createLodgingBusinessSchema({
     image: image ? absoluteUrl(image.path) : absoluteUrl(DEFAULT_OG_IMAGE),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8/308B Chungam Road, Pallathuruthy",
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
-      postalCode: "688011",
       addressCountry: "IN",
     },
     amenityFeature: amenities?.map((amenity) => ({
@@ -654,5 +736,37 @@ export function createLodgingBusinessSchema({
       name: amenity,
       value: true,
     })),
+  };
+}
+
+export function createArticleSchema({
+  headline,
+  description,
+  path,
+  image,
+  keywords,
+  articleSection,
+}: ArticleSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url: absoluteUrl(path),
+    mainEntityOfPage: absoluteUrl(path),
+    image: image ? absoluteUrl(image.path) : absoluteUrl(DEFAULT_OG_IMAGE),
+    keywords,
+    articleSection,
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    inLanguage: "en",
   };
 }

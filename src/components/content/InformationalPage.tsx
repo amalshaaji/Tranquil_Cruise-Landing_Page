@@ -4,6 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import type { InformationalPageData } from "@/lib/informational-pages";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createSpeakableSchema,
@@ -26,11 +27,18 @@ export default function InformationalPage({
     cssSelectors: ["main h1", "main section h2"],
     pageType: "Article",
   });
+  const articleJsonLd = createArticleSchema({
+    headline: page.title,
+    description: page.description,
+    path: page.path,
+    keywords: page.keywords,
+    articleSection: page.eyebrow,
+  });
 
   return (
     <>
       <JsonLd
-        data={[breadcrumbJsonLd, speakableJsonLd, createFaqSchema(page.faqs)]}
+        data={[breadcrumbJsonLd, speakableJsonLd, articleJsonLd, createFaqSchema(page.faqs)]}
       />
 
       <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">

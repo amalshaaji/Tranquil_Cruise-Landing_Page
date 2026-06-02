@@ -9,6 +9,7 @@ import {
   authorityReferencePoints,
 } from "@/lib/authority-data";
 import {
+  absoluteUrl,
   createBreadcrumbSchema,
   createFaqSchema,
   createSpeakableSchema,
@@ -55,7 +56,7 @@ const collectionPageJsonLd = {
   name: "Tranquil Cruise Travel Partners & Media References",
   description:
     "A partner-facing resource page that collects review proof, brand context, and linkable Alleppey backwater guides for travel writers and local tourism mentions.",
-  url: "https://www.tranquilcruise.com/partners",
+  url: absoluteUrl("/partners"),
 };
 
 export default function PartnersPage() {

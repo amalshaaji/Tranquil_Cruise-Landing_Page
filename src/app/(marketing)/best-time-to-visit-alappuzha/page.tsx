@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import BackwaterGuidePage from "@/components/guides/BackwaterGuidePage";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
-    question: "What is the best time to visit Alleppey?",
+    question: "What is the best time to visit Alleppey backwaters?",
     answer:
-      "For many travelers, the best time to visit Alleppey is when the weather feels more comfortable for cruising and open-deck time. The right season still depends on whether you prefer softer weather, greener monsoon mood, or a busier peak-travel atmosphere.",
+      "For many travelers, the best time to visit Alleppey backwaters is when the weather feels more comfortable for cruising and open-deck time. The right season still depends on whether you prefer softer weather, greener monsoon mood, or a busier peak-travel atmosphere.",
   },
   {
     question: "Is Alappuzha worth visiting in the monsoon?",
@@ -47,24 +47,24 @@ const imageJsonLd = createImageObjectSchema({
   height: 1733,
 });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const articleJsonLd = createArticleSchema({
   headline: "Best Time To Visit Alappuzha",
   description:
     "A practical guide to when to visit Alappuzha based on weather feel, backwater mood, and what kind of Kerala trip you want.",
-  url: `${SITE_URL}/best-time-to-visit-alappuzha`,
-  image: `${SITE_URL}/images/best-time-to-visit-alappuzha-houseboats.jpg`,
-  author: {
-    "@type": "Organization",
-    name: SITE_NAME,
+  path: "/best-time-to-visit-alappuzha",
+  image: {
+    path: "/images/best-time-to-visit-alappuzha-houseboats.jpg",
+    alt: "Houseboats cruising through the Alappuzha backwaters at a calm golden hour",
+    width: 1300,
+    height: 1733,
   },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-  },
-  mainEntityOfPage: `${SITE_URL}/best-time-to-visit-alappuzha`,
-};
+  keywords: [
+    "best time to visit alappuzha",
+    "best time to visit alleppey",
+    "alleppey weather for houseboats",
+  ],
+  articleSection: "Season & Timing Guide",
+});
 
 const touristTripJsonLd = createTouristTripSchema({
   name: "Best Time To Visit Alappuzha Guide",
@@ -88,9 +88,9 @@ const touristTripJsonLd = createTouristTripSchema({
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Best Time To Visit Alappuzha | When Alleppey Feels Best For You",
+    title: "Best Time to Visit Alleppey Backwaters | Alappuzha Season Guide",
     description:
-      "Plan the best time to visit Alappuzha based on weather feel, backwater comfort, monsoon mood, and the kind of Alleppey houseboat or canal trip you want.",
+      "Find the best time to visit Alleppey backwaters based on weather, houseboat comfort, monsoon mood, and the Alappuzha route experience you want.",
     path: "/best-time-to-visit-alappuzha",
     keywords: [
       "best time to visit alappuzha",
@@ -156,11 +156,11 @@ export default function BestTimeToVisitAlappuzhaPage() {
         overviewCards={[
           {
             title: "For comfortable sightseeing weather",
-            text: "Many travelers prefer seasons when the weather feels easier for open-deck time, longer scenic rides, and all-day movement without the heavier feel of hotter or wetter conditions.",
+            text: "Many travelers prefer seasons when the weather feels easier for open-deck time, longer scenic rides, and all-day movement on Punnamada Lake or Vembanad Lake without the heavier feel of hotter or wetter conditions.",
           },
           {
             title: "For a greener, moodier trip",
-            text: "Monsoon-season Alappuzha can be especially appealing if you want softer light, lush surroundings, and a more atmospheric backwater feel instead of peak-season bustle.",
+            text: "Monsoon-season Alappuzha can be especially appealing if you want softer light, lush surroundings, greener village canals, and a more atmospheric backwater feel instead of peak-season bustle.",
           },
           {
             title: "For specific boat availability",
@@ -196,10 +196,22 @@ export default function BestTimeToVisitAlappuzhaPage() {
         compareIntro="These pages help you turn a seasonal question into a more concrete Alappuzha plan."
         compareCards={[
           {
-            title: "Things To Do In Alappuzha",
-            href: "/things-to-do-in-alappuzha",
-            fit: "Best for choosing activities",
-            copy: "Go here if the season question is mostly settled and you now want to choose the right experiences for your dates and travel style.",
+            title: "Luxury Houseboats",
+            href: "/houseboats",
+            fit: "Best for classic backwater stays",
+            copy: "Go here if your season choice is mainly about picking the right houseboat format, route mood, and overnight or day-cruise style in Alappuzha.",
+          },
+          {
+            title: "Day Cruise Alappuzha",
+            href: "/day-cruise-alappuzha",
+            fit: "Best for daytime planning",
+            copy: "Go here if the season question is really about when a private houseboat day cruise will feel most comfortable and scenic on the water.",
+          },
+          {
+            title: "Private Shikkara Rides",
+            href: "/shikkara",
+            fit: "Best for lighter canal routes",
+            copy: "Go here if your dates matter most because you want a softer sunrise or sunset canal ride rather than a full houseboat stay.",
           },
           {
             title: "Alappuzha Vs Kumarakom",
@@ -207,21 +219,15 @@ export default function BestTimeToVisitAlappuzhaPage() {
             fit: "Best for destination context",
             copy: "Go here if timing is tied to a bigger destination choice and you are still deciding whether Alappuzha or Kumarakom suits your trip better.",
           },
-          {
-            title: "Kerala Backwaters Guide",
-            href: "/kerala-backwaters-guide",
-            fit: "Best for broader planning",
-            copy: "Go here if you want a wider Kerala backwaters overview before deciding which season and route style make the most sense.",
-          },
         ]}
         faqEyebrow="Alappuzha Timing FAQs"
         faqTitle="Questions travelers ask when planning the best time to visit Alappuzha"
         faqIntro="These answers focus on season feel, comfort, and backwater planning rather than generic weather summaries."
         faqs={faqs}
-        primaryCtaLabel="See things to do"
-        primaryCtaHref="/things-to-do-in-alappuzha"
-        secondaryCtaLabel="Browse experiences"
-        secondaryCtaHref="/gallery"
+        primaryCtaLabel="View houseboats"
+        primaryCtaHref="/houseboats"
+        secondaryCtaLabel="See day cruises"
+        secondaryCtaHref="/day-cruise-alappuzha"
         ctaTitle="Use the timing guide, then plan the experience that suits the season"
         ctaText="The season question becomes much easier once you know whether you want a short canal ride, a full day cruise, or a slower overnight stay with more time to enjoy the backwaters."
       />

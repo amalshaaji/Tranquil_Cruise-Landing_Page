@@ -8,18 +8,26 @@ export default function ServiceGallery({
   images,
   title,
 }: {
-  images: string[];
+  images: Array<string | { src: string; alt: string }>;
   title: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const normalizedImages = images.map((image) =>
+    typeof image === "string"
+      ? {
+          src: image,
+          alt: `${title} experience in the Alleppey backwaters`,
+        }
+      : image,
+  );
 
-  if (images.length === 0) return null;
+  if (normalizedImages.length === 0) return null;
 
   return (
     <section className="px-4 pb-14 sm:px-6 sm:pb-20">
       <div className="mx-auto max-w-7xl">
         {/* Gallery Grid */}
-        {images.length === 1 ? (
+        {normalizedImages.length === 1 ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -29,9 +37,10 @@ export default function ServiceGallery({
           >
             <div className="relative aspect-[16/9]">
               <Image
-                src={images[0]}
-                alt={`${title} in the Alleppey and Alappuzha Kerala backwaters`}
+                src={normalizedImages[0].src}
+                alt={normalizedImages[0].alt}
                 fill
+                decoding="async"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 80vw"
               />
@@ -43,9 +52,9 @@ export default function ServiceGallery({
             className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {images.map((img, idx) => (
+            {normalizedImages.map((image, idx) => (
               <motion.div
-                key={img}
+                key={`${image.src}-${idx}`}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -58,9 +67,12 @@ export default function ServiceGallery({
               >
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src={img}
-                    alt={`${title} gallery view ${idx + 1} in the Kerala backwaters`}
+                    src={image.src}
+                    alt={image.alt}
                     fill
+                    loading="lazy"
+                    fetchPriority="auto"
+                    decoding="async"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 40vw"
                   />

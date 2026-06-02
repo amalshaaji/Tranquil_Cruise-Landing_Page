@@ -48,7 +48,7 @@ const reasonsToLove = [
 
 const planningPrompts = [
   "Best for couples and small families",
-  "Great for 1-3 hour rides",
+  "Great for 1-8 hour rides",
   "Ideal for softer sightseeing",
   "Excellent at sunrise or sunset",
   "Perfect for narrow canal routes",
@@ -118,17 +118,14 @@ export default function ShikkaraExperiencePage() {
                 layout before you book.
               </p>
             }
-            actions={[
-              { href: whatsappHref, label: "Book Now" },
-              { href: "/houseboats", label: "Compare houseboats", variant: "secondary" },
-            ]}
+            actions={[{ href: whatsappHref, label: "Book Now" }]}
             aside={
               <div className="group relative w-full rounded-[2rem] border border-navy/8 bg-white/92 p-6 text-center shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-8">
                 <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
                   Best fit
                 </div>
                 <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
-                  1 to 3 hours
+                  1 to 8 hours
                 </div>
                 <div className="mt-3 text-sm leading-7 text-foreground/50 sm:text-base">
                   Best for couples, small families, and guests who want calm canal views without

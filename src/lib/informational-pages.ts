@@ -142,6 +142,301 @@ export const informationalPages: Record<string, InformationalPageData> = {
       { label: "Ask about meals and routes", href: "/contact", variant: "secondary" },
     ],
   },
+  "alappuzha-houseboat-booking": {
+    title: "Alappuzha Houseboat Booking",
+    eyebrow: "Local Booking Intent",
+    description:
+      "Plan your Alappuzha houseboat booking with direct guidance on routes, room types, inclusions, overnight stays, and the right private backwater format for your group.",
+    path: "/alappuzha-houseboat-booking",
+    keywords: [
+      "alappuzha houseboat booking",
+      "book alappuzha houseboat",
+      "private alappuzha houseboat booking",
+      "alleppey houseboat booking",
+    ],
+    intro: [
+      "An Alappuzha houseboat booking usually goes best when the decision starts with group size, overnight intent, and route style rather than with a generic rate list alone.",
+      "This page is built for guests who already know they want a houseboat in Alappuzha or Alleppey and now need a clearer route into the right private stay, day cruise, or overnight format.",
+    ],
+    highlights: [
+      "Best for direct booking-intent searches rather than broad backwater research",
+      "Helps narrow the right houseboat type before final availability is checked",
+      "Connects booking intent with route fit, room count, and comfort level",
+    ],
+    sections: [
+      {
+        title: "How to choose the right Alappuzha houseboat before you book",
+        body: [
+          "The most useful first step is to decide whether the booking is for a couple, a family, or a private group, because that changes the room-count logic immediately.",
+          "After that, the main decisions are whether the stay should be a shorter day cruise or a slower overnight houseboat experience with dinner, AC timing, and a morning on the water.",
+        ],
+      },
+      {
+        title: "What guests usually want clarified during booking",
+        body: [
+          "Most guests ask about inclusions, AC timing, food, boarding point, route type, and whether the selected boat really suits their group instead of just fitting the keyword.",
+          "That is why a stronger booking page should answer the practical planning questions early and then direct each guest to the best supporting page for luxury, budget, family, or overnight intent.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is included in an Alappuzha houseboat booking?",
+        answer:
+          "Most Alappuzha houseboat bookings include the private boat, crew, cruising time, lounge and deck access, and meals or refreshments depending on whether the plan is a day cruise or overnight stay.",
+      },
+      {
+        question: "How do I book the best houseboat in Alappuzha?",
+        answer:
+          "Start with group size, room count, overnight versus day-cruise intent, and how private or premium you want the trip to feel. Those details usually matter more than category labels alone.",
+      },
+      {
+        question: "Is Alleppey houseboat booking the same as Alappuzha houseboat booking?",
+        answer:
+          "Yes. Alleppey and Alappuzha refer to the same houseboat destination in Kerala, so both terms are used for the same local backwater region.",
+      },
+    ],
+    ctas: [
+      { label: "Open Alappuzha houseboat guide", href: "/alappuzha-houseboat" },
+      { label: "Check availability", href: "/contact", variant: "secondary" },
+    ],
+  },
+  "houseboat-in-alappuzha": {
+    title: "Houseboat In Alappuzha",
+    eyebrow: "Destination-Led Booking Guide",
+    description:
+      "Compare the best houseboat in Alappuzha for couples, families, overnight stays, and private backwater routes with clearer local planning support.",
+    path: "/houseboat-in-alappuzha",
+    keywords: [
+      "houseboat in alappuzha",
+      "best houseboat in alappuzha",
+      "private houseboat in alappuzha",
+      "overnight houseboat in alappuzha",
+    ],
+    intro: [
+      "Guests who search for a houseboat in Alappuzha are usually already committed to the destination and mainly need help choosing the right format.",
+      "That makes this page useful for comparing who each houseboat type fits best, from couples and families to groups who need more rooms and a steadier overnight layout.",
+    ],
+    highlights: [
+      "Best for destination-first houseboat searches",
+      "Helps narrow the best houseboat in Alappuzha by trip style",
+      "Connects broad local intent with room-count and overnight pages",
+    ],
+    sections: [
+      {
+        title: "Who each houseboat format usually fits best",
+        body: [
+          "One-bedroom formats are usually strongest for couples, while two-bedroom and three-bedroom layouts work better for families and mixed-age private groups.",
+          "Larger room-count boats make more sense when the trip is group-led and shared deck space matters as much as the bedrooms themselves.",
+        ],
+      },
+      {
+        title: "Why route and boarding details still matter",
+        body: [
+          "The best houseboat in Alappuzha is not only about the room count. It is also about whether the route mood, boarding convenience, food timing, and overnight flow suit the trip.",
+          "That is why this page should sit close to the route, booking, and boarding-point pages instead of trying to stand alone as a single generic local guide.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Which is the best houseboat in Alappuzha for families?",
+        answer:
+          "For most families, the strongest starting point is a two-bedroom or three-bedroom private houseboat because it creates better room balance and a calmer overnight rhythm.",
+      },
+      {
+        question: "Can I choose a houseboat in Alappuzha for a day cruise only?",
+        answer:
+          "Yes. Day cruises are available if you want the houseboat feel and route scenery without staying overnight on the water.",
+      },
+      {
+        question: "What makes a houseboat in Alappuzha feel premium?",
+        answer:
+          "Premium stays usually feel stronger because of room comfort, route pacing, food service, and overall privacy rather than because of one feature alone.",
+      },
+    ],
+    ctas: [
+      { label: "Compare houseboats", href: "/houseboats/compare" },
+      { label: "Ask about local options", href: "/contact", variant: "secondary" },
+    ],
+  },
+  "boarding-point-alappuzha-houseboat": {
+    title: "Boarding Point Alappuzha Houseboat",
+    eyebrow: "Arrival & Logistics Guide",
+    description:
+      "Understand the boarding-point side of an Alappuzha houseboat booking, including arrival planning, local timing, route context, and what to confirm before departure.",
+    path: "/boarding-point-alappuzha-houseboat",
+    keywords: [
+      "boarding point alappuzha houseboat",
+      "alappuzha houseboat boarding point",
+      "alleppey houseboat boarding point",
+      "alappuzha houseboat pickup point",
+    ],
+    intro: [
+      "One of the most common local planning questions is not only which houseboat to book, but where the houseboat trip actually begins in Alappuzha.",
+      "This page helps guests understand arrival planning, map checks, and what to confirm before the day of boarding so the houseboat experience starts more smoothly.",
+    ],
+    highlights: [
+      "Useful for arrival planning and local trust-building",
+      "Supports Google Business Profile relevance with location detail",
+      "Works best when paired with booking and route pages",
+    ],
+    sections: [
+      {
+        title: "What to confirm before you arrive",
+        body: [
+          "Guests should confirm the final boarding point, arrival time, contact number, and whether the trip is a day cruise or overnight stay before traveling to the Alappuzha base.",
+          "This helps avoid confusion around route timing and makes the handoff from transport to houseboat much easier.",
+        ],
+      },
+      {
+        title: "Why boarding details matter for local SEO too",
+        body: [
+          "A real boarding-point page helps guests trust that the business is actually operating locally in Alappuzha rather than functioning as a generic lead-generation site.",
+          "That kind of location clarity can also strengthen how Google understands the relationship between the business profile, the contact page, and the local booking pages.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do all Alappuzha houseboats start from the same boarding point?",
+        answer:
+          "Not always. The exact boarding point can depend on the selected boat, route plan, and local scheduling, so it is best to confirm the final location directly before the trip.",
+      },
+      {
+        question: "Should I check the map before traveling to the houseboat base?",
+        answer:
+          "Yes. Opening the map in advance and confirming the final contact details helps make arrival smoother, especially during a tight same-day schedule.",
+      },
+      {
+        question: "Can the boarding point affect the route mood?",
+        answer:
+          "Yes. Boarding logistics can affect how quickly the trip enters quieter canals or wider water, so route feel and boarding details are often connected.",
+      },
+    ],
+    ctas: [
+      { label: "Open contact page", href: "/contact" },
+      { label: "Read the booking guide", href: "/alappuzha-houseboat-booking", variant: "secondary" },
+    ],
+  },
+  "alappuzha-houseboat-price-guide": {
+    title: "Alappuzha Houseboat Price Guide",
+    eyebrow: "Price Intent Guide",
+    description:
+      "Understand Alappuzha houseboat prices, what changes the final rate, and how budget, luxury, overnight, and room-count choices affect the booking.",
+    path: "/alappuzha-houseboat-price-guide",
+    keywords: [
+      "alappuzha houseboat price",
+      "alappuzha houseboat rates",
+      "budget houseboat alappuzha price",
+      "luxury houseboat alappuzha price",
+    ],
+    intro: [
+      "Alappuzha houseboat prices are usually shaped by room count, overnight versus day-cruise timing, route style, food, and service level rather than one flat public rate.",
+      "That means the strongest price guide should help guests understand how rates move before they decide whether the right fit is budget, luxury, family, or overnight.",
+    ],
+    highlights: [
+      "Price is usually driven by layout, route, stay length, and service level",
+      "Budget and luxury are different booking paths, not just different numbers",
+      "A clear price page should send guests into the right format page quickly",
+    ],
+    sections: [
+      {
+        title: "What usually changes the price most",
+        body: [
+          "The biggest rate drivers are the number of bedrooms, whether the plan is a daytime cruise or an overnight stay, the route pace, and the food or service level expected on board.",
+          "That is why a price-led query should not stop at one answer but move quickly into the pages that explain budget, luxury, family, and overnight fit.",
+        ],
+      },
+      {
+        title: "How to use a price guide without choosing the wrong boat",
+        body: [
+          "Price alone is not enough to choose the best Alappuzha houseboat. The quote should still be checked against room count, route mood, and whether the stay is meant to feel simple, premium, or family-led.",
+          "A stronger booking flow uses the price page as an entry point into the right stay format rather than as a stand-alone answer.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Why does Alappuzha houseboat price vary so much?",
+        answer:
+          "The rate can change based on room count, day cruise versus overnight stay, route style, food inclusions, and the overall service level of the selected boat.",
+      },
+      {
+        question: "Is a budget houseboat in Alappuzha always the cheapest option?",
+        answer:
+          "Not always. The right value depends on how the layout, route, and overnight comfort match the group rather than on the lowest number alone.",
+      },
+      {
+        question: "Does luxury houseboat pricing usually include better route pacing and comfort?",
+        answer:
+          "Yes. Luxury pricing is usually tied to stronger room comfort, more polished service, and a better overall overnight or private-cruise feel.",
+      },
+    ],
+    ctas: [
+      { label: "Compare budget vs luxury", href: "/houseboats" },
+      { label: "Ask for a quote", href: "/contact", variant: "secondary" },
+    ],
+  },
+  "alappuzha-houseboat-routes-guide": {
+    title: "Alappuzha Houseboat Routes Guide",
+    eyebrow: "Route Intent Guide",
+    description:
+      "Compare Alappuzha houseboat routes across canal stretches, open-water views, quieter village sections, and overnight route pacing before you book.",
+    path: "/alappuzha-houseboat-routes-guide",
+    keywords: [
+      "alappuzha houseboat route guide",
+      "alappuzha houseboat routes",
+      "alleppey houseboat route",
+      "best alappuzha houseboat route",
+    ],
+    intro: [
+      "One of the biggest quality differences between houseboat experiences in Alappuzha is not only the boat itself but the route mood it follows.",
+      "Some guests want village canals, some want wider lake views, and others want a balanced overnight route that leaves room for dinner service and calmer evening time.",
+    ],
+    highlights: [
+      "Route mood changes the experience more than many first-time guests expect",
+      "Village canals and wider water suit different kinds of trips",
+      "The best route depends on group type, overnight intent, and pace",
+    ],
+    sections: [
+      {
+        title: "Canal-led routes versus wider-water routes",
+        body: [
+          "Canal-led sections usually feel greener, more local, and more intimate, while wider-water routes often deliver the classic open-backwater houseboat mood many travelers picture first.",
+          "A stronger route guide should help guests decide which one suits the trip rather than treating every Alappuzha houseboat plan as interchangeable.",
+        ],
+      },
+      {
+        title: "Why overnight route pacing matters",
+        body: [
+          "On overnight stays, the route needs to leave enough room for afternoon cruising, dinner flow, quieter evening time, and a slower morning rather than feeling rushed for daytime sightseeing only.",
+          "That makes route guidance especially important for couples, families, and private groups who are not just choosing a boat but a complete rhythm for the stay.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the best Alappuzha houseboat route for first-time guests?",
+        answer:
+          "For many first-time guests, a balanced route that includes both calmer canals and wider backwater sections gives the clearest feel for the Alappuzha experience.",
+      },
+      {
+        question: "Are overnight routes different from day-cruise routes?",
+        answer:
+          "Yes. Overnight routes are usually planned with more attention to pacing, dinner flow, evening calm, and morning comfort instead of fitting everything into one daytime block.",
+      },
+      {
+        question: "Do route choices affect which houseboat I should book?",
+        answer:
+          "Yes. The best route and the best boat often work together, especially when family comfort, privacy, or premium pacing are part of the trip.",
+      },
+    ],
+    ctas: [
+      { label: "Open Alappuzha houseboat guide", href: "/alappuzha-houseboat" },
+      { label: "Compare overnight options", href: "/overnight-houseboat-alappuzha", variant: "secondary" },
+    ],
+  },
   faq: {
     title: "FAQ",
     eyebrow: "Trip Planning Answers",

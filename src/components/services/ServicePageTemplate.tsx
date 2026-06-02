@@ -219,6 +219,72 @@ const bookingSteps = [
   "Once the plan fits, we confirm availability, the boarding or check-in details, and the next booking step directly.",
 ] as const;
 
+const pricingFactorsBySlug: Record<string, string[]> = {
+  houseboats: [
+    "Boat size and bedroom count",
+    "Day cruise versus overnight stay",
+    "Route length, canal mix, and meal expectations",
+  ],
+  shikkara: [
+    "Ride duration and time of day",
+    "Route style and canal coverage",
+    "Guest count and any added planning requests",
+  ],
+  "canoe-boats": [
+    "Village route length and pace",
+    "Private setup and guest count",
+    "Timing, stopping points, and route style",
+  ],
+  kayaking: [
+    "Trail length and activity level",
+    "Guide support and session timing",
+    "Group size and route difficulty",
+  ],
+  rooms: [
+    "Room category and stay dates",
+    "Waterside setting and stay length",
+    "Whether the stay is paired with another experience",
+  ],
+  spa: [
+    "Treatment type and session length",
+    "Single session versus added wellness time",
+    "How the treatment fits around your stay or cruise",
+  ],
+};
+
+const inclusionSummaryBySlug: Record<string, string[]> = {
+  houseboats: [
+    "Private boat access, crew support, and the selected cruising window",
+    "Bedroom, lounge, and deck access based on the chosen layout",
+    "Meals or refreshments depending on whether the plan is a day cruise or overnight stay",
+  ],
+  shikkara: [
+    "Private ride setup with a local boatman",
+    "Route timing shaped around the selected canal experience",
+    "Basic safety support and a calmer sightseeing pace",
+  ],
+  "canoe-boats": [
+    "Country boat access with route planning around village canals",
+    "A slower local sightseeing format matched to the chosen route",
+    "Basic safety support and timing shaped around your pace",
+  ],
+  kayaking: [
+    "Kayak session planning matched to the trail and group pace",
+    "Guide support where applicable and route briefing",
+    "Basic safety gear and a trail chosen for the comfort level of the group",
+  ],
+  rooms: [
+    "The selected stay category and access to the room or homestay setting",
+    "A calmer backwater-side base for the dates booked",
+    "Support coordinating the stay with nearby experiences when needed",
+  ],
+  spa: [
+    "The selected treatment or wellness session",
+    "A slower, more restorative format shaped around your timing",
+    "Support pairing the session with a stay, cruise, or lighter day plan",
+  ],
+};
+
 function descriptiveGalleryAlt(service: ServicePage, index: number) {
   const labels: Record<string, string[]> = {
     houseboats: [
@@ -250,23 +316,34 @@ function descriptiveGalleryAlt(service: ServicePage, index: number) {
 
 export default function ServicePageTemplate({
   service,
+  stackedAfterIntro = false,
 }: {
   service: ServicePage;
+  stackedAfterIntro?: boolean;
 }) {
   const hasGallery = service.gallery.length > 0;
   const showCloserLookGallery =
     hasGallery &&
     service.slug !== "spa" &&
     service.slug !== "houseboats" &&
-    service.slug !== "canoe-boats";
-  const galleryImages = service.gallery.map((src, index) => ({
-    src,
-    alt: descriptiveGalleryAlt(service, index),
-  }));
+    service.slug !== "canoe-boats" &&
+    service.slug !== "rooms" &&
+    service.slug !== "kayaking";
+  const galleryImages = service.gallery.map((image, index) =>
+    typeof image === "string"
+      ? {
+          src: image,
+          alt: descriptiveGalleryAlt(service, index),
+        }
+      : {
+          src: image.src,
+          alt: image.alt,
+        },
+  );
   const faqs = getServiceFaqs(service.slug);
   const internalLinkGraph = getInternalLinkGraph(`/${service.slug}`);
   const titleBySlug: Record<string, string> = {
-    houseboats: "Luxury Houseboats in Alleppey",
+    houseboats: "Alappuzha Houseboat Booking",
     kayaking: "Backwater Kayaking in Alleppey",
     rooms: "Backwater Rooms & Homestays in Alleppey",
     spa: "Ayurvedic Spa & Wellness in Alleppey Backwaters",
@@ -278,6 +355,7 @@ export default function ServicePageTemplate({
   const quickFacts = service.facilities.slice(0, 4);
   const isHouseboatsPage = service.slug === "houseboats";
   const isKayakingPage = service.slug === "kayaking";
+  const isCountryBoatsPage = service.slug === "canoe-boats";
   const showBookingAside = service.slug !== "kayaking";
   const heroTagItems = service.facilities.slice(0, 5);
   const optionsGridClass = isHouseboatsPage
@@ -286,12 +364,20 @@ export default function ServicePageTemplate({
   const itineraryExamples = sampleItineraries[service.slug] ?? [];
   const localRelevance = localRelevanceBySlug[service.slug] ?? [];
   const safetyNotes = safetyNotesBySlug[service.slug] ?? [];
+  const pricingFactors = pricingFactorsBySlug[service.slug] ?? [];
+  const inclusionSummary = inclusionSummaryBySlug[service.slug] ?? [];
 
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section
         className={`mx-auto max-w-7xl px-4 sm:px-6 ${
-          isKayakingPage ? "pb-12 pt-10 sm:pb-24 sm:pt-24" : "pb-14 pt-28 sm:pb-24 sm:pt-32 lg:pt-44"
+          stackedAfterIntro
+            ? "pb-14 pt-4 sm:pb-24 sm:pt-6 lg:pt-8"
+            : isKayakingPage
+              ? "pb-12 pt-10 sm:pb-24 sm:pt-24"
+              : isHouseboatsPage
+                ? "pb-14 pt-10 sm:pb-24 sm:pt-14 lg:pt-20"
+                : "pb-14 pt-28 sm:pb-24 sm:pt-32 lg:pt-44"
         }`}
       >
         {isHouseboatsPage ? (
@@ -310,11 +396,10 @@ export default function ServicePageTemplate({
                 {titleBySlug[service.slug] ?? service.title}
                 <span className="hidden sm:inline"> <br /></span>
                 <span
-                  className={`font-[var(--font-luxe)] text-[1.08em] italic tracking-[-0.02em] ${
+                  className={`mt-4 block font-[var(--font-luxe)] text-[1.08em] italic tracking-[-0.02em] sm:mt-5 ${
                     service.slug === "spa" ? "text-[#6b7f73]" : "text-[#5f6f83]"
                   }`}
                 >
-                  {" "}
                   {service.subtitle}.
                 </span>
               </h1>
@@ -381,6 +466,22 @@ export default function ServicePageTemplate({
                     </div>
                     <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
                       Guided Backwater Trail
+                    </div>
+                  </div>
+                ) : isCountryBoatsPage ? (
+                  <div className="group relative w-full rounded-[2rem] border border-navy/8 bg-white/92 p-6 text-center shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-sm sm:p-8">
+                    <div className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-teal/70 sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
+                      Best fit
+                    </div>
+                    <div className="text-3xl font-bold tracking-tight text-sand sm:text-5xl">
+                      1 to 8 hours
+                    </div>
+                    <div className="mt-3 text-sm leading-7 text-foreground/50 sm:text-base">
+                      Best for couples, small families, and guests who want slower village-canal
+                      routes with a more local backwater feel.
+                    </div>
+                    <div className="mt-6 border-t border-navy/5 pt-5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-foreground/40 sm:mt-8 sm:pt-6 sm:text-[0.65rem] sm:tracking-widest">
+                      Private Village Route
                     </div>
                   </div>
                 ) : showBookingAside ? (
@@ -712,14 +813,14 @@ export default function ServicePageTemplate({
         <div className="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
           <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
             <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-              Starting Price
+              Pricing Guidance
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-              Starting price guidance for this Alappuzha experience
+              A clearer way to think about pricing for this Alappuzha experience
             </h2>
             <div className="mt-6 rounded-[1.5rem] border border-gold/25 bg-[#edf5f8] p-5">
               <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
-                Current starting point
+                Current pricing note
               </div>
               <div className="mt-3 text-2xl font-bold tracking-tight text-navy sm:text-3xl">
                 {service.priceLabel}
@@ -729,30 +830,76 @@ export default function ServicePageTemplate({
               </p>
             </div>
             <div className="mt-6 text-sm leading-7 text-foreground/68">
-              In Alleppey and Alappuzha, the final price usually changes with route length, season, group size, meal expectations, and whether you want a compact scenic plan or a slower premium experience.
+              In Alleppey and Alappuzha, the final quote usually changes with route style, timing,
+              group size, inclusions, and whether you want a lighter scenic plan or a slower,
+              more premium experience.
+            </div>
+            <div className="mt-6 rounded-[1.5rem] border border-navy/8 bg-white p-5 shadow-sm">
+              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                What usually shapes the quote
+              </div>
+              <div className="mt-4 grid gap-3">
+                {pricingFactors.map((factor) => (
+                  <div
+                    key={factor}
+                    className="flex items-start gap-3 rounded-2xl border border-navy/6 bg-[#f8fcfd] px-4 py-3 text-sm text-foreground/68"
+                  >
+                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" />
+                    {factor}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#eef5f8_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.6rem] sm:p-10">
             <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-              Booking Process
+              Booking Clarity
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-              How booking usually works
+              What is usually included before booking details are finalized
             </h2>
             <div className="mt-8 grid gap-4">
-              {bookingSteps.map((step, index) => (
+              {inclusionSummary.map((item) => (
                 <div
-                  key={step}
+                  key={item}
                   className="rounded-[1.5rem] border border-white bg-white/90 p-5 shadow-sm"
                 >
                   <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
-                    Step {index + 1}
+                    Usually included
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-foreground/68">{step}</p>
+                  <p className="mt-3 text-sm leading-7 text-foreground/68">{item}</p>
                 </div>
               ))}
             </div>
+            <div className="mt-6 rounded-[1.5rem] border border-gold/20 bg-[#edf5f8] p-5 text-sm leading-7 text-foreground/70">
+              Final availability, route timing, and exact inclusions are confirmed directly for
+              your dates so the quote matches the real trip instead of a generic public package.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:pb-20">
+        <div className="rounded-[2rem] border border-navy/8 bg-[#f7fbfc] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
+          <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+            Booking Process
+          </div>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+            How booking usually moves from enquiry to confirmation
+          </h2>
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {bookingSteps.map((step, index) => (
+              <div
+                key={step}
+                className="rounded-[1.5rem] border border-white bg-white/92 p-5 shadow-sm"
+              >
+                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-teal/75">
+                  Step {index + 1}
+                </div>
+                <p className="mt-3 text-sm leading-7 text-foreground/68">{step}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1017,7 +1164,7 @@ export default function ServicePageTemplate({
       ) : null}
 
       {showCloserLookGallery && (
-        <ServiceGallery images={service.gallery} title={service.title} />
+        <ServiceGallery images={galleryImages} title={service.title} />
       )}
 
       <ExperienceComparisonSection />

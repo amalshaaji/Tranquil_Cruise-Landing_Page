@@ -4,6 +4,7 @@ import type { FaqItem } from "@/lib/seo";
 export type ProgrammaticSeoPage = {
   slug: string;
   title: string;
+  metadataTitle?: string;
   eyebrow: string;
   description: string;
   path: string;
@@ -35,6 +36,16 @@ export type ProgrammaticSeoPage = {
   touristTripName: string;
   touristTripDescription: string;
   touristTypes: string[];
+  semanticKeywords?: string[];
+  authorityCluster?: {
+    title: string;
+    href: string;
+    description: string;
+  }[];
+  contentDepthBlocks?: {
+    title: string;
+    points: string[];
+  }[];
 };
 
 export const programmaticSeoPages: ProgrammaticSeoPage[] = [
@@ -674,19 +685,25 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
   },
   {
     slug: "alappuzha-houseboat",
-    title: "Alappuzha houseboat planning guide for local routes, room fit, and Kerala backwater comfort",
+    title: "Alappuzha houseboat guide for booking, local routes, and the best private stay fit",
+    metadataTitle: "Alappuzha Houseboat | Booking Guide, Routes & Best Private Stays",
     eyebrow: "Destination Name Intent",
     description:
-      "Compare Alappuzha houseboats with local route guidance, room-count planning, private overnight comfort, and the right Kerala backwater format for your group.",
+      "Compare Alappuzha houseboats with booking guidance, local route planning, room-count fit, private overnight comfort, and the best Kerala backwater format for your group.",
     path: "/alappuzha-houseboat",
     keywords: [
       "alappuzha houseboat",
+      "alappuzha houseboat booking",
       "private houseboat alappuzha",
       "houseboat alappuzha kerala",
       "best alappuzha houseboat",
+      "best houseboat in alappuzha",
+      "luxury houseboat alappuzha",
+      "budget houseboat alappuzha",
+      "overnight houseboat stay alappuzha",
     ],
     heroImage: {
-      src: "/images/home-backwater-houseboats.jpg",
+      src: "/images/alappuzha-houseboat-backwaters.jpg",
       alt: "Private Alappuzha houseboat on Kerala backwaters",
     },
     intro: {
@@ -694,7 +711,7 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
         "A good Alappuzha houseboat should match the group, the route style, and the pace of the trip rather than simply sounding premium on paper.",
       supporting: [
         "Guests using the Alappuzha spelling often want the same backwater destination as Alleppey, but the best page for that search should still feel specific to local route choice and private trip planning.",
-        "That means the strongest next step is usually comparing the right houseboat size first, then refining whether the stay should feel romantic, family-friendly, or more celebration-led.",
+        "That means the strongest next step is usually comparing the right houseboat size first, then refining whether the stay should feel romantic, family-friendly, budget-conscious, luxury-led, or more celebration-led.",
       ],
     },
     quickFacts: [
@@ -744,7 +761,7 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
     ],
     gallery: [
       {
-        src: "/images/home-backwater-houseboats.jpg",
+        src: "/images/alappuzha-houseboat-backwaters.jpg",
         alt: "Alappuzha houseboat cruising through Kerala backwaters",
       },
       {
@@ -768,6 +785,11 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
           "Start with your group size, whether the trip should be overnight or daytime only, and how private you want the route to feel. Those factors usually matter more than broad marketing labels.",
       },
       {
+        question: "What is included in an Alappuzha houseboat booking?",
+        answer:
+          "Most Alappuzha houseboat bookings include the private boat, crew, cruising window, lounge and deck access, and meals or refreshments depending on whether the plan is a day cruise or an overnight stay.",
+      },
+      {
         question: "Which Alappuzha houseboat is best for families?",
         answer:
           "Two-bedroom and three-bedroom houseboats are usually the strongest starting point for families because they provide separate rooms, better lounge balance, and a more comfortable overnight rhythm.",
@@ -784,10 +806,10 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
       intro:
         "This broad destination page works best when it quickly branches into the more useful room-count and trip-style pages around it.",
       hub: {
-        title: "Alleppey Houseboat",
-        href: "/alleppey-houseboat",
+        title: "Luxury Houseboats in Alleppey",
+        href: "/houseboats",
         description:
-          "Compare the Alleppey phrasing if you want the matching broad-intent landing page built around the more common tourist spelling.",
+          "Use the main houseboats hub if you want the strongest booking page for room-count planning, route fit, and private stay comparisons.",
       },
       contextualLinks: [
         {
@@ -797,30 +819,30 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
             "Open this first if the broad destination query is really about a small family or two-couple stay.",
         },
         {
-          title: "Day Cruise Alleppey",
-          href: "/day-cruise-alleppey",
+          title: "Luxury Houseboat Alappuzha",
+          href: "/luxury-houseboat-alappuzha",
           description:
-            "Move here if you want a shorter daytime houseboat plan rather than an overnight format.",
+            "Move here if premium comfort, upgraded service, and a more polished private cruise matter most.",
         },
         {
-          title: "One Bedroom Houseboat Alleppey",
-          href: "/one-bedroom-houseboat-alleppey",
+          title: "Budget Houseboat Alappuzha",
+          href: "/budget-houseboat-alappuzha",
           description:
-            "Use this if the main need is a compact private couple stay rather than a broader family-led houseboat plan.",
+            "Use this if your first question is how to get the Alappuzha houseboat experience at a lighter spend.",
         },
       ],
       spokeLinks: [
         {
-          title: "Luxury AC Houseboat Kerala",
-          href: "/luxury-ac-houseboat-kerala",
+          title: "Overnight Houseboat Alappuzha",
+          href: "/overnight-houseboat-alappuzha",
           description:
-            "Best when the real priority is cooling setup, premium comfort, and a more polished overnight stay.",
+            "Open this if the broad destination search is really about dinner on board, AC timing, and a night on the water.",
         },
         {
-          title: "Honeymoon Houseboat Alleppey",
-          href: "/honeymoon-houseboat-alleppey",
+          title: "Houseboats Compare",
+          href: "/houseboats/compare",
           description:
-            "Open this if the destination query is actually a romantic couples search with sunset and privacy intent.",
+            "Use this when the broad destination search needs a cleaner comparison across room counts and stay styles before booking.",
         },
       ],
     },
@@ -828,6 +850,84 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
     touristTripDescription:
       "A private Alappuzha houseboat stay in the Kerala backwaters designed around local route quality, the right room fit, and a calmer day or overnight plan.",
     touristTypes: ["First-time visitors", "Families", "Couples", "Private groups"],
+    semanticKeywords: [
+      "alappuzha houseboat booking",
+      "best houseboat in alappuzha",
+      "luxury houseboat alappuzha",
+      "budget houseboat alappuzha",
+      "overnight houseboat stay alappuzha",
+      "private houseboat alappuzha",
+      "houseboat alappuzha kerala",
+      "alappuzha backwater houseboat",
+      "family houseboat alappuzha",
+      "day cruise alappuzha",
+      "ac houseboat alappuzha",
+      "kerala backwater houseboat",
+    ],
+    authorityCluster: [
+      {
+        title: "Luxury Houseboat Alappuzha",
+        href: "/luxury-houseboat-alappuzha",
+        description:
+          "Use this if the goal is premium room comfort, private route pacing, and a higher-service stay rather than a broad destination comparison.",
+      },
+      {
+        title: "Budget Houseboat Alappuzha",
+        href: "/budget-houseboat-alappuzha",
+        description:
+          "Move here if the main decision is value, practical inclusions, and how to keep the houseboat experience within a lighter spend.",
+      },
+      {
+        title: "Overnight Houseboat Alappuzha",
+        href: "/overnight-houseboat-alappuzha",
+        description:
+          "This is the strongest next step when dinner on board, nighttime AC, morning calm, and a fuller stay rhythm matter most.",
+      },
+      {
+        title: "2 Bedroom Houseboat Alappuzha",
+        href: "/2-bedroom-houseboat-alappuzha",
+        description:
+          "Best for families and two-couple trips that need room balance, separate sleeping spaces, and a more comfortable overnight flow.",
+      },
+      {
+        title: "Houseboat Comparison Page",
+        href: "/houseboats/compare",
+        description:
+          "Use this when the broad query still needs a side-by-side view of room count, layout, and who each boat actually fits best.",
+      },
+      {
+        title: "Best Time To Visit Alappuzha",
+        href: "/best-time-to-visit-alappuzha",
+        description:
+          "Open this if weather comfort, monsoon mood, open-deck time, or seasonality is part of the booking decision.",
+      },
+    ],
+    contentDepthBlocks: [
+      {
+        title: "What should be included in a strong Alappuzha houseboat booking",
+        points: [
+          "A clear private boat format, crew support, route timing, and bedroom details should be understood before payment, not after boarding.",
+          "Meals or refreshments should be tied to whether the stay is a day cruise or an overnight houseboat plan.",
+          "AC timing, attached washroom setup, and the balance between deck space and room comfort matter more than generic labels like deluxe or premium.",
+        ],
+      },
+      {
+        title: "Topics most competitor pages still explain poorly",
+        points: [
+          "Many pages mention luxury or budget without clearly explaining the route difference between canal-heavy cruising and wider-water houseboat mood.",
+          "Guests often struggle to find useful guidance on check-in timing, overnight flow, dinner pacing, and what changes once the boat stops for the night.",
+          "The best local pages should explain who each format is actually for rather than forcing every guest into the same broad package language.",
+        ],
+      },
+      {
+        title: "How to avoid choosing the wrong houseboat in Alappuzha",
+        points: [
+          "Do not start with price alone. Start with room count, overnight intent, and how private or social the trip should feel.",
+          "Ask whether the boat really suits couples, families, or larger groups instead of assuming a broad category page tells the whole story.",
+          "If the route, meal flow, AC plan, or washroom details are vague, that is usually a sign the booking guidance is still too generic.",
+        ],
+      },
+    ],
   },
   {
     slug: "day-cruise-alleppey",
@@ -948,8 +1048,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
       },
       contextualLinks: [
         {
-          title: "Alleppey Houseboat",
-          href: "/alleppey-houseboat",
+          title: "Luxury Houseboats in Alleppey",
+          href: "/houseboats",
           description:
             "Zoom out to the broader houseboat decision if you are not fully sure the trip should be daytime-only.",
         },
@@ -960,8 +1060,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
             "Compare this if sunset, dinner, and a night on the water matter more than fitting the trip into one day.",
         },
         {
-          title: "Shikkara Ride Alleppey",
-          href: "/shikkara-ride-alleppey",
+          title: "Private Shikkara Rides",
+          href: "/shikkara",
           description:
             "Compare this if the day cruise query is really a shorter canal-sightseeing question rather than a full houseboat comfort question.",
         },
@@ -1105,20 +1205,20 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
       },
       contextualLinks: [
         {
-          title: "Day Cruise Alleppey",
-          href: "/day-cruise-alleppey",
+          title: "Day Cruise Alappuzha",
+          href: "/day-cruise-alappuzha",
           description:
             "Compare this if the ride should include a houseboat, lunch, and a fuller daytime schedule rather than a shorter canal loop.",
         },
         {
-          title: "Houseboat for Couples",
-          href: "/houseboat-for-couples",
+          title: "Single Bedroom Houseboat",
+          href: "/houseboats/single-bed",
           description:
-            "Move here if the shikkara query is really about a romantic private stay rather than a shorter sightseeing ride.",
+            "Move here if the shikkara query is really about a private overnight couple stay rather than a shorter sightseeing ride.",
         },
         {
-          title: "Alleppey Houseboat",
-          href: "/alleppey-houseboat",
+          title: "Luxury Houseboats in Alleppey",
+          href: "/houseboats",
           description:
             "Zoom out here if you are still unsure whether the trip should be a shikkara, houseboat, or something in between.",
         },
@@ -1262,8 +1362,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
       },
       contextualLinks: [
         {
-          title: "One Bedroom Houseboat Alleppey",
-          href: "/one-bedroom-houseboat-alleppey",
+          title: "Single Bedroom Houseboat",
+          href: "/houseboats/single-bed",
           description:
             "Open this first if the romantic search is really about the exact one-bedroom format best suited to couples.",
         },
@@ -1274,8 +1374,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
             "Move here if the trip is romantic but not necessarily framed as a honeymoon or occasion-led stay.",
         },
         {
-          title: "Shikkara Ride Alleppey",
-          href: "/shikkara-ride-alleppey",
+          title: "Private Shikkara Rides",
+          href: "/shikkara",
           description:
             "Compare this if the honeymoon plan should be lighter, shorter, and canal-led instead of a full overnight houseboat.",
         },
@@ -1419,8 +1519,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
       },
       contextualLinks: [
         {
-          title: "Honeymoon Houseboat Alleppey",
-          href: "/honeymoon-houseboat-alleppey",
+          title: "Honeymoon Houseboat Alappuzha",
+          href: "/honeymoon-houseboat-alappuzha",
           description:
             "Move here if the one-bedroom search is really a honeymoon-intent booking with sunset and privacy as the priority.",
         },
@@ -1431,8 +1531,8 @@ export const programmaticSeoPages: ProgrammaticSeoPage[] = [
             "Compare this if the room-count question is part of a broader romantic-stay decision rather than a strict one-bedroom requirement.",
         },
         {
-          title: "2 Bedroom Houseboat Alappuzha",
-          href: "/2-bedroom-houseboat-alappuzha",
+          title: "2 Bedroom Houseboat",
+          href: "/houseboats/2-bedroom",
           description:
             "Open this only if you think a little more space may matter more than keeping the format compact and couple-led.",
         },

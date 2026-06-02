@@ -20,18 +20,29 @@ export default function ScrollableImageRow({
   showIntroCopy?: boolean;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const imageCount = images.length;
   const activeImage = images[activeIndex] ?? images[0];
 
   useEffect(() => {
-    if (imageCount <= 1) return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (imageCount <= 1 || prefersReducedMotion) return;
 
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % imageCount);
     }, 4500);
 
     return () => window.clearInterval(interval);
-  }, [imageCount]);
+  }, [imageCount, prefersReducedMotion]);
 
   if (!activeImage) return null;
 
@@ -54,12 +65,16 @@ export default function ScrollableImageRow({
           src={activeImage.src}
           alt={activeImage.alt}
           fill
+          priority={activeIndex === 0}
+          loading={activeIndex === 0 ? "eager" : "lazy"}
+          fetchPriority={activeIndex === 0 ? "high" : "auto"}
+          decoding="async"
           className={activeImage.objectFit === "contain" ? "object-contain" : "object-cover"}
           style={{
             ...(activeImage.objectPosition ? { objectPosition: activeImage.objectPosition } : {}),
             ...(activeImage.objectFit ? { objectFit: activeImage.objectFit } : {}),
           }}
-          sizes="(max-width: 768px) 100vw, 60vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 92vw, 72vw"
         />
       </div>
 

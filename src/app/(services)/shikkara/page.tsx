@@ -12,9 +12,9 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Private Shikkara Rides in Alleppey | Tranquil Cruise",
+    title: "Alleppey Shikkara Ride | Private Canal Cruise in Alappuzha",
     description:
-      "Book a private Shikkara ride in Alleppey for scenic Kerala backwater canals, village routes, and calm sunrise or sunset cruising in Alappuzha.",
+      "Book a private Alleppey shikkara ride through Alappuzha canals for village routes, sunset cruising, and a lighter backwater experience than a houseboat.",
     path: "/shikkara",
     keywords: [
       "private shikara ride Alleppey",
@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/shikkara-real.jpg",
       width: 1200,
       height: 630,
-      alt: "Private shikara ride in the Alleppey backwaters",
+      alt: "Shikkara ride through Alappuzha canals",
     },
   });
 }
@@ -48,14 +48,19 @@ const serviceJsonLd = createServiceSchema({
 
 const answerFirstItems = [
   {
-    question: "Houseboat vs shikkara in Alleppey: which should you choose?",
+    question: "What is the difference between a houseboat and a shikkara ride?",
     answer:
-      "Choose a shikkara if you want a shorter, lighter, and more affordable canal ride with a closer local feel. Choose a houseboat if you want more comfort, onboard meals, and a longer Kerala backwaters experience.",
+      "Choose a shikkara if you want a shorter, lighter canal ride through village canals and quieter Alappuzha scenery. Choose a houseboat if you want more comfort, meals, deck space, and a longer route that can open out toward Punnamada Lake or Vembanad Lake.",
   },
   {
     question: "Who is a shikkara ride best for in Alappuzha?",
     answer:
-      "A shikkara ride is usually best for couples, small families, and guests who want 1 to 3 hours of calmer sightseeing through village canals without committing to a full houseboat stay.",
+      "A shikkara ride is usually best for couples, small families, and guests who want 1 to 8 hours of calmer sightseeing through village canals without committing to a full houseboat stay. It works especially well when your plan is scenic, local, and easier to fit into one part of the day.",
+  },
+  {
+    question: "What time of day is best for a shikkara ride?",
+    answer:
+      "Morning and sunset are usually the best times because the weather feels softer and the canal atmosphere is calmer. Sunrise works well for quieter sightseeing, while sunset is often chosen for a more romantic Alleppey backwater mood through village canals and softer open-water edges.",
   },
 ];
 
@@ -65,13 +70,13 @@ export default function ShikkaraPage() {
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={createFaqSchema(faqs)} />
+      <ShikkaraExperiencePage />
       <QuestionAnswerList
         eyebrow="Answer First"
         title="Fast answers for travelers comparing shikkara rides."
         intro="These short answers are here near the top so you can understand where a shikkara fits before opening the full ride details."
         items={answerFirstItems}
       />
-      <ShikkaraExperiencePage />
     </>
   );
 }

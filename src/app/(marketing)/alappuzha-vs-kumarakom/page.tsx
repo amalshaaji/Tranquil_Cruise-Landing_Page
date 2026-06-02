@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import BackwaterGuidePage from "@/components/guides/BackwaterGuidePage";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
@@ -47,24 +47,24 @@ const imageJsonLd = createImageObjectSchema({
   height: 630,
 });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const articleJsonLd = createArticleSchema({
   headline: "Alappuzha Vs Kumarakom",
   description:
     "A practical local comparison of Alappuzha and Kumarakom for backwater travelers deciding between activity variety and a quieter stay mood.",
-  url: `${SITE_URL}/alappuzha-vs-kumarakom`,
-  image: `${SITE_URL}/images/home-houseboat-backwater.jpg`,
-  author: {
-    "@type": "Organization",
-    name: SITE_NAME,
+  path: "/alappuzha-vs-kumarakom",
+  image: {
+    path: "/images/home-houseboat-backwater.jpg",
+    alt: "Alappuzha versus Kumarakom backwater comparison",
+    width: 1200,
+    height: 630,
   },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-  },
-  mainEntityOfPage: `${SITE_URL}/alappuzha-vs-kumarakom`,
-};
+  keywords: [
+    "alappuzha vs kumarakom",
+    "alleppey or kumarakom",
+    "which is better alappuzha or kumarakom",
+  ],
+  articleSection: "Destination Comparison",
+});
 
 const touristTripJsonLd = createTouristTripSchema({
   name: "Alappuzha Vs Kumarakom Guide",
@@ -88,9 +88,9 @@ const touristTripJsonLd = createTouristTripSchema({
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Alappuzha Vs Kumarakom | Which Backwater Destination Fits Better",
+    title: "Alappuzha vs Kumarakom | Which Kerala Backwater Destination Fits Better",
     description:
-      "Compare Alappuzha vs Kumarakom for houseboats, backwater activities, trip mood, and local planning so you can choose the destination that fits better.",
+      "Compare Alappuzha vs Kumarakom for houseboats, route variety, retreat feel, and local Kerala backwater planning before you choose.",
     path: "/alappuzha-vs-kumarakom",
     keywords: [
       "alappuzha vs kumarakom",
@@ -155,11 +155,11 @@ export default function AlappuzhaVsKumarakomPage() {
         overviewCards={[
           {
             title: "Choose Alappuzha for broader backwater choice",
-            text: "Alappuzha is often the more practical option when you want to compare houseboats, day cruises, shikara rides, village canal routes, and other backwater experiences from one main hub.",
+            text: "Alappuzha is often the more practical option when you want to compare houseboats, day cruises, shikara rides, village canal routes, and wider Punnamada Lake or Vembanad Lake cruising from one main hub.",
           },
           {
             title: "Choose Kumarakom for a quieter retreat feel",
-            text: "Kumarakom often appeals to guests who care more about a slower, quieter, resort-leaning atmosphere than about comparing many backwater formats side by side.",
+            text: "Kumarakom often appeals to guests who care more about a slower, quieter, resort-leaning atmosphere on the Vembanad side than about comparing many backwater formats side by side.",
           },
           {
             title: "Do not compare them only by popularity",
@@ -169,9 +169,9 @@ export default function AlappuzhaVsKumarakomPage() {
         practicalTitle="Use trip intent, route choice, and energy level as the real decision filters."
         practicalItems={[
           "Choose Alappuzha if you want easier access to multiple boat formats and a stronger activity-planning hub.",
-          "Choose Kumarakom if your trip leans more toward slower stay mood and less toward comparing many route formats.",
+          "Choose Kumarakom if your trip leans more toward a slower stay mood and less toward comparing many route formats from the Alleppey side.",
           "Choose Alappuzha if you are still deciding between a houseboat, day cruise, shikara ride, or a more local canal experience.",
-          "Think about whether you want variety and local planning help or a quieter resort-style rhythm before making the call.",
+          "Think about whether you want variety and local planning help or a quieter resort-style rhythm closer to the Kumarakom route side of Vembanad Lake.",
         ]}
         practicalNote="Travelers often ask which place is better as if one answer fits everyone. In reality, Alappuzha usually wins on range and planning flexibility, while Kumarakom often wins for guests who want a calmer, more retreat-oriented feel."
         featureEyebrow="How They Differ"
@@ -180,7 +180,7 @@ export default function AlappuzhaVsKumarakomPage() {
         featureCards={[
           {
             title: "For travelers who want options",
-            text: "Alappuzha is usually the better fit because it makes comparing formats simpler and gives you a clearer route into the classic Kerala backwater experience.",
+            text: "Alappuzha is usually the better fit because it makes comparing formats simpler and gives you a clearer route into classic Kerala Backwaters experiences across village canals, Punnamada Lake, and broader Vembanad cruising.",
           },
           {
             title: "For travelers who want stillness",
@@ -195,10 +195,10 @@ export default function AlappuzhaVsKumarakomPage() {
         compareIntro="These pages help turn the destination question into a local Alappuzha plan if that ends up being the better fit."
         compareCards={[
           {
-            title: "Things To Do In Alappuzha",
-            href: "/things-to-do-in-alappuzha",
+            title: "Luxury Houseboats",
+            href: "/houseboats",
             fit: "Best if Alappuzha is winning",
-            copy: "Go here if this comparison has already made Alappuzha the stronger choice and you now want to narrow the best local experiences.",
+            copy: "Go here if this comparison has already made Alappuzha the stronger choice and you now want to compare the main houseboat formats and route styles.",
           },
           {
             title: "Best Time To Visit Alappuzha",
@@ -207,20 +207,26 @@ export default function AlappuzhaVsKumarakomPage() {
             copy: "Go here if Alappuzha seems right but the final decision still depends on which season or weather mood fits your trip best.",
           },
           {
-            title: "Kerala Backwaters Guide",
-            href: "/kerala-backwaters-guide",
-            fit: "Best for stepping back",
-            copy: "Go here if you want the broader Kerala backwaters context before locking in either destination and travel format.",
+            title: "Family Houseboat Alappuzha",
+            href: "/family-houseboat-alappuzha",
+            fit: "Best for family-led stays",
+            copy: "Go here if the destination question is settled and the next real decision is how to plan a private family houseboat in Alappuzha.",
+          },
+          {
+            title: "Honeymoon Houseboat Alappuzha",
+            href: "/honeymoon-houseboat-alappuzha",
+            fit: "Best for couple stays",
+            copy: "Go here if the destination comparison is really leading toward a romantic private houseboat with sunset cruising and overnight comfort.",
           },
         ]}
         faqEyebrow="Destination Comparison FAQs"
         faqTitle="Questions travelers ask when comparing Alappuzha and Kumarakom"
         faqIntro="These answers focus on trip fit, destination mood, and practical backwater planning."
         faqs={faqs}
-        primaryCtaLabel="See Alappuzha ideas"
-        primaryCtaHref="/things-to-do-in-alappuzha"
-        secondaryCtaLabel="Browse experiences"
-        secondaryCtaHref="/gallery"
+        primaryCtaLabel="View houseboats"
+        primaryCtaHref="/houseboats"
+        secondaryCtaLabel="See family stays"
+        secondaryCtaHref="/family-houseboat-alappuzha"
         ctaTitle="Use the comparison, then plan the destination that fits better"
         ctaText="If Alappuzha feels like the better match after this comparison, the most useful next step is usually choosing the right local format and timing rather than continuing to compare destination names."
       />

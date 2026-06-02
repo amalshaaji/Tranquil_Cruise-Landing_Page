@@ -23,7 +23,12 @@ const experienceLinks = [
 ] as const;
 
 const houseboatGuideLinks = routeDirectoryPages
-  .filter((page) => page.category === "Houseboat Guides")
+  .filter(
+    (page) =>
+      page.category === "Houseboat Guides" ||
+      (page.category === "Exact Match Guides" &&
+        (page.href === "/alappuzha-houseboat" || page.href === "/alleppey-houseboat")),
+  )
   .map((page) => ({
     href: page.href,
     label: page.title,

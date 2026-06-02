@@ -7,7 +7,10 @@ import { getServiceFaqs } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
+  createImageObjectSchema,
   createServiceSchema,
+  createSpeakableSchema,
+  createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 
@@ -28,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/canoe-card.png",
       width: 1024,
       height: 1536,
-      alt: "Country boat ride in Alleppey",
+      alt: "Open country boat ride through village canals in Alappuzha",
     },
   });
 }
@@ -46,14 +49,56 @@ const serviceJsonLd = createServiceSchema({
   serviceType: "Country boat ride",
 });
 
+const imageJsonLd = createImageObjectSchema({
+  path: "/images/canoe-card.png",
+  alt: "Open country boat ride through village canals in Alappuzha",
+  width: 1024,
+  height: 1536,
+});
+
+const touristTripJsonLd = createTouristTripSchema({
+  name: "Village Country Boat Ride in Alleppey",
+  description:
+    "Private country boat rides in Alleppey through quieter village canals, local backwater scenery, and slower Alappuzha routes.",
+  path: "/canoe-boats",
+  image: {
+    path: "/images/canoe-card.png",
+    alt: "Open country boat ride through village canals in Alappuzha",
+    width: 1024,
+    height: 1536,
+  },
+  itinerary: ["Alleppey", "Alappuzha", "Village canals", "Kerala Backwaters"],
+  touristType: ["Couples", "Families", "Slow travelers"],
+  keywords: [
+    "country boat Alleppey",
+    "village boat ride Alappuzha",
+    "Kerala backwater village tour",
+  ],
+});
+
+const speakableJsonLd = createSpeakableSchema({
+  path: "/canoe-boats",
+  name: "Country Boat Rides in Alleppey",
+  description:
+    "Private country boat rides in Alleppey for village canals, local scenery, and quieter Kerala backwater routes.",
+  cssSelectors: ["main h1", "main p"],
+});
+
 export default function CanoeBoatsPage() {
   if (!service) notFound();
   const faqs = getServiceFaqs("canoe-boats");
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd} />
-      <JsonLd data={serviceJsonLd} />
-      {faqs.length > 0 ? <JsonLd data={createFaqSchema(faqs)} /> : null}
+      <JsonLd
+        data={[
+          breadcrumbJsonLd,
+          serviceJsonLd,
+          imageJsonLd,
+          touristTripJsonLd,
+          speakableJsonLd,
+          ...(faqs.length > 0 ? [createFaqSchema(faqs)] : []),
+        ]}
+      />
       <ServicePageTemplate service={service} />
     </>
   );

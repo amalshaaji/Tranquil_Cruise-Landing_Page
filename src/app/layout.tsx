@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
 import "./globals.css";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import GoogleTagManagerNoscript from "@/components/analytics/GoogleTagManagerNoscript";
 import DeferredGlobalConversionLayer from "@/components/conversion/DeferredGlobalConversionLayer";
 import Navbar from "@/components/layout/Navbar";
@@ -27,6 +25,11 @@ const bingSiteVerification = process.env.BING_SITE_VERIFICATION;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
+  icons: {
+    icon: "/tranquil-cruise-logo-search.jpg",
+    shortcut: "/tranquil-cruise-logo-search.jpg",
+    apple: "/tranquil-cruise-logo-search.jpg",
+  },
   authors: [{ name: "Tranquil Cruise" }],
   creator: "Tranquil Cruise",
   publisher: "Tranquil Cruise",
@@ -43,16 +46,18 @@ export const metadata: Metadata = {
         }
       : undefined,
   ...createPageMetadata({
-    title: SITE_NAME,
+    title: "Alappuzha Houseboat | Private Houseboat Booking in Kerala",
     description:
-      "Private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey, Alappuzha, and the Kerala backwaters.",
+      "Book an Alappuzha houseboat, private day cruise, overnight stay, and backwater experiences in Kerala with local planning support from Tranquil Cruise.",
     path: "/",
     keywords: [
+      "Alappuzha houseboat",
+      "Alappuzha houseboat booking",
       "Alleppey houseboat",
-      "Alappuzha backwater cruises",
+      "Alappuzha backwater cruise",
       "Kerala backwaters",
-      "private shikkara rides",
-      "day cruise Alleppey",
+      "private shikkara ride Alleppey",
+      "backwater kayaking Alleppey",
     ],
     image: {
       url: DEFAULT_OG_IMAGE,
@@ -121,9 +126,6 @@ export default async function RootLayout({
         >
           Skip to main content
         </a>
-        <Suspense fallback={null}>
-          <GoogleAnalytics />
-        </Suspense>
         <Navbar />
         <div id="main-content" tabIndex={-1}>
           {children}

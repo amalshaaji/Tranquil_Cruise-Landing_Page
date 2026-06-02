@@ -3,8 +3,10 @@ import Link from "next/link";
 import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import { getInternalLinkGraph } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -131,9 +133,9 @@ const answerFirstItems = [
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Honeymoon Houseboat Alappuzha | Romantic Alleppey Cruise",
+    title: "Honeymoon Houseboat in Alleppey | Romantic Cruise in Alappuzha",
     description:
-      "Plan a honeymoon houseboat in Alappuzha with romantic packages, sunset cruising, candlelight dinner options, and couple photography on an intimate Alleppey backwater stay.",
+      "Book a honeymoon houseboat in Alleppey with romantic sunset cruising, private overnight comfort, and couple-focused backwater stays in Alappuzha.",
     path: "/honeymoon-houseboat-alappuzha",
     keywords: [
       "honeymoon houseboat alappuzha",
@@ -145,7 +147,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/single-bed-gallery/exterior-view.jpeg",
       width: 1200,
       height: 630,
-      alt: "Honeymoon houseboat in Alappuzha",
+      alt: "Romantic honeymoon houseboat in Alleppey",
     },
   });
 }
@@ -160,7 +162,7 @@ const faqJsonLd = createFaqSchema(honeymoonFaqs);
 
 const imageJsonLd = createImageObjectSchema({
   path: "/images/single-bed-gallery/exterior-view.jpeg",
-  alt: "Honeymoon houseboat in Alappuzha",
+  alt: "Romantic honeymoon houseboat in Alleppey",
   width: 1200,
   height: 630,
 });
@@ -168,7 +170,7 @@ const imageJsonLd = createImageObjectSchema({
 const serviceJsonLd = createServiceSchema({
   name: "Honeymoon Houseboat Alappuzha",
   description:
-    "Romantic houseboat stays in Alappuzha for couples seeking sunset cruising, candlelight dinner ambiance, and private Kerala backwater time together.",
+    "Romantic houseboat stays in Alappuzha for couples seeking sunset cruising, candlelight dinner ambiance, quieter village canals, and private Kerala backwater time together.",
   path: "/honeymoon-houseboat-alappuzha",
   serviceType: "Honeymoon houseboat stay",
 });
@@ -180,16 +182,17 @@ const touristTripJsonLd = createTouristTripSchema({
   path: "/honeymoon-houseboat-alappuzha",
   image: {
     path: "/images/single-bed-gallery/exterior-view.jpeg",
-    alt: "Honeymoon houseboat in Alappuzha",
+    alt: "Romantic honeymoon houseboat in Alleppey",
     width: 1200,
     height: 630,
   },
-  itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
+  itinerary: ["Alleppey", "Alappuzha", "Punnamada Lake", "Vembanad Lake", "Village canals"],
   touristType: ["Couples", "Honeymoon travelers"],
   keywords: ["honeymoon houseboat alappuzha", "romantic alleppey cruise"],
 });
 
 export default function HoneymoonHouseboatAlappuzhaPage() {
+  const internalLinkGraph = getInternalLinkGraph("/honeymoon-houseboat-alappuzha");
   return (
     <>
       <JsonLd
@@ -414,6 +417,8 @@ export default function HoneymoonHouseboatAlappuzhaPage() {
           intro="These are the most common questions from guests planning a romantic houseboat stay in Alleppey or Alappuzha."
           faqs={honeymoonFaqs}
         />
+
+        {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
       </main>
     </>
   );

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import BackwaterGuidePage from "@/components/guides/BackwaterGuidePage";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
@@ -47,24 +47,24 @@ const imageJsonLd = createImageObjectSchema({
   height: 768,
 });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const articleJsonLd = createArticleSchema({
   headline: "Things To Do In Alappuzha",
   description:
     "A practical guide to the best things to do in Alappuzha, with a focus on backwater experiences, local pacing, and how to choose the right activity.",
-  url: `${SITE_URL}/things-to-do-in-alappuzha`,
-  image: `${SITE_URL}/images/things-to-do-in-alappuzha-attractions.jpg`,
-  author: {
-    "@type": "Organization",
-    name: SITE_NAME,
+  path: "/things-to-do-in-alappuzha",
+  image: {
+    path: "/images/things-to-do-in-alappuzha-attractions.jpg",
+    alt: "A visual guide to houseboats, shikara rides, beaches, and the Alappuzha lighthouse",
+    width: 1408,
+    height: 768,
   },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-  },
-  mainEntityOfPage: `${SITE_URL}/things-to-do-in-alappuzha`,
-};
+  keywords: [
+    "things to do in alappuzha",
+    "best things to do in alleppey",
+    "what to do in alappuzha",
+  ],
+  articleSection: "Travel Planning Guide",
+});
 
 const touristTripJsonLd = createTouristTripSchema({
   name: "Things To Do In Alappuzha Guide",

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { alappuzhaHouseboatSeoStrategy } from "@/lib/alappuzha-houseboat-seo-strategy";
 import {
   ComparisonTable,
   QuestionAnswerList,
@@ -19,6 +21,10 @@ export default function ProgrammaticSeoPage({
     details: item.description,
   }));
   const quickQuestions = page.faqs.slice(0, 3);
+  const hasDepthBlocks = Boolean(page.contentDepthBlocks?.length);
+  const hasSemanticKeywords = Boolean(page.semanticKeywords?.length);
+  const hasAuthorityCluster = Boolean(page.authorityCluster?.length);
+  const isAlappuzhaHouseboatPillar = page.path === "/alappuzha-houseboat";
 
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
@@ -143,6 +149,151 @@ export default function ProgrammaticSeoPage({
           </div>
         </div>
       </section>
+
+      {hasDepthBlocks ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#f8fbfc_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+              Depth Coverage
+            </div>
+            <h2 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+              Important Alappuzha houseboat topics this page covers more clearly.
+            </h2>
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              {page.contentDepthBlocks?.map((block) => (
+                <article
+                  key={block.title}
+                  className="rounded-[1.5rem] border border-navy/8 bg-white p-5"
+                >
+                  <h3 className="text-xl font-semibold text-[#173247]">{block.title}</h3>
+                  <ul className="mt-4 space-y-3">
+                    {block.points.map((point) => (
+                      <li
+                        key={point}
+                        className="rounded-[1.1rem] border border-navy/8 bg-[#f7fbfc] px-4 py-3 text-sm leading-7 text-foreground/68"
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {hasSemanticKeywords ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="rounded-[2rem] border border-navy/8 bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+              Related Searches
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+              Closely related ways travelers search for this houseboat intent.
+            </h2>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {page.semanticKeywords?.map((keyword) => (
+                <span
+                  key={keyword}
+                  className="inline-flex items-center rounded-full border border-navy/10 bg-[#f7fbfc] px-4 py-2 text-sm font-medium text-[#173247]"
+                >
+                  {keyword}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {hasAuthorityCluster ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="rounded-[2rem] border border-navy/8 bg-[#173247] p-6 text-white shadow-[0_22px_50px_rgba(23,50,71,0.14)] sm:rounded-[2.6rem] sm:p-10">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-200/80">
+              Topic Cluster
+            </div>
+            <h2 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight sm:text-4xl">
+              Follow the strongest supporting pages around this booking topic.
+            </h2>
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {page.authorityCluster?.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-[1.45rem] border border-white/10 bg-white/8 p-5 transition hover:bg-white/12"
+                >
+                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-white/78">{item.description}</p>
+                  <span className="mt-4 inline-flex text-sm font-semibold text-teal-200">
+                    Open this page
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {isAlappuzhaHouseboatPillar ? (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
+          <div className="rounded-[2rem] border border-navy/8 bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+              Ranking Architecture
+            </div>
+            <h2 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
+              The exact pages, schema, and crawl paths required to win this houseboat query.
+            </h2>
+            <div className="mt-8 grid gap-6 lg:grid-cols-[1fr,0.95fr]">
+              <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
+                <h3 className="text-xl font-semibold text-[#173247]">Required Pages</h3>
+                <ul className="mt-4 space-y-3">
+                  {alappuzhaHouseboatSeoStrategy.requiredPages.map((item) => (
+                    <li
+                      key={item.href}
+                      className="rounded-[1.15rem] border border-navy/8 bg-white p-4"
+                    >
+                      <Link href={item.href} className="text-lg font-semibold text-sand hover:text-teal">
+                        {item.title}
+                      </Link>
+                      <p className="mt-2 text-sm leading-6 text-foreground/66">
+                        {item.intent} intent targeting <strong>{item.primaryKeyword}</strong>.
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid gap-6">
+                <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
+                  <h3 className="text-xl font-semibold text-[#173247]">Required Schema</h3>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {alappuzhaHouseboatSeoStrategy.requiredSchema.map((item) => (
+                      <span
+                        key={item}
+                        className="inline-flex items-center rounded-full border border-navy/10 bg-white px-4 py-2 text-sm font-medium text-[#173247]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
+                  <h3 className="text-xl font-semibold text-[#173247]">Technical Fixes</h3>
+                  <ul className="mt-4 space-y-3">
+                    {alappuzhaHouseboatSeoStrategy.requiredTechnicalFixes.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-[1.15rem] border border-navy/8 bg-white px-4 py-3 text-sm leading-6 text-foreground/66"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <QuestionAnswerList
         title="Short answers before the full accordion FAQ."

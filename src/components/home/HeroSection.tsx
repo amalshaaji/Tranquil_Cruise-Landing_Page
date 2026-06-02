@@ -12,9 +12,11 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/images/hero-rainbow-houseboat.webp"
-          alt="Traditional houseboats moored along the Alleppey backwaters"
+          alt="Alappuzha houseboat view across the Kerala backwaters"
           fill
           preload
+          fetchPriority="high"
+          decoding="async"
           sizes="100vw"
           className="object-cover object-[55%_58%] sm:object-[center_58%]"
         />
@@ -61,7 +63,7 @@ export default function HeroSection() {
               </div>
 
               <h1 className="max-w-[18rem] bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_52%,#f5d67a_78%,#ffffff_100%)] bg-clip-text text-balance text-[0.92rem] font-semibold uppercase leading-[1.45] tracking-[0.12em] text-transparent sm:max-w-4xl sm:text-[1.7rem] sm:leading-normal sm:tracking-[0.34em]">
-                Private Houseboats and Backwater Cruises in Alleppey
+                Alappuzha Houseboat Booking and Private Backwater Cruises
               </h1>
 
               <a

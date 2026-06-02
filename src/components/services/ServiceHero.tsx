@@ -14,13 +14,22 @@ export default function ServiceHero({
   eyebrow: string;
   heroImage: string;
 }) {
+  const altByTitle: Record<string, string> = {
+    "Luxury Houseboats": "Private houseboat cruise in Alleppey backwaters",
+    "Shikkara Rides": "Shikkara ride through Alappuzha canals",
+    "Country Boats": "Country boat ride through village canals in Alleppey",
+    Kayaking: "Kerala backwater kayaking near Alleppey",
+    Rooms: "Backwater room stay in Alappuzha",
+    Spa: "Ayurvedic wellness space near the Kerala backwaters",
+  };
+
   return (
     <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-navy text-white sm:min-h-[80vh]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src={heroImage}
-          alt={`${title} in the Alleppey and Alappuzha Kerala backwaters`}
+          alt={altByTitle[title] ?? `${title} experience in the Alleppey backwaters`}
           fill
           preload
           sizes="100vw"

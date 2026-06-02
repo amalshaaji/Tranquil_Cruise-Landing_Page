@@ -8,8 +8,10 @@ import {
   generatePageMetadata,
 } from "@/lib/seo";
 import {
+  BUSINESS_ADDRESS_CANONICAL,
   BUSINESS_EMAIL,
   BUSINESS_PHONE,
+  GOOGLE_MAPS_URL,
   SITE_URL,
 } from "@/lib/site";
 
@@ -21,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/contact",
     keywords: [
       "contact Tranquil Cruise",
+      "alappuzha houseboat contact",
       "Alleppey houseboat booking",
       "book shikara ride Alappuzha",
     ],
@@ -63,10 +66,13 @@ const contactPageJsonLd = {
     url: SITE_URL,
     telephone: BUSINESS_PHONE,
     email: BUSINESS_EMAIL,
+    sameAs: [GOOGLE_MAPS_URL],
     address: {
       "@type": "PostalAddress",
+      streetAddress: BUSINESS_ADDRESS_CANONICAL,
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
+      postalCode: "688001",
       addressCountry: "IN",
     },
     openingHours: "Mo-Su 08:00-20:00",

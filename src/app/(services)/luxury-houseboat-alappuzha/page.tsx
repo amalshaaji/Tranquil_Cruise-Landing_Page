@@ -114,7 +114,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/houseboats-card-blue.jpg",
       width: 1200,
       height: 630,
-      alt: "Luxury houseboat in Alleppey",
+      alt: "Private luxury houseboat cruise in the Alleppey backwaters",
     },
   });
 }
@@ -129,7 +129,7 @@ const faqJsonLd = createFaqSchema(luxuryFaqs);
 
 const imageJsonLd = createImageObjectSchema({
   path: "/images/houseboats-card-blue.jpg",
-  alt: "Luxury houseboat in Alleppey",
+  alt: "Private luxury houseboat cruise in the Alleppey backwaters",
   width: 1200,
   height: 630,
 });
@@ -149,7 +149,7 @@ const touristTripJsonLd = createTouristTripSchema({
   path: "/luxury-houseboat-alappuzha",
   image: {
     path: "/images/houseboats-card-blue.jpg",
-    alt: "Luxury houseboat in Alleppey",
+    alt: "Private luxury houseboat cruise in the Alleppey backwaters",
     width: 1200,
     height: 630,
   },

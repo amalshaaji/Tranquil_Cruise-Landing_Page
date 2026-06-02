@@ -3,8 +3,10 @@ import Link from "next/link";
 import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import JsonLd from "@/components/seo/JsonLd";
 import FaqSection from "@/components/seo/FaqSection";
+import InternalLinksSection from "@/components/seo/InternalLinksSection";
 import PageBreadcrumbs from "@/components/seo/PageBreadcrumbs";
 import ScrollableImageRow from "@/components/services/ScrollableImageRow";
+import { getInternalLinkGraph } from "@/lib/seo-content";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
@@ -23,7 +25,7 @@ const dayCruiseFaqs = [
   {
     question: "What time does a day cruise in Alleppey usually start and end?",
     answer:
-      "Timing depends on the plan, but most guests book a daytime cruise that covers lunch-hour hospitality, scenic cruising, and enough relaxed deck time before returning in the afternoon or early evening.",
+      "Timing depends on the plan, but most guests book a daytime cruise that covers lunch-hour hospitality, scenic cruising, and enough relaxed deck time before returning in the afternoon or early evening. The strongest routes usually balance village canals, Punnamada Lake, and broader Vembanad-facing views without rushing the middle of the day.",
   },
   {
     question: "Are meals included on a day cruise houseboat?",
@@ -139,22 +141,27 @@ const cruiseComparisons = [
 
 const answerFirstItems = [
   {
-    question: "What is the day cruise price in Alleppey?",
+    question: "What time does an overnight houseboat start and end?",
     answer:
-      "The day cruise price in Alleppey depends on the boat category, route style, meal plan, and guest count. Private day cruises in Alappuzha are usually quoted around the exact plan, so the most accurate price comes after you share your date and group size.",
+      "Overnight houseboat timing depends on the route and boat plan, but the stay is usually built around a daytime start, sunset cruising, dinner on board, and checkout the next morning. The exact start and end should always be confirmed before booking because route pace and AC timing can vary.",
   },
   {
-    question: "Is a day cruise better than an overnight houseboat?",
+    question: "Which is better: day cruise or overnight houseboat?",
     answer:
-      "A day cruise is better if you want the houseboat atmosphere, scenic cruising, and onboard lunch within one daytime schedule. An overnight stay is better if you want sunset time, dinner on board, and a slower morning rhythm on the water.",
+      "A day cruise is better if you want the houseboat atmosphere, scenic cruising, and onboard lunch within one daytime schedule. An overnight houseboat is better if you want sunset time, dinner on board, a slower morning, and more time to settle into the backwaters.",
+  },
+  {
+    question: "How do I book with Tranquil Cruise?",
+    answer:
+      "Booking is usually simplest through WhatsApp. Share your travel date, guest count, and whether you want a day cruise, overnight houseboat, or another backwater experience, and Tranquil Cruise can guide you toward the right route, boat format, and next booking step.",
   },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Day Cruise Alappuzha | Alleppey Houseboat Day Trip",
+    title: "Alleppey Day Cruise | Private Houseboat Day Trip in Alappuzha",
     description:
-      "Plan a day cruise in Alappuzha with private houseboat timing, route guidance, onboard meals, and a clear Alleppey day-trip itinerary.",
+      "Book a private Alleppey day cruise with houseboat timing, onboard lunch, village canal routes, and a clear Alappuzha day-trip plan.",
     path: "/day-cruise-alappuzha",
     keywords: [
       "day cruise alappuzha",
@@ -166,7 +173,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/images/home-backwater-houseboats.jpg",
       width: 1200,
       height: 630,
-      alt: "Day cruise houseboat in Alappuzha",
+      alt: "Private houseboat day cruise in Alappuzha",
     },
   });
 }
@@ -181,7 +188,7 @@ const faqJsonLd = createFaqSchema(dayCruiseFaqs);
 
 const imageJsonLd = createImageObjectSchema({
   path: "/images/home-backwater-houseboats.jpg",
-  alt: "Day cruise houseboat in Alappuzha",
+  alt: "Private houseboat day cruise in Alappuzha",
   width: 1200,
   height: 630,
 });
@@ -189,7 +196,7 @@ const imageJsonLd = createImageObjectSchema({
 const serviceJsonLd = createServiceSchema({
   name: "Day Cruise Alappuzha",
   description:
-    "Private houseboat day cruises in Alappuzha with daytime timing, route planning, onboard meals, and scenic Kerala backwater itineraries.",
+    "Private houseboat day cruises in Alappuzha with daytime timing, route planning, village canal sections, Punnamada Lake views, and scenic Kerala backwater itineraries.",
   path: "/day-cruise-alappuzha",
   serviceType: "Houseboat day cruise",
 });
@@ -201,16 +208,17 @@ const touristTripJsonLd = createTouristTripSchema({
   path: "/day-cruise-alappuzha",
   image: {
     path: "/images/home-backwater-houseboats.jpg",
-    alt: "Day cruise houseboat in Alappuzha",
+    alt: "Private houseboat day cruise in Alappuzha",
     width: 1200,
     height: 630,
   },
-  itinerary: ["Alleppey", "Alappuzha", "Kuttanad", "Vembanad Lake"],
+  itinerary: ["Alleppey", "Alappuzha", "Punnamada Lake", "Vembanad Lake", "Village canals"],
   touristType: ["Day travelers", "Families", "Couples", "Private groups"],
   keywords: ["day cruise alappuzha", "alleppey houseboat day trip"],
 });
 
 export default function DayCruiseAlappuzhaPage() {
+  const internalLinkGraph = getInternalLinkGraph("/day-cruise-alappuzha");
   return (
     <>
       <JsonLd
@@ -444,6 +452,8 @@ export default function DayCruiseAlappuzhaPage() {
           intro="These answers focus on day-cruise intent in Alleppey and Alappuzha."
           faqs={dayCruiseFaqs}
         />
+
+        {internalLinkGraph ? <InternalLinksSection graph={internalLinkGraph} /> : null}
 
         <section className="px-4 py-12 sm:px-6 lg:py-20">
           <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-[#173247] px-8 py-16 text-center text-white shadow-[0_24px_80px_rgba(23,50,71,0.2)]">

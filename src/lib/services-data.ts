@@ -13,7 +13,7 @@ export type ServicePage = {
   facilities: string[];
   priceLabel: string;
   priceNote: string;
-  gallery: string[];
+  gallery: Array<string | { src: string; alt: string }>;
   ctaText: string;
   ctaHref: string;
   options?: {
@@ -30,12 +30,13 @@ export const services: ServicePage[] = [
   {
     slug: "houseboats",
     title: "Luxury Houseboats",
-    subtitle: "Floating palaces on the serene Kerala backwaters",
+    subtitle:
+      "Luxury, budget, and overnight stays to help you find the best houseboat in Alappuzha",
     eyebrow: "Premium Experience",
     heroImage: "/images/houseboats-card-blue.jpg",
     description: [
-      "Our luxury houseboats, known locally as kettuvallams, are meticulously crafted vessels that blend traditional Kerala craftsmanship with modern comforts. We offer both single-bed and double-bed houseboat options, each designed with panoramic windows, private sun decks, and a dedicated crew including a personal chef who prepares authentic Kerala cuisine.",
-      "Drift through palm-fringed canals, serene lagoons, and expansive lake stretches as the backwater landscape unfolds at a calmer, more considered pace. Every journey is shaped around your preferences — sunrise departures, village stops, or unhurried overnight routes.",
+      "Our Alappuzha houseboat collection brings together private kettuvallams for couples, families, and groups who want a smoother houseboat booking process in Alleppey. We offer single-bedroom, two-bedroom, three-bedroom, and five-bedroom layouts with panoramic windows, private sun decks, and a dedicated crew including an onboard chef.",
+      "Whether you are comparing a luxury houseboat Alappuzha stay, a budget houseboat Alappuzha option, or an overnight houseboat stay Alappuzha plan, this hub helps you narrow the right fit. Cruise through palm-fringed canals, serene lagoons, and wider lake stretches with route planning shaped around your timing, comfort level, and guest count.",
     ],
     highlights: [
       {
@@ -97,9 +98,18 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates vary by season, boat size, route, and stay length. Ask for current availability and package details for your dates.",
     gallery: [
-      "/images/houseboats-card-blue.jpg",
-      "/images/home-backwater-houseboats.jpg",
-      "/images/home-houseboat-backwater.jpg",
+      {
+        src: "/images/houseboats-card-blue.jpg",
+        alt: "Luxury Alappuzha houseboat cruising through the Alleppey backwaters",
+      },
+      {
+        src: "/images/home-backwater-houseboats.jpg",
+        alt: "Alappuzha houseboat booking options on a calm backwater route",
+      },
+      {
+        src: "/images/home-houseboat-backwater.jpg",
+        alt: "Best houseboat in Alappuzha style open-water view on the Alleppey backwaters",
+      },
     ],
     options: [
       {
@@ -165,8 +175,8 @@ export const services: ServicePage[] = [
     eyebrow: "Heritage Rides",
     heroImage: "/images/shikkara-real.jpg",
     description: [
-      "The Shikkara is Kerala's iconic country boat — an elegant, canopied vessel that has been the heart of backwater transport for centuries. Our curated Shikkara rides offer an intimate way to experience the narrow canals, village waterways, and hidden lagoons that larger boats cannot reach.",
-      "Perfect for couples, small families, or anyone seeking a slower, more personal connection with the water. Each ride includes a knowledgeable boatman who shares local stories, points out rare birdlife, and navigates the quieter, more magical waterways.",
+      "The Shikkara is Kerala's iconic country boat — an elegant, canopied vessel that has been the heart of backwater transport for centuries. Our curated Shikkara rides offer an intimate way to experience Alappuzha's narrow canals, village waterways, and quieter backwater turns that larger boats cannot reach as closely.",
+      "Perfect for couples, small families, or anyone seeking a slower, more personal connection with the water. Each ride includes a knowledgeable boatman who shares local stories, points out birdlife, and navigates calmer village canals and softer sunset sections near the wider Alleppey backwaters.",
     ],
     highlights: [
       {
@@ -178,13 +188,13 @@ export const services: ServicePage[] = [
       {
         title: "Sunset & Sunrise Rides",
         description:
-          "Specially timed routes to catch the golden hour — when the backwaters are at their most magical.",
+          "Specially timed routes to catch the golden hour, especially when village canals open toward softer evening light near the wider backwaters.",
         icon: "sun",
       },
       {
         title: "Village Canal Access",
         description:
-          "Navigate narrow waterways that only Shikkaras can reach — past toddy shops, temples, and local life.",
+          "Navigate narrow Alappuzha village canals that only Shikkaras can reach, past toddy shops, temples, coconut groves, and local life.",
         icon: "compass",
       },
       {
@@ -220,8 +230,14 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates depend on ride duration, route choice, timing, and guest count. Ask us for the most suitable option for your trip.",
     gallery: [
-      "/images/shikkara-real.jpg",
-      "/images/shikkara.jpg",
+      {
+        src: "/images/shikkara-real.jpg",
+        alt: "Private shikkara ride moving through narrow Alappuzha canals",
+      },
+      {
+        src: "/images/shikkara.jpg",
+        alt: "Canopied shikkara boat ready for a scenic Alleppey canal ride",
+      },
     ],
     ctaText: "Book a Shikkara Ride",
     ctaHref: "/contact",
@@ -233,8 +249,8 @@ export const services: ServicePage[] = [
     eyebrow: "Adventure & Nature",
     heroImage: "/images/canoe-card.png",
     description: [
-      "Our country boat experiences offer the most authentic way to explore Kerala's backwaters. These open boats take you through the quietest, narrowest waterways — past village homes, coconut groves, coir-making workshops, and lush paddy fields stretching to the horizon.",
-      "Whether you prefer a guided paddling adventure or a relaxed motorized country boat journey, each trip is designed to immerse you in the daily rhythms of backwater life. It's the closest you can get to the water, with nothing between you and nature.",
+      "Our country boat experiences offer one of the most authentic ways to explore the Kerala Backwaters around Alleppey and Alappuzha. These open boats take you through quiet village canals, coconut groves, coir-making pockets, and paddy-field edges that feel more local than the wider lake routes.",
+      "Whether you prefer a guided paddling adventure or a relaxed motorized country boat journey, each trip is designed to immerse you in the daily rhythms of backwater life. It is the closest you can get to the water, especially on slower village-canal stretches where larger cruises rarely linger.",
     ],
     highlights: [
       {
@@ -246,7 +262,7 @@ export const services: ServicePage[] = [
       {
         title: "Village Immersion",
         description:
-          "Stop at local homes, watch coir-making, visit toddy tappers, and experience authentic village life.",
+          "Move through village canals, pass local homes, watch coir-making, and experience the slower everyday side of Alappuzha backwater life.",
         icon: "home",
       },
       {
@@ -288,8 +304,14 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates vary by route length, private or guided format, and group size. Morning village routes are especially popular for quieter canals and birdlife.",
     gallery: [
-      "/images/village-open-boat-rides.webp",
-      "/images/home-hero-backwater-canoe.jpg",
+      {
+        src: "/images/village-open-boat-rides.webp",
+        alt: "Open country boat ride through village canals in Alappuzha",
+      },
+      {
+        src: "/images/home-hero-backwater-canoe.jpg",
+        alt: "Country boat gliding along a narrow Kerala Backwaters canal",
+      },
     ],
     ctaText: "Book a Country Boat Trip",
     ctaHref: "/contact",
@@ -301,14 +323,14 @@ export const services: ServicePage[] = [
     eyebrow: "Active Waterways",
     heroImage: "/images/kayaking-card.jpg",
     description: [
-      "Our kayaking trails are designed for guests who want to feel closer to the water and move through the backwaters at a more active, personal pace. Paddle past narrow canals, open lake edges, coconut groves, and calm village stretches that feel far quieter than the usual boat routes.",
-      "Whether you are trying kayaking for the first time or already love being on the water, each route is shaped around comfort, scenery, and rhythm. We guide you toward gentler morning rides, golden-hour paddles, or longer exploratory sessions depending on the mood you want from the day.",
+      "Our kayaking trails are designed for guests who want to feel closer to the water and move through the Alleppey and Alappuzha backwaters at a more active, personal pace. Paddle past narrow village canals, calmer edges near Kainakary, coconut groves, and quieter stretches that feel far removed from heavier boat traffic.",
+      "Whether you are trying kayaking for the first time or already love being on the water, each route is shaped around comfort, scenery, and rhythm. We guide you toward gentler morning rides, golden-hour paddles, and quieter Kerala Backwater routes depending on the mood you want from the day.",
     ],
     highlights: [
       {
         title: "Quiet Paddling Routes",
         description:
-          "Explore calmer waterways where you can paddle without the rush of heavier traffic or crowded cruise routes.",
+          "Explore calmer Alappuzha waterways where you can paddle without the rush of heavier traffic or crowded cruise routes.",
         icon: "compass",
       },
       {
@@ -332,7 +354,7 @@ export const services: ServicePage[] = [
       {
         title: "Private Guided Trails",
         description:
-          "Go with a local guide who knows the quieter inlets, scenic turns, and relaxed pacing that suits your group.",
+          "Go with a local guide who knows quieter inlets, scenic turns near Kainakary, and relaxed pacing that suits your group.",
         icon: "star",
       },
       {
@@ -356,13 +378,25 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates vary by route length, guide support, timing, and private or shared format. Beginner-friendly sessions and longer paddles are both available.",
     gallery: [
-      "/images/kayaking-gallery/IMG_0757.webp",
-      "/images/kayaking-gallery/IMG_0772.webp",
-      "/images/kayaking-gallery/IMG_1810.webp",
-      "/images/kayaking-gallery/IMG_9378.webp",
+      {
+        src: "/images/kayaking-gallery/IMG_0757.webp",
+        alt: "Guided kayaking route through quiet Alappuzha backwater canals",
+      },
+      {
+        src: "/images/kayaking-gallery/IMG_0772.webp",
+        alt: "Kayakers paddling past palms on a calm Alleppey backwater trail",
+      },
+      {
+        src: "/images/kayaking-gallery/IMG_1810.webp",
+        alt: "Backwater kayaking near Kainakary at golden hour",
+      },
+      {
+        src: "/images/kayaking-gallery/IMG_9378.webp",
+        alt: "Scenic Kerala Backwaters kayaking session on a wider canal stretch",
+      },
     ],
     ctaText: "Book a Kayaking Trail",
-    ctaHref: "/contact",
+    ctaHref: "https://wa.me/917994073491",
   },
   {
     slug: "rooms",
@@ -426,10 +460,13 @@ export const services: ServicePage[] = [
     priceNote:
       "Rates depend on room type, season, meal plan, and whether you combine your stay with a boat ride or houseboat experience.",
     gallery: [
-      "/images/room-card.png",
+      {
+        src: "/images/room-card.png",
+        alt: "Waterside backwater room stay near Alappuzha canals",
+      },
     ],
     ctaText: "Reserve a Room",
-    ctaHref: "/contact",
+    ctaHref: "https://wa.me/917994073491",
   },
   {
     slug: "spa",
@@ -493,13 +530,25 @@ export const services: ServicePage[] = [
     priceNote:
       "Single sessions and longer wellness combinations are available. Ask about pairing spa time with a backwater stay or curated boat experience.",
     gallery: [
-      "/images/spa-gallery/spa1.webp",
-      "/images/spa-gallery/spa3.webp",
-      "/images/spa-gallery/spa4.webp",
-      "/images/spa-gallery/spa5.webp",
+      {
+        src: "/images/spa-gallery/spa1.webp",
+        alt: "Ayurvedic wellness treatment room near the Alleppey backwaters",
+      },
+      {
+        src: "/images/spa-gallery/spa3.webp",
+        alt: "Relaxing Kerala spa setup for Ayurvedic massage therapy",
+      },
+      {
+        src: "/images/spa-gallery/spa4.webp",
+        alt: "Backwater wellness space prepared for an Ayurvedic session",
+      },
+      {
+        src: "/images/spa-gallery/spa5.webp",
+        alt: "Calm spa interior for couples or solo wellness in Alappuzha",
+      },
     ],
     ctaText: "Book a Spa Session",
-    ctaHref: "/contact",
+    ctaHref: "https://wa.me/917994073491",
   },
 ];
 

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import BackwaterGuidePage from "@/components/guides/BackwaterGuidePage";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
@@ -47,24 +47,24 @@ const imageJsonLd = createImageObjectSchema({
   height: 630,
 });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const articleJsonLd = createArticleSchema({
   headline: "Kerala Backwaters Guide",
   description:
     "An introductory guide to the Kerala backwaters, including trip formats, route types, and how to choose the right Alleppey experience.",
-  url: `${SITE_URL}/kerala-backwaters-guide`,
-  image: `${SITE_URL}/images/home-backwater-houseboats.jpg`,
-  author: {
-    "@type": "Organization",
-    name: SITE_NAME,
+  path: "/kerala-backwaters-guide",
+  image: {
+    path: "/images/home-backwater-houseboats.jpg",
+    alt: "Kerala backwaters guide view from a houseboat in Alappuzha",
+    width: 1200,
+    height: 630,
   },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-  },
-  mainEntityOfPage: `${SITE_URL}/kerala-backwaters-guide`,
-};
+  keywords: [
+    "kerala backwaters guide",
+    "kerala backwater trip guide",
+    "alleppey backwater planning",
+  ],
+  articleSection: "Backwater Travel Guide",
+});
 
 const touristTripJsonLd = createTouristTripSchema({
   name: "Kerala Backwaters Guide",

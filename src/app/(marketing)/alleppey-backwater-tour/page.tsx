@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import BackwaterGuidePage from "@/components/guides/BackwaterGuidePage";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const faqs = [
   {
@@ -47,24 +47,24 @@ const imageJsonLd = createImageObjectSchema({
   height: 630,
 });
 
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const articleJsonLd = createArticleSchema({
   headline: "Alleppey Backwater Tour",
   description:
     "A practical Alleppey backwater tour guide covering route choices, trip lengths, and how to compare houseboats with smaller backwater experiences.",
-  url: `${SITE_URL}/alleppey-backwater-tour`,
-  image: `${SITE_URL}/images/alleppey-backwater-tour-houseboat.jpg`,
-  author: {
-    "@type": "Organization",
-    name: SITE_NAME,
+  path: "/alleppey-backwater-tour",
+  image: {
+    path: "/images/alleppey-backwater-tour-houseboat.jpg",
+    alt: "Alleppey backwater tour on a houseboat route",
+    width: 1200,
+    height: 630,
   },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-  },
-  mainEntityOfPage: `${SITE_URL}/alleppey-backwater-tour`,
-};
+  keywords: [
+    "alleppey backwater tour",
+    "alappuzha backwater tour",
+    "best backwater tour alleppey",
+  ],
+  articleSection: "Backwater Tour Guide",
+});
 
 const touristTripJsonLd = createTouristTripSchema({
   name: "Alleppey Backwater Tour Guide",

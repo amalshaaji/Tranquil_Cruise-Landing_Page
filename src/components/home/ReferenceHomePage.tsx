@@ -17,7 +17,7 @@ const categoryLinks = [
     title: "Houseboats",
     href: "/houseboats",
     image: "/images/day-cruise-open-water.jpg",
-    alt: "Day cruise houseboat on open Alleppey backwaters",
+    alt: "Private houseboat cruising on open Alleppey backwaters",
     eyebrow: "Open Water",
     copy: "Short scenic cruises with relaxed pacing and open-water views.",
   },
@@ -48,6 +48,7 @@ const categoryLinks = [
 ] as const;
 
 const popularCategoryButtons = [
+  { label: "Alappuzha Houseboat", href: "/alappuzha-houseboat" },
   { label: "Houseboat", href: "/houseboats" },
   { label: "Shikkara", href: "/shikkara" },
   { label: "Kayak", href: "/kayaking" },
@@ -276,73 +277,6 @@ export default function ReferenceHomePage({
               >
                 {item.label}
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[linear-gradient(180deg,#edf6fb_0%,#f8fcfd_100%)] px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <div className="rounded-[2.25rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_60px_rgba(23,50,71,0.07)] backdrop-blur-sm sm:p-8">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                {stripMarkdownHeading("Quick Answers")}
-              </p>
-              <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                {stripMarkdownHeading("Fast answers for common Alleppey booking questions")}
-              </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
-                These short answer blocks are here for travelers who want a direct starting point before comparing
-                houseboats, shikkara rides, honeymoon stays, day cruises, and Kerala backwaters timing.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {quickAnswerHighlights.map((item) => (
-                  <div
-                    key={item}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#cfe1e9] bg-[#f8fcfd] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#31546c] shadow-[0_8px_20px_rgba(23,50,71,0.05)]"
-                  >
-                    <span className="h-2 w-2 rounded-full bg-teal" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[2.25rem] border border-[#d5e7ee] bg-[linear-gradient(145deg,#ffffff_0%,#eef7fb_100%)] p-6 shadow-[0_22px_56px_rgba(23,50,71,0.06)] sm:p-8">
-              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                {stripMarkdownHeading("Best Use")}
-              </div>
-              <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#173247] sm:text-3xl">
-                {stripMarkdownHeading("Start here when you want the simplest route into the decision.")}
-              </h3>
-              <p className="mt-4 text-sm leading-6 text-[#173247]/70 sm:text-base sm:leading-7">
-                This section removes the first layer of confusion before you go deeper into houseboats,
-                shikkara rides, route-specific pages, pricing questions, or seasonal planning.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {quickAnswerBlocks.map((item, index) => (
-              <article
-                key={item.title}
-                className="group rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#173247] text-sm font-semibold text-white shadow-[0_10px_24px_rgba(23,50,71,0.18)]">
-                    {index + 1}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#6f95ab]">
-                      Quick answer
-                    </div>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight text-[#173247] transition group-hover:text-[#234760]">
-                      {stripMarkdownHeading(item.title)}
-                    </h3>
-                  </div>
-                </div>
-                <p className="mt-5 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
-              </article>
             ))}
           </div>
         </div>
@@ -883,6 +817,94 @@ export default function ReferenceHomePage({
 
       <section className="hidden bg-[#edf6fb] lg:block">
         <ExperienceComparisonSection />
+      </section>
+
+      <section className="bg-[linear-gradient(180deg,#edf6fb_0%,#f8fcfd_100%)] px-4 py-8 sm:px-6 sm:py-18 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div className="rounded-[2.25rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_60px_rgba(23,50,71,0.07)] backdrop-blur-sm sm:p-8">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
+                {stripMarkdownHeading("Quick Answers")}
+              </p>
+              <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
+                {stripMarkdownHeading("Fast answers for common Alleppey booking questions")}
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
+                These short answer blocks are here for travelers who want a direct starting point before comparing
+                houseboats, shikkara rides, honeymoon stays, day cruises, and Kerala backwaters timing. If your plan
+                is already taking shape, you can also browse our{" "}
+                <Link href="/alappuzha-houseboat" className="font-semibold text-teal hover:text-navy">
+                  Alappuzha houseboat guide
+                </Link>
+                ,{" "}
+                <Link href="/family-houseboat-alappuzha" className="font-semibold text-teal hover:text-navy">
+                  family houseboat guide
+                </Link>
+                ,{" "}
+                <Link href="/honeymoon-houseboat-alappuzha" className="font-semibold text-teal hover:text-navy">
+                  honeymoon houseboat guide
+                </Link>
+                ,{" "}
+                <Link href="/best-time-to-visit-alappuzha" className="font-semibold text-teal hover:text-navy">
+                  best time to visit Alappuzha guide
+                </Link>
+                , and{" "}
+                <Link href="/alappuzha-vs-kumarakom" className="font-semibold text-teal hover:text-navy">
+                  Alappuzha vs Kumarakom comparison
+                </Link>
+                .
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {quickAnswerHighlights.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-[#cfe1e9] bg-[#f8fcfd] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#31546c] shadow-[0_8px_20px_rgba(23,50,71,0.05)]"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-teal" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2.25rem] border border-[#d5e7ee] bg-[linear-gradient(145deg,#ffffff_0%,#eef7fb_100%)] p-6 shadow-[0_22px_56px_rgba(23,50,71,0.06)] sm:p-8">
+              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
+                {stripMarkdownHeading("Best Use")}
+              </div>
+              <h3 className="mt-3 text-2xl font-semibold leading-tight text-[#173247] sm:text-3xl">
+                {stripMarkdownHeading("Start here when you want the simplest route into the decision.")}
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-[#173247]/70 sm:text-base sm:leading-7">
+                This section removes the first layer of confusion before you go deeper into houseboats,
+                shikkara rides, route-specific pages, pricing questions, or seasonal planning.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {quickAnswerBlocks.map((item, index) => (
+              <article
+                key={item.title}
+                className="group rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfd_100%)] p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#173247] text-sm font-semibold text-white shadow-[0_10px_24px_rgba(23,50,71,0.18)]">
+                    {index + 1}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#6f95ab]">
+                      Quick answer
+                    </div>
+                    <h3 className="mt-2 text-xl font-semibold leading-tight text-[#173247] transition group-hover:text-[#234760]">
+                      {stripMarkdownHeading(item.title)}
+                    </h3>
+                  </div>
+                </div>
+                <p className="mt-5 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="bg-[#edf6fb] pb-16 sm:pb-20">

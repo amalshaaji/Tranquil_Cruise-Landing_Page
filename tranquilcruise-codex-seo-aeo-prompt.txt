@@ -1,0 +1,187 @@
+You are improving SEO and AEO for the website https://www.tranquilcruise.com/.
+
+Business context:
+Tranquil Cruise is a Kerala backwater travel business focused on Alleppey / Alappuzha houseboat booking, private houseboat cruises, shikkara rides, kayaking, country boat rides, day cruises, overnight houseboat stays, honeymoon houseboats, and family houseboats.
+
+Goal:
+Improve the site’s technical SEO, local SEO, and answer-engine optimization without changing the visual design.
+
+First inspect the codebase and identify:
+- framework and routing system
+- metadata setup
+- sitemap and robots setup
+- page structure
+- existing schema / JSON-LD
+- service pages and guide pages
+- image usage
+- canonical URL configuration
+
+Then implement these fixes:
+
+1. Production domain
+Use https://www.tranquilcruise.com as the canonical production domain everywhere.
+
+2. Metadata
+Add or improve unique metadata for:
+- homepage
+- Alleppey houseboat page
+- day cruise page
+- shikkara ride page
+- kayaking page
+- honeymoon houseboat page
+- family houseboat page
+- best time to visit page
+- Alappuzha vs Kumarakom page
+
+Each page should have:
+- unique title
+- unique meta description
+- canonical URL
+- Open Graph title
+- Open Graph description
+- Open Graph URL
+- Open Graph image
+- Twitter card metadata
+
+3. Homepage title and description
+Use this homepage title:
+Alleppey Houseboat Booking | Private Backwater Cruises | Tranquil Cruise
+
+Use this homepage meta description:
+Book private Alleppey houseboats, shikkara rides, day cruises, kayaking and overnight backwater stays in Alappuzha. Get local guidance and quotes on WhatsApp.
+
+4. robots.txt
+Create or fix /robots.txt with:
+User-agent: *
+Allow: /
+
+Sitemap: https://www.tranquilcruise.com/sitemap.xml
+
+5. sitemap.xml
+Create or fix /sitemap.xml.
+Include all important public pages.
+Use https://www.tranquilcruise.com URLs.
+Exclude test, admin, duplicate, or non-public pages.
+
+6. Structured data
+Add valid JSON-LD schema.
+
+Homepage:
+- TravelAgency or LocalBusiness
+- WebSite
+- Organization
+
+Service pages:
+- Service schema
+
+Guide pages:
+- Article or BlogPosting schema if appropriate
+
+All pages:
+- BreadcrumbList where appropriate
+
+Business details:
+- name: Tranquil Cruise
+- url: https://www.tranquilcruise.com/
+- telephone: +91 79940 73491
+- email: info@tranquilcruise.com
+- locality: Alappuzha
+- region: Kerala
+- country: IN
+- areaServed: Alleppey, Alappuzha, Kerala Backwaters
+- services: Alleppey houseboat booking, private houseboat cruise, shikkara ride, kayaking, country boat ride, day cruise, overnight houseboat stay
+
+Make sure JSON-LD is valid JSON and does not duplicate conflicting business information.
+
+7. AEO content improvements
+Improve or add concise answer blocks for these questions:
+- How much does an Alleppey houseboat cost?
+- What is included in an Alleppey houseboat booking?
+- What is the difference between a houseboat and a shikkara ride?
+- Is an Alleppey houseboat good for couples?
+- Is an Alleppey houseboat safe for families with kids?
+- What time does an overnight houseboat start and end?
+- Is AC available in Alleppey houseboats?
+- Which is better: day cruise or overnight houseboat?
+- What is the best time to visit Alleppey backwaters?
+- How do I book with Tranquil Cruise?
+
+Keep each answer direct, natural, and 40–70 words.
+Do not keyword stuff.
+Do not add fake prices or claims.
+If exact pricing is not available, explain that pricing depends on boat type, route, season, meals, AC timing, and guest count.
+
+8. Local SEO content
+Add accurate local context where appropriate:
+- Alleppey
+- Alappuzha
+- Kerala Backwaters
+- Punnamada Lake
+- Vembanad Lake
+- Kainakary
+- Kumarakom route
+- village canals
+- sunset cruise routes
+
+Only add route names where they are contextually accurate.
+
+9. Image SEO
+Audit all images.
+Add descriptive alt text.
+Avoid generic alt text like "image", "boat", or "banner".
+Use accurate descriptions such as:
+- Private houseboat cruise in Alleppey backwaters
+- Shikkara ride through Alappuzha canals
+- Kerala backwater kayaking near Alleppey
+Only use these where they match the actual image.
+
+10. Internal linking
+Improve internal links between:
+- homepage
+- houseboat booking page
+- day cruise page
+- shikkara page
+- kayaking page
+- honeymoon page
+- family page
+- best time guide
+- Alappuzha vs Kumarakom guide
+
+Use natural anchor text.
+
+11. Validation
+After implementation:
+- run lint
+- run typecheck
+- run build
+- fix errors
+- verify sitemap and robots are generated
+- verify canonical URLs use https://www.tranquilcruise.com
+- verify JSON-LD is valid
+- summarize every file changed
+
+Important:
+Do not change the visual design.
+Do not remove existing content unless it is duplicate, broken, or harmful.
+Do not invent reviews, prices, awards, certifications, addresses, or guarantees.
+Do not create duplicate pages with the same intent.
+
+
+SECOND PROMPT — REVIEW AFTER CHANGES
+
+Review the SEO/AEO changes you just made.
+
+Check specifically for:
+- duplicate titles
+- duplicate meta descriptions
+- missing canonicals
+- broken internal links
+- invalid JSON-LD
+- sitemap missing important pages
+- robots.txt blocking important pages
+- inaccurate alt text
+- keyword stuffing
+- layout changes accidentally introduced
+
+Fix any issues you find.
+Then give me a final checklist of what I still need to do manually in Google Search Console, Google Business Profile, and domain settings.

@@ -7,10 +7,11 @@ import ContactHouseboatShowcase from "@/components/contact/ContactHouseboatShowc
 import InnerPageHeader from "@/components/layout/InnerPageHeader";
 import FaqSection from "@/components/seo/FaqSection";
 import {
+  BUSINESS_ADDRESS_CANONICAL,
   BUSINESS_EMAIL,
   BUSINESS_HOURS,
-  BUSINESS_LOCATION,
   BUSINESS_PHONE,
+  GOOGLE_MAPS_URL,
   SERVICE_AREAS,
   WHATSAPP_URL,
 } from "@/lib/site";
@@ -26,7 +27,7 @@ const contactCards: {
   {
     icon: "location",
     title: "Location",
-    lines: [BUSINESS_LOCATION, "Serving the Kerala backwaters"],
+    lines: [BUSINESS_ADDRESS_CANONICAL, "Serving the Kerala backwaters"],
   },
   {
     icon: "phone",
@@ -123,7 +124,7 @@ function ContactIcon({ name }: { name: ContactIconName }) {
   }
 }
 
-const mapHref = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
+const mapHref = GOOGLE_MAPS_URL;
 const contactFaqs = [
   {
     question: "How do I book a houseboat or backwater ride?",
@@ -166,10 +167,10 @@ export default function ContactPageContent() {
       <InnerPageHeader
         eyebrow="Private Enquiries"
         title="Contact Tranquil Cruise for Alleppey bookings."
-        description="Share your dates, group details, and the kind of Kerala backwater experience you want. We will help you choose the right houseboat, ride, stay, or wellness plan."
+        description="Share your dates, group details, and the kind of Kerala backwater experience you want. We will help you choose the right Alappuzha houseboat, ride, stay, or wellness plan."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         sideLabel="Planning support"
-        sideValue="Reach us directly on WhatsApp, phone, or email for houseboats, scenic rides, backwater rooms, kayaking, and Ayurvedic wellness in Alappuzha."
+        sideValue="Reach us directly on WhatsApp, phone, or email for Alappuzha houseboats, scenic rides, backwater rooms, kayaking, and Ayurvedic wellness."
       />
 
       <section className="px-4 pt-8 sm:px-6 sm:pt-12">
@@ -206,7 +207,7 @@ export default function ContactPageContent() {
                           Location
                         </div>
                         <p className="mt-2 text-sm leading-7 text-foreground/76">
-                          {BUSINESS_LOCATION}
+                          {BUSINESS_ADDRESS_CANONICAL}
                         </p>
                       </div>
                       <div>
@@ -296,6 +297,25 @@ export default function ContactPageContent() {
 
                 <section className="rounded-[28px] border border-navy/10 bg-white p-6 shadow-[0_16px_50px_rgba(21,37,35,0.06)] sm:p-7">
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
+                    Canonical NAP
+                  </div>
+                  <h3 className="mt-2 text-2xl font-semibold text-sand">
+                    Use one consistent business reference across maps, reviews, and citations
+                  </h3>
+                  <div className="mt-5 rounded-[1.6rem] border border-navy/10 bg-[#f4f9fb] p-5">
+                    <p className="text-sm font-semibold leading-7 text-foreground">
+                      Tranquil Cruise
+                    </p>
+                    <p className="text-sm leading-7 text-foreground/72">
+                      {BUSINESS_ADDRESS_CANONICAL}
+                    </p>
+                    <p className="text-sm leading-7 text-foreground/72">{BUSINESS_PHONE}</p>
+                    <p className="text-sm leading-7 text-foreground/72">{BUSINESS_EMAIL}</p>
+                  </div>
+                </section>
+
+                <section className="rounded-[28px] border border-navy/10 bg-white p-6 shadow-[0_16px_50px_rgba(21,37,35,0.06)] sm:p-7">
+                  <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
                     Booking Process
                   </div>
                   <div className="mt-5 grid gap-4 sm:grid-cols-3">
@@ -357,12 +377,63 @@ export default function ContactPageContent() {
                     open the map directly and use it alongside the phone,
                     WhatsApp, and email details above.
                   </p>
+                  <div className="mt-5 overflow-hidden rounded-[1.6rem] border border-navy/10">
+                    <iframe
+                      title="Tranquil Cruise Alappuzha map"
+                      src="https://www.google.com/maps?q=9.4981,76.3388&z=14&output=embed"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="h-72 w-full border-0"
+                    />
+                  </div>
                   <Link
                     href={mapHref}
                     className="mt-5 inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-black/5"
                   >
                     Open Google Maps
                   </Link>
+                </section>
+
+                <section className="rounded-[28px] border border-navy/10 bg-white p-6 shadow-[0_16px_50px_rgba(21,37,35,0.06)] sm:p-7">
+                  <div className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
+                    Local Booking Pages
+                  </div>
+                  <h3 className="mt-2 text-2xl font-semibold text-sand">
+                    Explore the local pages that support our Alappuzha houseboat booking coverage
+                  </h3>
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {[
+                      {
+                        href: "/alappuzha-houseboat",
+                        title: "Alappuzha Houseboat Guide",
+                        text: "Start here for the main local booking pillar with routes, room fit, and stay planning.",
+                      },
+                      {
+                        href: "/alappuzha-houseboat-booking",
+                        title: "Alappuzha Houseboat Booking",
+                        text: "Use this page if your search is focused on booking steps, inclusions, and how to choose the right format.",
+                      },
+                      {
+                        href: "/houseboat-in-alappuzha",
+                        title: "Houseboat In Alappuzha",
+                        text: "Open this if you want a destination-first page comparing who each local houseboat stay fits best.",
+                      },
+                      {
+                        href: "/boarding-point-alappuzha-houseboat",
+                        title: "Boarding Point Alappuzha Houseboat",
+                        text: "Useful when the main question is where the trip begins and how to plan arrival smoothly.",
+                      },
+                    ].map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="rounded-[1.4rem] border border-navy/10 bg-[#f4f9fb] p-4 transition hover:bg-white"
+                      >
+                        <div className="text-sm font-semibold text-sand">{item.title}</div>
+                        <p className="mt-2 text-sm leading-6 text-foreground/70">{item.text}</p>
+                      </Link>
+                    ))}
+                  </div>
                 </section>
               </div>
 

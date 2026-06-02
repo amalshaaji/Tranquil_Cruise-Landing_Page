@@ -29,6 +29,7 @@ export default function Navbar() {
   const [destinationsOpen, setDestinationsOpen] = useState(false);
   const isHomePage = pathname === "/";
   const isServicePage = services.some((service) => pathname === `/${service.slug}`);
+  const usesOverlayNavbar = isServicePage && pathname !== "/houseboats";
   const desktopLogoBox = isServicePage ? "h-[5rem] w-[9.2rem]" : "h-[5rem] w-[9rem]";
   const desktopLogoImage = isServicePage
     ? "object-contain scale-[2.12] drop-shadow-[0_10px_22px_rgba(8,20,30,0.26)]"
@@ -128,7 +129,7 @@ export default function Navbar() {
                           className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                           onClick={() => setDestinationsOpen(false)}
                         >
-                          View full gallery
+                          Explore photo gallery
                         </Link>
                       </div>
                     </div>
@@ -227,7 +228,7 @@ export default function Navbar() {
                   className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                   onClick={() => setDestinationsOpen(false)}
                 >
-                  View full gallery
+                  Explore photo gallery
                 </Link>
               </div>
             </motion.div>
@@ -298,10 +299,10 @@ export default function Navbar() {
     : "text-[#173247]/76 hover:bg-white hover:text-[#173247]";
   const bookNowBtn = isServicePage
     ? "border border-[#7fb7b2]/34 bg-[#7fb7b2] text-[#173247] shadow-[0_12px_30px_rgba(0,0,0,0.18)] hover:bg-[#9bc8c4]"
-    : "bg-[#6f95ab] text-white shadow-[0_12px_30px_rgba(23,50,71,0.14)] hover:bg-[#84a9bc]";
+    : "border border-[#d4e2ea] bg-white text-[#173247] shadow-[0_12px_30px_rgba(23,50,71,0.08)] hover:bg-[#f4f8fa]";
   const mobileMenuBtn = isServicePage
     ? "border border-[#88aabd]/22 bg-[#88aabd]/14 text-[#f3f9fc] hover:bg-[#d9c28a] hover:text-[#173247]"
-    : "bg-[#173247] text-white hover:bg-[#234760]";
+    : "border border-[#d4e2ea] bg-white text-[#173247] hover:bg-[#f4f8fa]";
   const mobilePanelBg = isServicePage
     ? "border border-[#88aabd]/20 bg-[rgba(14,31,44,0.92)] shadow-black/20"
     : "border border-[#d4e2ea] bg-[rgba(250,252,253,0.98)] shadow-[rgba(23,50,71,0.12)]";
@@ -310,7 +311,7 @@ export default function Navbar() {
     : "text-[#173247]/80 hover:bg-[#edf4f7] hover:text-[#173247]";
 
   return (
-    <header className={isServicePage ? "absolute inset-x-0 top-0 z-50 px-2 pt-2 text-white sm:px-6 sm:pt-4" : "sticky top-0 z-50 px-2 pt-2 sm:px-6 sm:pt-4"}>
+    <header className={usesOverlayNavbar ? "absolute inset-x-0 top-0 z-50 px-2 pt-2 text-white sm:px-6 sm:pt-4" : "sticky top-0 z-50 px-2 pt-2 sm:px-6 sm:pt-4"}>
       <div className="mx-auto max-w-7xl">
         <div className={`rounded-[1.4rem] px-2 py-2 backdrop-blur-xl sm:rounded-[2rem] sm:px-4 sm:py-3 ${navBg}`}>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -387,7 +388,7 @@ export default function Navbar() {
                                 className={`flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition ${dropdownCta}`}
                                 onClick={() => setDestinationsOpen(false)}
                               >
-                                View full gallery
+                                Explore photo gallery
                               </Link>
                             </div>
                           </div>
@@ -412,7 +413,7 @@ export default function Navbar() {
 
                 <Link
                   href={whatsappHref}
-                  className={`inline-flex min-w-[180px] items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:translate-y-[-1px] ${bookNowBtn}`}
+                  className={`inline-flex min-w-[180px] items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition hover:translate-y-[-1px] ${bookNowBtn}`}
                 >
                   Book Now
                 </Link>
@@ -487,7 +488,7 @@ export default function Navbar() {
                 })}
                 <Link
                   href={whatsappHref}
-                  className={`mt-2 inline-flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold text-white transition ${mobileMenuBtn}`}
+                  className={`mt-2 inline-flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition ${mobileMenuBtn}`}
                 >
                   Book Now
                 </Link>

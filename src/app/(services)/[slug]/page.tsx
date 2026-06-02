@@ -6,11 +6,16 @@ import {
   getProgrammaticSeoPageBySlug,
   programmaticSeoPages,
 } from "@/lib/programmatic-seo-pages";
+import { alappuzhaHouseboatSeoStrategy } from "@/lib/alappuzha-houseboat-seo-strategy";
 import {
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
+  createItemListSchema,
+  createLocalBusinessSchema,
   createServiceSchema,
+  createSpeakableSchema,
+  createTravelAgencySchema,
   createTouristTripSchema,
   generatePageMetadata,
 } from "@/lib/seo";
@@ -36,7 +41,7 @@ export async function generateMetadata({
   }
 
   return generatePageMetadata({
-    title: `${page.title} | Tranquil Cruise`,
+    title: page.metadataTitle ?? `${page.title} | Tranquil Cruise`,
     description: page.description,
     path: page.path,
     keywords: page.keywords,
@@ -81,6 +86,46 @@ export default async function ProgrammaticSeoRoutePage({
     serviceType: "Private houseboat stay",
   });
 
+  const localBusinessJsonLd = createLocalBusinessSchema({
+    description: `${page.title}. ${page.description}`,
+    path: page.path,
+    image: {
+      path: page.heroImage.src,
+      alt: page.heroImage.alt,
+      width: 1200,
+      height: 630,
+    },
+    images: page.gallery.map((image) => ({
+      path: image.src,
+      alt: image.alt,
+      width: 1200,
+      height: 630,
+    })),
+  });
+
+  const travelAgencyJsonLd = createTravelAgencySchema({
+    description: `${page.title}. ${page.description}`,
+    path: page.path,
+    image: {
+      path: page.heroImage.src,
+      alt: page.heroImage.alt,
+      width: 1200,
+      height: 630,
+    },
+  });
+
+  const itemListJsonLd =
+    page.path === "/alappuzha-houseboat"
+      ? createItemListSchema({
+          path: page.path,
+          items: alappuzhaHouseboatSeoStrategy.requiredPages.map((item) => ({
+            name: item.title,
+            url: item.href,
+            description: `${item.intent} page targeting ${item.primaryKeyword}`,
+          })),
+        })
+      : null;
+
   const touristTripJsonLd = createTouristTripSchema({
     name: page.touristTripName,
     description: page.touristTripDescription,
@@ -96,14 +141,25 @@ export default async function ProgrammaticSeoRoutePage({
     keywords: page.keywords,
   });
 
+  const speakableJsonLd = createSpeakableSchema({
+    path: page.path,
+    name: page.title,
+    description: page.description,
+    cssSelectors: ["main h1", "main section h2"],
+  });
+
   return (
     <>
       <JsonLd
         data={[
           breadcrumbJsonLd,
           imageJsonLd,
+          localBusinessJsonLd,
           serviceJsonLd,
+          travelAgencyJsonLd,
           touristTripJsonLd,
+          ...(itemListJsonLd ? [itemListJsonLd] : []),
+          speakableJsonLd,
           createFaqSchema(page.faqs),
         ]}
       />
