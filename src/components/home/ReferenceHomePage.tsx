@@ -350,7 +350,7 @@ export default function ReferenceHomePage({
       </section>
 
       <section
-        id="packages-section"
+        id="signature-houseboat-collection"
         className="bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.72)_0%,rgba(255,255,255,0)_30%),linear-gradient(180deg,rgba(214,225,234,0.82)_0%,rgba(237,243,247,0.96)_45%,rgba(205,218,228,0.88)_100%)] px-4 py-8 sm:px-6 sm:py-20 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">

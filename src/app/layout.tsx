@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   icons: {
-    icon: "/tranquil-cruise-logo-search.jpg",
-    shortcut: "/tranquil-cruise-logo-search.jpg",
-    apple: "/tranquil-cruise-logo-search.jpg",
+    icon: "/tranquil-cruise-favicon.png",
+    shortcut: "/tranquil-cruise-favicon.png",
+    apple: "/tranquil-cruise-favicon.png",
   },
   authors: [{ name: "Tranquil Cruise" }],
   creator: "Tranquil Cruise",
