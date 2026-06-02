@@ -54,128 +54,134 @@ export default function Navbar() {
   if (isHomePage) {
     return (
       <header className="pointer-events-none absolute inset-x-0 top-0 z-50 text-white">
-        <div className="pointer-events-auto mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-8">
-          {/* Desktop left: Menu + Explore */}
-          <div className="hidden items-center gap-5 lg:flex">
-            <button
-              type="button"
-              className="inline-flex items-center gap-4 rounded-full border border-white/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(159,214,208,0.2)_48%,rgba(245,214,122,0.18)_100%)] px-4 py-3 text-white shadow-[0_14px_36px_rgba(4,13,22,0.14)] backdrop-blur-md transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(159,214,208,0.28)_48%,rgba(245,214,122,0.24)_100%)]"
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-expanded={menuOpen}
-              aria-controls={menuOpen ? "home-overlay-menu" : undefined}
-            >
-              <span className="flex flex-col gap-2" aria-hidden="true">
-                <span className="h-0.5 w-10 bg-current" />
-                <span className="h-0.5 w-10 bg-current" />
-                <span className="h-0.5 w-10 bg-current" />
-              </span>
-              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_28%,#9fe0d7_58%,#f5d67a_84%,#ffffff_100%)] bg-clip-text text-lg font-semibold uppercase tracking-[0.28em] text-transparent">
-                Menu
-              </span>
-            </button>
+        <div className="pointer-events-auto mx-auto flex w-full max-w-[1600px] items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6">
+          <Link
+            href="/"
+            className={`relative hidden shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02] lg:block ${desktopLogoBox}`}
+            aria-label="Go to homepage"
+          >
+            <Image
+              src="/images/tranquil-cruise-logo.webp"
+              alt="Tranquil Cruise"
+              fill
+              sizes="360px"
+              className={`object-center ${desktopLogoImage}`}
+              style={{ objectPosition: "center 43%" }}
+            />
+          </Link>
 
-            <span className="text-white/60">|</span>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setDestinationsOpen(true)}
-              onMouseLeave={() => setDestinationsOpen(false)}
+          <div className="hidden items-center gap-3 lg:flex">
+            <nav
+              className="relative flex items-center gap-1 rounded-full border border-white/16 bg-white/10 px-2 py-2 shadow-[0_14px_34px_rgba(4,13,22,0.12)] backdrop-blur-md"
+              aria-label="Homepage navigation"
             >
-              <button
-                type="button"
-                onClick={() => setDestinationsOpen((v) => !v)}
-                aria-haspopup="menu"
-                aria-expanded={destinationsOpen}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.14)_0%,rgba(127,212,255,0.18)_34%,rgba(139,224,196,0.2)_64%,rgba(245,214,122,0.16)_100%)] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_14px_34px_rgba(4,13,22,0.12)] backdrop-blur-md transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,rgba(127,212,255,0.24)_34%,rgba(139,224,196,0.26)_64%,rgba(245,214,122,0.22)_100%)]"
+              <div
+                className="relative"
+                onMouseEnter={() => setDestinationsOpen(true)}
+                onMouseLeave={() => setDestinationsOpen(false)}
               >
-                <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_54%,#f5d67a_82%,#ffffff_100%)] bg-clip-text text-transparent">
-                  Explore
-                </span>
-                <span className="text-[0.7rem] opacity-70">▾</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setDestinationsOpen((v) => !v)}
+                  aria-haspopup="menu"
+                  aria-expanded={destinationsOpen}
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium text-white/84 transition hover:bg-white/12 hover:text-white"
+                >
+                  <span>Explore</span>
+                  <span className="text-[0.7rem] opacity-70">▾</span>
+                </button>
 
-              <AnimatePresence>
-                {destinationsOpen && (
-                  <motion.div
-                    role="menu"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.16, ease: "easeOut" }}
-                    className="absolute left-0 top-full z-50 mt-4 w-[380px] overflow-hidden rounded-[1.75rem] border border-white/18 bg-[rgba(15,34,48,0.84)] shadow-2xl shadow-black/20 backdrop-blur-xl"
-                  >
-                    <div className="p-4">
-                      <div className="px-4 pb-3 pt-1 text-[0.7rem] font-semibold tracking-[0.18em] text-white/48">
-                        EXPLORE EXPERIENCES
-                      </div>
-                      <div className="grid gap-2">
-                        {exploreItems.map((item) => (
+                <AnimatePresence>
+                  {destinationsOpen && (
+                    <motion.div
+                      role="menu"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.16, ease: "easeOut" }}
+                      className="absolute left-0 top-full z-50 mt-4 w-[380px] overflow-hidden rounded-[1.75rem] border border-white/18 bg-[rgba(15,34,48,0.84)] shadow-2xl shadow-black/20 backdrop-blur-xl"
+                    >
+                      <div className="p-4">
+                        <div className="px-4 pb-3 pt-1 text-[0.7rem] font-semibold tracking-[0.18em] text-white/48">
+                          EXPLORE EXPERIENCES
+                        </div>
+                        <div className="grid gap-2">
+                          {exploreItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              role="menuitem"
+                              href={item.href}
+                              className="flex flex-col items-start rounded-2xl px-4 py-3 text-left text-sm text-white/84 transition hover:bg-white/10 hover:text-white"
+                              onClick={() => setDestinationsOpen(false)}
+                            >
+                              <span className="font-semibold leading-5">{item.label}</span>
+                              <span className="mt-1 text-xs leading-5 text-white/58">{item.subtitle}</span>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-3 border-t border-white/12 pt-3">
                           <Link
-                            key={item.href}
                             role="menuitem"
-                            href={item.href}
-                            className="flex flex-col items-start rounded-2xl px-4 py-3 text-left text-sm text-white/84 transition hover:bg-white/10 hover:text-white"
+                            href="/gallery"
+                            className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
                             onClick={() => setDestinationsOpen(false)}
                           >
-                            <span className="font-semibold leading-5">{item.label}</span>
-                            <span className="mt-1 text-xs leading-5 text-white/58">{item.subtitle}</span>
+                            Explore photo gallery
                           </Link>
-                        ))}
+                        </div>
                       </div>
-                      <div className="mt-3 border-t border-white/12 pt-3">
-                        <Link
-                          role="menuitem"
-                          href="/gallery"
-                          className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
-                          onClick={() => setDestinationsOpen(false)}
-                        >
-                          Explore photo gallery
-                        </Link>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navItems.map((item) => {
+                const isActive = item.href === "/";
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`inline-flex items-center rounded-full px-4 py-2.5 text-sm font-medium transition ${isActive ? "bg-white text-[#173247]" : "text-white/84 hover:bg-white/12 hover:text-white"}`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
 
-          <div className="hidden flex-1 lg:block" aria-hidden="true" />
-
-          {/* Desktop: Book Now */}
           <div className="hidden lg:block">
             <Link
               href={whatsappHref}
-              className="inline-flex min-w-[260px] items-center justify-center border-2 border-white px-10 py-5 text-lg font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:bg-white hover:text-[#274865]"
+              className="inline-flex min-w-[188px] items-center justify-center rounded-full border border-white/28 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white shadow-[0_14px_34px_rgba(4,13,22,0.12)] backdrop-blur-md transition hover:bg-white hover:text-[#274865]"
             >
               Book Now
             </Link>
           </div>
 
-          <div className="ml-auto grid w-full max-w-[15.5rem] grid-cols-2 gap-2 lg:hidden">
-            <button
-              type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(127,212,255,0.18)_34%,rgba(139,224,196,0.2)_64%,rgba(245,214,122,0.16)_100%)] px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(127,212,255,0.24)_34%,rgba(139,224,196,0.26)_64%,rgba(245,214,122,0.22)_100%)]"
-              onClick={() => setDestinationsOpen((v) => !v)}
-              aria-haspopup="menu"
-              aria-expanded={destinationsOpen}
-              aria-controls={destinationsOpen ? "home-mobile-explore-menu" : undefined}
+          <div className="ml-auto flex items-center gap-2 lg:hidden">
+            <Link
+              href="/"
+              className={`relative block overflow-hidden ${mobileLogoBox}`}
+              aria-label="Go to homepage"
             >
-              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_24%,#8fd8cf_54%,#f5d67a_82%,#ffffff_100%)] bg-clip-text text-transparent">
-                Explore
-              </span>
-              <span className="text-[0.7rem] opacity-80">▾</span>
-            </button>
-
+              <Image
+                src="/images/tranquil-cruise-logo.webp"
+                alt="Tranquil Cruise"
+                fill
+                sizes="280px"
+                className={`object-center ${mobileLogoImage}`}
+                style={{ objectPosition: "center 39%" }}
+              />
+            </Link>
             <button
               type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/35 bg-[linear-gradient(135deg,rgba(255,255,255,0.16)_0%,rgba(159,214,208,0.2)_48%,rgba(245,214,122,0.18)_100%)] px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.22)_0%,rgba(159,214,208,0.28)_48%,rgba(245,214,122,0.24)_100%)]"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/28 bg-white/10 text-white shadow-[0_12px_28px_rgba(4,13,22,0.12)] backdrop-blur-sm transition hover:bg-white/16"
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls={menuOpen ? "home-overlay-menu" : undefined}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              <span className="bg-[linear-gradient(90deg,#ffffff_0%,#dff7ff_28%,#9fe0d7_58%,#f5d67a_84%,#ffffff_100%)] bg-clip-text text-transparent">
-                {menuOpen ? "Close" : "Menu"}
-              </span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 {menuOpen ? (
                   <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -191,50 +197,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Explore dropdown */}
-        <AnimatePresence>
-          {destinationsOpen && (
-            <motion.div
-              id="home-mobile-explore-menu"
-              role="menu"
-              aria-label="Explore experiences"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="pointer-events-auto mx-5 mt-3 rounded-[28px] border border-white/20 bg-[rgba(15,34,48,0.78)] p-4 text-white shadow-2xl shadow-black/20 backdrop-blur-xl sm:mx-8 lg:hidden"
-            >
-              <div className="px-2 pb-3 pt-1 text-[0.7rem] font-semibold tracking-[0.18em] text-white/48">
-                EXPLORE EXPERIENCES
-              </div>
-              <div className="grid gap-2">
-                {exploreItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    role="menuitem"
-                    href={item.href}
-                    className="flex flex-col items-start rounded-2xl px-4 py-3 text-left text-sm text-white/84 transition hover:bg-white/10 hover:text-white"
-                    onClick={() => setDestinationsOpen(false)}
-                  >
-                    <span className="font-semibold leading-5">{item.label}</span>
-                    <span className="mt-1 text-xs leading-5 text-white/58">{item.subtitle}</span>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-3 border-t border-white/12 pt-3">
-                <Link
-                  role="menuitem"
-                  href="/gallery"
-                  className="flex items-center justify-center rounded-2xl border border-white/16 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#274865]"
-                  onClick={() => setDestinationsOpen(false)}
-                >
-                  Explore photo gallery
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Home overlay nav menu */}
         <AnimatePresence>
           {menuOpen && (
@@ -248,6 +210,42 @@ export default function Navbar() {
               className="pointer-events-auto mx-5 rounded-[28px] border border-white/20 bg-[rgba(15,34,48,0.72)] p-4 text-white shadow-2xl shadow-black/20 backdrop-blur-xl sm:mx-8 lg:mx-10 lg:mt-2"
             >
               <nav className="flex flex-col gap-2" aria-label="Homepage quick menu">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium uppercase tracking-[0.18em] text-white/88 transition hover:bg-white/10 hover:text-white"
+                  onClick={() => setDestinationsOpen((v) => !v)}
+                  aria-haspopup="menu"
+                  aria-expanded={destinationsOpen}
+                >
+                  <span>Explore</span>
+                  <span className="text-[0.7rem] opacity-70">▾</span>
+                </button>
+                <AnimatePresence>
+                  {destinationsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid gap-2 rounded-2xl border border-white/12 bg-white/6 p-2">
+                        {exploreItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            role="menuitem"
+                            href={item.href}
+                            className="flex flex-col items-start rounded-2xl px-4 py-3 text-left text-sm text-white/84 transition hover:bg-white/10 hover:text-white"
+                            onClick={() => setDestinationsOpen(false)}
+                          >
+                            <span className="font-semibold leading-5">{item.label}</span>
+                            <span className="mt-1 text-xs leading-5 text-white/58">{item.subtitle}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 {navItems.map((item) => (
                   <Link
                     key={item.href}

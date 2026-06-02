@@ -240,6 +240,8 @@ export default async function Home() {
         displayedReviews={displayedReviews}
         reviewSourceNote={reviewSourceNote}
         homepageFaqs={homepageFaqs}
+        rating={googleReviewData?.rating ?? null}
+        reviewCount={googleReviewData?.reviewCount ?? null}
       />
     </>
   );

@@ -252,16 +252,20 @@ export default function ReferenceHomePage({
   displayedReviews,
   reviewSourceNote,
   homepageFaqs,
+  rating,
+  reviewCount,
 }: {
   displayedReviews: PlaceReview[];
   reviewSourceNote: string;
   homepageFaqs: FaqItem[];
+  rating: number | null;
+  reviewCount: number | null;
 }) {
   const filteredPackages = featuredPackages;
 
   return (
     <main className="home-water-theme flex min-h-screen flex-col text-[#143245]">
-      <HeroSection />
+      <HeroSection rating={rating} reviewCount={reviewCount} reviews={displayedReviews} />
 
       <section className="border-b border-[#c7dbe4] bg-[#d9eaf4]">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-4 px-4 py-6 sm:px-6 lg:px-8">
