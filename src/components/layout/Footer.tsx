@@ -11,7 +11,7 @@ const quickLinks = [
 
 const contactLinks = [
   { href: "tel:+917994073491", label: "+91 79940 73491" },
-  { href: "mailto:info@tranquilcruise.com", label: "info@tranquilcruise.com" },
+  { href: "mailto:cruisetranquil@gmail.com", label: "cruisetranquil@gmail.com" },
   { href: "/contact", label: "Alappuzha, Kerala 688001" },
 ] as const;
 

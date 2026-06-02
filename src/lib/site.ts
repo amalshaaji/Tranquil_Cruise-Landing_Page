@@ -7,11 +7,11 @@ export const BUSINESS_PHONE_LINK = "tel:+917994073491";
 export const WHATSAPP_URL = "https://wa.me/917994073491";
 export const INSTAGRAM_URL =
   "https://www.instagram.com/tra.nquil__cruise?igsh=MWNtaGlub2c4ZnRydg==";
-export const BUSINESS_EMAIL = "info@tranquilcruise.com";
-export const BUSINESS_EMAIL_LINK = "mailto:info@tranquilcruise.com";
+export const BUSINESS_EMAIL = "cruisetranquil@gmail.com";
+export const BUSINESS_EMAIL_LINK = "mailto:cruisetranquil@gmail.com";
 export const BUSINESS_LOCATION = "Alappuzha, Kerala";
-export const BUSINESS_POSTAL_CODE = "688001";
-export const BUSINESS_ADDRESS_CANONICAL = "Alappuzha, Kerala 688001";
+export const BUSINESS_POSTAL_CODE = "688011";
+export const BUSINESS_ADDRESS_CANONICAL = "Alappuzha, Kerala 688011";
 export const BUSINESS_HOURS = "8:00 AM – 8:00 PM daily";
 export const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/qiCGqqA2R2u7nVYK7";
 export const BUSINESS_COORDINATES = {

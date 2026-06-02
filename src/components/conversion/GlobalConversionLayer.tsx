@@ -101,7 +101,7 @@ export default function GlobalConversionLayer() {
 
   return (
     <>
-      <div className="pointer-events-none fixed bottom-5 right-5 z-[70]">
+      <div className="pointer-events-none fixed bottom-4 right-4 z-[70] sm:bottom-5 sm:right-5">
         {isOpen ? (
           <button
             type="button"
@@ -114,7 +114,7 @@ export default function GlobalConversionLayer() {
         ) : null}
 
         {isOpen ? (
-          <div className="pointer-events-auto mb-4 w-[min(24rem,calc(100vw-2.5rem))] overflow-hidden rounded-[2rem] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(240,247,250,0.98)_100%)] shadow-[0_30px_80px_rgba(23,50,71,0.2)] backdrop-blur-xl">
+          <div className="pointer-events-auto mb-4 w-[min(24rem,calc(100vw-2rem))] max-h-[calc(100svh-6.5rem)] overflow-y-auto overscroll-contain rounded-[2rem] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(240,247,250,0.98)_100%)] shadow-[0_30px_80px_rgba(23,50,71,0.2)] backdrop-blur-xl">
             <div className="border-b border-navy/8 px-6 py-5">
               <div className="inline-flex items-center gap-2 rounded-full border border-teal/15 bg-white/90 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/80">
                 <Sparkles size={12} />
