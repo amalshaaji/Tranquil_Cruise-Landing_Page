@@ -72,7 +72,7 @@ const contactPageJsonLd = {
       streetAddress: BUSINESS_ADDRESS_CANONICAL,
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
-      postalCode: "688001",
+      postalCode: "688011",
       addressCountry: "IN",
     },
     openingHours: "Mo-Su 08:00-20:00",
