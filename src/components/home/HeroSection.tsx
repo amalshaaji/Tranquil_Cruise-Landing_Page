@@ -19,6 +19,28 @@ export default function HeroSection({ rating, reviewCount, reviews }: HeroSectio
     { label: "Couples, families, and groups", trending: false },
     { label: "Local planning support", trending: false },
   ];
+  const heroSummaryCards = [
+    {
+      title: "Guest trust",
+      value: rating ? rating.toFixed(1) : "4.9",
+      detail: reviewCount
+        ? `${reviewCount}+ reviews from recent guests`
+        : "Loved for warm planning and smooth hosting",
+    },
+    {
+      title: "Why guests shortlist us",
+      value: "Right format first",
+      detail: "We help you compare the route, pace, and stay before you choose a quote.",
+    },
+    {
+      title: "Recent guest note",
+      value: heroReviews[0]?.authorName ?? "Recent guests",
+      detail:
+        heroReviews[0]?.text?.length && heroReviews[0].text.length > 84
+          ? `${heroReviews[0].text.slice(0, 84).trim()}...`
+          : heroReviews[0]?.text ?? "Real feedback from the latest trips and stays.",
+    },
+  ] as const;
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-[#8fb3d1] text-white sm:min-h-screen">
       <div className="absolute inset-0">
@@ -45,7 +67,7 @@ export default function HeroSection({ rating, reviewCount, reviews }: HeroSectio
               initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
               animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="max-w-[42rem] pt-4 sm:pt-10 lg:pt-14"
+              className="max-w-[42rem] pt-2 sm:pt-8 lg:pt-14"
             >
               <motion.p
                 className="inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/84 shadow-[0_12px_30px_rgba(0,0,0,0.12)] backdrop-blur-md sm:text-[0.72rem]"
@@ -99,16 +121,22 @@ export default function HeroSection({ rating, reviewCount, reviews }: HeroSectio
                   Call now
                 </a>
               </div>
-              {/* <div className="mt-8 grid gap-4 border-t border-white/16 pt-5 sm:grid-cols-3 sm:pt-6">
-                {quickFacts.map((fact) => (
-                  <div key={fact.label}>
-                    <div className="text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-white/50">
-                      {fact.label}
+              <div className="mt-6 grid gap-3 lg:hidden sm:grid-cols-3">
+                {heroSummaryCards.map((card) => (
+                  <div
+                    key={card.title}
+                    className="rounded-[1.5rem] border border-white/16 bg-white/10 p-4 shadow-[0_16px_34px_rgba(0,0,0,0.12)] backdrop-blur-md"
+                  >
+                    <div className="text-[0.64rem] font-semibold uppercase tracking-[0.22em] text-white/56">
+                      {card.title}
                     </div>
-                    <div className="mt-2 text-sm leading-6 text-white/80">{fact.value}</div>
+                    <div className="mt-2 text-lg font-semibold leading-tight text-white">
+                      {card.value}
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-white/76">{card.detail}</p>
                   </div>
                 ))}
-              </div> */}
+              </div>
             </motion.div>
 
             <motion.div
@@ -200,6 +228,7 @@ export default function HeroSection({ rating, reviewCount, reviews }: HeroSectio
                 </div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </div>

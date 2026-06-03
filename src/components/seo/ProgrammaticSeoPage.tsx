@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { alappuzhaHouseboatSeoStrategy } from "@/lib/alappuzha-houseboat-seo-strategy";
 import {
   ComparisonTable,
   QuestionAnswerList,
@@ -24,8 +23,6 @@ export default function ProgrammaticSeoPage({
   const hasDepthBlocks = Boolean(page.contentDepthBlocks?.length);
   const hasSemanticKeywords = Boolean(page.semanticKeywords?.length);
   const hasAuthorityCluster = Boolean(page.authorityCluster?.length);
-  const isAlappuzhaHouseboatPillar = page.path === "/alappuzha-houseboat";
-
   return (
     <main className="overflow-x-hidden bg-white pb-24 font-sans antialiased sm:pb-32">
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:pt-44">
@@ -234,77 +231,16 @@ export default function ProgrammaticSeoPage({
         </section>
       ) : null}
 
-      {isAlappuzhaHouseboatPillar ? (
-        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20">
-          <div className="rounded-[2rem] border border-navy/8 bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:rounded-[2.6rem] sm:p-10">
-            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
-              Ranking Architecture
-            </div>
-            <h2 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-sand sm:text-4xl">
-              The exact pages, schema, and crawl paths required to win this houseboat query.
-            </h2>
-            <div className="mt-8 grid gap-6 lg:grid-cols-[1fr,0.95fr]">
-              <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
-                <h3 className="text-xl font-semibold text-[#173247]">Required Pages</h3>
-                <ul className="mt-4 space-y-3">
-                  {alappuzhaHouseboatSeoStrategy.requiredPages.map((item) => (
-                    <li
-                      key={item.href}
-                      className="rounded-[1.15rem] border border-navy/8 bg-white p-4"
-                    >
-                      <Link href={item.href} className="text-lg font-semibold text-sand hover:text-teal">
-                        {item.title}
-                      </Link>
-                      <p className="mt-2 text-sm leading-6 text-foreground/66">
-                        {item.intent} intent targeting <strong>{item.primaryKeyword}</strong>.
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="grid gap-6">
-                <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
-                  <h3 className="text-xl font-semibold text-[#173247]">Required Schema</h3>
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    {alappuzhaHouseboatSeoStrategy.requiredSchema.map((item) => (
-                      <span
-                        key={item}
-                        className="inline-flex items-center rounded-full border border-navy/10 bg-white px-4 py-2 text-sm font-medium text-[#173247]"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="rounded-[1.6rem] border border-navy/8 bg-[#f7fbfc] p-5">
-                  <h3 className="text-xl font-semibold text-[#173247]">Technical Fixes</h3>
-                  <ul className="mt-4 space-y-3">
-                    {alappuzhaHouseboatSeoStrategy.requiredTechnicalFixes.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-[1.15rem] border border-navy/8 bg-white px-4 py-3 text-sm leading-6 text-foreground/66"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
       <QuestionAnswerList
-        title="Short answers before the full accordion FAQ."
-        intro="These quick answers keep the main booking questions visible in a simple question-and-answer format."
+        title="Quick answers guests usually want first."
+        intro="These short answers cover the most common questions before you open the full FAQ."
         items={quickQuestions}
       />
 
       <FaqSection
-        eyebrow="Programmatic SEO FAQ"
-        title="Questions that come up before this booking decision gets made"
-        intro="Each answer is written for the specific route intent on this page so the content stays useful, not generic."
+        eyebrow="Booking Questions"
+        title="Questions guests often ask before booking"
+        intro="These answers are here to make the Alappuzha houseboat decision clearer before you choose the right stay format."
         faqs={page.faqs}
       />
 

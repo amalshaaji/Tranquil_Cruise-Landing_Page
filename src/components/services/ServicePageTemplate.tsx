@@ -172,6 +172,10 @@ const localRelevanceBySlug: Record<string, string[]> = {
     "Country boat routes are especially valuable in Alleppey and Alappuzha because they move closer to everyday canal life, village homes, coconut groves, and narrower waterways.",
     "They are one of the clearest ways to experience the local backwaters without turning the day into a larger resort-style cruise.",
   ],
+  "speed-boat": [
+    "Speed boat rides make the most sense in Alleppey and Alappuzha when guests want wider water, more breeze, and a shorter but more energetic backwater plan.",
+    "They are especially useful for travelers who do not want a full overnight or slow canal route but still want a memorable private ride across the Kerala backwaters.",
+  ],
   kayaking: [
     "Kayaking in Alappuzha works best where canal traffic is calmer and the backwater route feels greener, narrower, and more direct than a larger sightseeing plan.",
     "That makes this a strong format for guests who want a more active but still local experience in the Alleppey backwaters.",
@@ -198,6 +202,10 @@ const safetyNotesBySlug: Record<string, string[]> = {
   "canoe-boats": [
     "Country boat plans should match the group’s comfort level, route type, and whether the ride is guided or more hands-on.",
     "Sun exposure, hydration, and easier boarding access matter more here because the format is more open than a covered shikkara or houseboat.",
+  ],
+  "speed-boat": [
+    "Speed boat rides should include life jackets, a stable boarding setup, and practical guidance on pace and route conditions before departure.",
+    "Weather, lake movement, child comfort, and how thrill-led or relaxed the group wants the ride to feel should all be discussed before the route is locked.",
   ],
   kayaking: [
     "Kayaking routes should begin with a basic briefing, life jackets, and a pace that fits beginners as well as active guests.",
@@ -235,6 +243,11 @@ const pricingFactorsBySlug: Record<string, string[]> = {
     "Private setup and guest count",
     "Timing, stopping points, and route style",
   ],
+  "speed-boat": [
+    "Ride duration and open-water route length",
+    "Private group size and comfort preferences",
+    "Timing, weather window, and whether photo stops are included",
+  ],
   kayaking: [
     "Trail length and activity level",
     "Guide support and session timing",
@@ -268,6 +281,11 @@ const inclusionSummaryBySlug: Record<string, string[]> = {
     "A slower local sightseeing format matched to the chosen route",
     "Basic safety support and timing shaped around your pace",
   ],
+  "speed-boat": [
+    "Private speed boat access with route planning around broader backwater stretches",
+    "A faster ride format shaped around your preferred pace and sightseeing window",
+    "Basic safety support, ride timing, and driver coordination before departure",
+  ],
   kayaking: [
     "Kayak session planning matched to the trail and group pace",
     "Guide support where applicable and route briefing",
@@ -295,6 +313,13 @@ function descriptiveGalleryAlt(service: ServicePage, index: number) {
     "canoe-boats": [
       "Country boat ride through a village canal in Alleppey",
       "Open country boat on the Kerala backwaters",
+    ],
+    "speed-boat": [
+      "Private speed boat ride on the Alleppey backwaters at sunset",
+      "Speed boat moving across wider Alappuzha waters",
+      "Fast private boat route with a houseboat in the distance",
+      "Group speed boat experience on the Kerala backwaters",
+      "Open-water speed boat ride for guests in Alleppey",
     ],
     kayaking: [
       "Guided kayaking trail in the Alleppey backwaters",
@@ -328,7 +353,8 @@ export default function ServicePageTemplate({
     service.slug !== "houseboats" &&
     service.slug !== "canoe-boats" &&
     service.slug !== "rooms" &&
-    service.slug !== "kayaking";
+    service.slug !== "kayaking" &&
+    service.slug !== "speed-boat";
   const galleryImages = service.gallery.map((image, index) =>
     typeof image === "string"
       ? {
@@ -340,6 +366,14 @@ export default function ServicePageTemplate({
           alt: image.alt,
         },
   );
+  const bottomGalleryImages =
+    service.slug === "speed-boat"
+      ? galleryImages.filter(
+          (image) =>
+            image.alt !== "Speed boat moving across the wider Alappuzha backwaters near houseboats" &&
+            image.alt !== "Private speed boat crossing open water with an Alleppey houseboat in the distance",
+        )
+      : galleryImages;
   const faqs = getServiceFaqs(service.slug);
   const internalLinkGraph = getInternalLinkGraph(`/${service.slug}`);
   const titleBySlug: Record<string, string> = {
@@ -348,6 +382,7 @@ export default function ServicePageTemplate({
     rooms: "Backwater Rooms & Homestays in Alleppey",
     spa: "Ayurvedic Spa & Wellness in Alleppey Backwaters",
     "canoe-boats": "Country Boat Rides in Alleppey",
+    "speed-boat": "Speed Boat Rides in Alleppey",
   };
 
   const featuredHighlights = service.highlights.slice(0, 3);
@@ -1164,7 +1199,7 @@ export default function ServicePageTemplate({
       ) : null}
 
       {showCloserLookGallery && (
-        <ServiceGallery images={galleryImages} title={service.title} />
+        <ServiceGallery images={bottomGalleryImages} title={service.title} />
       )}
 
       <ExperienceComparisonSection />

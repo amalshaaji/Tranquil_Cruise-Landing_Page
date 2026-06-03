@@ -550,6 +550,92 @@ export const services: ServicePage[] = [
     ctaText: "Book a Spa Session",
     ctaHref: "https://wa.me/917994073491",
   },
+  {
+    slug: "speed-boat",
+    title: "Speed Boat Rides",
+    subtitle: "Fast private rides across open Alleppey backwaters with a more energetic pace",
+    eyebrow: "Fast Water",
+    heroImage: "/images/speed-boat/speed-boat-sunset.jpg",
+    description: [
+      "Our private speed boat rides are designed for guests who want a livelier way to experience the Alleppey and Alappuzha backwaters. Instead of the slower drift of a houseboat or village-country-boat route, this format gives you more breeze, faster open-water movement, and a sharper sense of freedom across the wider lake-facing stretches.",
+      "It works especially well for shorter outings, quick sightseeing windows, and travelers who want a more exciting backwater ride without turning the day into a full overnight or slow cruise plan. We help shape the route around comfort, weather, group size, and how adventurous or relaxed you want the experience to feel.",
+    ],
+    highlights: [
+      {
+        title: "A Faster Scenic Format",
+        description:
+          "This ride suits guests who want the backwaters to feel breezier, lighter, and more energetic than a slower cruise format.",
+        icon: "flame",
+      },
+      {
+        title: "Private Open-Water Time",
+        description:
+          "The boat stays dedicated to your group, so the pace can feel more personal, flexible, and easy to shape around your comfort.",
+        icon: "shield",
+      },
+      {
+        title: "Shorter, Easier Ride Plans",
+        description:
+          "It works well when you want a memorable private outing without committing to a longer houseboat or slower village-canal plan.",
+        icon: "compass",
+      },
+      {
+        title: "Wide Water and More Breeze",
+        description:
+          "The appeal often comes from the open stretches themselves, where the ride feels freer, airier, and visually more expansive.",
+        icon: "sun",
+      },
+      {
+        title: "Best for Smaller Private Groups",
+        description:
+          "Couples, friends, and smaller families usually enjoy this format most when they want something lively but still private.",
+        icon: "heart",
+      },
+      {
+        title: "Stops When You Want Them",
+        description:
+          "Even with the faster format, the ride can still include calmer pauses for photos, views, or a softer scenic moment.",
+        icon: "star",
+      },
+    ],
+    facilities: [
+      "Best for couples, friends, and smaller private groups",
+      "Comfortable for shorter scenic ride windows",
+      "Private format with flexible route pacing",
+      "Ideal when you want a faster backwater feel",
+      "Open-water sightseeing with optional photo pauses",
+      "Life jackets and experienced driver support",
+      "Daytime and sunset ride options",
+      "Direct WhatsApp planning and coordination",
+    ],
+    priceLabel: "Private ride pricing on request",
+    priceNote:
+      "Rates depend on ride duration, route style, timing, and group size. Ask us for the best fit if you want a faster backwater experience in Alleppey.",
+    gallery: [
+      {
+        src: "/images/speed-boat/speed-boat-sunset.jpg",
+        alt: "Private speed boat ride cutting through sunset-lit Alleppey backwaters",
+      },
+      {
+        src: "/images/speed-boat/speed-boat-open-water.jpg",
+        alt: "Speed boat moving across the wider Alappuzha backwaters near houseboats",
+      },
+      {
+        src: "/images/speed-boat/speed-boat-houseboat-view.jpg",
+        alt: "Private speed boat crossing open water with an Alleppey houseboat in the distance",
+      },
+      {
+        src: "/images/speed-boat/speed-boat-group-ride.jpg",
+        alt: "Group speed boat ride on the Kerala backwaters in Alappuzha",
+      },
+      {
+        src: "/images/speed-boat/speed-boat-coastal-run.jpg",
+        alt: "Open speed boat run with guests enjoying a fast scenic ride on the water",
+      },
+    ],
+    ctaText: "Book a Speed Boat Ride",
+    ctaHref: "https://wa.me/917994073491",
+  },
 ];
 
 export function getServiceBySlug(slug: string): ServicePage | undefined {

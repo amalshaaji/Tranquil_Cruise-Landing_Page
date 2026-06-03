@@ -80,4 +80,37 @@ html {
       text-wrap: pretty;
     }
   }
+
+  @keyframes review-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes review-marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-review-marquee {
+    animation: review-marquee 22s linear infinite;
+  }
+
+  .animate-review-marquee-reverse {
+    animation: review-marquee-reverse 28s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-review-marquee,
+  .animate-review-marquee-reverse {
+    animation: none;
+  }
 }

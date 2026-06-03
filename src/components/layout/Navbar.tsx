@@ -159,10 +159,10 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <div className="flex w-full items-center justify-between gap-2 lg:hidden">
             <Link
               href="/"
-              className={`relative block overflow-hidden ${mobileLogoBox}`}
+              className={`relative -ml-1 block overflow-hidden sm:ml-0 ${mobileLogoBox}`}
               aria-label="Go to homepage"
             >
               <Image
