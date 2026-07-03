@@ -6,6 +6,11 @@ import { motion } from "framer-motion";
 import type { Listing, ListingType } from "@/lib/tranquil-data";
 import ImageGallery from "./ImageGallery";
 import InnerPageHeader from "@/components/layout/InnerPageHeader";
+import {
+  buildInquiryMessage,
+  buildTripNotesTemplate,
+  buildWhatsAppHref,
+} from "@/lib/whatsapp";
 
 function labelFor(type: ListingType) {
   switch (type) {
@@ -32,9 +37,12 @@ function Stars({ rating }: { rating: number }) {
 
 export default function ListingDetailClient({ listing }: { listing: Listing }) {
   const cover = listing.images[0];
-  const whatsappHref = `https://wa.me/917994073491?text=${encodeURIComponent(
-    `Hi Tranquil Cruise, I would like to check availability for "${listing.title}" in ${listing.location}.`
-  )}`;
+  const whatsappHref = buildWhatsAppHref(
+    buildInquiryMessage({
+      experience: listing.type,
+      message: `${listing.title} in ${listing.location}. ${buildTripNotesTemplate(listing.type)}`,
+    }),
+  );
 
   return (
     <section className="pb-16 sm:pb-24">

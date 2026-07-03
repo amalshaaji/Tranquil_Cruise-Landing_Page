@@ -1,28 +1,49 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { GooglePlaceReviewData } from "@/lib/google-place-reviews";
-import {
-  reviewMomentImages,
-  videoTestimonialHighlights,
-} from "@/lib/reviews-page-data";
 import { BUSINESS_PHONE, WHATSAPP_URL } from "@/lib/site";
 
 type ReviewsPageContentProps = {
   googleReviewData: GooglePlaceReviewData | null;
   mapsUrl: string;
-  instagramUrl: string | null;
   reviewSourceNote: string;
 };
+
+const GOOGLE_MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9520.364581431742!2d76.3650316!3d9.489526800000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0883007b443735%3A0x25dbd7f30db0c25c!2sTranquil%20cruise!5e1!3m2!1sen!2sin!4v1783068623726!5m2!1sen!2sin";
+
+const AVATAR_PALETTE = [
+  { background: "#d9f2ee", foreground: "#0f766e" },
+  { background: "#e3eefb", foreground: "#1d4ed8" },
+  { background: "#f9e7d8", foreground: "#c2410c" },
+  { background: "#efe4ff", foreground: "#7c3aed" },
+  { background: "#fde2e8", foreground: "#be123c" },
+  { background: "#e8f3df", foreground: "#3f6212" },
+];
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0] ?? "")
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+function getAvatarPalette(name: string) {
+  const index = Array.from(name).reduce((sum, char) => sum + char.charCodeAt(0), 0) % AVATAR_PALETTE.length;
+  return AVATAR_PALETTE[index];
+}
 
 function StarRow({ rating = 5, size = "md" }: { rating?: number; size?: "sm" | "md" }) {
   const sizeClass = size === "sm" ? "h-3.5 w-3.5" : "h-4.5 w-4.5";
 
   return (
-    <div className="flex text-yellow-500" aria-label={`${rating} out of 5 stars`}>
+    <div className="flex text-[#fbbc04]" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, index) => (
         <svg
           key={index}
-          className={`${sizeClass} fill-current ${index >= rating ? "text-gray-300" : ""}`}
+          className={`${sizeClass} fill-current ${index >= rating ? "text-[#d9dbe0]" : ""}`}
           viewBox="0 0 20 20"
           aria-hidden="true"
         >
@@ -36,51 +57,42 @@ function StarRow({ rating = 5, size = "md" }: { rating?: number; size?: "sm" | "
 export default function ReviewsPageContent({
   googleReviewData,
   mapsUrl,
-  instagramUrl,
   reviewSourceNote,
 }: ReviewsPageContentProps) {
-  const displayedReviews = googleReviewData?.reviews.slice(0, 6) ?? [];
-  const pairedPhotoReviews = reviewMomentImages.map((moment, index) => ({
-    ...moment,
-    review: displayedReviews[index % Math.max(displayedReviews.length, 1)] ?? null,
-  }));
+  const displayedReviews = googleReviewData?.reviews.slice(0, 12) ?? [];
 
   return (
-    <main className="bg-[linear-gradient(180deg,#f7fbfc_0%,#eef4f7_22%,#f8fbfc_100%)] pb-20 pt-28 sm:pt-32">
+    <main className="bg-[linear-gradient(180deg,#fbfcfc_0%,#f1f7f8_26%,#f8fafb_100%)] pb-20 pt-28 sm:pt-32">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[2.6rem] border border-white/75 bg-[linear-gradient(145deg,rgba(255,255,255,0.98)_0%,rgba(238,246,249,0.94)_100%)] shadow-[0_30px_90px_rgba(23,50,71,0.12)]">
+        <div className="overflow-hidden rounded-[2.4rem] border border-[#dce8ed] bg-white shadow-[0_24px_70px_rgba(23,50,71,0.08)]">
           <div className="relative px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
-            <div className="pointer-events-none absolute -left-14 top-0 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(111,149,171,0.22)_0%,rgba(111,149,171,0)_72%)] blur-3xl" />
-            <div className="pointer-events-none absolute right-0 top-6 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(241,203,123,0.18)_0%,rgba(241,203,123,0)_72%)] blur-3xl" />
-
-            <div className="relative grid gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-start">
+            <div className="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/85 bg-white/90 px-4 py-1.5 shadow-[0_12px_28px_rgba(23,50,71,0.08)]">
-                  <span
-                    className="inline-flex items-center whitespace-nowrap text-[0.92rem] font-bold leading-none tracking-[-0.08em]"
-                    aria-hidden="true"
-                  >
+                <div className="inline-flex items-center gap-3 rounded-full border border-[#dce8ed] bg-[#f7fbfc] px-4 py-2">
+                  <span className="text-sm font-semibold tracking-[-0.04em] text-[#173247]" aria-hidden="true">
                     <span className="text-[#4285F4]">G</span>
-                    <span className="-ml-[0.08em] text-[#EA4335]">o</span>
-                    <span className="-ml-[0.08em] text-[#FBBC05]">o</span>
-                    <span className="-ml-[0.08em] text-[#4285F4]">g</span>
-                    <span className="-ml-[0.08em] text-[#34A853]">l</span>
-                    <span className="-ml-[0.08em] text-[#EA4335]">e</span>
+                    <span className="text-[#EA4335]">o</span>
+                    <span className="text-[#FBBC05]">o</span>
+                    <span className="text-[#4285F4]">g</span>
+                    <span className="text-[#34A853]">l</span>
+                    <span className="text-[#EA4335]">e</span>
                   </span>
-                  <span className="text-xs font-medium text-navy/60">Reviews & Testimonials</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#68b9b0]" />
+                  <span className="text-xs font-medium uppercase tracking-[0.16em] text-[#173247]/58">
+                    Google Reviews
+                  </span>
                 </div>
 
-                <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-sand sm:text-5xl">
-                  Reviews, photo moments, and guest proof before you book.
+                <h1 className="mt-5 max-w-3xl font-[var(--font-display)] text-4xl font-semibold leading-[0.96] tracking-[-0.04em] text-[#173247] sm:text-5xl lg:text-[3.5rem]">
+                  Real guest reviews for a clearer booking decision.
                 </h1>
-                <p className="mt-5 max-w-2xl text-base leading-8 text-foreground/70 sm:text-lg">
-                  This page brings together verified Google reviews, guest-moment
-                  imagery, and live social proof so future travellers can judge
-                  the experience with more confidence.
+                <p className="mt-5 max-w-2xl text-base leading-8 text-[#173247]/72 sm:text-lg">
+                  Read recent guest feedback in one place so it is easier to judge comfort, service,
+                  route quality, and the overall backwater experience before you plan your dates.
                 </p>
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-foreground/56">
-                  Guest photos are used here to show the atmosphere of real trips.
-                  They do not necessarily depict the reviewer quoted on the card.
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-[#173247]/58">
+                  Prefer to confirm directly? Open the public Google listing or message Tranquil
+                  Cruise on WhatsApp for help choosing the right route or stay format.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -94,53 +106,51 @@ export default function ReviewsPageContent({
                   </Link>
                   <Link
                     href={WHATSAPP_URL}
-                    className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-6 py-3 text-sm font-semibold text-navy transition hover:bg-[#f3f8fa]"
+                    className="inline-flex items-center justify-center rounded-full border border-[#173247]/10 bg-white px-6 py-3 text-sm font-semibold text-[#173247] transition hover:bg-[#f3f8fa]"
                   >
                     Ask about your dates on WhatsApp
                   </Link>
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.8rem] border border-white/90 bg-white/88 p-6 shadow-[0_18px_40px_rgba(23,50,71,0.08)]">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-teal/80">
-                    Google Rating
-                  </p>
-                  <div className="mt-3 flex items-end gap-3">
-                    <span className="text-5xl font-semibold tracking-tight text-navy">
-                      {googleReviewData?.rating?.toFixed(1) ?? "5.0"}
-                    </span>
-                    <span className="pb-1 text-sm font-medium text-foreground/56">out of 5</span>
+              <div className="grid gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-[1.8rem] border border-[#dce8ed] bg-[#f8fbfc] p-6">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/80">
+                        Rating
+                    </p>
+                    <div className="mt-2 flex items-end gap-3">
+                      <span className="text-5xl font-semibold tracking-tight text-[#173247]">
+                        {googleReviewData?.rating?.toFixed(1) ?? "5.0"}
+                      </span>
+                      <span className="pb-1 text-sm font-medium text-[#173247]/56">out of 5</span>
+                    </div>
+                    <div className="mt-3">
+                      <StarRow rating={5} />
+                    </div>
                   </div>
-                  <div className="mt-4">
-                    <StarRow rating={5} />
+
+                  <div className="rounded-[1.8rem] border border-[#dce8ed] bg-white p-6">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/80">
+                      Reviews
+                    </p>
+                    <div className="mt-2 text-5xl font-semibold tracking-tight text-[#173247]">
+                      {googleReviewData?.reviewCount ?? 0}
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-[#173247]/60">
+                      Enough volume to compare service, comfort, and route quality with confidence.
+                    </p>
                   </div>
-                  <p className="mt-4 text-sm leading-6 text-foreground/60">
-                    Verified guest feedback pulled from Google or the latest saved review snapshot.
-                  </p>
                 </div>
 
-                <div className="rounded-[1.8rem] border border-white/90 bg-[linear-gradient(180deg,#f7fbfd_0%,#edf5f8_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.08)]">
+                <div className="rounded-[1.8rem] border border-[#dce8ed] bg-[#f7fbfc] p-6">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-teal/80">
-                    Review Volume
-                  </p>
-                  <div className="mt-3 text-5xl font-semibold tracking-tight text-navy">
-                    {googleReviewData?.reviewCount ?? 0}
-                  </div>
-                  <p className="mt-4 text-sm leading-6 text-foreground/60">
-                    Enough volume to help new guests compare comfort, service, food, and route experience.
-                  </p>
-                </div>
-
-                <div className="rounded-[1.8rem] border border-white/90 bg-[#173247] p-6 text-white shadow-[0_18px_40px_rgba(23,50,71,0.16)] sm:col-span-2">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#d8e8ef]/72">
                     Review Source
                   </p>
-                  <p className="mt-3 text-base leading-7 text-white/86">
-                    {reviewSourceNote}
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-white/60">
-                    Prefer to confirm directly? Call {BUSINESS_PHONE} or open the live Google listing.
+                  <p className="mt-3 text-base leading-7 text-[#173247]/72">{reviewSourceNote}</p>
+                  <p className="mt-3 text-sm leading-6 text-[#173247]/56">
+                    Call {BUSINESS_PHONE} or open the live Google listing if you want to verify the
+                    latest public feedback before booking.
                   </p>
                 </div>
               </div>
@@ -150,7 +160,7 @@ export default function ReviewsPageContent({
       </section>
 
       <section
-        id="video-testimonials"
+        id="latest-google-reviews"
         className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -158,7 +168,7 @@ export default function ReviewsPageContent({
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
               Latest Verified Reviews
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-sand sm:text-4xl">
+            <h2 className="mt-3 font-[var(--font-display)] text-3xl font-semibold text-[#173247] sm:text-4xl">
               Real guest comments from Google
             </h2>
           </div>
@@ -166,216 +176,153 @@ export default function ReviewsPageContent({
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:bg-[#f4f8fa]"
+            className="inline-flex items-center justify-center rounded-full border border-[#173247]/10 bg-white px-5 py-3 text-sm font-semibold text-[#173247] transition hover:bg-[#f4f8fa]"
           >
             Open Google listing
           </Link>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {displayedReviews.map((review, index) => {
-            const initials = review.authorName
-              .split(" ")
-              .map((part) => part[0] ?? "")
-              .join("")
-              .slice(0, 2)
-              .toUpperCase();
+            const initials = getInitials(review.authorName);
+            const avatarPalette = getAvatarPalette(review.authorName);
 
             return (
               <article
                 key={`${review.authorName}-${index}`}
-                className={`flex h-full flex-col rounded-[1.8rem] border border-white/80 bg-white/92 p-5 shadow-[0_18px_44px_rgba(23,50,71,0.08)] sm:p-6 ${
-                  index === 0 ? "lg:col-span-2" : ""
-                }`}
+                className="flex h-full flex-col rounded-[1.15rem] border border-[#e5e7eb] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] sm:p-6"
               >
-                <div className="mb-5 flex items-start gap-3">
-                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/85 bg-[linear-gradient(180deg,#eef5f8_0%,#e4eef3_100%)]">
-                    {review.authorPhotoUrl ? (
-                      <Image
-                        src={review.authorPhotoUrl}
-                        alt={review.authorName}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    ) : (
-                      <span className="text-xs font-semibold tracking-[0.16em] text-teal">
-                        {initials}
-                      </span>
-                    )}
-                  </div>
+                <div className="flex h-full flex-col">
+                  <div className="mb-4 flex items-start gap-3">
+                    <div
+                      className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f1f3f4]"
+                      style={
+                        review.authorPhotoUrl
+                          ? undefined
+                          : {
+                              background: `linear-gradient(180deg, ${avatarPalette.background} 0%, #ffffff 100%)`,
+                            }
+                      }
+                    >
+                      {review.authorPhotoUrl ? (
+                        <Image
+                          src={review.authorPhotoUrl}
+                          alt={review.authorName}
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      ) : (
+                        <span
+                          className="text-xs font-semibold"
+                          style={{ color: avatarPalette.foreground }}
+                        >
+                          {initials}
+                        </span>
+                      )}
+                    </div>
 
-                  <div className="min-w-0 flex-1">
-                    {review.authorProfileUrl ? (
-                      <Link
-                        href={review.authorProfileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-base font-semibold text-navy transition hover:text-teal"
-                      >
-                        {review.authorName}
-                      </Link>
-                    ) : (
-                      <h3 className="text-base font-semibold text-navy">{review.authorName}</h3>
-                    )}
-                    <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-navy/10 bg-[#f4f8fa] px-3 py-1 text-[0.68rem] font-medium tracking-[0.12em] text-foreground/58">
-                      <span className="h-1.5 w-1.5 rounded-full bg-teal/65" />
-                      {review.publishedLabel === "Google review"
-                        ? "Verified on Google"
-                        : review.publishedLabel}
+                    <div className="min-w-0 flex-1">
+                      {review.authorProfileUrl ? (
+                        <Link
+                          href={review.authorProfileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-[0.95rem] font-medium text-[#202124] hover:underline"
+                        >
+                          {review.authorName}
+                        </Link>
+                      ) : (
+                        <h3 className="text-[0.95rem] font-medium text-[#202124]">{review.authorName}</h3>
+                      )}
+                      <p className="mt-0.5 text-[0.8rem] text-[#5f6368]">
+                        {review.publishedLabel === "Google review"
+                          ? "Verified Google review"
+                          : review.publishedLabel}
+                      </p>
                     </div>
                   </div>
-                </div>
 
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <StarRow rating={review.rating} size="sm" />
-                  <span className="rounded-full border border-navy/10 bg-white px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-foreground/50">
-                    {review.rating.toFixed(1)}
-                  </span>
-                </div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <StarRow rating={review.rating} size="sm" />
+                    <span className="text-[0.8rem] font-medium text-[#5f6368]">
+                      {review.rating.toFixed(1)}
+                    </span>
+                  </div>
 
-                <p className="flex-1 text-[0.98rem] leading-8 text-foreground/72 italic">
-                  &ldquo;{review.text}&rdquo;
-                </p>
+                  <p className="flex-1 text-[0.95rem] leading-7 text-[#3c4043]">
+                    {review.text}
+                  </p>
 
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-navy/8 pt-5">
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
-                    Google review
-                  </span>
-                  <Link
-                    href={review.reviewUrl ?? mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-full border border-navy/10 bg-white px-4 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-teal transition hover:bg-[#f7fbfd] hover:text-navy"
-                  >
-                    Open review
-                  </Link>
+                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#e8eaed] pt-4">
+                    <span className="text-[0.78rem] text-[#5f6368]">Google review</span>
+                    <Link
+                      href={review.reviewUrl ?? mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full border border-[#dadce0] bg-white px-4 py-2 text-[0.78rem] font-medium text-[#1a73e8] transition hover:bg-[#f8fbff]"
+                    >
+                      Open review
+                    </Link>
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-[#173247] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#234760]"
+          >
+            Read more guest reviews on Google
+          </Link>
+        </div>
       </section>
 
       <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 max-w-3xl">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
-            Image Reviews
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold text-sand sm:text-4xl">
-            Guest-photo moments paired with real review excerpts
-          </h2>
-          <p className="mt-4 text-base leading-8 text-foreground/66">
-            This makes the reviews easier to picture, especially for guests deciding
-            between an overnight houseboat, a shorter canal ride, or a quieter sunset slot.
-          </p>
-        </div>
+        <div className="overflow-hidden rounded-[2rem] border border-[#dce8ed] bg-white shadow-[0_20px_56px_rgba(23,50,71,0.08)]">
+          <div className="flex flex-col gap-6 border-b border-[#dce8ed] px-5 py-6 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-teal/80">
+                Find Us
+              </p>
+              <h2 className="mt-3 font-[var(--font-display)] text-3xl font-semibold text-[#173247] sm:text-4xl">
+                Visit the Tranquil Cruise location on Google Maps
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-[#173247]/64 sm:text-base">
+                Open the map for directions, nearby landmarks, and the live business listing before
+                you book your backwater ride.
+              </p>
+            </div>
 
-        <div className="grid gap-5 lg:grid-cols-3">
-          {pairedPhotoReviews.map((moment) => (
-            <article
-              key={moment.src}
-              className="overflow-hidden rounded-[1.9rem] border border-white/80 bg-white/92 shadow-[0_20px_52px_rgba(23,50,71,0.08)]"
+            <Link
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-[#173247] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#234760]"
             >
-              <div className="relative aspect-[4/4.35]">
-                <Image
-                  src={moment.src}
-                  alt={moment.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent p-5">
-                  <p className="max-w-xs text-lg font-semibold leading-tight text-white">
-                    {moment.title}
-                  </p>
-                </div>
-              </div>
+              Open in Google Maps
+            </Link>
+          </div>
 
-              <div className="p-5 sm:p-6">
-                {moment.review ? (
-                  <>
-                    <div className="flex items-center gap-3">
-                      <StarRow rating={moment.review.rating} size="sm" />
-                      <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-teal/75">
-                        {moment.review.authorName}
-                      </span>
-                    </div>
-                    <p className="mt-4 text-[0.98rem] leading-8 text-foreground/72 italic">
-                      &ldquo;{moment.review.text}&rdquo;
-                    </p>
-                  </>
-                ) : (
-                  <p className="text-sm leading-7 text-foreground/66">
-                    Fresh review snippets will appear here when Google review data is available.
-                  </p>
-                )}
-
-                <p className="mt-4 text-sm leading-6 text-foreground/55">{moment.caption}</p>
-              </div>
-            </article>
-          ))}
+          <iframe
+            title="Tranquil Cruise on Google Maps"
+            src={GOOGLE_MAP_EMBED_URL}
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="block w-full"
+          />
         </div>
       </section>
 
-      <section className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[2.4rem] border border-white/75 bg-[linear-gradient(145deg,rgba(12,33,46,0.96)_0%,rgba(23,50,71,0.94)_100%)] px-5 py-8 text-white shadow-[0_28px_80px_rgba(10,24,35,0.22)] sm:px-8 sm:py-10 lg:px-10">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-[#cfe0ea]/70">
-              Video Testimonials
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
-              Watch guest moments where new clips get posted first
-            </h2>
-            <p className="mt-4 text-base leading-8 text-white/72">
-              We do not keep every short-form testimonial video duplicated on the website.
-              The freshest guest clips usually land on Instagram first, so this section points
-              to the live source.
-            </p>
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-3">
-            {videoTestimonialHighlights.map((item) => (
-              <article
-                key={item.title}
-                className="overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/6 backdrop-blur-sm"
-              >
-                <div className="relative aspect-[16/11]">
-                  <Image
-                    src={item.posterSrc}
-                    alt={item.posterAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover opacity-88"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/18 to-transparent" />
-                  <div className="absolute left-5 top-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-white/14 backdrop-blur-sm">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M8 6.5v11l9-5.5-9-5.5Z" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="p-5 sm:p-6">
-                  <h3 className="text-xl font-semibold leading-tight text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/70">{item.description}</p>
-
-                  <div className="mt-5">
-                    <Link
-                      href={instagramUrl ?? mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-white/16 bg-white/10 px-4 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-[#173247]"
-                    >
-                      {item.ctaLabel}
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

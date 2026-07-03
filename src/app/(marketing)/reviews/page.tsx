@@ -15,12 +15,10 @@ import {
   createReviewSchema,
   createSpeakableSchema,
   createTravelAgencySchema,
-  createVideoObjectSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 import { SITE_URL, WHATSAPP_URL } from "@/lib/site";
 import scrapedPlaceData from "../../../../data/google-place-scrape.json";
-import { videoTestimonialHighlights } from "@/lib/reviews-page-data";
 
 const reviewFaqs = [
   {
@@ -152,24 +150,8 @@ export default async function ReviewsPage() {
     name: "Tranquil Cruise Reviews & Testimonials",
     description:
       "Verified Google reviews, guest moments, and live social proof for Tranquil Cruise experiences.",
-    cssSelectors: ["main h1", "#video-testimonials h2"],
+    cssSelectors: ["main h1", "main h2"],
   });
-  const videoSchemas = videoTestimonialHighlights.map((item) =>
-    createVideoObjectSchema({
-      name: item.title,
-      description: item.description,
-      path: "/reviews",
-      url: `${SITE_URL}/reviews#video-testimonials`,
-      embedUrl: instagramUrl ?? undefined,
-      uploadDate: "2026-05-15",
-      thumbnail: {
-        path: item.posterSrc,
-        alt: item.posterAlt,
-        width: 1200,
-        height: 825,
-      },
-    }),
-  );
 
   return (
     <>
@@ -179,11 +161,10 @@ export default async function ReviewsPage() {
       <JsonLd data={travelAgencyJsonLd} />
       <JsonLd data={speakableJsonLd} />
       <JsonLd data={createFaqSchema(reviewFaqs)} />
-      <JsonLd data={[...imageSchemas, ...videoSchemas, ...reviewSchemas]} />
+      <JsonLd data={[...imageSchemas, ...reviewSchemas]} />
       <ReviewsPageContent
         googleReviewData={googleReviewData}
         mapsUrl={mapsUrl}
-        instagramUrl={instagramUrl}
         reviewSourceNote={reviewSourceNote}
       />
       <FaqSection

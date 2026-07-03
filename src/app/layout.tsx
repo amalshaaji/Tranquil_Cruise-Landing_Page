@@ -46,14 +46,15 @@ export const metadata: Metadata = {
         }
       : undefined,
   ...createPageMetadata({
-    title: "Alappuzha Houseboat | Private Houseboat Booking in Kerala",
+    title: "Alappuzha / Alleppey Houseboat | Private Houseboat Booking in Kerala",
     description:
-      "Book an Alappuzha houseboat, private day cruise, overnight stay, and backwater experiences in Kerala with local planning support from Tranquil Cruise.",
+      "Book an Alappuzha / Alleppey houseboat, private day cruise, overnight stay, and backwater experiences in Kerala with local planning support from Tranquil Cruise.",
     path: "/",
     keywords: [
       "Alappuzha houseboat",
       "Alappuzha houseboat booking",
       "Alleppey houseboat",
+      "Alappuzha Alleppey houseboat",
       "Alappuzha backwater cruise",
       "Kerala backwaters",
       "private shikkara ride Alleppey",
@@ -101,14 +102,14 @@ export default async function RootLayout({
   const globalSchema = [
     createLocalBusinessSchema({
       description:
-        "Tranquil Cruise offers private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey and the Kerala backwaters.",
+        "Tranquil Cruise offers private houseboats, shikkara rides, country boats, kayaking, backwater rooms, and Ayurvedic wellness in Alappuzha and Alleppey, Kerala backwaters.",
       sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
       aggregateRating,
       makesOffer: siteOffers,
     }),
     createTravelAgencySchema({
       description:
-        "Travel planning and private Kerala backwater experiences in Alappuzha including houseboats, shikkara rides, country boats, kayaking, rooms, and wellness.",
+        "Travel planning and private Kerala backwater experiences in Alappuzha and Alleppey including houseboats, shikkara rides, country boats, kayaking, rooms, and wellness.",
       sameAs: [WHATSAPP_URL, INSTAGRAM_URL],
       aggregateRating,
       makesOffer: siteOffers,

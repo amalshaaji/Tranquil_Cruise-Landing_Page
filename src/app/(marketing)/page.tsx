@@ -56,14 +56,15 @@ const homepageFaqs = [
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Alappuzha Houseboat | Private Houseboat Booking in Alappuzha",
+    title: "Alappuzha / Alleppey Houseboat | Private Houseboat Booking in Kerala",
     description:
-      "Book an Alappuzha houseboat with private day cruise, overnight stay, luxury, family, and backwater route guidance. Compare Alleppey and Alappuzha houseboat options with Tranquil Cruise.",
+      "Book an Alappuzha / Alleppey houseboat with private day cruise, overnight stay, luxury, family, and backwater route guidance. Compare Alleppey and Alappuzha houseboat options with Tranquil Cruise.",
     path: "/",
     keywords: [
       "Alappuzha houseboat",
       "Alappuzha houseboat booking",
       "Alleppey houseboat",
+      "Alappuzha Alleppey houseboat",
       "Alappuzha backwater cruise",
       "Kerala backwaters",
       "private shikkara ride Alleppey",
@@ -81,7 +82,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const googleReviewData = await getGooglePlaceReviewData();
-  const displayedReviews = googleReviewData?.reviews.slice(0, 4) ?? [];
+  const displayedReviews = googleReviewData?.reviews ?? [];
   const reviewSortLabel = displayedReviews.length ? googleReviewData?.sortLabel ?? "" : "";
   const reviewSourceNote = reviewSortLabel.startsWith("Visible snippets scraped")
     ? "Showing recent Google review highlights."
@@ -103,7 +104,7 @@ export default async function Home() {
 
   const localBusinessJsonLd = createLocalBusinessSchema({
     description:
-      "Tranquil Cruise offers private houseboats, shikkara rides, country boat tours, kayaking, backwater rooms, and Ayurvedic wellness in Alleppey and the Kerala backwaters.",
+      "Tranquil Cruise offers private houseboats, shikkara rides, country boat tours, kayaking, backwater rooms, and Ayurvedic wellness in Alappuzha and Alleppey, Kerala backwaters.",
     image: {
       path: "/images/home-hero-rainbow-houseboat.jpg",
       alt: "Private Kerala houseboat in the Alleppey backwaters",
@@ -199,6 +200,7 @@ export default async function Home() {
   });
   const organizationJsonLd = createOrganizationSchema(
     "Tranquil Cruise is a Kerala backwater travel business focused on Alleppey houseboat booking, private cruises, shikkara rides, kayaking, country boat rides, day cruises, and overnight backwater stays.",
+    "Tranquil Cruise is a Kerala backwater travel business focused on Alappuzha and Alleppey houseboat booking, private cruises, shikkara rides, kayaking, country boat rides, day cruises, and overnight backwater stays.",
   );
   const speakableJsonLd = createSpeakableSchema({
     path: "/",

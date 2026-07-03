@@ -100,11 +100,11 @@ html {
   }
 
   .animate-review-marquee {
-    animation: review-marquee 22s linear infinite;
+    animation: review-marquee 110s linear infinite;
   }
 
   .animate-review-marquee-reverse {
-    animation: review-marquee-reverse 28s linear infinite;
+    animation: review-marquee-reverse 124s linear infinite;
   }
 }
 

@@ -42,8 +42,56 @@ function formatExperienceLabel(
   }
 }
 
+function buildInquiryIntro(
+  experience: InquiryExperience | string,
+  option?: string | null,
+) {
+  if (experience === "houseboat" && option) {
+    return `I would like to enquire about a ${option} houseboat.`;
+  }
+
+  switch (experience) {
+    case "houseboat":
+      return "I would like to enquire about a houseboat cruise.";
+    case "shikkara":
+      return "I would like to enquire about a shikkara ride.";
+    case "kayaking":
+      return "I would like to enquire about a kayaking session.";
+    case "room":
+      return "I would like to enquire about a room stay.";
+    case "custom":
+      return "I would like to enquire about a custom Kerala plan.";
+    default:
+      return `I would like to enquire about ${formatExperienceLabel(experience, option)}.`;
+  }
+}
+
 export function buildWhatsAppHref(message: string) {
   return `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildTripNotesTemplate(
+  experience: InquiryExperience | string,
+  option?: string | null,
+) {
+  if (experience === "houseboat" && option) {
+    return "Please share availability, pricing, and route options for this stay.";
+  }
+
+  switch (experience) {
+    case "houseboat":
+      return "Please share availability, pricing, meal plan, and route options for this cruise.";
+    case "shikkara":
+      return "Please share ride duration, pricing, route options, and boarding details.";
+    case "kayaking":
+      return "Please share session timing, pricing, route details, and whether this is beginner-friendly.";
+    case "room":
+      return "Please share room availability, pricing, check-in details, and nearby backwater access.";
+    case "custom":
+      return "Please suggest the best combination of experiences, timing, and pricing for this trip.";
+    default:
+      return "Please share availability, pricing, and the best options for this booking.";
+  }
 }
 
 export function buildInquiryMessage({
@@ -58,10 +106,7 @@ export function buildInquiryMessage({
 }: InquiryDetails) {
   const lines = [
     "Hi Tranquil Cruise,",
-    `I would like to enquire about a ${formatExperienceLabel(
-      experience,
-      option,
-    )}.`,
+    buildInquiryIntro(experience, option),
   ];
 
   if (name) lines.push(`Name: ${name}`);

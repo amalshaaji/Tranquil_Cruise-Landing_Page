@@ -3,20 +3,20 @@
 import { type FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { trackConversionStep, trackEvent } from "@/lib/analytics";
-import { buildInquiryMessage, buildWhatsAppHref } from "@/lib/whatsapp";
+import {
+  buildInquiryMessage,
+  buildTripNotesTemplate,
+  buildWhatsAppHref,
+} from "@/lib/whatsapp";
 
-// Refined shared styles for a "High-Fashion" travel look
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-navy/10 bg-white/60 px-4 py-3.5 text-sm text-foreground outline-none ring-gold/20 transition-all placeholder:text-foreground/30 focus:border-gold/50 focus:bg-white focus:ring-4 focus:ring-gold/10 backdrop-blur-sm";
+  "mt-2 w-full rounded-[1.1rem] border border-[#d7e6eb] bg-white px-4 py-3.5 text-sm text-foreground outline-none transition placeholder:text-foreground/35 focus:border-teal/45 focus:ring-4 focus:ring-teal/10";
 
-const labelClass = "text-[0.65rem] font-bold uppercase tracking-[0.15em] text-navy/50 ml-1 mb-1";
+const labelClass =
+  "mb-1 ml-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#58758b]";
 
 function buildDefaultMessage(experience: string, option?: string | null) {
-  if (experience === "houseboat" && option) {
-    return `I would like to enquire about the ${option} houseboat. Please share availability and pricing.`;
-  }
-
-  return "";
+  return buildTripNotesTemplate(experience, option);
 }
 
 export default function ContactForm() {
@@ -68,56 +68,52 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-12 max-w-3xl mx-auto">
-
-      {/* --- Header Section: The Welcome --- */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-navy/[0.03] via-white to-teal/[0.03] p-10 text-center sm:text-left border border-navy/5 shadow-sm">
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-teal">
-            <span className="relative flex h-1.5 w-1.5 rounded-full bg-teal animate-pulse" />
-            Bespoke Planning
-          </div>
-          <h2 className="mt-6 text-4xl font-semibold leading-[1.1] text-sand sm:text-5xl">
-            Begin your <span className="italic text-navy/80">private enquiry</span>
-          </h2>
-          <p className="mt-5 max-w-lg text-sm leading-relaxed text-foreground/60 sm:text-base font-light">
-            We don&apos;t believe in standard packages. Tell us about your
-            dream rhythm, and we will craft a journey that mirrors it.
-          </p>
+    <form onSubmit={handleSubmit} className="mx-auto max-w-3xl space-y-8">
+      <div className="rounded-[2rem] border border-[#dbe8ec] bg-[linear-gradient(180deg,#f9fcfd_0%,#eef5f7_100%)] p-8 shadow-[0_18px_50px_rgba(23,50,71,0.06)] sm:p-10">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#cfe0e6] bg-white px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-teal">
+          <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+          Direct Enquiry
         </div>
-        {/* Soft Ambient Glows */}
-        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
-        <div className="absolute -left-10 -bottom-10 h-64 w-64 rounded-full bg-teal/10 blur-3xl" />
+        <h2 className="mt-5 text-3xl font-semibold leading-tight text-sand sm:text-4xl">
+          Tell us what kind of backwater trip you want.
+        </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-foreground/66 sm:text-base">
+          Share your dates, group details, and the kind of experience you have in mind.
+          We will help shape the right houseboat, ride, stay, or slower custom plan.
+        </p>
       </div>
 
-      {/* --- Concierge Trust Bar --- */}
       <div className="grid gap-4 sm:grid-cols-3">
         {[
-          { label: "Response", text: "Personal follow-up", icon: "✉️" },
-          { label: "Planning", text: "Dates, pace, and route", icon: "🗺️" },
-          { label: "Style", text: "Houseboat to wellness", icon: "🌿" },
+          { label: "Response", text: "Personal follow-up", icon: "01" },
+          { label: "Planning", text: "Dates, pace, and route", icon: "02" },
+          { label: "Style", text: "Houseboat to wellness", icon: "03" },
         ].map((item, i) => (
-          <div key={i} className="group relative overflow-hidden rounded-2xl border border-navy/10 bg-white/80 p-5 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/5">
-            <div className="text-xl mb-3 transform transition-transform group-hover:scale-110 duration-300">{item.icon}</div>
-            <div className="text-[0.6rem] font-bold uppercase tracking-widest text-teal/70">
+          <div
+            key={i}
+            className="rounded-[1.5rem] border border-[#dbe8ec] bg-white p-5 shadow-[0_12px_28px_rgba(23,50,71,0.05)]"
+          >
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#edf5f8] text-xs font-semibold text-teal">
+              {item.icon}
+            </div>
+            <div className="text-[0.6rem] font-semibold uppercase tracking-widest text-[#6f95ab]">
               {item.label}
             </div>
-            <div className="mt-1 text-sm font-medium text-navy/70 group-hover:text-navy transition-colors">
+            <div className="mt-1 text-sm font-medium text-navy/70">
               {item.text}
             </div>
           </div>
         ))}
       </div>
 
-      {/* --- Main Form Body --- */}
-      <div className="grid gap-12 rounded-[3rem] border border-navy/10 bg-white/40 p-8 sm:p-14 shadow-sm backdrop-blur-xl">
-
-        {/* Section 1: The Guest */}
+      <div className="grid gap-12 rounded-[2rem] border border-[#dbe8ec] bg-white p-8 shadow-[0_20px_60px_rgba(23,50,71,0.06)] sm:p-10">
         <div className="space-y-8">
           <div className="flex items-center gap-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-white text-xs font-bold">01</span>
-            <h3 className="text-lg font-semibold text-sand tracking-tight">The Guest</h3>
-            <div className="h-px flex-1 bg-navy/10" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#173247] text-xs font-bold text-white">
+              01
+            </span>
+            <h3 className="text-lg font-semibold tracking-tight text-sand">Your Details</h3>
+            <div className="h-px flex-1 bg-[#dbe8ec]" />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
@@ -137,12 +133,13 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Section 2: The Vision */}
         <div className="space-y-8">
           <div className="flex items-center gap-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-white text-xs font-bold">02</span>
-            <h3 className="text-lg font-semibold text-sand tracking-tight">The Vision</h3>
-            <div className="h-px flex-1 bg-navy/10" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#173247] text-xs font-bold text-white">
+              02
+            </span>
+            <h3 className="text-lg font-semibold tracking-tight text-sand">Trip Details</h3>
+            <div className="h-px flex-1 bg-[#dbe8ec]" />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
@@ -184,12 +181,11 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* --- Footer / Submission --- */}
       <div className="flex flex-col items-center gap-8">
         {submitted && (
           <div
             role="status"
-            className="animate-in fade-in zoom-in-95 duration-500 rounded-2xl border border-gold/30 bg-gold/10 px-8 py-4 text-sm font-medium text-navy/80 backdrop-blur-sm shadow-sm"
+            className="animate-in fade-in zoom-in-95 duration-500 rounded-2xl border border-teal/20 bg-teal/8 px-8 py-4 text-sm font-medium text-navy/80 shadow-sm"
           >
             WhatsApp is ready with your enquiry details. Send the message and our concierge will take it from there.
           </div>
@@ -197,15 +193,14 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="group relative inline-flex w-full max-w-md items-center justify-center overflow-hidden rounded-2xl bg-gold px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] text-ink shadow-xl shadow-gold/20 transition-all hover:bg-gold/90 hover:scale-[1.02] active:scale-[0.98]"
+          className="inline-flex w-full max-w-md items-center justify-center rounded-2xl bg-[#173247] px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-[0_16px_40px_rgba(23,50,71,0.18)] transition hover:bg-[#234760] active:scale-[0.98]"
         >
-          <span className="relative z-10">Send on WhatsApp</span>
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full -translate-x-full" />
+          Send on WhatsApp
         </button>
 
         <div className="flex flex-col items-center gap-2">
-          <p className="text-[0.6rem] uppercase tracking-widest text-foreground/40 font-medium">
-            Secure & Private Enquiry System
+          <p className="text-[0.6rem] font-medium uppercase tracking-widest text-foreground/40">
+            Private enquiry form
           </p>
           <div className="flex gap-1">
             {[...Array(3)].map((_, i) => (

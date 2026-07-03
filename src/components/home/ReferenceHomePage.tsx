@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Flame } from "lucide-react";
+import { ChevronLeft, ChevronRight, Flame } from "lucide-react";
+import { useRef } from "react";
 import HeroSection from "@/components/home/HeroSection";
 import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
 import FaqSection from "@/components/seo/FaqSection";
@@ -155,39 +156,6 @@ const bookingSignalItems = [
   "Direct planning support",
 ] as const;
 
-const bookingDetailFacts = [
-  {
-    title: "Cruise duration",
-    value: "Shikkara rides are usually 1 to 3 hours, while houseboats can be booked as day cruises or overnight stays.",
-  },
-  {
-    title: "Boarding point",
-    value: "Boarding is arranged in the Alappuzha or Alleppey area, and the exact jetty is confirmed once the route and boat are locked.",
-  },
-  {
-    title: "Meal plan",
-    value: "Houseboat plans usually include meals or refreshments based on whether you book a day cruise or an overnight stay.",
-  },
-  {
-    title: "AC timing",
-    value: "Air conditioning usually applies to the bedroom sleeping window on overnight houseboats, but the exact timing depends on the selected boat.",
-  },
-  {
-    title: "Cancellation and refund summary",
-    value: "Earlier date changes or cancellations usually create more flexibility, while refund outcomes depend on timing, booking stage, and the category reserved.",
-  },
-] as const;
-
-const inclusionItems = [
-  "Private boat or stay format based on the experience you choose",
-  "Crew or local boatman support during the ride or cruise",
-  "Cruising time matched to the selected route and duration",
-  "Bedroom, deck, or lounge access where applicable",
-  "Meals or refreshments based on the booked plan",
-  "Life jackets and basic safety essentials",
-  "Pre-arrival route guidance and booking support",
-] as const;
-
 const journeyDestinations = [
   "Alleppey backwaters",
   "Kuttanad canals",
@@ -241,6 +209,146 @@ function stripMarkdownHeading(value: string) {
   return value.replace(/^#{1,6}\s+/, "").trim();
 }
 
+function CategoryExperienceCarousel({
+  categorySpotlightSeed,
+}: {
+  categorySpotlightSeed: number;
+}) {
+  const railRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollCategoryRail(direction: "left" | "right") {
+    const rail = railRef.current;
+
+    if (!rail) {
+      return;
+    }
+
+    const scrollAmount = Math.max(rail.clientWidth * 0.72, 320);
+    rail.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  }
+
+  return (
+    <>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
+            {stripMarkdownHeading("Curated Experience Types")}
+          </p>
+          <h2 className="mt-3 max-w-3xl font-[var(--font-display)] text-balance text-[2rem] font-semibold leading-[1.03] tracking-[-0.03em] text-navy sm:text-5xl">
+            {stripMarkdownHeading("Choose the backwater mood that fits the kind of day you want")}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
+            Some guests want wide water and a slower deck-side afternoon. Others want narrow
+            canals, greener routes, or softer village sightseeing. Start with the style of
+            experience that feels right, then we can help you narrow the best option.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3 sm:items-end">
+          <Link
+            href="/gallery"
+            className="inline-flex w-full items-center justify-center rounded-full border border-navy/12 bg-white/60 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-navy shadow-[0_12px_28px_rgba(47,79,104,0.08)] transition hover:border-teal/30 hover:bg-white sm:w-auto"
+          >
+            View full gallery
+          </Link>
+          <div className="hidden items-center gap-2 md:flex">
+            <button
+              type="button"
+              aria-label="Scroll cards left"
+              onClick={() => scrollCategoryRail("left")}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-navy/12 bg-white/80 text-navy shadow-[0_10px_24px_rgba(47,79,104,0.08)] transition hover:-translate-y-0.5 hover:border-teal/30 hover:bg-white"
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label="Scroll cards right"
+              onClick={() => scrollCategoryRail("right")}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-navy/12 bg-white/80 text-navy shadow-[0_10px_24px_rgba(47,79,104,0.08)] transition hover:-translate-y-0.5 hover:border-teal/30 hover:bg-white"
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        ref={railRef}
+        className="-mx-2 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 pb-3 [scrollbar-width:none] md:mx-0 md:gap-5 md:px-0 md:pb-4 md:pr-2"
+      >
+        {categoryLinks.map((item) => {
+          const isShikkaraBoat = item.title === "Shikkara Boat";
+          const isBestOption = item.title === "Houseboats";
+          const spotlightIndex =
+            (categorySpotlightSeed + item.title.length) % categorySpotlightLabels.length;
+          const spotlightText = categorySpotlightLabels[spotlightIndex];
+
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`group flex h-[24rem] w-[17.5rem] min-w-[17.5rem] flex-none snap-start overflow-hidden rounded-[1.5rem] border bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(239,246,250,0.92)_100%)] shadow-[0_16px_38px_rgba(47,79,104,0.08)] ring-1 ring-navy/6 backdrop-blur transition duration-500 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(47,79,104,0.14)] sm:h-[25rem] sm:w-[19rem] sm:min-w-[19rem] lg:h-[26rem] lg:w-[21rem] lg:min-w-[21rem] ${
+                isBestOption ? "border-[#d6e7ed]" : "border-white/70"
+              }`}
+            >
+              <div className="flex h-full w-full flex-col">
+                <div className="relative h-[10rem] overflow-hidden sm:h-[12rem]">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 17.5rem, (max-width: 1024px) 19rem, 21rem"
+                    className="object-cover transition duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2 sm:inset-x-4 sm:top-4">
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] shadow-[0_10px_22px_rgba(240,200,124,0.24)] backdrop-blur-md ${
+                        isBestOption
+                          ? "border border-[#efc972]/60 bg-[linear-gradient(180deg,#fff7df_0%,#ffe7aa_100%)] text-[#8a5611]"
+                          : "border border-white/60 bg-white/78 text-navy shadow-[0_10px_22px_rgba(47,79,104,0.12)]"
+                      }`}
+                    >
+                      {!isBestOption && !isShikkaraBoat ? (
+                        <Flame className="h-3 w-3" aria-hidden="true" />
+                      ) : null}
+                      {isBestOption ? "Best option" : isShikkaraBoat ? item.eyebrow : spotlightText}
+                    </span>
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/78 text-base text-navy shadow-[0_8px_20px_rgba(47,79,104,0.12)] backdrop-blur-md transition duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                      ↗
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-1 p-3.5 sm:p-5">
+                  <div className="flex flex-1 flex-col rounded-[1.2rem] border border-white/75 bg-white/78 p-4 text-navy shadow-[0_14px_30px_rgba(47,79,104,0.08)] backdrop-blur-md sm:p-5">
+                    <h3 className="min-h-[2.8rem] font-[var(--font-display)] text-[1.1rem] font-semibold leading-tight tracking-[-0.02em] text-navy sm:min-h-[3rem] sm:text-[1.25rem]">
+                      {stripMarkdownHeading(item.title)}
+                    </h3>
+                    {!isShikkaraBoat ? (
+                      <p className="mt-2 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#6f95ab]">
+                        {item.eyebrow}
+                      </p>
+                    ) : null}
+                    <p className="mt-2 line-clamp-4 text-[0.92rem] leading-6 text-foreground/72">
+                      {item.copy}
+                    </p>
+                    <div className="mt-auto border-t border-navy/8 pt-3">
+                      <span className="inline-flex min-h-10 w-full items-center justify-center rounded-full bg-navy px-4 py-2.5 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(47,79,104,0.16)] transition group-hover:bg-ink">
+                        View experience
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
 export default function ReferenceHomePage({
   displayedReviews,
   reviewSourceNote,
@@ -292,83 +400,32 @@ export default function ReferenceHomePage({
       </section>
 
       <section className="px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-teal/80">
-                {stripMarkdownHeading("Curated Experience Types")}
-              </p>
-              <h2 className="mt-3 max-w-3xl font-[var(--font-display)] text-balance text-[2rem] font-semibold leading-[1.03] tracking-[-0.03em] text-navy sm:text-5xl">
-                {stripMarkdownHeading("Choose the backwater mood that fits the kind of day you want")}
-              </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
-                Some guests want wide water and a slower deck-side afternoon. Others want narrow
-                canals, greener routes, or softer village sightseeing. Start with the style of
-                experience that feels right, then we can help you narrow the best option.
-              </p>
+        <div className="mx-auto max-w-7xl">
+          {groupFitCards.length ? (
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {groupFitCards.map((item, index) => (
+                <article
+                  key={item.title}
+                  className={`group rounded-[2rem] border border-[#d7e5ec] bg-white p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6 ${index >= 1 ? "hidden lg:block" : ""}`}
+                >
+                  <h3 className="text-xl font-semibold text-[#173247]">{stripMarkdownHeading(item.title)}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.copy}</p>
+                  <Link
+                    href={item.href}
+                    className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-navy/12 bg-[#f5fafc] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-navy transition hover:border-teal/30 hover:bg-white group-hover:border-teal/35"
+                  >
+                    {item.cta}
+                  </Link>
+                </article>
+              ))}
             </div>
-            <Link
-              href="/gallery"
-              className="inline-flex items-center rounded-full border border-navy/12 bg-white/60 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-navy shadow-[0_12px_28px_rgba(47,79,104,0.08)] transition hover:border-teal/30 hover:bg-white"
-            >
-              View full gallery
-            </Link>
-          </div>
+          ) : null}
+        </div>
+      </section>
 
-          <div className="mt-8 grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
-            {categoryLinks.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.95)_0%,rgba(235,243,248,0.92)_100%)] shadow-[0_22px_50px_rgba(47,79,104,0.1)] ring-1 ring-navy/6 backdrop-blur transition duration-500 hover:-translate-y-2 hover:shadow-[0_28px_68px_rgba(47,79,104,0.16)]"
-              >
-                <div className="relative h-[15.5rem] overflow-hidden sm:h-[25rem]">
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-cover transition duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-x-4 top-4 flex items-start justify-between sm:inset-x-5 sm:top-5">
-                    <div className="flex flex-col gap-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#efc972]/65 bg-[linear-gradient(180deg,#fff7df_0%,#ffe7aa_100%)] px-3 py-1 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-[#8a5612] shadow-[0_10px_22px_rgba(240,200,124,0.25)] backdrop-blur-md">
-                        <Flame className="h-3.5 w-3.5" aria-hidden="true" />
-                        {
-                          categorySpotlightLabels[
-                            (categorySpotlightSeed + item.title.length) %
-                              categorySpotlightLabels.length
-                          ]
-                        }
-                      </span>
-                      <span className="inline-flex w-fit rounded-full border border-white/55 bg-white/72 px-3 py-1 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-navy shadow-[0_8px_20px_rgba(47,79,104,0.12)] backdrop-blur-md">
-                        {item.eyebrow}
-                      </span>
-                    </div>
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/55 bg-white/72 text-lg text-navy shadow-[0_8px_20px_rgba(47,79,104,0.12)] backdrop-blur-md transition duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      ↗
-                    </span>
-                  </div>
-                </div>
-                <div className="p-4 sm:p-6">
-                  <div className="rounded-[1.35rem] border border-white/75 bg-white/72 p-4 text-navy shadow-[0_18px_40px_rgba(47,79,104,0.08)] backdrop-blur-md sm:rounded-[1.7rem] sm:p-5">
-                    <h3 className="font-[var(--font-display)] text-[1.45rem] font-semibold leading-tight tracking-[-0.02em] text-navy sm:text-[1.75rem]">
-                      {stripMarkdownHeading(item.title)}
-                    </h3>
-                    <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                      {item.eyebrow}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-foreground/72 sm:mt-3">{item.copy}</p>
-                    <div className="mt-4 border-t border-navy/8 pt-3 sm:mt-5 sm:pt-4">
-                      <span className="inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_16px_34px_rgba(47,79,104,0.16)] transition group-hover:bg-ink">
-                        View experience
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+      <section className="px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-[1600px]">
+          <CategoryExperienceCarousel categorySpotlightSeed={categorySpotlightSeed} />
         </div>
       </section>
 
@@ -559,122 +616,58 @@ export default function ReferenceHomePage({
             </div>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="rounded-[2rem] border border-[#d7e5ec] bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:p-8">
-              <h3 className="text-2xl font-semibold text-[#173247]">
-                {stripMarkdownHeading("What is usually included")}
-              </h3>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {inclusionItems.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-[1.4rem] border border-[#e3edf2] bg-[#f8fbfd] px-4 py-3 text-sm leading-6 text-[#173247]/76 shadow-[0_8px_18px_rgba(23,50,71,0.03)]"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        </div>
+      </section>
 
-            <div className="rounded-[2rem] border border-[#d7e5ec] bg-[linear-gradient(180deg,#173247_0%,#234760_100%)] p-6 text-white shadow-[0_22px_55px_rgba(23,50,71,0.16)] sm:p-8">
-              <h3 className="text-2xl font-semibold">
-                {stripMarkdownHeading("Key booking details")}
-              </h3>
-              <dl className="mt-5 grid gap-4">
-                {bookingDetailFacts.map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-[1.4rem] border border-white/10 bg-white/8 px-4 py-4"
-                  >
-                    <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#a8d8d7]">
-                      {item.title}
-                    </dt>
-                    <dd className="mt-2 text-sm leading-6 text-white/80">{item.value}</dd>
-                  </div>
-                ))}
-              </dl>
+      <section className="px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-[2rem] bg-[#173247] p-6 text-white shadow-[0_24px_60px_rgba(10,24,34,0.2)] sm:p-10">
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-[#8fb3d1]">
+              Since 2011
+            </p>
+            <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight sm:mt-4 sm:text-5xl">
+              Helping guests find the right backwater experience for more than a decade
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/76 sm:mt-5 sm:text-base sm:leading-7">
+              We know that no two trips to Alleppey feel the same. Some guests want a quiet
+              overnight houseboat, some want a short scenic ride, and some just want help choosing
+              what makes sense. We keep the process simple, answer quickly, and help you book with
+              more confidence.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3">
+              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
+                <div className="text-3xl font-semibold text-white">1000+</div>
+                <div className="mt-2 text-sm text-white/68">Happy guests</div>
+              </div>
+              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
+                <div className="text-3xl font-semibold text-white">24/7</div>
+                <div className="mt-2 text-sm text-white/68">Response support</div>
+              </div>
+              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
+                <div className="text-3xl font-semibold text-white">50+</div>
+                <div className="mt-2 text-sm text-white/68">Route ideas and stays</div>
+              </div>
             </div>
           </div>
 
-          <article className="mt-8 overflow-hidden rounded-[2.75rem] border border-white/75 bg-[radial-gradient(circle_at_top_right,rgba(109,143,166,0.14),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.99)_0%,rgba(233,244,248,0.95)_100%)] shadow-[0_28px_76px_rgba(20,56,71,0.1)]">
-            <div className="h-1.5 bg-[linear-gradient(90deg,#173247_0%,#6d8fa6_34%,#f0c87c_68%,#173247_100%)]" />
-            <div className="grid gap-0 lg:grid-cols-[1.04fr_0.96fr]">
-              <div className="relative p-6 sm:p-8 lg:p-10">
-                <div className="absolute right-[-3rem] top-[-2rem] h-28 w-28 rounded-full bg-[#9fd6d0]/30 blur-3xl" />
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#efc972]/60 bg-[linear-gradient(180deg,#fff7df_0%,#ffe7aa_100%)] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a5612] shadow-[0_12px_28px_rgba(240,200,124,0.35)]">
-                  <Flame className="h-4 w-4" aria-hidden="true" />
-                  Trending in Alleppey
-                </div>
-                <h3 className="mt-5 max-w-xl font-[var(--font-display)] text-[2.1rem] leading-[0.95] tracking-[-0.05em] text-[#173247] sm:text-4xl lg:text-[3.25rem]">
-                  All-Inclusive Alleppey Backwater Package
-                </h3>
-                <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
-                  Designed for guests who want the full Kerala experience in one plan, with
-                  kayaking, shikkara, open boat, and speed boat rides across different village
-                  backwater routes, plus traditional food, refreshments, and stay options.
-                </p>
-
-                <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                  {[
-                    "Kayaking 6:30 AM - 8:30 AM",
-                    "Shikkara 11:00 AM - 2:00 PM",
-                    "Open boat 4:00 PM - 7:00 PM",
-                    "Stay also provided",
-                  ].map((item) => (
-                    <span
-                      key={item}
-                      className="inline-flex items-center rounded-[1.2rem] border border-[#d8e3e7] bg-white px-4 py-3 text-sm font-semibold text-[#173247] shadow-[0_10px_24px_rgba(23,50,71,0.05)]"
-                    >
-                      <span className="mr-3 h-2.5 w-2.5 rounded-full bg-teal" />
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link
-                    href={whatsappHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_16px_34px_rgba(47,79,104,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink"
-                  >
-                    Ask on WhatsApp
-                  </Link>
-                </div>
+          <div className="grid gap-5">
+            {trustPoints.map((item, index) => (
+              <div
+                key={item.title}
+                className={`rounded-[2rem] border border-[#cfdee5] bg-white p-5 shadow-[0_18px_40px_rgba(20,50,69,0.07)] sm:p-7 ${index >= 2 ? "hidden lg:block" : ""}`}
+              >
+                <h3 className="text-2xl font-semibold text-[#173247]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.copy}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="border-t border-white/70 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {traditionalKeralaInclusions.map((item, index) => (
-                    <div
-                      key={item.title}
-                      className={`rounded-[1.6rem] border p-5 shadow-[0_14px_32px_rgba(20,56,71,0.06)] ${
-                        index === 0
-                          ? "border-[#f1d08b]/60 bg-[linear-gradient(180deg,#fffdf7_0%,#fff7e4_100%)]"
-                          : "border-[#d7e7ee] bg-white/88"
-                      }`}
-                    >
-                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                        {item.title}
-                      </div>
-                      <p className="mt-3 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
-                    </div>
-                  ))}
-                  <div className="rounded-[1.6rem] border border-[#d7e7ee] bg-white/88 p-5 shadow-[0_14px_32px_rgba(20,56,71,0.06)]">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
-                      Stay provided
-                    </div>
-                    <p className="mt-3 text-sm leading-6 text-[#173247]/74">
-                      Stay options are arranged when the package needs a day cruise format or an
-                      overnight Kerala backwater stay.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div className="mt-8 overflow-hidden rounded-[2.5rem] border border-white/75 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.98),transparent_34%),linear-gradient(135deg,rgba(250,253,255,0.98)_0%,rgba(232,243,247,0.94)_100%)] shadow-[0_28px_80px_rgba(20,56,71,0.10)]">
+      <section className="px-4 pb-10 sm:px-6 sm:pb-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <article className="overflow-hidden rounded-[2.5rem] border border-white/75 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.98),transparent_34%),linear-gradient(135deg,rgba(250,253,255,0.98)_0%,rgba(232,243,247,0.94)_100%)] shadow-[0_28px_80px_rgba(20,56,71,0.10)]">
             <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#efc972]/60 bg-[linear-gradient(180deg,#fff7df_0%,#ffe7aa_100%)] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a5612] shadow-[0_12px_28px_rgba(240,200,124,0.35)]">
@@ -753,100 +746,89 @@ export default function ReferenceHomePage({
                 </div>
               </div>
             </div>
-          </div>
-
-          {groupFitCards.length ? (
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              {groupFitCards.map((item, index) => (
-                <article
-                  key={item.title}
-                  className={`group rounded-[2rem] border border-[#d7e5ec] bg-white p-5 shadow-[0_18px_40px_rgba(23,50,71,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(23,50,71,0.1)] sm:p-6 ${index >= 1 ? "hidden lg:block" : ""}`}
-                >
-                  <h3 className="text-xl font-semibold text-[#173247]">{stripMarkdownHeading(item.title)}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.copy}</p>
-                  <Link
-                    href={item.href}
-                    className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-navy/12 bg-[#f5fafc] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-navy transition hover:border-teal/30 hover:bg-white group-hover:border-teal/35"
-                  >
-                    {item.cta}
-                  </Link>
-                </article>
-              ))}
-            </div>
-          ) : null}
-
-          <div className="mt-8 flex flex-col gap-3 rounded-[2rem] border border-[#d7e5ec] bg-white p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <div className="max-w-3xl">
-              <h3 className="text-xl font-semibold text-[#173247]">
-                {stripMarkdownHeading("Need the exact quote for your dates?")}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-[#173247]/72">
-                Final trip planning depends on season, route choice, meal format, guest count, and whether you want a
-                day cruise, overnight houseboat, or lighter canal experience. Message us on WhatsApp and we will
-                suggest the right option, confirm availability, and guide you through the next step directly.
-              </p>
-            </div>
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:shrink-0 sm:flex-row">
-              <Link
-                href={whatsappHref}
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-navy px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-ink sm:w-auto sm:whitespace-nowrap"
-              >
-                Get quote on WhatsApp
-              </Link>
-              <Link
-                href="/refund-policy"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-navy/12 bg-[#f5fafc] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-navy transition hover:border-teal/30 hover:bg-white sm:w-auto sm:whitespace-nowrap"
-              >
-                Read refund policy
-              </Link>
-            </div>
-          </div>
+          </article>
         </div>
       </section>
 
-      <section className="px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-[2rem] bg-[#173247] p-6 text-white shadow-[0_24px_60px_rgba(10,24,34,0.2)] sm:p-10">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-[#8fb3d1]">
-              Since 2011
-            </p>
-            <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight sm:mt-4 sm:text-5xl">
-              Helping guests find the right backwater experience for more than a decade
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-6 text-white/76 sm:mt-5 sm:text-base sm:leading-7">
-              We know that no two trips to Alleppey feel the same. Some guests want a quiet
-              overnight houseboat, some want a short scenic ride, and some just want help choosing
-              what makes sense. We keep the process simple, answer quickly, and help you book with
-              more confidence.
-            </p>
+      <section className="bg-[#edf6fb] px-4 pb-10 sm:px-6 sm:pb-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <article className="overflow-hidden rounded-[2.75rem] border border-white/75 bg-[radial-gradient(circle_at_top_right,rgba(109,143,166,0.14),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.99)_0%,rgba(233,244,248,0.95)_100%)] shadow-[0_28px_76px_rgba(20,56,71,0.1)]">
+            <div className="h-1.5 bg-[linear-gradient(90deg,#173247_0%,#6d8fa6_34%,#f0c87c_68%,#173247_100%)]" />
+            <div className="grid gap-0 lg:grid-cols-[1.04fr_0.96fr]">
+              <div className="relative p-6 sm:p-8 lg:p-10">
+                <div className="absolute right-[-3rem] top-[-2rem] h-28 w-28 rounded-full bg-[#9fd6d0]/30 blur-3xl" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#efc972]/60 bg-[linear-gradient(180deg,#fff7df_0%,#ffe7aa_100%)] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a5612] shadow-[0_12px_28px_rgba(240,200,124,0.35)]">
+                  <Flame className="h-4 w-4" aria-hidden="true" />
+                  Trending in Alleppey
+                </div>
+                <h3 className="mt-5 max-w-xl font-[var(--font-display)] text-[2.1rem] leading-[0.95] tracking-[-0.05em] text-[#173247] sm:text-4xl lg:text-[3.25rem]">
+                  All-Inclusive Alleppey Backwater Package
+                </h3>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
+                  Designed for guests who want the full Kerala experience in one plan, with
+                  kayaking, shikkara, open boat, and speed boat rides across different village
+                  backwater routes, plus traditional food, refreshments, and stay options.
+                </p>
 
-            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3">
-              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
-                <div className="text-3xl font-semibold text-white">1000+</div>
-                <div className="mt-2 text-sm text-white/68">Happy guests</div>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {[
+                    "Kayaking 6:30 AM - 8:30 AM",
+                    "Shikkara 11:00 AM - 2:00 PM",
+                    "Open boat 4:00 PM - 7:00 PM",
+                    "Stay also provided",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center rounded-[1.2rem] border border-[#d8e3e7] bg-white px-4 py-3 text-sm font-semibold text-[#173247] shadow-[0_10px_24px_rgba(23,50,71,0.05)]"
+                    >
+                      <span className="mr-3 h-2.5 w-2.5 rounded-full bg-teal" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_16px_34px_rgba(47,79,104,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink"
+                  >
+                    Ask on WhatsApp
+                  </Link>
+                </div>
               </div>
-              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
-                <div className="text-3xl font-semibold text-white">24/7</div>
-                <div className="mt-2 text-sm text-white/68">Response support</div>
-              </div>
-              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5">
-                <div className="text-3xl font-semibold text-white">50+</div>
-                <div className="mt-2 text-sm text-white/68">Route ideas and stays</div>
+
+              <div className="border-t border-white/70 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {traditionalKeralaInclusions.map((item, index) => (
+                    <div
+                      key={item.title}
+                      className={`rounded-[1.6rem] border p-5 shadow-[0_14px_32px_rgba(20,56,71,0.06)] ${
+                        index === 0
+                          ? "border-[#f1d08b]/60 bg-[linear-gradient(180deg,#fffdf7_0%,#fff7e4_100%)]"
+                          : "border-[#d7e7ee] bg-white/88"
+                      }`}
+                    >
+                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
+                        {item.title}
+                      </div>
+                      <p className="mt-3 text-sm leading-6 text-[#173247]/74">{item.copy}</p>
+                    </div>
+                  ))}
+                  <div className="rounded-[1.6rem] border border-[#d7e7ee] bg-white/88 p-5 shadow-[0_14px_32px_rgba(20,56,71,0.06)]">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#6f95ab]">
+                      Stay provided
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-[#173247]/74">
+                      Stay options are arranged when the package needs a day cruise format or an
+                      overnight Kerala backwater stay.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="grid gap-5">
-            {trustPoints.map((item, index) => (
-              <div
-                key={item.title}
-                className={`rounded-[2rem] border border-[#cfdee5] bg-white p-5 shadow-[0_18px_40px_rgba(20,50,69,0.07)] sm:p-7 ${index >= 2 ? "hidden lg:block" : ""}`}
-              >
-                <h3 className="text-2xl font-semibold text-[#173247]">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#173247]/72">{item.copy}</p>
-              </div>
-            ))}
-          </div>
+          </article>
         </div>
       </section>
 
@@ -999,6 +981,7 @@ export default function ReferenceHomePage({
           faqs={homepageFaqs}
         />
       </section>
+
     </main>
   );
 }

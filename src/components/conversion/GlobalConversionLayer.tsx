@@ -5,7 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Clock3, MessageCircle, Phone, ShieldCheck, Sparkles, X } from "lucide-react";
 import { trackConversionStep, trackEvent } from "@/lib/analytics";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import {
+  buildInquiryMessage,
+  buildTripNotesTemplate,
+  buildWhatsAppHref,
+} from "@/lib/whatsapp";
 import {
   BUSINESS_HOURS,
   BUSINESS_PHONE,
@@ -50,6 +54,24 @@ function getInquiryContext(pathname: string) {
   return "a Kerala backwater experience";
 }
 
+function getInquiryExperience(pathname: string) {
+  if (pathname.includes("shikkara")) return "shikkara";
+  if (pathname.includes("kayaking")) return "kayaking";
+  if (pathname.includes("room")) return "room";
+  if (
+    pathname.includes("houseboat") ||
+    pathname.includes("honeymoon") ||
+    pathname.includes("family") ||
+    pathname.includes("luxury") ||
+    pathname.includes("day-cruise") ||
+    pathname.includes("overnight")
+  ) {
+    return "houseboat";
+  }
+
+  return "custom";
+}
+
 export default function GlobalConversionLayer() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -71,8 +93,12 @@ export default function GlobalConversionLayer() {
     return null;
   }
 
+  const inquiryExperience = getInquiryExperience(pathname);
   const whatsappHref = buildWhatsAppHref(
-    `Hi Tranquil Cruise,\nI would like help choosing ${getInquiryContext(pathname)}.\nPlease share availability and the best options for my dates.`,
+    buildInquiryMessage({
+      experience: inquiryExperience,
+      message: `I would like help choosing ${getInquiryContext(pathname)}. ${buildTripNotesTemplate(inquiryExperience)}`,
+    }),
   );
 
   function handleWhatsAppClick(surface: "floating_popup") {
