@@ -709,10 +709,7 @@ export default function ReferenceHomePage({
                     </h3>
                     <div className="mt-5 h-1 w-24 rounded-full bg-[linear-gradient(90deg,#173247_0%,#6d8fa6_55%,#d8b36d_100%)]" />
                     <p className="mt-4 max-w-xl rounded-[1.35rem] border border-[#dbe7ed] bg-white px-4 py-4 text-sm leading-7 text-[#1b3343] shadow-[0_14px_32px_rgba(9,26,39,0.07)] backdrop-blur-sm sm:px-5 sm:py-5 sm:text-base sm:leading-8">
-                      A full-day Kerala backwater plan for guests who want more than one kind of
-                      Alleppey experience, combining kayaking, a scenic shikkara ride, an evening
-                      open-boat cruise, local food, refreshments, and optional stay support in one
-                      smoother itinerary.
+                      A full-day Kerala backwater plan for guests who want more than one kind of Alleppey experience, combining sunrise kayaking, a scenic shikkara ride with lunch, an evening open-boat cruise, local food, refreshments, and optional stay support in one smoother itinerary from morning to sunset.
                     </p>
                   </div>
 

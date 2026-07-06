@@ -13,8 +13,9 @@ export default function TraditionalKeralaCard() {
       <h2 className={styles.title}>All-Inclusive Alleppey Backwater Package</h2>
       <p className={styles.description}>
         A full-day Kerala backwater plan for guests who want more than one kind of Alleppey
-        experience, combining kayaking, a scenic shikkara ride, an evening open-boat cruise,
-        local food, refreshments, and optional stay support in one smoother itinerary.
+        experience, combining sunrise kayaking, a scenic shikkara ride with lunch, an evening
+        open-boat cruise, local food, refreshments, and optional stay support in one smoother
+        itinerary from morning to sunset.
       </p>
       <div className={styles.highlights}>
         <span>Sunrise kayaking 6:30 AM - 8:30 AM</span>
