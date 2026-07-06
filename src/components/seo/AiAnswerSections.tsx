@@ -115,6 +115,8 @@ export function QuestionAnswerList({
   intro,
   items,
   sectionClassName,
+  panelClassName,
+  itemClassName,
 }: {
   eyebrow?: string;
   title: string;
@@ -124,10 +126,14 @@ export function QuestionAnswerList({
     answer: string;
   }[];
   sectionClassName?: string;
+  panelClassName?: string;
+  itemClassName?: string;
 }) {
   return (
     <section className={`mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-20 ${sectionClassName ?? ""}`}>
-      <div className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:p-10">
+      <div
+        className={`rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] sm:p-10 ${panelClassName ?? ""}`}
+      >
         <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
           {eyebrow}
         </div>
@@ -142,7 +148,7 @@ export function QuestionAnswerList({
           {items.map((item) => (
             <article
               key={item.question}
-              className="rounded-[1.5rem] border border-navy/8 bg-white p-5"
+              className={`rounded-[1.5rem] border border-navy/8 bg-white p-5 ${itemClassName ?? ""}`}
             >
               <h3 className="text-lg font-semibold text-[#173247]">
                 Q: {item.question}

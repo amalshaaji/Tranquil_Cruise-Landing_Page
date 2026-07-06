@@ -59,7 +59,7 @@ export default function ReviewsPageContent({
   mapsUrl,
   reviewSourceNote,
 }: ReviewsPageContentProps) {
-  const displayedReviews = googleReviewData?.reviews.slice(0, 12) ?? [];
+  const displayedReviews = googleReviewData?.reviews ?? [];
 
   return (
     <main className="bg-[linear-gradient(180deg,#fbfcfc_0%,#f1f7f8_26%,#f8fafb_100%)] pb-20 pt-28 sm:pt-32">
@@ -182,94 +182,100 @@ export default function ReviewsPageContent({
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {displayedReviews.map((review, index) => {
-            const initials = getInitials(review.authorName);
-            const avatarPalette = getAvatarPalette(review.authorName);
+        {displayedReviews.length ? (
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {displayedReviews.map((review, index) => {
+              const initials = getInitials(review.authorName);
+              const avatarPalette = getAvatarPalette(review.authorName);
 
-            return (
-              <article
-                key={`${review.authorName}-${index}`}
-                className="flex h-full flex-col rounded-[1.15rem] border border-[#e5e7eb] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] sm:p-6"
-              >
-                <div className="flex h-full flex-col">
-                  <div className="mb-4 flex items-start gap-3">
-                    <div
-                      className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f1f3f4]"
-                      style={
-                        review.authorPhotoUrl
-                          ? undefined
-                          : {
-                              background: `linear-gradient(180deg, ${avatarPalette.background} 0%, #ffffff 100%)`,
-                            }
-                      }
-                    >
-                      {review.authorPhotoUrl ? (
-                        <Image
-                          src={review.authorPhotoUrl}
-                          alt={review.authorName}
-                          fill
-                          className="object-cover"
-                          unoptimized
-                        />
-                      ) : (
-                        <span
-                          className="text-xs font-semibold"
-                          style={{ color: avatarPalette.foreground }}
-                        >
-                          {initials}
-                        </span>
-                      )}
+              return (
+                <article
+                  key={`${review.authorName}-${index}`}
+                  className="flex h-full flex-col rounded-[1.15rem] border border-[#e5e7eb] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] sm:p-6"
+                >
+                  <div className="flex h-full flex-col">
+                    <div className="mb-4 flex items-start gap-3">
+                      <div
+                        className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#f1f3f4]"
+                        style={
+                          review.authorPhotoUrl
+                            ? undefined
+                            : {
+                                background: `linear-gradient(180deg, ${avatarPalette.background} 0%, #ffffff 100%)`,
+                              }
+                        }
+                      >
+                        {review.authorPhotoUrl ? (
+                          <Image
+                            src={review.authorPhotoUrl}
+                            alt={review.authorName}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <span
+                            className="text-xs font-semibold"
+                            style={{ color: avatarPalette.foreground }}
+                          >
+                            {initials}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        {review.authorProfileUrl ? (
+                          <Link
+                            href={review.authorProfileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-[0.95rem] font-medium text-[#202124] hover:underline"
+                          >
+                            {review.authorName}
+                          </Link>
+                        ) : (
+                          <h3 className="text-[0.95rem] font-medium text-[#202124]">{review.authorName}</h3>
+                        )}
+                        <p className="mt-0.5 text-[0.8rem] text-[#5f6368]">
+                          {review.publishedLabel === "Google review"
+                            ? "Verified Google review"
+                            : review.publishedLabel}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="min-w-0 flex-1">
-                      {review.authorProfileUrl ? (
-                        <Link
-                          href={review.authorProfileUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block text-[0.95rem] font-medium text-[#202124] hover:underline"
-                        >
-                          {review.authorName}
-                        </Link>
-                      ) : (
-                        <h3 className="text-[0.95rem] font-medium text-[#202124]">{review.authorName}</h3>
-                      )}
-                      <p className="mt-0.5 text-[0.8rem] text-[#5f6368]">
-                        {review.publishedLabel === "Google review"
-                          ? "Verified Google review"
-                          : review.publishedLabel}
-                      </p>
+                    <div className="mb-3 flex items-center gap-2">
+                      <StarRow rating={review.rating} size="sm" />
+                      <span className="text-[0.8rem] font-medium text-[#5f6368]">
+                        {review.rating.toFixed(1)}
+                      </span>
+                    </div>
+
+                    <p className="flex-1 text-[0.95rem] leading-7 text-[#3c4043]">
+                      {review.text}
+                    </p>
+
+                    <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#e8eaed] pt-4">
+                      <span className="text-[0.78rem] text-[#5f6368]">Google review</span>
+                      <Link
+                        href={review.reviewUrl ?? mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center rounded-full border border-[#dadce0] bg-white px-4 py-2 text-[0.78rem] font-medium text-[#1a73e8] transition hover:bg-[#f8fbff]"
+                      >
+                        Open review
+                      </Link>
                     </div>
                   </div>
-
-                  <div className="mb-3 flex items-center gap-2">
-                    <StarRow rating={review.rating} size="sm" />
-                    <span className="text-[0.8rem] font-medium text-[#5f6368]">
-                      {review.rating.toFixed(1)}
-                    </span>
-                  </div>
-
-                  <p className="flex-1 text-[0.95rem] leading-7 text-[#3c4043]">
-                    {review.text}
-                  </p>
-
-                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#e8eaed] pt-4">
-                    <span className="text-[0.78rem] text-[#5f6368]">Google review</span>
-                    <Link
-                      href={review.reviewUrl ?? mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-[#dadce0] bg-white px-4 py-2 text-[0.78rem] font-medium text-[#1a73e8] transition hover:bg-[#f8fbff]"
-                    >
-                      Open review
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-[1.5rem] border border-[#dce8ed] bg-white p-8 text-center text-[#5f6368] shadow-[0_10px_30px_rgba(23,50,71,0.05)]">
+            No Google reviews are available to show right now.
+          </div>
+        )}
 
         <div className="mt-8 flex justify-center">
           <Link

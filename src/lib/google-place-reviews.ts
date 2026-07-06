@@ -129,6 +129,24 @@ function getScrapedFallbackData(): GooglePlaceReviewData {
   };
 }
 
+function mergeWithFallbackReviews(
+  liveData: GooglePlaceReviewData,
+  fallbackData: GooglePlaceReviewData,
+): GooglePlaceReviewData {
+  if (liveData.reviews.length) {
+    return liveData;
+  }
+
+  return {
+    ...liveData,
+    reviews: fallbackData.reviews,
+    sortLabel: fallbackData.sortLabel,
+    mapsUrl: liveData.mapsUrl || fallbackData.mapsUrl,
+    reviewCount: liveData.reviewCount ?? fallbackData.reviewCount,
+    rating: liveData.rating ?? fallbackData.rating,
+  };
+}
+
 async function fetchPlaceById(apiKey: string, placeId: string) {
   const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
     headers: {
@@ -180,9 +198,10 @@ async function fetchPlaceByText(apiKey: string, textQuery: string) {
 
 export const getGooglePlaceReviewData = cache(async (): Promise<GooglePlaceReviewData | null> => {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  const fallbackData = getScrapedFallbackData();
 
   if (!apiKey) {
-    return getScrapedFallbackData();
+    return fallbackData;
   }
 
   try {
@@ -194,13 +213,13 @@ export const getGooglePlaceReviewData = cache(async (): Promise<GooglePlaceRevie
       : await fetchPlaceByText(apiKey, textQuery);
 
     if (!place) {
-      return getScrapedFallbackData();
+      return fallbackData;
     }
 
-    return mapPlace(place);
+    return mergeWithFallbackReviews(mapPlace(place), fallbackData);
   } catch (error) {
     console.error("Unable to load Google reviews", error);
-    return getScrapedFallbackData();
+    return fallbackData;
   }
 });
 
