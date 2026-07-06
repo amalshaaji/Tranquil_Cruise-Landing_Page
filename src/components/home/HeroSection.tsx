@@ -91,7 +91,7 @@ export default function HeroSection(props: HeroSectionProps) {
               Beautiful booking search
             </div>
             <h1 className="mt-4 max-w-2xl font-[var(--font-display)] text-[clamp(2.7rem,8vw,5.75rem)] leading-[0.92] tracking-[-0.06em] text-balance text-white">
-              Search, choose, and book your Kerala backwater escape.
+              Private Alleppey Shikara Boat Ride
             </h1>
             <p className="mt-4 max-w-xl text-pretty text-sm leading-7 text-white/80 sm:text-base sm:leading-8">
               Pick your destination, travel dates, and guest count, then send the booking

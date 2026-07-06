@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import SeoKnowledgePage from "@/components/content/SeoKnowledgePage";
 import ProgrammaticSeoPage from "@/components/seo/ProgrammaticSeoPage";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   getProgrammaticSeoPageBySlug,
   programmaticSeoPages,
 } from "@/lib/programmatic-seo-pages";
+import { getSeoKnowledgePageBySlug, seoKnowledgePages } from "@/lib/seo-pages";
 import { alappuzhaHouseboatSeoStrategy } from "@/lib/alappuzha-houseboat-seo-strategy";
 import {
+  createArticleSchema,
   createBreadcrumbSchema,
   createFaqSchema,
   createImageObjectSchema,
@@ -17,15 +20,14 @@ import {
   createSpeakableSchema,
   createTravelAgencySchema,
   createTouristTripSchema,
+  createWebPageSchema,
   generatePageMetadata,
 } from "@/lib/seo";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return programmaticSeoPages.map((page) => ({
-    slug: page.slug,
-  }));
+  return [...programmaticSeoPages, ...seoKnowledgePages].map((page) => ({ slug: page.slug }));
 }
 
 export async function generateMetadata({
@@ -34,6 +36,23 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const seoKnowledgePage = getSeoKnowledgePageBySlug(slug);
+
+  if (seoKnowledgePage) {
+    return generatePageMetadata({
+      title: `${seoKnowledgePage.title} | Tranquil Cruise`,
+      description: seoKnowledgePage.description,
+      path: seoKnowledgePage.path,
+      keywords: seoKnowledgePage.keywords,
+      image: {
+        url: seoKnowledgePage.heroImage.src,
+        width: 1200,
+        height: 630,
+        alt: seoKnowledgePage.heroImage.alt,
+      },
+    });
+  }
+
   const page = getProgrammaticSeoPageBySlug(slug);
 
   if (!page) {
@@ -60,6 +79,127 @@ export default async function ProgrammaticSeoRoutePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const seoKnowledgePage = getSeoKnowledgePageBySlug(slug);
+
+  if (seoKnowledgePage) {
+    const breadcrumbJsonLd = createBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: seoKnowledgePage.title, path: seoKnowledgePage.path },
+    ]);
+
+    const imageJsonLd = createImageObjectSchema({
+      path: seoKnowledgePage.heroImage.src,
+      alt: seoKnowledgePage.heroImage.alt,
+      width: 1200,
+      height: 630,
+    });
+
+    const webPageJsonLd = createWebPageSchema({
+      path: seoKnowledgePage.path,
+      name: seoKnowledgePage.title,
+      description: seoKnowledgePage.description,
+      image: {
+        path: seoKnowledgePage.heroImage.src,
+        alt: seoKnowledgePage.heroImage.alt,
+        width: 1200,
+        height: 630,
+      },
+      breadcrumbName: seoKnowledgePage.title,
+    });
+
+    const speakableJsonLd = createSpeakableSchema({
+      path: seoKnowledgePage.path,
+      name: seoKnowledgePage.title,
+      description: seoKnowledgePage.description,
+      cssSelectors: ["main h1", "main section h2"],
+      pageType: seoKnowledgePage.kind === "blog" ? "Article" : "WebPage",
+    });
+
+    const localBusinessJsonLd = createLocalBusinessSchema({
+      description: seoKnowledgePage.description,
+      path: seoKnowledgePage.path,
+      image: {
+        path: seoKnowledgePage.heroImage.src,
+        alt: seoKnowledgePage.heroImage.alt,
+        width: 1200,
+        height: 630,
+      },
+      images: seoKnowledgePage.gallery.map((image) => ({
+        path: image.src,
+        alt: image.alt,
+        width: 1200,
+        height: 630,
+      })),
+    });
+
+    const travelAgencyJsonLd = createTravelAgencySchema({
+      description: seoKnowledgePage.description,
+      path: seoKnowledgePage.path,
+      image: {
+        path: seoKnowledgePage.heroImage.src,
+        alt: seoKnowledgePage.heroImage.alt,
+        width: 1200,
+        height: 630,
+      },
+    });
+
+    const pageSpecificSchema =
+      seoKnowledgePage.kind === "blog"
+        ? createArticleSchema({
+            headline: seoKnowledgePage.title,
+            description: seoKnowledgePage.description,
+            path: seoKnowledgePage.path,
+            image: {
+              path: seoKnowledgePage.heroImage.src,
+              alt: seoKnowledgePage.heroImage.alt,
+              width: 1200,
+              height: 630,
+            },
+            keywords: seoKnowledgePage.keywords,
+            articleSection: seoKnowledgePage.eyebrow,
+          })
+        : [
+            createServiceSchema({
+              name: seoKnowledgePage.title,
+              description: seoKnowledgePage.description,
+              path: seoKnowledgePage.path,
+              serviceType: "Private backwater experience",
+            }),
+            createTouristTripSchema({
+              name: seoKnowledgePage.title,
+              description: seoKnowledgePage.description,
+              path: seoKnowledgePage.path,
+              image: {
+                path: seoKnowledgePage.heroImage.src,
+                alt: seoKnowledgePage.heroImage.alt,
+                width: 1200,
+                height: 630,
+              },
+              itinerary: ["Alleppey", "Alappuzha", "Kainakary", "Punnamada Lake", "Vembanad Lake"],
+              touristType: ["Couples", "Families", "One-day travelers", "Private groups"],
+              keywords: seoKnowledgePage.keywords,
+            }),
+          ];
+
+    return (
+      <>
+        <JsonLd
+          data={[
+            breadcrumbJsonLd,
+            imageJsonLd,
+            webPageJsonLd,
+            localBusinessJsonLd,
+            travelAgencyJsonLd,
+            speakableJsonLd,
+            ...(Array.isArray(pageSpecificSchema) ? pageSpecificSchema : [pageSpecificSchema]),
+            createFaqSchema(seoKnowledgePage.faqs),
+          ]}
+        />
+        <SeoKnowledgePage page={seoKnowledgePage} />
+      </>
+    );
+  }
+
   const page = getProgrammaticSeoPageBySlug(slug);
 
   if (!page) {

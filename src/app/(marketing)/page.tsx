@@ -11,9 +11,11 @@ import {
   createImageObjectSchema,
   createLocalBusinessSchema,
   createOrganizationSchema,
+  createReviewSchema,
   createServiceSchema,
   createSpeakableSchema,
   createTouristTripSchema,
+  createWebPageSchema,
   createWebSiteSchema,
   generatePageMetadata,
 } from "@/lib/seo";
@@ -23,42 +25,82 @@ const INTRO_IMAGE = "/images/home-backwater-houseboats.jpg";
 
 const homepageFaqs = [
   {
-    question: "Which is the best houseboat in Alleppey?",
+    question: "What is the best Shikara boat ride in Alleppey?",
     answer:
-      "For most couples, the best houseboat in Alleppey is a private one-bedroom stay. For families, the best fit is usually a two-bedroom or three-bedroom houseboat because it gives you better room balance, more shared lounge space, and a calmer overnight rhythm on the Kerala backwaters.",
+      "For most guests, the best Shikara boat ride in Alleppey is a private ride that gives you a quieter route, more flexible timing, and a calmer pace through the backwaters. Tranquil Cruise usually helps guests choose between open stretches, village canals, and softer sunset timing based on the kind of trip they want.",
   },
   {
-    question: "Houseboat vs shikkara in Alleppey: which should you choose?",
+    question: "How much does a private boat ride in Alleppey cost?",
     answer:
-      "A private Alleppey houseboat is best for couples, families, and groups who want a slower Kerala backwater experience with onboard comfort, meals, and scenic cruising. Shikkara rides are better for shorter canal sightseeing in Alappuzha when you want a lighter and more affordable trip.",
+      "The cost of a private boat ride in Alleppey depends on the ride duration, route type, guest count, and whether you want a Shikara ride, a sunset cruise, or a longer backwater experience. The easiest way to get the exact price is to share your date and group size on WhatsApp.",
   },
   {
-    question: "What is the day cruise price in Alleppey?",
+    question: "Is Shikara better than a houseboat?",
     answer:
-      "The day cruise price in Alleppey depends on the boat category, route length, meal plan, and guest count. Most guests get the most accurate quote by sharing their date and group size first, because private houseboat day trips in Alappuzha are usually priced around the exact plan rather than one flat public rate.",
+      "It depends on the experience you want. A Shikara is usually better for shorter sightseeing, village canal routes, and lighter private rides, while a houseboat is better for guests who want more onboard comfort, meals, deck time, or an overnight backwater stay.",
   },
   {
-    question: "Which honeymoon houseboat in Kerala is best for couples?",
+    question: "How long is the sunset boat ride in Alleppey?",
     answer:
-      "For most couples, the best honeymoon houseboat in Kerala is a private one-bedroom houseboat in Alleppey or Alappuzha with an overnight stay. That format gives you sunset cruising, more privacy, dinner on board, and a slower morning atmosphere that feels more romantic than a short daytime ride.",
+      "A sunset boat ride in Alleppey is usually planned around the evening light window, but the final duration depends on the route and boat type you choose. Many guests prefer a private ride that gives enough time for slower cruising, photos, and a calmer return after sunset.",
   },
   {
-    question: "What is the best time to visit Alleppey?",
+    question: "What is the best time for a boat ride in Alleppey?",
     answer:
-      "The best time to visit Alleppey depends on the kind of trip you want. Many travelers prefer the more comfortable sightseeing months for longer open-deck cruising, while others choose the monsoon period for a greener, quieter, and moodier Kerala backwaters experience.",
+      "The best time for a boat ride in Alleppey depends on the mood you want. Morning rides are usually calmer and quieter, while sunset rides are popular for softer light and a more romantic backwater atmosphere. Many families also prefer daytime rides for easier sightseeing.",
   },
   {
-    question: "How do I book with Tranquil Cruise?",
+    question: "Can couples and families book private rides?",
     answer:
-      "Booking is usually simplest through WhatsApp. Share your travel date, guest count, and whether you want a houseboat, shikkara ride, kayaking session, or stay, and Tranquil Cruise can guide you toward the right route, boat format, and next booking step.",
+      "Yes. Couples, families, and small groups can all book private rides in Alleppey. Private bookings are usually the best option if you want more comfort, flexible pacing, and a route that feels more personal to your trip.",
+  },
+  {
+    question: "Is advance booking required?",
+    answer:
+      "Advance booking is recommended, especially for sunset slots, weekends, holiday travel, and private rides during busy seasons. Booking early usually gives you better timing options and makes it easier to match the right route and boat format.",
+  },
+  {
+    question: "What is the difference between a private boat ride and a village boat tour in Alleppey?",
+    answer:
+      "A private boat ride is the broader booking idea, while a village boat tour is a more specific route style focused on quieter canals, local life, and a stronger rural backwater feel in Alappuzha and Alleppey.",
+  },
+  {
+    question: "Are sunrise boat rides in Alleppey worth it?",
+    answer:
+      "Yes. Sunrise rides are often worth it for travelers who want calmer water, cooler air, softer reflections, and a more peaceful Kerala backwater atmosphere than the busier parts of the day.",
+  },
+  {
+    question: "Are sunset boat rides in Alleppey good for couples?",
+    answer:
+      "Yes. Sunset rides are one of the strongest choices for couples because the evening light, wider backwater views, and slower pace create a more romantic setting.",
+  },
+  {
+    question: "Which Alleppey boat ride is best for families with children?",
+    answer:
+      "A private family boat ride or a comfortable shikara ride is usually best because the route can be kept moderate, the seating is easier, and the pace can match children and older family members.",
+  },
+  {
+    question: "Can I do Alleppey in one day?",
+    answer:
+      "Yes. Many travelers enjoy Alleppey in one day by choosing one strong backwater experience such as a private shikara, sunrise ride, sunset ride, or village tour and then keeping the rest of the itinerary simple.",
+  },
+  {
+    question: "What parts of Alleppey and Alappuzha do the rides usually cover?",
+    answer:
+      "Routes can include quieter village canals, sections near Kainakary, broader water around Punnamada Lake, and backwater stretches connected to the wider Vembanad Lake system depending on the ride type and timing.",
+  },
+  {
+    question: "Is WhatsApp the best way to book with Tranquil Cruise?",
+    answer:
+      "For most travelers, yes. WhatsApp is usually the quickest way to share your date, group size, preferred timing, and the kind of Kerala backwater experience you want so the right route and boat can be suggested quickly.",
   },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageMetadata({
-    title: "Alappuzha / Alleppey Houseboat | Private Houseboat Booking in Kerala",
+    title: "Alleppey Shikara Boat Ride | Private Backwater Cruise",
     description:
-      "Book an Alappuzha / Alleppey houseboat with private day cruise, overnight stay, luxury, family, and backwater route guidance. Compare Alleppey and Alappuzha houseboat options with Tranquil Cruise.",
+      "Book a private Alleppey Shikara boat ride with Tranquil Cruise. Explore Kerala backwaters, sunset cruises, village tours, and family-friendly experiences.",
     path: "/",
     keywords: [
       "Alappuzha houseboat",
@@ -104,23 +146,23 @@ export default async function Home() {
 
   const localBusinessJsonLd = createLocalBusinessSchema({
     description:
-      "Tranquil Cruise offers private houseboats, shikkara rides, country boat tours, kayaking, backwater rooms, and Ayurvedic wellness in Alappuzha and Alleppey, Kerala backwaters.",
+      "Tranquil Cruise is a local Alleppey and Alappuzha, Kerala backwater business offering private shikara boat rides, private boat rides, sunset boat rides, and backwater cruise experiences, along with houseboats, kayaking, rooms, and wellness options.",
     image: {
       path: "/images/home-hero-rainbow-houseboat.jpg",
-      alt: "Private Kerala houseboat in the Alleppey backwaters",
+      alt: "Private Shikara boat ride in Alleppey backwaters",
       width: 1200,
       height: 630,
     },
     images: [
       {
         path: "/images/home-hero-rainbow-houseboat.jpg",
-        alt: "Private Kerala houseboat in the Alleppey backwaters",
+        alt: "Private Shikara boat ride in Alleppey backwaters",
         width: 1200,
         height: 630,
       },
       {
         path: INTRO_IMAGE,
-        alt: "Houseboats and backwater scenery in Alleppey",
+        alt: "Kerala backwater cruise through Alleppey canals",
         width: 1200,
         height: 630,
       },
@@ -134,6 +176,10 @@ export default async function Home() {
           }
         : undefined,
     makesOffer: [
+      { name: "Alleppey Shikara Boat Ride", path: "/shikkara" },
+      { name: "Private Boat Ride Alleppey", path: "/shikkara" },
+      { name: "Sunset Boat Ride Alleppey", path: "/shikkara" },
+      { name: "Best Backwater Cruise Alleppey", path: "/alleppey-backwater-tour" },
       { name: "Luxury Houseboat Stay", path: "/houseboats" },
       { name: "Shikkara Rides", path: "/shikkara" },
       { name: "Village Country Boat Rides", path: "/canoe-boats" },
@@ -202,6 +248,19 @@ export default async function Home() {
     "Tranquil Cruise is a Kerala backwater travel business focused on Alleppey houseboat booking, private cruises, shikkara rides, kayaking, country boat rides, day cruises, and overnight backwater stays.",
     "Tranquil Cruise is a Kerala backwater travel business focused on Alappuzha and Alleppey houseboat booking, private cruises, shikkara rides, kayaking, country boat rides, day cruises, and overnight backwater stays.",
   );
+  const webPageJsonLd = createWebPageSchema({
+    path: "/",
+    name: "Alleppey Shikara Boat Ride and Private Backwater Cruise Homepage",
+    description:
+      "Homepage for private Alleppey shikara rides, private boat rides, village tours, sunrise rides, sunset rides, and Kerala backwater travel planning with Tranquil Cruise.",
+    image: {
+      path: "/images/home-hero-rainbow-houseboat.jpg",
+      alt: "Private Alleppey houseboat and backwater skyline",
+      width: 1200,
+      height: 630,
+    },
+    breadcrumbName: "Home",
+  });
   const speakableJsonLd = createSpeakableSchema({
     path: "/",
     name: "Alleppey Houseboat Booking and Private Backwater Cruises",
@@ -220,6 +279,15 @@ export default async function Home() {
       longitude: BUSINESS_COORDINATES.longitude,
     },
   };
+  const reviewJsonLd = displayedReviews.slice(0, 3).map((review) =>
+    createReviewSchema({
+      authorName: review.authorName,
+      reviewBody: review.text,
+      reviewRating: review.rating,
+      datePublished: review.publishedAt ?? null,
+      reviewUrl: review.reviewUrl ?? review.authorProfileUrl ?? null,
+    }),
+  );
 
   return (
     <>
@@ -227,6 +295,7 @@ export default async function Home() {
         data={[
           localBusinessJsonLd,
           websiteJsonLd,
+          webPageJsonLd,
           organizationJsonLd,
           speakableJsonLd,
           geoJsonLd,
@@ -235,6 +304,7 @@ export default async function Home() {
           homepageImageSchema,
           introImageSchema,
           faqJsonLd,
+          ...reviewJsonLd,
           ...homepageServiceSchemas,
         ]}
       />

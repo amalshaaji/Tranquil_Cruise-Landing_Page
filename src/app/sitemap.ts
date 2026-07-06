@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { galleryImages } from "@/lib/gallery-data";
 import { programmaticSeoPages } from "@/lib/programmatic-seo-pages";
+import { seoKnowledgePages } from "@/lib/seo-pages";
 import { SITE_ROUTES } from "@/lib/site";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -49,6 +50,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: PRIORITY_OVERRIDES[page.path] ?? 0.78,
+      images: page.gallery.map((image) => absoluteUrl(image.src)),
+    })),
+    ...seoKnowledgePages.map((page) => ({
+      path: page.path,
+      url: absoluteUrl(page.path),
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: PRIORITY_OVERRIDES[page.path] ?? 0.8,
       images: page.gallery.map((image) => absoluteUrl(image.src)),
     })),
   ];

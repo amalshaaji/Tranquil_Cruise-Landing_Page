@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import {
+  BUSINESS_ADDRESS_CANONICAL,
   BUSINESS_COORDINATES,
   BUSINESS_EMAIL,
   BUSINESS_HOURS,
   BUSINESS_LOCATION,
   BUSINESS_PHONE,
+  BUSINESS_POSTAL_CODE,
   DEFAULT_OG_IMAGE,
+  GOOGLE_MAPS_URL,
   INSTAGRAM_URL,
   SITE_NAME,
   SITE_URL,
@@ -96,6 +99,14 @@ export type WebSiteInput = {
   path?: string;
   description?: string;
   searchTarget?: string;
+};
+
+export type WebPageSchemaInput = {
+  path: string;
+  name: string;
+  description: string;
+  image?: ImageObjectInput;
+  breadcrumbName?: string;
 };
 
 export type ItemListInput = {
@@ -525,10 +536,13 @@ export function createLocalBusinessSchema({
     ],
     address: {
       "@type": "PostalAddress",
+      streetAddress: BUSINESS_ADDRESS_CANONICAL,
       addressLocality: "Alappuzha",
       addressRegion: "Kerala",
+      postalCode: BUSINESS_POSTAL_CODE,
       addressCountry: "IN",
     },
+    hasMap: GOOGLE_MAPS_URL,
     geo: createGeoCoordinatesSchema(geo),
     areaServed: SERVICE_AREAS.map((area) => ({
       "@type": "Place",
@@ -592,6 +606,63 @@ export function createWebSiteSchema({
       target: `${absoluteUrl(searchTarget)}?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
+  };
+}
+
+export function createWebPageSchema({
+  path,
+  name,
+  description,
+  image,
+  breadcrumbName,
+}: WebPageSchemaInput) {
+  const breadcrumb =
+    breadcrumbName
+      ? {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: breadcrumbName,
+              item: absoluteUrl(path),
+            },
+          ],
+        }
+      : undefined;
+
+  const primaryImageOfPage = image
+    ? {
+        "@type": "ImageObject",
+        url: absoluteUrl(image.path),
+        contentUrl: absoluteUrl(image.path),
+        description: image.alt,
+        width: image.width,
+        height: image.height,
+      }
+    : undefined;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: absoluteUrl(path),
+    mainEntityOfPage: absoluteUrl(path),
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    breadcrumb,
+    primaryImageOfPage,
+    inLanguage: "en",
   };
 }
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import { useRef } from "react";
 import HeroSection from "@/components/home/HeroSection";
+import { QuestionAnswerList } from "@/components/seo/AiAnswerSections";
 import ExperienceComparisonSection from "@/components/seo/ExperienceComparisonSection";
 import FaqSection from "@/components/seo/FaqSection";
 import type { FaqItem } from "@/lib/seo";
@@ -205,6 +206,118 @@ const reviewDisplayOverrides: Record<
   },
 };
 
+const homepageAnswerFirstItems = [
+  {
+    question: "What is the best boat ride in Alleppey for first-time visitors?",
+    answer:
+      "For many first-time visitors, a private shikara ride is the easiest starting point because it combines comfort, canal access, and flexible timing without needing a full overnight plan.",
+  },
+  {
+    question: "Which ride is better for couples: sunrise or sunset?",
+    answer:
+      "Sunset is usually better for romance and dramatic light, while sunrise is better for privacy, calm, and softer reflections.",
+  },
+  {
+    question: "What is the best family-friendly boat experience in Alleppey?",
+    answer:
+      "A private family boat ride with moderate duration and easy boarding is usually the best fit because it keeps the route scenic without tiring children or older relatives.",
+  },
+  {
+    question: "Can I explore village canals without booking a houseboat?",
+    answer:
+      "Yes. Village boat tours and private shikara rides are often the best way to explore Alleppey's narrower village canals and local backwater scenery.",
+  },
+  {
+    question: "Is Alleppey good for a one-day Kerala backwater trip?",
+    answer:
+      "Yes. One day can be enough if you center the visit around one strong private ride and let the rest of the day stay simple and well paced.",
+  },
+] as const;
+
+const homepageDeepDiveSections = [
+  {
+    title: "Why Tranquil Cruise works well for private backwater planning",
+    paragraphs: [
+      "The best Alleppey travel decisions usually begin with the feel of the trip rather than with a rigid boat label. Some travelers want a private shikara ride with softer village scenery. Some want a family boat ride that feels easy for children and grandparents. Some want a romantic sunset route through calmer backwaters. The point of good planning is not to push every traveler into the same format. It is to match the route, timing, and boat type to the real shape of the trip.",
+      "That is where Tranquil Cruise becomes useful. The site is structured to help travelers move from broad questions into specific booking paths. Instead of reading a generic sales page and guessing whether a houseboat, shikara, or village route fits best, visitors can compare experiences in plain language and choose the page that answers their actual intent. That makes the trip feel more personal and gives search engines a cleaner understanding of what the business really offers in Alappuzha and Alleppey.",
+    ],
+  },
+  {
+    title: "Alleppey backwaters, Punnamada Lake, and the route choices that shape the experience",
+    paragraphs: [
+      "The backwaters around Alleppey are not one single landscape. They include narrow local canals, paddy-edged stretches, quieter village routes near Kainakary, broader water around Punnamada Lake, and the larger Vembanad-connected backwater system that gives Kerala its iconic open-water feel. A good website should explain these route differences because travelers often care more about the mood of the route than the name of the boat.",
+      "Village canals are usually best for local detail, softer sightseeing, and the feeling of entering the daily life of the backwaters. Broader stretches are often best for evening light, wider views, and classic Kerala scenery. The strongest private rides often combine both. That is why route planning matters so much for sunrise cruises, sunset rides, photography outings, family sightseeing, and couple trips across Alappuzha.",
+    ],
+  },
+  {
+    title: "Private shikara experiences for couples, families, and one-day travelers",
+    paragraphs: [
+      "A private shikara experience is often the most flexible answer to commercial search intent because it suits many different traveler types. Couples like it because it feels intimate and can be timed around sunrise or sunset. Families like it because it keeps the outing manageable and comfortable. One-day travelers like it because it delivers the backwaters clearly without taking over the whole itinerary. That combination is one reason shikara pages are so important to both SEO and conversion.",
+      "Private rides also make the planning process more human. Instead of adapting to the needs of strangers on a shared outing, the route can be chosen around your own timing, photo goals, comfort level, and guest count. That makes the experience feel more intentional and more local, especially when the ride moves through village canals and quieter scenic stretches rather than following only the most predictable broad-water routes.",
+    ],
+  },
+  {
+    title: "Sunrise, sunset, and the best light windows for the Kerala backwaters",
+    paragraphs: [
+      "Timing is one of the biggest quality levers in Alleppey. Sunrise is usually best for calm, cooler air, soft reflections, and a quieter canal atmosphere. Sunset is usually best for romance, warmth, silhouettes, and the kind of dramatic visual mood that couples and photographers often want. Daytime rides can still work well, but the right morning or evening window usually makes the destination feel much more special.",
+      "This is why timing should never be hidden deep in the booking process. Travelers ask about it directly, and answer engines increasingly summarize around it. A strong homepage should therefore make it clear that sunrise boat rides, sunset boat rides, and village tours are not minor variations. They are meaningful experience choices that change how Alleppey and Alappuzha actually feel once you are on the water.",
+    ],
+  },
+  {
+    title: "What families and couples usually need from an Alleppey boat ride",
+    paragraphs: [
+      "Families usually need comfort, moderate duration, easy boarding, and a route that stays visually interesting without becoming tiring. That often points toward a private sightseeing ride or a family-friendly shikara with a balanced mix of village canals and wider views. The best family experiences are rarely the most complicated ones. They are the ones that let every age group enjoy the scenery without friction.",
+      "Couples usually need something different: privacy, mood, and timing. A couple boat ride in Alleppey often succeeds because the route feels quiet and the light feels intentional. That could mean a sunrise cruise with still reflections, a sunset ride with warm sky color, or a village route that feels intimate and local. The strongest booking pages make those different priorities easy to understand instead of forcing everyone through the same generic tourism language.",
+    ],
+  },
+  {
+    title: "Photography, safety, booking clarity, and why answer-first content matters",
+    paragraphs: [
+      "Travelers do not only want scenery. They also want confidence. They want to know whether the route is safe, whether the timing will suit their group, whether the photos will actually be good, and how to move from browsing to booking without confusion. That is why the best tourism websites answer practical questions first and then support those answers with richer detail, reviews, imagery, and internal links.",
+      "This homepage is built to do exactly that. It gives concise answers for AI search systems and for busy travelers, then expands into route explanations, local relevance, and service-page pathways that make the next step obvious. Whether someone is looking for the best shikara boat ride in Alleppey, a private boat ride for a family, a sunrise cruise, a sunset view, or a one-day Kerala backwater plan, the content helps them move forward with clarity.",
+    ],
+  },
+] as const;
+
+const homepageClusterLinks = [
+  {
+    title: "Shikara Boat Ride Alleppey",
+    href: "/shikara-boat-ride-alleppey",
+    description:
+      "Private canal sightseeing for travelers who want the easiest and most flexible Alleppey backwater format.",
+  },
+  {
+    title: "Private Boat Ride Alleppey",
+    href: "/private-boat-ride-alleppey",
+    description:
+      "The main comparison page for choosing the right private backwater ride based on route, timing, and group type.",
+  },
+  {
+    title: "Sunset Boat Ride Alleppey",
+    href: "/sunset-boat-ride-alleppey",
+    description:
+      "Golden-hour cruising for couples, photographers, and travelers who want the strongest evening atmosphere.",
+  },
+  {
+    title: "Sunrise Boat Ride Alleppey",
+    href: "/sunrise-boat-ride-alleppey",
+    description:
+      "Calm early-morning backwater rides for softer light, lower traffic, and a quieter Kerala feel.",
+  },
+  {
+    title: "Village Tour Alleppey",
+    href: "/village-tour-alleppey",
+    description:
+      "Local canal routes for travelers who want a more authentic Alappuzha and Kainakary backwater experience.",
+  },
+  {
+    title: "Backwater Cruise Alleppey",
+    href: "/backwater-cruise-alleppey",
+    description:
+      "The broad cruise-planning hub for comparing shikaras, village tours, family rides, and romantic backwater options.",
+  },
+] as const;
+
 function stripMarkdownHeading(value: string) {
   return value.replace(/^#{1,6}\s+/, "").trim();
 }
@@ -238,7 +351,7 @@ function CategoryExperienceCarousel({
             {stripMarkdownHeading("Curated Experience Types")}
           </p>
           <h2 className="mt-3 max-w-3xl font-[var(--font-display)] text-balance text-[2rem] font-semibold leading-[1.03] tracking-[-0.03em] text-navy sm:text-5xl">
-            {stripMarkdownHeading("Choose the backwater mood that fits the kind of day you want")}
+            Private Boat Ride in Alleppey
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
             Some guests want wide water and a slower deck-side afternoon. Others want narrow
@@ -440,7 +553,7 @@ export default function ReferenceHomePage({
                 {stripMarkdownHeading("Signature Houseboat Collection")}
               </p>
               <h2 className="mt-3 max-w-2xl font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                {stripMarkdownHeading("Houseboats selected for beautiful stays, polished comfort, and unhurried time on the water")}
+                Alleppey Backwater Cruise Experience
               </h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
                 From intimate one-bedroom overnights to larger celebration-ready layouts, these are
@@ -525,7 +638,7 @@ export default function ReferenceHomePage({
                 {stripMarkdownHeading("Booking Details")}
               </p>
               <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight text-navy sm:text-5xl">
-                {stripMarkdownHeading("Plan the right experience first, then get the exact quote on WhatsApp")}
+                Contact and Booking
               </h2>
               <p className="mt-4 max-w-3xl text-sm leading-6 text-foreground/72 sm:text-base sm:leading-7">
                 These details give a clearer starting point for Alleppey houseboat bookings, shikkara rides,
@@ -626,7 +739,7 @@ export default function ReferenceHomePage({
               Since 2011
             </p>
             <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-tight sm:mt-4 sm:text-5xl">
-              Helping guests find the right backwater experience for more than a decade
+              Why Choose Tranquil Cruise
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-6 text-white/76 sm:mt-5 sm:text-base sm:leading-7">
               We know that no two trips to Alleppey feel the same. Some guests want a quiet
@@ -674,9 +787,9 @@ export default function ReferenceHomePage({
                   <Flame className="h-4 w-4" aria-hidden="true" />
                   {spotlightLabel}
                 </div>
-                <h3 className="mt-5 max-w-2xl font-[var(--font-display)] text-[2.1rem] leading-[0.95] tracking-[-0.05em] text-[#173247] sm:text-4xl lg:text-[4rem]">
-                  Customize Your Journey
-                </h3>
+                <h2 className="mt-5 max-w-2xl font-[var(--font-display)] text-[2.1rem] leading-[0.95] tracking-[-0.05em] text-[#173247] sm:text-4xl lg:text-[4rem]">
+                  Sunset Boat Ride Alleppey
+                </h2>
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-foreground/72 sm:text-base sm:leading-8">
                   Combine your houseboat cruise with visits to these amazing destinations. We&apos;ll
                   create a personalized itinerary just for you.
@@ -833,27 +946,27 @@ export default function ReferenceHomePage({
       </section>
 
       {displayedReviews.length ? (
-        <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f4f9fc_0%,#e7f1f6_100%)] px-3 py-8 sm:px-6 sm:py-20 lg:px-8">
+        <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f4f9fc_0%,#e7f1f6_100%)] px-3 py-8 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(104,185,176,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(20,56,71,0.08),transparent_30%)]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(255,255,255,0.65)_0%,rgba(255,255,255,0)_100%)]" />
           <div className="mx-auto max-w-7xl">
-            <div className="relative mx-1 overflow-hidden rounded-[2.5rem] border border-white/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(236,245,249,0.92)_100%)] p-5 shadow-[0_30px_80px_rgba(20,56,71,0.12)] backdrop-blur-sm sm:mx-0 sm:p-8 lg:p-10">
+            <div className="relative mx-1 overflow-hidden rounded-[2.5rem] border border-white/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.95)_0%,rgba(236,245,249,0.92)_100%)] p-5 shadow-[0_30px_80px_rgba(20,56,71,0.12)] backdrop-blur-sm sm:mx-0 sm:p-8 lg:p-12 xl:p-14">
               <div className="pointer-events-none absolute right-[-3rem] top-[-4rem] h-40 w-40 rounded-full bg-[#9fd6d0]/30 blur-3xl" />
               <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-3xl">
-                  <p className="text-[0.74rem] font-semibold uppercase tracking-[0.34em] text-teal/80">
+                  <p className="text-[0.74rem] font-semibold uppercase tracking-[0.34em] text-teal/80 lg:text-[0.8rem]">
                     {stripMarkdownHeading("What Our Guests Say")}
                   </p>
                   <h2 className="mt-3 font-[var(--font-display)] text-[2rem] leading-[0.96] tracking-[-0.03em] text-navy sm:text-5xl lg:text-[3.5rem]">
-                    {stripMarkdownHeading("Recent review highlights")}
+                    Google Reviews
                   </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7">
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-foreground/72 sm:mt-4 sm:text-base sm:leading-7 lg:max-w-3xl lg:text-lg lg:leading-8">
                     Real guest notes from recent Google reviews, chosen to give a quick feel for the
                     hospitality, food, service, and backwater atmosphere guests mention most often.
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-end">
-                  <div className="inline-flex items-center gap-3 rounded-full border border-[#cfe2ea] bg-white px-4 py-2.5 text-sm font-semibold text-[#234760] shadow-[0_12px_28px_rgba(20,56,71,0.08)]">
+                  <div className="inline-flex items-center gap-3 rounded-full border border-[#cfe2ea] bg-white px-4 py-2.5 text-sm font-semibold text-[#234760] shadow-[0_12px_28px_rgba(20,56,71,0.08)] lg:px-5 lg:py-3 lg:text-base">
                     <span className="text-[#f2c14e]">★★★★★</span>
                     <span>
                       Recent{" "}
@@ -872,12 +985,12 @@ export default function ReferenceHomePage({
                     href={googleReviewsHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_16px_36px_rgba(20,56,71,0.14)] transition hover:bg-ink"
+                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-navy px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_16px_36px_rgba(20,56,71,0.14)] transition hover:bg-ink lg:min-h-12 lg:px-6 lg:text-base"
                   >
                     View Google reviews
                   </Link>
                   {reviewSourceNote ? (
-                    <div className="max-w-sm rounded-[1.3rem] border border-[#d8e8ee] bg-white/82 px-5 py-4 text-sm leading-6 text-[#31546c] shadow-[0_12px_28px_rgba(20,56,71,0.06)] lg:text-right">
+                    <div className="max-w-sm rounded-[1.3rem] border border-[#d8e8ee] bg-white/82 px-5 py-4 text-sm leading-6 text-[#31546c] shadow-[0_12px_28px_rgba(20,56,71,0.06)] lg:max-w-md lg:text-base lg:leading-7 lg:text-right">
                       {reviewSourceNote}
                     </div>
                   ) : null}
@@ -888,8 +1001,8 @@ export default function ReferenceHomePage({
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-[linear-gradient(90deg,rgba(236,245,249,1)_0%,rgba(236,245,249,0)_100%)]" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-[linear-gradient(270deg,rgba(236,245,249,1)_0%,rgba(236,245,249,0)_100%)]" />
 
-                <div className="overflow-hidden rounded-[2.25rem] border border-white/70 bg-white/40 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-sm">
-                  <div className="flex min-w-max items-stretch gap-4 px-3 sm:px-5 animate-review-marquee will-change-transform">
+                <div className="overflow-hidden rounded-[2.25rem] border border-white/70 bg-white/40 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-sm lg:py-5">
+                  <div className="flex min-w-max items-stretch gap-4 px-3 animate-review-marquee will-change-transform sm:px-5 lg:gap-5 lg:px-6">
                     {marqueeReviews.map((review, index) => {
                       const reviewOverride = reviewDisplayOverrides[review.authorName];
                       const displayAuthorName = reviewOverride?.authorName ?? review.authorName;
@@ -904,7 +1017,7 @@ export default function ReferenceHomePage({
                       return (
                         <article
                           key={`${review.authorName}-${review.publishedLabel}-top-${index}`}
-                          className="group flex w-[16.5rem] shrink-0 flex-col overflow-hidden rounded-[1.9rem] border border-white/85 bg-[linear-gradient(180deg,#ffffff_0%,#f5fafc_100%)] p-5 shadow-[0_22px_48px_rgba(20,56,71,0.1)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_58px_rgba(20,56,71,0.14)] sm:w-[17rem] sm:p-4"
+                          className="group flex w-[16.5rem] shrink-0 flex-col overflow-hidden rounded-[1.9rem] border border-white/85 bg-[linear-gradient(180deg,#ffffff_0%,#f5fafc_100%)] p-5 shadow-[0_22px_48px_rgba(20,56,71,0.1)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_58px_rgba(20,56,71,0.14)] sm:w-[17rem] sm:p-5 lg:w-[21rem] lg:p-6"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex min-w-0 items-start gap-3">
@@ -925,7 +1038,7 @@ export default function ReferenceHomePage({
                                 )}
                               </div>
                               <div className="min-w-0">
-                                <div className="inline-flex items-center rounded-full border border-[#d7e7ee] bg-[#f5fafc] px-2.5 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-[#5f839a]">
+                                <div className="inline-flex items-center rounded-full border border-[#d7e7ee] bg-[#f5fafc] px-2.5 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-[#5f839a] lg:px-3 lg:py-1.5 lg:text-[0.65rem]">
                                   <span aria-label="Google" className="font-bold normal-case tracking-[-0.02em]">
                                     <span className="text-[#4285F4]">G</span>
                                     <span className="text-[#EA4335]">o</span>
@@ -936,28 +1049,28 @@ export default function ReferenceHomePage({
                                   </span>
                                   <span className="ml-1">review</span>
                                 </div>
-                                <h3 className="mt-2.5 line-clamp-2 text-[1.05rem] font-semibold leading-snug text-[#173247] sm:text-base">
+                                <h3 className="mt-2.5 line-clamp-2 text-[1.05rem] font-semibold leading-snug text-[#173247] sm:text-base lg:text-[1.2rem]">
                                   {stripMarkdownHeading(displayAuthorName)}
                                 </h3>
-                                <p className="mt-1 text-xs text-[#5f839a]">{review.publishedLabel}</p>
+                                <p className="mt-1 text-xs text-[#5f839a] lg:text-sm">{review.publishedLabel}</p>
                               </div>
                             </div>
-                            <div className="rounded-[0.9rem] border border-[#d7e7ee] bg-[#f7fbfd] px-3 py-2 text-right text-[0.7rem] font-semibold text-[#234760] shadow-[0_8px_18px_rgba(20,56,71,0.04)]">
-                              <div className="text-[0.58rem] uppercase tracking-[0.22em] text-[#6f95ab]">
+                            <div className="rounded-[0.9rem] border border-[#d7e7ee] bg-[#f7fbfd] px-3 py-2 text-right text-[0.7rem] font-semibold text-[#234760] shadow-[0_8px_18px_rgba(20,56,71,0.04)] lg:px-3.5 lg:py-2.5 lg:text-[0.78rem]">
+                              <div className="text-[0.58rem] uppercase tracking-[0.22em] text-[#6f95ab] lg:text-[0.62rem]">
                                 Rating
                               </div>
-                              <div className="mt-1 text-sm">{review.rating.toFixed(1)}</div>
+                              <div className="mt-1 text-sm lg:text-base">{review.rating.toFixed(1)}</div>
                             </div>
                           </div>
-                          <div className="mt-4 flex items-center gap-1 text-[#f2c14e]">
+                          <div className="mt-4 flex items-center gap-1 text-[#f2c14e] lg:text-lg">
                             {Array.from({ length: Math.round(review.rating) }).map((_, starIndex) => (
                               <span key={`${review.authorName}-star-${starIndex}`}>★</span>
                             ))}
                           </div>
-                          <p className="mt-4 flex-1 text-[1.02rem] leading-7 text-[#234760]/82 sm:text-sm sm:leading-6">
-                            <span className="mr-1 text-lg leading-none text-[#8bbfbd]">“</span>
+                          <p className="mt-4 flex-1 text-[1.02rem] leading-7 text-[#234760]/82 sm:text-sm sm:leading-6 lg:text-[1.08rem] lg:leading-8">
+                            <span className="mr-1 text-lg leading-none text-[#8bbfbd] lg:text-xl">“</span>
                             {displayReviewText}
-                            <span className="ml-1 text-lg leading-none text-[#8bbfbd]">”</span>
+                            <span className="ml-1 text-lg leading-none text-[#8bbfbd] lg:text-xl">”</span>
                           </p>
                         </article>
                       );
@@ -970,6 +1083,78 @@ export default function ReferenceHomePage({
         </section>
       ) : null}
 
+      <QuestionAnswerList
+        eyebrow="Quick Answers"
+        title="Short answers to the questions travelers ask most about Alleppey boat rides."
+        intro="These direct answers sit on the homepage so readers and AI search systems can quickly understand the main decisions before diving into the deeper route and booking pages."
+        items={[...homepageAnswerFirstItems]}
+        sectionClassName="bg-white"
+      />
+
+      <section className="bg-[#f4f8fa] px-4 py-16 sm:px-6 sm:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+              Alleppey Planning Guide
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-5xl">
+              A calmer way to understand private backwater travel in Kerala.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-foreground/66 sm:text-base">
+              These sections expand the homepage into a stronger destination guide without
+              changing the visual identity of the site. They cover route planning, family and
+              couple fit, sunrise and sunset timing, local backwater context, and why smaller
+              private rides often create the best Alleppey experience.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6">
+            {homepageDeepDiveSections.map((section) => (
+              <article
+                key={section.title}
+                className="rounded-[2rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.06)] sm:rounded-[2.4rem] sm:p-8"
+              >
+                <h2 className="text-2xl font-semibold tracking-tight text-sand sm:text-3xl">
+                  {section.title}
+                </h2>
+                <div className="mt-5 space-y-4 text-sm leading-7 text-foreground/68 sm:text-base">
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <div className="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-teal-600/80">
+              Explore By Intent
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-sand sm:text-5xl">
+              Follow the exact page that matches your Alleppey question.
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {homepageClusterLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-[1.6rem] border border-navy/8 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfc_100%)] p-6 shadow-[0_18px_40px_rgba(23,50,71,0.05)] transition hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(23,50,71,0.08)]"
+              >
+                <h3 className="text-xl font-semibold text-sand">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-foreground/66">{item.description}</p>
+                <span className="mt-4 inline-flex text-sm font-semibold text-teal">
+                  Open this page
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="hidden bg-[#edf6fb] lg:block">
         <ExperienceComparisonSection />
       </section>
@@ -977,7 +1162,7 @@ export default function ReferenceHomePage({
       <section className="bg-[#edf6fb] pb-16 sm:pb-20">
         <FaqSection
           eyebrow="Booking Questions"
-          title="Details guests usually ask before booking"
+          title="Frequently Asked Questions"
           faqs={homepageFaqs}
         />
       </section>
