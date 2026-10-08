@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* Design tokens — natural, warm, restrained. */
+@theme {
+  --color-paper: #f7f3ec;
+  --color-sand: #ece4d6;
+  --color-stone: #d8cfbf;
+  --color-ink: #1f2a26;
+  --color-moss: #3d5a4c;
+  --color-moss-deep: #243a30;
+  --color-clay: #b0734a;
+  --color-mist: #5f6e67;
+  --color-gold: #b8914a;
+
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --radius-soft: 0.75rem;
+  --ease-calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button,
+summary,
+select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.reveal {
+  transition:
+    opacity 0.7s var(--ease-calm),
+    transform 0.7s var(--ease-calm);
+}
+.reveal[data-state="hidden"] {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+::selection {
+  background: var(--color-moss);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal[data-state="hidden"] {
+    opacity: 1;
+    transform: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Gentle water motion */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes drift {
+  0%, 100% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+}
+.bob { animation: bob 6s ease-in-out infinite; }
+.drift { animation: drift 9s ease-in-out infinite; }
+.drift-slow { animation: drift 14s ease-in-out infinite reverse; }
+
+/* Photos: slow, quiet zoom on hover. */
+.zoom-img img {
+  transition: transform 1.4s var(--ease-calm);
+}
+.zoom-img:hover img {
+  transform: scale(1.06);
+}
+
+/* Gallery photo swap */
+@keyframes photo-in {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: scale(1); }
+}
+.photo-in { animation: photo-in 0.7s var(--ease-calm); }
+
+/* Gold offset frame behind a photo; shifts a little on hover. */
+.photo-frame .frame-line {
+  transition: transform 0.7s var(--ease-calm);
+}
+.photo-frame:hover .frame-line {
+  transform: translate(0.35rem, 0.35rem);
+}
+.photo-frame.mirror:hover .frame-line {
+  transform: translate(-0.35rem, 0.35rem);
+}
