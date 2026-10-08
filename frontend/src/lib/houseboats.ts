@@ -2,8 +2,6 @@ import type { PhotoSpec } from "@/components/ui/Photo";
 import type { FaqItem } from "@/components/sections/Faq";
 
 // Placeholder prices, capacities and copy — replace with real operating details.
-// The UI only talks to getHouseboats() / getHouseboat(); to move to the backend, change those two
-// functions to call `api<Houseboat[]>("/houseboats")` and nothing else needs to change.
 export type Tier = "deluxe" | "premium";
 
 export const tiers: Array<{ tier: Tier; label: string; blurb: string }> = [
