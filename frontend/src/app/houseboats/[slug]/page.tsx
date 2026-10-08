@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookingProvider, BookNowButton } from "@/components/houseboats/Booking";
+import {
+  BookingProvider,
+  BookNowButton,
+} from "@/components/houseboats/Booking";
 import { DetailGallery } from "@/components/houseboats/DetailGallery";
 import { Faq } from "@/components/sections/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -11,26 +14,44 @@ import { DetailList } from "@/components/ui/DetailList";
 import { Eyebrow, Heading, Lead } from "@/components/ui/Heading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { bedroomsLabel, faqsFor, getHouseboat, getHouseboats, guestsLabel, priceLabel, rupees } from "@/lib/houseboats";
+import {
+  bedroomsLabel,
+  faqsFor,
+  getHouseboat,
+  getHouseboats,
+  priceLabel,
+  rupees,
+} from "@/lib/houseboats";
 import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return (await getHouseboats()).map((b) => ({ slug: b.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const boat = await getHouseboat((await params).slug);
   if (!boat) return {};
   return pageMetadata({
     title: `${boat.name}: Alleppey houseboat`,
-    description: `${boat.summary} Sleeps up to ${boat.capacity}, from ${rupees(boat.pricePerNight)} a night.`,
+    description: `${boat.summary} From ${rupees(boat.pricePerNight)} a night.`,
     path: `/houseboats/${boat.slug}`,
   });
 }
 
-export default async function HouseboatPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function HouseboatPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const [boat, boats] = await Promise.all([getHouseboat(slug), getHouseboats()]);
+  const [boat, boats] = await Promise.all([
+    getHouseboat(slug),
+    getHouseboats(),
+  ]);
   if (!boat) notFound();
 
   return (
@@ -47,12 +68,13 @@ export default async function HouseboatPage({ params }: { params: Promise<{ slug
       <div className="bg-paper">
         <Container className="pb-10 pt-10 sm:pt-16">
           <Reveal>
-            <Link href="/houseboats#fleet" className="mb-8 inline-flex min-h-11 items-center text-sm text-mist transition-colors hover:text-ink">
+            <Link
+              href="/houseboats#fleet"
+              className="mb-8 inline-flex min-h-11 items-center text-sm text-mist transition-colors hover:text-ink"
+            >
               ← All houseboats
             </Link>
-            <Eyebrow>
-              {bedroomsLabel(boat.bedrooms)} · {guestsLabel(boat.capacity)}
-            </Eyebrow>
+            <Eyebrow>{bedroomsLabel(boat.bedrooms)}</Eyebrow>
             <Heading as="h1" className="max-w-3xl">
               {boat.name}, on the water.
             </Heading>
@@ -65,7 +87,10 @@ export default async function HouseboatPage({ params }: { params: Promise<{ slug
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>
-              <DetailGallery photos={boat.gallery} label={`${bedroomsLabel(boat.bedrooms)} · ${boat.tag}`} />
+              <DetailGallery
+                photos={boat.gallery}
+                label={`${bedroomsLabel(boat.bedrooms)} · ${boat.tag}`}
+              />
             </Reveal>
             <Reveal className="mt-12">
               <Eyebrow>The boat</Eyebrow>
@@ -86,7 +111,9 @@ export default async function HouseboatPage({ params }: { params: Promise<{ slug
             <Card className="lg:sticky lg:top-24">
               <Eyebrow className="mb-0">From</Eyebrow>
               <p className="mt-2">
-                <span className="rounded-soft bg-gold/15 px-3 py-0.5 font-serif text-4xl text-moss-deep">{priceLabel(boat)}</span>
+                <span className="rounded-soft bg-gold/15 px-3 py-0.5 font-serif text-4xl text-moss-deep">
+                  {priceLabel(boat)}
+                </span>
                 <span className="text-mist"> / night</span>
               </p>
               <p className="mt-1 text-sm text-mist">Meals and crew included.</p>
@@ -94,8 +121,12 @@ export default async function HouseboatPage({ params }: { params: Promise<{ slug
                 <DetailList
                   items={[
                     ["Bedrooms", String(boat.bedrooms)],
-                    ["Guests", `Up to ${boat.capacity}`],
-                    ["Availability", boat.availability.blocked.length ? "Some dates taken" : "Open for booking"],
+                    [
+                      "Availability",
+                      boat.availability.blocked.length
+                        ? "Some dates taken"
+                        : "Open for booking",
+                    ],
                   ]}
                 />
               </div>
@@ -124,8 +155,14 @@ export default async function HouseboatPage({ params }: { params: Promise<{ slug
           <Reveal delay={100} className="lg:col-span-8">
             <ul className="grid gap-x-10 sm:grid-cols-2">
               {boat.amenities.map((a) => (
-                <li key={a} className="flex gap-4 border-b border-stone py-4 text-sm">
-                  <span aria-hidden className="mt-1.5 size-2 shrink-0 rotate-45 bg-gold" />
+                <li
+                  key={a}
+                  className="flex gap-4 border-b border-stone py-4 text-sm"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-1.5 size-2 shrink-0 rotate-45 bg-gold"
+                  />
                   {a}
                 </li>
               ))}

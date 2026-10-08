@@ -58,7 +58,7 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
     const e: Record<string, string> = {};
     if (checkIn && checkOut && !nights) e.check_out = "Check-out must be after check-in";
     else if (nights && overlapsBlocked(boat, checkIn, checkOut)) e.check_in = "This boat isn't available on those dates";
-    if (guests > boat.capacity) e.adults = `${boat.name} sleeps up to ${boat.capacity} guests`;
+    if (guests > boat.capacity) e.adults = `Too many guests for this boat. Please choose a larger one.`;
     return e;
   }
 
@@ -92,7 +92,7 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
           <select value={slug} onChange={(e) => setSlug(e.target.value)} className={input}>
             {boats.map((b) => (
               <option key={b.slug} value={b.slug}>
-                {b.name} · up to {b.capacity} guests
+                {b.name}
               </option>
             ))}
           </select>
@@ -127,7 +127,7 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
         <Eyebrow className="mb-0">Your stay</Eyebrow>
         <h3 className="mt-2 font-serif text-2xl">{boat.name}</h3>
         <p className="mt-1 text-sm text-mist">
-          {bedroomsLabel(boat.bedrooms)} · up to {boat.capacity} guests
+          {bedroomsLabel(boat.bedrooms)}
         </p>
 
         <dl className="mt-6 border-b border-stone">

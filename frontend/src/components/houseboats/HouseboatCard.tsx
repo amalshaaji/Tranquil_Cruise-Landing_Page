@@ -5,11 +5,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
 import { PhotoChip } from "@/components/ui/PhotoChip";
-import { type Houseboat, bedroomsLabel, guestsLabel, priceLabel, sizeName, tiers } from "@/lib/houseboats";
+import {
+  type Houseboat,
+  bedroomsLabel,
+  priceLabel,
+  sizeName,
+  tiers,
+} from "@/lib/houseboats";
 import { BookNowButton } from "./Booking";
 
 /** One bedroom size as a hairline-separated row. A Deluxe / Premium switch changes the boat shown. */
-export function HouseboatCard({ options, index }: { options: Houseboat[]; index: number }) {
+export function HouseboatCard({
+  options,
+  index,
+}: {
+  options: Houseboat[];
+  index: number;
+}) {
   const [tier, setTier] = useState(options[0].tier);
   const boat = options.find((b) => b.tier === tier) ?? options[0];
   const href = `/houseboats/${boat.slug}`;
@@ -22,15 +34,24 @@ export function HouseboatCard({ options, index }: { options: Houseboat[]; index:
         tabIndex={-1}
       >
         <Photo {...boat.photo} sizes="(min-width:768px) 380px, 100vw" />
-        <PhotoChip className={`left-3 top-3 ${boat.tier === "premium" ? "!bg-gold !text-ink" : ""}`}>{boat.tier === "premium" ? `★ ${boat.tag}` : boat.tag}</PhotoChip>
-        <PhotoChip className="bottom-3 left-3">Sleeps {boat.capacity}</PhotoChip>
+        <PhotoChip
+          className={`left-3 top-3 ${boat.tier === "premium" ? "!bg-gold !text-ink" : ""}`}
+        >
+          {boat.tier === "premium" ? `★ ${boat.tag}` : boat.tag}
+        </PhotoChip>
       </Link>
 
       <div className="md:col-span-5">
-        <p className="text-xs tracking-[0.18em] text-clay">{String(index + 1).padStart(2, "0")}</p>
-        <h4 className="mt-1 font-serif text-2xl sm:text-3xl">{sizeName(boat)}</h4>
+        <p className="text-xs tracking-[0.18em] text-clay">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+        <h4 className="mt-1 font-serif text-2xl sm:text-3xl">
+          {sizeName(boat)}
+        </h4>
         {options.length === 1 && boat.tier === "premium" && (
-          <span className="mt-3 inline-block rounded-full bg-gradient-to-br from-gold to-clay px-4 py-1.5 font-serif text-sm text-ink shadow-md ring-2 ring-gold">★ Premium</span>
+          <span className="mt-3 inline-block rounded-full bg-gradient-to-br from-gold to-clay px-4 py-1.5 font-serif text-sm text-ink shadow-md ring-2 ring-gold">
+            ★ Premium
+          </span>
         )}
         {options.length > 1 && (
           <div
@@ -62,7 +83,9 @@ export function HouseboatCard({ options, index }: { options: Houseboat[]; index:
                     {o.tier === "premium" && <span aria-hidden>★ </span>}
                     {label}
                   </span>
-                  <span className={`mt-1 text-xs ${on ? (o.tier === "premium" ? "text-ink/80" : "text-paper/80") : "text-mist"}`}>
+                  <span
+                    className={`mt-1 text-xs ${on ? (o.tier === "premium" ? "text-ink/80" : "text-paper/80") : "text-mist"}`}
+                  >
                     {priceLabel(o)} / night
                   </span>
                 </button>
@@ -70,14 +93,15 @@ export function HouseboatCard({ options, index }: { options: Houseboat[]; index:
             })}
           </div>
         )}
-        <p className="mt-3 text-sm text-moss">
-          {bedroomsLabel(boat.bedrooms)} · {guestsLabel(boat.capacity)}
-        </p>
+        <p className="mt-3 text-sm text-moss">{bedroomsLabel(boat.bedrooms)}</p>
         <p className="mt-3 max-w-md text-mist">{boat.summary}</p>
         <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
           {boat.amenities.slice(0, 3).map((a) => (
             <li key={a} className="flex items-center gap-2.5 text-sm">
-              <span aria-hidden className="size-1.5 shrink-0 rotate-45 bg-gold" />
+              <span
+                aria-hidden
+                className="size-1.5 shrink-0 rotate-45 bg-gold"
+              />
               {a}
             </li>
           ))}
@@ -87,7 +111,11 @@ export function HouseboatCard({ options, index }: { options: Houseboat[]; index:
       <div className="md:col-span-3 md:text-right">
         <p className="text-xs text-mist">From</p>
         <p>
-          <span className="rounded-soft bg-gold/15 px-2.5 py-0.5 font-serif text-3xl text-moss-deep">{priceLabel(boat)}</span>
+          <span
+            className={`rounded-soft bg-gold/15 px-2.5 py-0.5 whitespace-nowrap font-serif text-moss-deep ${boat.priceUpTo ? "text-2xl" : "text-3xl"}`}
+          >
+            {priceLabel(boat)}
+          </span>
           <span className="text-sm text-mist"> / night</span>
         </p>
         <div className="mt-5 grid gap-3">

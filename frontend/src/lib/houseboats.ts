@@ -89,7 +89,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...lake, position: "28% 50%" }, { ...calm, position: "50% 70%" }, { ...sunset, position: "45% 55%" }],
     bedroomConfig: [["Cabin", "Queen bed, private bathroom"]],
     amenities: [...baseAmenities, "Candle-lit dinner on request"],
-    facilities: [...standard, ["Sleeps", "2 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -107,7 +107,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...lake, position: "72% 50%" }, { ...sunset, position: "45% 55%" }, { ...calm, position: "50% 70%" }],
     bedroomConfig: [["Cabin one", "Queen bed, private bathroom"], ["Cabin two", "Queen or twin, private bathroom"]],
     amenities: [...baseAmenities, "Shared lounge and sun deck"],
-    facilities: [...standard, ["Sleeps", "4 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -125,7 +125,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...calm, position: "50% 60%" }, { ...lake, position: "72% 50%" }, { ...canal, position: "50% 60%" }],
     bedroomConfig: [["Cabin one", "Queen bed, private bathroom"], ["Cabin two", "Queen bed, private bathroom"], ["Cabin three", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Upper sun deck", "Child-friendly railed decks"],
-    facilities: [...standard, ["Sleeps", "6 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -142,7 +142,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...sunset, position: "45% 55%" }, { ...lake, position: "28% 50%" }, { ...canal, position: "50% 60%" }],
     bedroomConfig: [["Cabin one", "Queen bed, private bathroom"], ["Cabin two", "Queen bed, private bathroom"], ["Cabin three", "Queen or twin, private bathroom"], ["Cabin four", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Upper sun deck", "Long dining deck"],
-    facilities: [...standard, ["Sleeps", "8 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -159,7 +159,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...canal, position: "50% 60%" }, { ...calm, position: "50% 70%" }, { ...sunset, position: "45% 55%" }],
     bedroomConfig: [["Cabin one", "Queen bed, private bathroom"], ["Cabin two", "Queen bed, private bathroom"], ["Cabin three", "Queen bed, private bathroom"], ["Cabin four", "Twin beds, private bathroom"], ["Cabin five", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Shared lounge", "Upper sun deck"],
-    facilities: [...standard, ["Sleeps", "10 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -176,7 +176,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...calm, position: "30% 60%" }, { ...canal, position: "50% 60%" }, { ...lake, position: "72% 50%" }],
     bedroomConfig: [["Cabins one to four", "Queen bed, private bathroom"], ["Cabins five and six", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Shared lounge", "Upper sun deck", "Long dining deck"],
-    facilities: [...standard, ["Sleeps", "12 guests"]],
+    facilities: [...standard],
     availability,
   },
   {
@@ -193,7 +193,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...lake, position: "50% 50%" }, { ...sunset, position: "45% 55%" }, { ...canal, position: "50% 60%" }],
     bedroomConfig: [["Cabins one to four", "Queen bed, private bathroom"], ["Cabins five to seven", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Shared lounge", "Upper sun deck", "Space for celebrations"],
-    facilities: [...standard, ["Crew", "Captain, two cooks and hosts"], ["Sleeps", "14 guests"]],
+    facilities: [...standard, ["Crew", "Captain, two cooks and hosts"]],
     availability,
   },
   {
@@ -210,7 +210,7 @@ const deluxeBoats: Houseboat[] = [
     gallery: [{ ...canal, position: "50% 60%" }, { ...lake, position: "50% 50%" }, { ...sunset, position: "45% 55%" }],
     bedroomConfig: [["Cabins one to five", "Queen bed, private bathroom"], ["Cabins six to eight", "Twin beds, private bathroom"]],
     amenities: [...baseAmenities, "Shared lounge", "Upper sun deck", "Long dining deck"],
-    facilities: [...standard, ["Crew", "Captain, two cooks and hosts"], ["Sleeps", "16 guests"]],
+    facilities: [...standard, ["Crew", "Captain, two cooks and hosts"]],
     availability,
   },
 ];
@@ -471,8 +471,6 @@ export const rupees = (n: number) => `₹${Math.round(n).toLocaleString("en-IN")
 /** A boat's nightly price, as a range when it has one. */
 export const priceLabel = (b: Houseboat) => (b.priceUpTo ? `${rupees(b.pricePerNight)} – ${rupees(b.priceUpTo)}` : rupees(b.pricePerNight));
 
-export const guestsLabel = (n: number) => `Up to ${n} guests`;
-
 export const bedroomsLabel = (n: number) => `${n} ${n === 1 ? "bedroom" : "bedrooms"}`;
 
 const DAY = 86_400_000;
@@ -531,10 +529,9 @@ export const party = {
 /** Questions guests ask about one boat, answered from its own details. */
 export function faqsFor(boat: Houseboat): FaqItem[] {
   return [
-    { q: `How many guests does the ${boat.name.toLowerCase()} boat sleep?`, a: `Up to ${boat.capacity} guests in ${bedroomsLabel(boat.bedrooms)}, each with a private bathroom. Count adults and children together.` },
     { q: "What does the price include?", a: `${priceLabel(boat)} a night. That covers the boat, the crew, your meals and the air-conditioning at night.` },
     { q: "How does booking work?", a: "Choose Book now, pick your dates and send the request. We confirm availability by phone or WhatsApp within a day. Nothing is charged online." },
     { q: "Can we stay more than one night?", a: "Yes. The price is per night, so a longer stay is simply more nights. Ask us about routes for two or three nights." },
-    { q: "We are more than this boat sleeps. What then?", a: boat.capacity >= 16 ? `For more than ${boat.capacity} guests, see our group and party options on the houseboats page.` : "Choose the next size up, or message us and we'll suggest the best fit for your group." },
+    { q: "We are a bigger group. What then?", a: boat.capacity >= 16 ? "For a larger group, see our group and party options on the houseboats page." : "Choose the next size up, or message us and we'll suggest the best fit for your group." },
   ];
 }

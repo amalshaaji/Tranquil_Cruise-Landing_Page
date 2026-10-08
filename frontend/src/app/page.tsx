@@ -1,8 +1,8 @@
 import { Feature } from "@/components/home/Feature";
-import { Gallery } from "@/components/home/Gallery";
 import { Hero } from "@/components/home/Hero";
 import { Testimonials } from "@/components/home/Testimonials";
 import { Photo } from "@/components/ui/Photo";
+import { homestays } from "@/lib/homestays";
 import { houseboatList, rupees } from "@/lib/houseboats";
 
 export default function Home() {
@@ -57,9 +57,9 @@ export default function Home() {
         scene={
           <div className="relative h-full w-full">
             <Photo
-              src="/images/hero-sunset.webp"
-              alt="A traditional houseboat silhouetted against a blazing orange sunset on the Alleppey backwaters, with birds in the sky"
-              position="45% 55%"
+              src="/images/day-cruise-dusk.webp"
+              alt="A two-deck houseboat gliding across still blue water at dusk, its windows glowing amber and reflected in the lake"
+              position="50% 62%"
               sizes="(min-width:1024px) 58vw, 100vw"
             />
           </div>
@@ -75,7 +75,6 @@ export default function Home() {
         lead="A shikkara slips into the waterways no houseboat can reach — past toddy tappers, duck herds and village jetties."
         details={[
           ["Length", "Two hours, or longer on request"],
-          ["Seats", "Up to six, with cushions"],
           ["Best at", "Early morning or golden hour"],
         ]}
         href="/shikkara"
@@ -120,7 +119,34 @@ export default function Home() {
         }
       />
 
-      <Gallery />
+      <Feature
+        id="rooms"
+        badge={`From ${rupees(homestays[1].price)} / night`}
+        index="05"
+        eyebrow="Rooms"
+        title="Sleep to the sound of water."
+        lead="Two homestays beside the backwaters: a private pool villa and a heritage Kerala home. Quiet rooms, soft linen and a kitchen that cooks for you."
+        details={[
+          ["Kayal Pool Villa", `${rupees(homestays[0].price)} a night, whole villa`],
+          ["Tharavadu Heritage Homestay", `${rupees(homestays[1].price)} per AC room`],
+          ["Rooms", "Air-conditioned, private bathroom"],
+          ["Meals", "Home-cooked Kerala food"],
+        ]}
+        href="/rooms"
+        cta="See the rooms"
+        tone="paper"
+        scene={
+          <div className="relative h-full w-full">
+            <Photo
+              src="/images/villa-living-pool.webp"
+              alt="Living room with a built-in brown sofa and a glass wall opening onto tropical plants and the blue pool"
+              position="50% 55%"
+              sizes="(min-width:1024px) 58vw, 100vw"
+            />
+          </div>
+        }
+      />
+
       <Testimonials />
     </>
   );

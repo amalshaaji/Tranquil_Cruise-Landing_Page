@@ -47,7 +47,6 @@ export const houseboats: Experience = {
       "There is no fixed route. The captain reads the weather and the water, and you decide when to stop.",
     ],
     facts: [
-      ["Sleeps", "2 to 16 guests"],
       ["Bedrooms", "1 to 8"],
       ["Crew", "Captain, cook, host"],
       ["Cruising hours", "12 pm – 9 am"],
@@ -110,7 +109,6 @@ export const dayCruise: Experience = {
     ],
     facts: [
       ["Duration", "11 am – 4 pm"],
-      ["Guests", "Up to 8 per boat"],
       ["Meals", "Lunch, tea and snacks"],
       ["Best for", "A day trip or a first visit"],
     ],
@@ -156,7 +154,6 @@ export const shikkara: Experience = {
     ],
     facts: [
       ["Duration", "2 hours, longer on request"],
-      ["Seats", "Up to six"],
       ["Best at", "Early morning or golden hour"],
       ["Includes", "Tea and snacks"],
     ],
@@ -216,7 +213,6 @@ export const kayaking: Experience = {
       ["Start", "6:30 am from our jetty"],
       ["Duration", "About three hours"],
       ["Level", "Easy — no experience needed"],
-      ["Group size", "Up to 8"],
     ],
   },
   timeline: {
