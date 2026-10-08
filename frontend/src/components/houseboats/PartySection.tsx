@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow, Heading } from "@/components/ui/Heading";
@@ -9,8 +8,7 @@ import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { Field, input } from "@/components/sections/EnquiryForm";
-import { ApiError, api } from "@/lib/api";
-import { Confirmation, openChat, whatsappLink } from "@/lib/enquiry";
+import { whatsappLink } from "@/lib/enquiry";
 import { party } from "@/lib/houseboats";
 
 /** Large groups and parties of 30+, arranged as a custom plan. */
@@ -83,10 +81,8 @@ export function PartySection({ tone }: { tone?: "paper" | "sand" }) {
 }
 
 function PartyForm() {
-  const router = useRouter();
-  const [busy, setBusy] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [failed, setFailed] = useState(false);
+  const [sent, setSent] = useState(false);
+  const errors: Record<string, string> = {};
 
   type Values = { occasion: string; travel_date: string; guests: string; name: string; phone: string; email: string; message: string; arrange: string[] };
   const read = (form: HTMLFormElement): Values => {
@@ -104,37 +100,10 @@ function PartyForm() {
       .filter(Boolean)
       .join("\n");
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const d = read(e.currentTarget);
-    setBusy(true);
-    setErrors({});
-    setFailed(false);
-    const chat = window.open("", "_blank");
-    const contact = [`Name: ${d.name}`, `Phone: ${d.phone}`, `Email: ${d.email}`, `Date: ${d.travel_date}`].join("\n");
-    try {
-      const res = await api<Confirmation>("/enquiries", {
-        method: "POST",
-        body: JSON.stringify({
-          service: "houseboat",
-          travel_date: d.travel_date,
-          guests: Number(d.guests),
-          name: d.name,
-          phone: d.phone,
-          email: d.email,
-          message: message(d),
-        }),
-      });
-      openChat(chat, `Hello Tranquil Cruise, I'd like to plan this party (ref ${res.reference}).\n${message(d)}\n${contact}`);
-      router.push(`/enquiry/${res.reference}`);
-    } catch (err) {
-      const invalid = err instanceof ApiError && Object.keys(err.fields).length > 0;
-      if (invalid) chat?.close();
-      else openChat(chat, `Hello Tranquil Cruise, I'd like to plan this party.\n${message(d)}\n${contact}`);
-      if (err instanceof ApiError && Object.keys(err.fields).length) setErrors(err.fields);
-      else setFailed(true);
-      setBusy(false);
-    }
+    openWhatsApp(e.currentTarget);
+    setSent(true);
   }
 
   function openWhatsApp(form: HTMLFormElement | null) {
@@ -190,19 +159,15 @@ function PartyForm() {
       </Field>
 
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
-        <Button type="submit" disabled={busy} className="w-full disabled:opacity-60 sm:w-auto">
-          {busy ? "Sending…" : "Send party request"}
-        </Button>
-        <Button type="button" variant="outline" className="w-full sm:w-auto" onClick={(e) => openWhatsApp(e.currentTarget.form)}>
-          Plan on WhatsApp
+        <Button type="submit" className="w-full sm:w-auto">
+          Send on WhatsApp
         </Button>
       </div>
-      <p className="text-sm text-mist sm:col-span-2">No payment now. Sending opens WhatsApp with your details ready to send. We reply there within a day with a plan and a quote.</p>
-      {failed && (
-        <p role="alert" className="text-sm text-clay sm:col-span-2">
-          We couldn&apos;t send that just now. Please try again, or message us on WhatsApp instead.
-        </p>
-      )}
+      <p className="text-sm text-mist sm:col-span-2" aria-live="polite">
+        {sent
+          ? "WhatsApp should have opened with your details ready. Press send there and we'll reply with a plan and a quote within a day."
+          : "No payment now. Sending opens WhatsApp with your details ready to send. We reply there within a day with a plan and a quote."}
+      </p>
     </form>
   );
 }

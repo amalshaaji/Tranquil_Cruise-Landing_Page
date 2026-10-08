@@ -15,6 +15,8 @@ const pages: Array<[path: string, priority: number]> = [
   ["/contact", 0.7],
 ];
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return pages.map(([path, priority]) => ({

@@ -7,7 +7,7 @@ import { whatsappLink } from "@/lib/enquiry";
 /** Always-reachable actions on phones. Hidden on larger screens and on pages that are already about enquiring. */
 export function MobileBar() {
   const pathname = usePathname();
-  if (pathname.startsWith("/contact") || pathname.startsWith("/enquiry")) return null;
+  if (pathname.startsWith("/contact")) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone/70 bg-paper/95 backdrop-blur lg:hidden">

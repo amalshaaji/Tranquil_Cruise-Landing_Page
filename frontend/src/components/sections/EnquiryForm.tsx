@@ -1,10 +1,9 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { cloneElement, Suspense, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { ApiError, api } from "@/lib/api";
-import { Confirmation, Service, serviceLabel, services, whatsappLink } from "@/lib/enquiry";
+import { Service, serviceLabel, services, whatsappLink } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
 
 export const input =
@@ -25,40 +24,17 @@ function Preselected() {
 }
 
 export function EnquiryForm({ defaultService }: { defaultService?: Service }) {
-  const router = useRouter();
-  const [busy, setBusy] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [failed, setFailed] = useState(false);
+  const [sent, setSent] = useState(false);
+  const errors: Record<string, string> = {};
 
   function values(form: HTMLFormElement) {
     return Object.fromEntries(new FormData(form)) as Record<string, string>;
   }
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const d = values(e.currentTarget);
-    setBusy(true);
-    setErrors({});
-    setFailed(false);
-    try {
-      const res = await api<Confirmation>("/enquiries", {
-        method: "POST",
-        body: JSON.stringify({
-          service: d.service,
-          travel_date: d.travel_date,
-          guests: Number(d.guests),
-          name: d.name,
-          phone: d.phone,
-          email: d.email,
-          message: d.message,
-        }),
-      });
-      router.push(`/enquiry/${res.reference}`);
-    } catch (err) {
-      if (err instanceof ApiError && Object.keys(err.fields).length) setErrors(err.fields);
-      else setFailed(true);
-      setBusy(false);
-    }
+    openWhatsApp(e.currentTarget);
+    setSent(true);
   }
 
   function openWhatsApp(form: HTMLFormElement | null) {
@@ -69,6 +45,8 @@ export function EnquiryForm({ defaultService }: { defaultService?: Service }) {
       d.travel_date && `Date: ${d.travel_date}`,
       d.guests && `Guests: ${d.guests}`,
       d.name && `Name: ${d.name}`,
+      d.phone && `Phone: ${d.phone}`,
+      d.email && `Email: ${d.email}`,
       d.message,
     ].filter(Boolean);
     window.open(whatsappLink(lines.join("\n")), "_blank", "noopener");
@@ -105,24 +83,16 @@ export function EnquiryForm({ defaultService }: { defaultService?: Service }) {
       </Field>
 
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
-        <Button type="submit" disabled={busy} className="w-full disabled:opacity-60 sm:w-auto">
-          {busy ? "Sending…" : "Send enquiry"}
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full sm:w-auto"
-          onClick={(e) => openWhatsApp(e.currentTarget.form)}
-        >
-          Enquire on WhatsApp
+        <Button type="submit" className="w-full sm:w-auto">
+          Send on WhatsApp
         </Button>
       </div>
 
-      {failed && (
-        <p role="alert" className="text-sm text-clay sm:col-span-2">
-          We couldn&apos;t send that just now. Please try again, or message us on WhatsApp instead.
-        </p>
-      )}
+      <p className="text-sm text-mist sm:col-span-2" aria-live="polite">
+        {sent
+          ? "WhatsApp should have opened with your details ready. Press send there and we'll reply within a day."
+          : "No payment now. Sending opens WhatsApp with your details ready to send."}
+      </p>
     </form>
   );
 }

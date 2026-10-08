@@ -1,25 +1,13 @@
 import type { NextConfig } from "next";
 
+// A fully static site: `next build` writes plain HTML, CSS and JS to out/.
+// Security headers live in vercel.json, since static export can't set them here.
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: false,
   poweredByHeader: false,
-  images: {
-    formats: ["image/avif", "image/webp"],
-    qualities: [60, 75, 95],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
-  },
+  // The image optimiser needs a server, so photos are served as the WebP files in public/.
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
