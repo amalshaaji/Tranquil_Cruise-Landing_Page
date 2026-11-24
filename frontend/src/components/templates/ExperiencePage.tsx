@@ -51,7 +51,7 @@ export function ExperiencePage({
             ? {
                 label: data.heroCta,
                 href: whatsappLink(
-                  `Hello Tranquil Cruise, I'd like to book: ${seo.name}.`,
+                  `Hello Tranquil Alleppey Backwater Cruises, I'd like to book: ${seo.name}.`,
                 ),
                 external: true,
                 note: data.heroCtaNote,

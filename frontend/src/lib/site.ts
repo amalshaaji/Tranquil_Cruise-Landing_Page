@@ -7,7 +7,7 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const site = {
-  name: "Tranquil Cruise",
+  name: "Tranquil Alleppey Backwater Cruises",
   tagline: "Slow days on the Kerala backwaters",
   description:
     "Private houseboat journeys through the Alleppey backwaters, hosted by a local crew and fed from a Kerala kitchen.",

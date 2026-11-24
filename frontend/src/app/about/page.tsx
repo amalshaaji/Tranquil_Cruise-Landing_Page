@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Tranquil Cruise",
+  title: "About Tranquil Alleppey Backwater Cruises",
   description: `Boat tours through the Alleppey backwaters from ${site.jetty}, Pallathuruthy, Alappuzha. Rated ${site.googleRating} from ${site.googleReviewCount} Google reviews.`,
   path: "/about",
 });
@@ -37,7 +37,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <Image src="/images/logo-mark-cream.png" alt="" width={140} height={77} className="bob absolute left-1/2 top-[22%] h-14 w-auto -translate-x-1/2 sm:h-16" />
-            <Image src="/images/about-wordmark.png" alt="Tranquil Cruise" fill priority sizes="480px" className="object-contain" />
+            <Image src="/images/about-wordmark.png" alt="Tranquil Alleppey Backwater Cruises" fill priority sizes="480px" className="object-contain" />
           </div>
         }
       />

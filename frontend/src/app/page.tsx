@@ -2,8 +2,6 @@ import { Feature } from "@/components/home/Feature";
 import { Hero } from "@/components/home/Hero";
 import { Testimonials } from "@/components/home/Testimonials";
 import { Photo } from "@/components/ui/Photo";
-import { homestays } from "@/lib/homestays";
-import { houseboatList, rupees } from "@/lib/houseboats";
 
 export default function Home() {
   return (
@@ -12,7 +10,7 @@ export default function Home() {
 
       <Feature
         id="houseboats"
-        badge={`From ${rupees(houseboatList[0].pricePerNight)} / night`}
+        badge="One boat, one party"
         index="01"
         eyebrow="Houseboats"
         title="A kettuvallam of your own."
@@ -121,14 +119,14 @@ export default function Home() {
 
       <Feature
         id="rooms"
-        badge={`From ${rupees(homestays[1].price)} / night`}
+        badge="Stay by the water"
         index="05"
         eyebrow="Rooms"
         title="Sleep to the sound of water."
         lead="Two homestays beside the backwaters: a private pool villa and a heritage Kerala home. Quiet rooms, soft linen and a kitchen that cooks for you."
         details={[
-          ["Kayal Pool Villa", `${rupees(homestays[0].price)} a night, whole villa`],
-          ["Tharavadu Heritage Homestay", `${rupees(homestays[1].price)} per AC room`],
+          ["Kayal Pool Villa", "Private pool villa"],
+          ["Tharavadu Heritage Homestay", "Traditional Kerala homestay"],
           ["Rooms", "Air-conditioned, private bathroom"],
           ["Meals", "Home-cooked Kerala food"],
         ]}

@@ -14,7 +14,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tranquil Cruise — Alleppey Houseboats, Shikkara & Kayaking",
+    default: "Tranquil Alleppey Backwater Cruises — Alleppey Houseboats, Shikkara & Kayaking",
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_IN",
-    title: "Tranquil Cruise — Alleppey Houseboats, Shikkara & Kayaking",
+    title: "Tranquil Alleppey Backwater Cruises — Alleppey Houseboats, Shikkara & Kayaking",
     description: site.description,
     url: "/",
   },

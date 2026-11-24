@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/Heading";
 import { Modal } from "@/components/ui/Modal";
 import { Field, input } from "@/components/sections/EnquiryForm";
 import { whatsappLink } from "@/lib/enquiry";
-import { type Houseboat, bedroomsLabel, nightsBetween, overlapsBlocked, quote, rupees } from "@/lib/houseboats";
+import { type Houseboat, bedroomsLabel, nightsBetween, overlapsBlocked } from "@/lib/houseboats";
 
 const BookingContext = createContext<(slug: string) => void>(() => {});
 
@@ -51,7 +51,6 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
 
   const boat = boats.find((b) => b.slug === slug) ?? boats[0];
   const nights = nightsBetween(checkIn, checkOut);
-  const q = nights ? quote(boat, nights) : null;
   const guests = adults + children;
 
   function validate() {
@@ -68,7 +67,6 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
       `Check-in: ${checkIn}`,
       `Check-out: ${checkOut} (${nights} ${nights === 1 ? "night" : "nights"})`,
       `Guests: ${adults} adults, ${children} children`,
-      q && `Estimated total: ${rupees(q.total)}`,
       d.message && `Requests: ${d.message}`,
     ]
       .filter(Boolean)
@@ -81,7 +79,7 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
     setErrors(local);
     if (Object.keys(local).length) return;
     const contact = [`Name: ${d.name}`, `Phone: ${d.phone}`, `Email: ${d.email}`].join("\n");
-    window.open(whatsappLink(`Hello Tranquil Cruise, I'd like to confirm this booking.\n${message(d)}\n${contact}`), "_blank", "noopener");
+    window.open(whatsappLink(`Hello Tranquil Alleppey Backwater Cruises, I'd like to confirm this booking.\n${message(d)}\n${contact}`), "_blank", "noopener");
     setSent(true);
   }
 
@@ -131,14 +129,7 @@ function BookingForm({ boats, initial }: { boats: Houseboat[]; initial: string }
         </p>
 
         <dl className="mt-6 border-b border-stone">
-          <Row k="Price per night" v={rupees(boat.pricePerNight)} />
-          <Row k="Nights" v={q ? String(q.nights) : "Choose dates"} />
-          <div className="flex justify-between gap-6 border-t border-stone py-4">
-            <dt className="font-medium">Total</dt>
-            <dd className="rounded-soft bg-gold/20 px-2.5 py-0.5 font-serif text-2xl text-moss-deep" aria-live="polite">
-              {q ? rupees(q.total) : "—"}
-            </dd>
-          </div>
+          <Row k="Nights" v={nights ? String(nights) : "Choose dates"} />
         </dl>
         <p className="mt-4 text-sm text-mist">No payment now. Confirming opens WhatsApp with your details ready to send. We confirm your dates there within a day.</p>
 

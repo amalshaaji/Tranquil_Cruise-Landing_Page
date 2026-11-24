@@ -40,7 +40,7 @@ export function EnquiryForm({ defaultService }: { defaultService?: Service }) {
   function openWhatsApp(form: HTMLFormElement | null) {
     const d = form ? values(form) : {};
     const lines = [
-      "Hello Tranquil Cruise, I'd like to enquire.",
+      "Hello Tranquil Alleppey Backwater Cruises, I'd like to enquire.",
       d.service && `Service: ${serviceLabel(d.service)}`,
       d.travel_date && `Date: ${d.travel_date}`,
       d.guests && `Guests: ${d.guests}`,

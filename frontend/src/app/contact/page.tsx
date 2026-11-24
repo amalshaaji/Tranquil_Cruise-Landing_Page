@@ -19,7 +19,7 @@ export const metadata: Metadata = pageMetadata({
 
 const contacts = [
   { title: "Call us", value: site.phone, href: `tel:${site.phone.replace(/[^\d+]/g, "")}` },
-  { title: "WhatsApp", value: "Chat with us", href: whatsappLink("Hello Tranquil Cruise, I'd like to enquire."), external: true },
+  { title: "WhatsApp", value: "Chat with us", href: whatsappLink("Hello Tranquil Alleppey Backwater Cruises, I'd like to enquire."), external: true },
   { title: "Email", value: site.email, href: `mailto:${site.email}` },
 ];
 

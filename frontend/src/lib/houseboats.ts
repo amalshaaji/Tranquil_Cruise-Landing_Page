@@ -1,7 +1,7 @@
 import type { PhotoSpec } from "@/components/ui/Photo";
 import type { FaqItem } from "@/components/sections/Faq";
 
-// Placeholder prices, capacities and copy — replace with real operating details.
+// Placeholder capacities and copy — replace with real operating details.
 export type Tier = "deluxe" | "premium";
 
 export const tiers: Array<{ tier: Tier; label: string; blurb: string }> = [
@@ -18,10 +18,6 @@ export type Houseboat = {
   tag: string;
   /** Maximum guests on board (adults + children). */
   capacity: number;
-  /** Rupees per night. */
-  pricePerNight: number;
-  /** Top of a price range (e.g. by season). Quotes use pricePerNight, the lower figure. */
-  priceUpTo?: number;
   summary: string;
   description: string[];
   photo: PhotoSpec;
@@ -82,7 +78,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 1,
     name: "One bedroom Deluxe",
     capacity: 2,
-    pricePerNight: 9000,
     summary: "An intimate boat for two, with a front deck and a dining table by the water.",
     description: [intro, "One cabin, one deck and no one else on board. A quiet choice for couples and honeymoons."],
     photo: { ...lake, position: "28% 50%" },
@@ -99,8 +94,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 2,
     name: "Two bedrooms Deluxe",
     capacity: 4,
-    pricePerNight: 12000,
-    priceUpTo: 14000,
     summary: "Our most-loved size: two cabins, a shared lounge and a sun deck above.",
     description: [intro, "Two cabins either side of a shared lounge, with a sun deck above for the afternoon."],
     photo: { ...lake, position: "72% 50%" },
@@ -117,8 +110,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 3,
     name: "Three bedrooms Deluxe",
     capacity: 6,
-    pricePerNight: 18000,
-    priceUpTo: 20000,
     summary: "For families and friends travelling together, with a wide upper deck.",
     description: [intro, "Three cabins and an upper deck wide enough for the whole party to sit down together."],
     photo: { ...calm, position: "50% 60%" },
@@ -135,7 +126,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 4,
     name: "Four bedrooms Deluxe",
     capacity: 8,
-    pricePerNight: 26000,
     summary: "Four cabins and a long dining deck, made for two families or a group of friends.",
     description: [intro, "Four cabins, a long dining table and generous deck space, with the crew expanded to match."],
     photo: { ...sunset, position: "45% 55%" },
@@ -152,7 +142,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 5,
     name: "Five bedrooms Deluxe",
     capacity: 10,
-    pricePerNight: 25000,
     summary: "Our largest everyday boat, with a lounge, dining deck and room for everyone.",
     description: [intro, "Five cabins arranged over two levels, with a lounge, a dining deck and an open sun deck."],
     photo: { ...canal, position: "50% 60%" },
@@ -169,7 +158,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 6,
     name: "Six bedrooms Deluxe",
     capacity: 12,
-    pricePerNight: 29000,
     summary: "Six cabins over two levels, with a lounge and a wide deck for a big family or group.",
     description: [intro, "Six cabins over two decks, a lounge and a long dining table. Room for three families, or a party of friends."],
     photo: { ...calm, position: "30% 60%" },
@@ -186,7 +174,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 7,
     name: "Seven bedrooms Deluxe",
     capacity: 14,
-    pricePerNight: 34000,
     summary: "A full-length boat for weddings, reunions and large parties, with a larger crew.",
     description: [intro, "Seven cabins over two decks and a wide lounge, for celebrations and extended families. Please book early."],
     photo: { ...lake, position: "50% 50%" },
@@ -203,7 +190,6 @@ const deluxeBoats: Houseboat[] = [
     bedrooms: 8,
     name: "Eight bedrooms Deluxe",
     capacity: 16,
-    pricePerNight: 38000,
     summary: "Our grandest boat: eight cabins, a wide lounge and a long dining deck, with a full crew.",
     description: [intro, "Eight cabins over two decks, a wide lounge and a long dining table, with the crew expanded to match. Please book early."],
     photo: { ...canal, position: "50% 60%" },
@@ -388,29 +374,13 @@ const premiumEightBedroomGallery: PhotoSpec[] = [
   premium8br("cabin-3", "Cabin with a cream diamond-panelled headboard edged in gold and a dark green bed runner", "50% 50%"),
 ];
 
-const roundTo500 = (n: number) => Math.round(n / 500) * 500;
-
-/** Premium prices that are set, not derived from Deluxe. */
-const premiumPrices: Record<string, [from: number, upTo?: number]> = {
-  "two-bedroom-premium": [15000, 18000],
-  "three-bedroom-premium": [20000, 22000],
-  "four-bedroom-premium": [30000],
-  "five-bedroom-premium": [36000],
-  "six-bedroom-premium": [40000],
-  "seven-bedroom-premium": [45000],
-  "eight-bedroom-premium": [52000],
-};
-
-// Placeholder: every Premium boat is its Deluxe sibling upgraded, at about 25% more per night.
-// Replace the price, copy or photos per boat by editing the object below when you have real details.
+// Every Premium boat is its Deluxe sibling upgraded.
 const premiumBoats: Houseboat[] = deluxeBoats.map((b): Houseboat => ({
   ...b,
   slug: b.slug.replace("-deluxe", "-premium"),
   tier: "premium",
   name: b.name.replace("Deluxe", "Premium"),
   tag: "Premium",
-  pricePerNight: premiumPrices[b.slug.replace("-deluxe", "-premium")]?.[0] ?? roundTo500(b.pricePerNight * 1.25),
-  priceUpTo: premiumPrices[b.slug.replace("-deluxe", "-premium")]?.[1],
   summary: `${b.summary} Upgraded with larger cabins and king beds.`,
   description: [...b.description, "The Premium upgrade adds larger cabins, king beds, finer linens and a candle-lit dinner."],
   gallery: [...b.gallery].reverse(),
@@ -466,11 +436,6 @@ export async function getHouseboat(slug: string): Promise<Houseboat | undefined>
   return houseboatList.find((b) => b.slug === slug);
 }
 
-export const rupees = (n: number) => `₹${Math.round(n).toLocaleString("en-IN")}`;
-
-/** A boat's nightly price, as a range when it has one. */
-export const priceLabel = (b: Houseboat) => (b.priceUpTo ? `${rupees(b.pricePerNight)} – ${rupees(b.priceUpTo)}` : rupees(b.pricePerNight));
-
 export const bedroomsLabel = (n: number) => `${n} ${n === 1 ? "bedroom" : "bedrooms"}`;
 
 const DAY = 86_400_000;
@@ -479,11 +444,6 @@ export function nightsBetween(checkIn: string, checkOut: string) {
   if (!checkIn || !checkOut) return 0;
   const n = Math.round((Date.parse(checkOut) - Date.parse(checkIn)) / DAY);
   return Number.isFinite(n) && n > 0 ? n : 0;
-}
-
-export function quote(boat: Houseboat, nights: number) {
-  const subtotal = boat.pricePerNight * nights;
-  return { nights, perNight: boat.pricePerNight, total: subtotal };
 }
 
 /** True if any night of the stay falls inside a blocked range. */
@@ -529,9 +489,8 @@ export const party = {
 /** Questions guests ask about one boat, answered from its own details. */
 export function faqsFor(boat: Houseboat): FaqItem[] {
   return [
-    { q: "What does the price include?", a: `${priceLabel(boat)} a night. That covers the boat, the crew, your meals and the air-conditioning at night.` },
     { q: "How does booking work?", a: "Choose Book now, pick your dates and send the request. We confirm availability by phone or WhatsApp within a day. Nothing is charged online." },
-    { q: "Can we stay more than one night?", a: "Yes. The price is per night, so a longer stay is simply more nights. Ask us about routes for two or three nights." },
+    { q: "Can we stay more than one night?", a: "Yes. Ask us about routes for two or three nights." },
     { q: "We are a bigger group. What then?", a: boat.capacity >= 16 ? "For a larger group, see our group and party options on the houseboats page." : "Choose the next size up, or message us and we'll suggest the best fit for your group." },
   ];
 }

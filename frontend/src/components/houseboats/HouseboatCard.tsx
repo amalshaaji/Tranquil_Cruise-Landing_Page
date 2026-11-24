@@ -8,7 +8,6 @@ import { PhotoChip } from "@/components/ui/PhotoChip";
 import {
   type Houseboat,
   bedroomsLabel,
-  priceLabel,
   sizeName,
   tiers,
 } from "@/lib/houseboats";
@@ -83,11 +82,6 @@ export function HouseboatCard({
                     {o.tier === "premium" && <span aria-hidden>★ </span>}
                     {label}
                   </span>
-                  <span
-                    className={`mt-1 text-xs ${on ? (o.tier === "premium" ? "text-ink/80" : "text-paper/80") : "text-mist"}`}
-                  >
-                    {priceLabel(o)} / night
-                  </span>
                 </button>
               );
             })}
@@ -109,16 +103,7 @@ export function HouseboatCard({
       </div>
 
       <div className="md:col-span-3 md:text-right">
-        <p className="text-xs text-mist">From</p>
-        <p>
-          <span
-            className={`rounded-soft bg-gold/15 px-2.5 py-0.5 whitespace-nowrap font-serif text-moss-deep ${boat.priceUpTo ? "text-2xl" : "text-3xl"}`}
-          >
-            {priceLabel(boat)}
-          </span>
-          <span className="text-sm text-mist"> / night</span>
-        </p>
-        <div className="mt-5 grid gap-3">
+        <div className="grid gap-3">
           <BookNowButton slug={boat.slug} />
           <Button href={href} variant="outline">
             View details

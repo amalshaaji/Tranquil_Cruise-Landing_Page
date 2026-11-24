@@ -29,7 +29,7 @@ export function Footer() {
               Plan your journey
             </Button>
             <Button
-              href={whatsappLink("Hello Tranquil Cruise, I'd like to enquire.")}
+              href={whatsappLink("Hello Tranquil Alleppey Backwater Cruises, I'd like to enquire.")}
               target="_blank"
               rel="noopener"
               variant="outline"

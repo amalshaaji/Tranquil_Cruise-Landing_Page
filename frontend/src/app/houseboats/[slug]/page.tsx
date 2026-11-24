@@ -19,8 +19,6 @@ import {
   faqsFor,
   getHouseboat,
   getHouseboats,
-  priceLabel,
-  rupees,
 } from "@/lib/houseboats";
 import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/seo";
 
@@ -37,7 +35,7 @@ export async function generateMetadata({
   if (!boat) return {};
   return pageMetadata({
     title: `${boat.name}: Alleppey houseboat`,
-    description: `${boat.summary} From ${rupees(boat.pricePerNight)} a night.`,
+    description: boat.summary,
     path: `/houseboats/${boat.slug}`,
   });
 }
@@ -109,14 +107,8 @@ export default async function HouseboatPage({
 
           <Reveal delay={120} className="lg:col-span-5">
             <Card className="lg:sticky lg:top-24">
-              <Eyebrow className="mb-0">From</Eyebrow>
-              <p className="mt-2">
-                <span className="rounded-soft bg-gold/15 px-3 py-0.5 font-serif text-4xl text-moss-deep">
-                  {priceLabel(boat)}
-                </span>
-                <span className="text-mist"> / night</span>
-              </p>
-              <p className="mt-1 text-sm text-mist">Meals and crew included.</p>
+              <Eyebrow className="mb-0">Your stay</Eyebrow>
+              <p className="mt-2 text-sm text-mist">Meals and crew included.</p>
               <div className="mt-6">
                 <DetailList
                   items={[

@@ -9,10 +9,6 @@ export type Homestay = {
   lead: string;
   facts: Array<readonly [string, string]>;
   highlights: string[];
-  /** Rupees, per night. */
-  price: number;
-  /** What the price is for, e.g. "per villa" or "per AC room". */
-  priceUnit: string;
   photos: PhotoSpec[];
 };
 
@@ -29,12 +25,10 @@ export const homestays: Homestay[] = [
       ["Pool", "Private swimming pool"],
       ["Inside", "Bedroom, living room, kitchenette"],
     ],
-    price: 7000,
-    priceUnit: "per night, whole villa",
     highlights: [
       "Private pool and garden",
       "Home-cooked Kerala meals",
-      "Hosted by the Tranquil Cruise family",
+      "Hosted by the Tranquil Alleppey Backwater Cruises family",
       "Backwater views",
       "Easy transfer to the jetty",
     ],
@@ -92,8 +86,6 @@ export const homestays: Homestay[] = [
       ["Style", "Tiled-roof Kerala tharavadu"],
       ["Rooms", "Air-conditioned bedrooms, attached baths"],
     ],
-    price: 2500,
-    priceUnit: "per AC room, per night",
     highlights: [
       "Carved timber doors",
       "Air-conditioned rooms",

@@ -66,7 +66,7 @@ async function findPlaceId(key: string): Promise<string | null> {
       "X-Goog-FieldMask": "places.id,places.displayName",
     },
     body: JSON.stringify({
-      textQuery: "Tranquil Cruise Alappuzha",
+      textQuery: "Tranquil Alleppey Backwater Cruises Alappuzha",
       // Pin the search to the listing's location so a same-named business elsewhere can't match.
       locationBias: { circle: { center: { latitude: 9.4895268, longitude: 76.3650316 }, radius: 1000 } },
       maxResultCount: 3,

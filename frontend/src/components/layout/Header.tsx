@@ -74,13 +74,21 @@ export function Header() {
 
           <Link href="/" aria-label={site.name} className="group flex items-center justify-center" onClick={close}>
             <Image
-              src="/logo.png"
-              alt={site.name}
-              width={780}
-              height={498}
-              className="h-11 w-auto transition-transform duration-500 ease-calm group-hover:scale-105 lg:h-16"
+              src="/logo-mark.png"
+              alt=""
+              width={485}
+              height={326}
+              className="h-10 w-auto transition-transform duration-500 ease-calm group-hover:scale-105 sm:h-12"
               priority
             />
+            <span className="ml-2 flex flex-col leading-tight sm:ml-3">
+              <span className="font-serif text-[15px] font-semibold tracking-tight text-moss-deep sm:text-lg">
+                Tranquil Alleppey
+              </span>
+              <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.18em] text-clay sm:text-[10px]">
+                Backwater Cruises
+              </span>
+            </span>
           </Link>
 
           <div className="hidden items-center gap-4 justify-self-end xl:gap-6 lg:flex">
@@ -142,7 +150,7 @@ export function Header() {
               </Button>
               <Button
                 href={whatsappLink(
-                  "Hello Tranquil Cruise, I'd like to enquire.",
+                  "Hello Tranquil Alleppey Backwater Cruises, I'd like to enquire.",
                 )}
                 variant="outline"
                 target="_blank"

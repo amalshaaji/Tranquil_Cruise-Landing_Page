@@ -33,7 +33,7 @@ export function PartySection({ tone }: { tone?: "paper" | "sand" }) {
                   Plan your party
                 </Button>
                 <Button
-                  href={whatsappLink(`Hello Tranquil Cruise, I'd like to plan a party for ${party.minGuests}+ guests on a houseboat.`)}
+                  href={whatsappLink(`Hello Tranquil Alleppey Backwater Cruises, I'd like to plan a party for ${party.minGuests}+ guests on a houseboat.`)}
                   target="_blank"
                   rel="noopener"
                   variant="outline"
@@ -108,7 +108,7 @@ function PartyForm() {
 
   function openWhatsApp(form: HTMLFormElement | null) {
     const d = form ? read(form) : undefined;
-    const text = ["Hello Tranquil Cruise, I'd like to plan a party on a houseboat.", d && d.travel_date && message(d), d?.name && `Name: ${d.name}`]
+    const text = ["Hello Tranquil Alleppey Backwater Cruises, I'd like to plan a party on a houseboat.", d && d.travel_date && message(d), d?.name && `Name: ${d.name}`]
       .filter(Boolean)
       .join("\n");
     window.open(whatsappLink(text), "_blank", "noopener");

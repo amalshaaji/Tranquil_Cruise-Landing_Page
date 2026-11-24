@@ -16,7 +16,7 @@ export function MobileBar() {
           Enquire
         </Button>
         <Button
-          href={whatsappLink("Hello Tranquil Cruise, I'd like to enquire.")}
+          href={whatsappLink("Hello Tranquil Alleppey Backwater Cruises, I'd like to enquire.")}
           variant="outline"
           target="_blank"
           rel="noopener"

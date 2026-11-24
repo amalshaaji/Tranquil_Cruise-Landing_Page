@@ -29,7 +29,7 @@ export function Feature({
   href: string;
   cta: string;
   scene: React.ReactNode;
-  /** Key fact shown on the photo, e.g. a price or a time. */
+  /** Key fact shown on the photo, e.g. a duration or a time. */
   badge?: string;
   reverse?: boolean;
   tone?: "paper" | "sand";
