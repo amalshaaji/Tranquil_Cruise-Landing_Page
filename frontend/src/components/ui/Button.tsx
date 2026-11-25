@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 type Variant = "solid" | "outline" | "light";
 
 const base =
-  "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium tracking-wide transition-colors duration-300 ease-calm";
+  "group inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-normal rounded-full px-5 py-3 text-center text-sm font-medium tracking-wide transition-colors duration-300 ease-calm sm:px-7";
 
 const variants: Record<Variant, string> = {
   solid: "bg-moss text-paper hover:bg-moss-deep",

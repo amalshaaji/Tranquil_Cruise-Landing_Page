@@ -7,7 +7,7 @@ import { Service, serviceLabel, services, whatsappLink } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
 
 export const input =
-  "w-full rounded-soft border border-stone bg-paper px-4 py-3.5 text-base text-ink placeholder:text-mist/60 focus:border-moss focus:outline-none aria-[invalid=true]:border-clay";
+  "min-w-0 w-full max-w-full rounded-soft border border-stone bg-paper px-4 py-3.5 text-base text-ink placeholder:text-mist/60 focus:border-moss focus:outline-none aria-[invalid=true]:border-clay";
 
 /** Preselects the service from ?service=… while keeping the page statically rendered. */
 export function EnquiryFormWithPreselect() {
@@ -112,7 +112,7 @@ export function Field({
 }) {
   const err = errors[name];
   return (
-    <label className={cn("grid gap-2 text-sm text-mist", className)}>
+    <label className={cn("grid min-w-0 gap-2 text-sm text-mist", className)}>
       {label}
       {err ? cloneElement(children, { "aria-invalid": true }) : children}
       {err && <span className="text-clay">{err}</span>}

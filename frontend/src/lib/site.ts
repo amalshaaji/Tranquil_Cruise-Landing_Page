@@ -30,8 +30,8 @@ export const site = {
   hours: "Open 24 hours",
   email: "cruisetranquil@gmail.com",
   phone: "+91 79940 73491",
-  // Digits only, with country code (e.g. 919876543210). Set in .env.local.
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "910000000000",
+  // Digits only, including India's country code.
+  whatsapp: "917994073491",
 };
 
 export const nav = [
